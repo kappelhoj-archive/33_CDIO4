@@ -1,5 +1,6 @@
 package controller;
 
+import desktop_resources.GUI;
 import entity.DiceCup;
 import entity.Player;
 
@@ -45,6 +46,7 @@ public class MainController {
 			turn = (turn + 1) % players.length;
 		} while (players[turn].getPlayerHasLost());
 	}
+	
 
 	public void playTurn() {
 		// Roll the dice
@@ -61,6 +63,8 @@ public class MainController {
 			int difference = 40 - players[turn].getPosition();
 			players[turn].setPosition(sum - difference);
 		}
+		movePlayerOnGUI();
+		
 	}
 
 	public void playGame() {
@@ -86,5 +90,33 @@ public class MainController {
 	private void givePlayer4000(){
 		players[turn].changeAccountBalance(4000);
 	}
+	
+	
+	/**
+	 * Moves the players car to a position.
+	 * 
+	 * @param playerName
+	 *            Name of the player to be moved.
+	 * @param position
+	 *            New position of the player.
+	 */
+	public void movePlayerOnGUI() {
+		// Remove all the cars of the player
+		GUI.removeAllCars(players[turn].getPlayerName());
+		// Place a new car on the new position.
+		GUI.setCar(players[turn].getPosition(), players[turn].getPlayerName());
+	}
+
+	/**
+	 * Remove all cars of a player.
+	 * 
+	 * @param playerName
+	 *            Name of the player.
+	 */
+	public void removePlayerOnGUI(String playerName) {
+		// Remove all the cars of the player
+		GUI.removeAllCars(playerName);
+	}
+
 
 }

@@ -53,7 +53,7 @@ public class PlayerCreatorGUI {
 
 			while (nameEqual) {
 				do {
-					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer"+i+1);
+					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer"+(i+1));
 				} while (playerNames[i].equals(""));
 				
 				for (int j = 0; j < i; j++) {

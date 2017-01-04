@@ -50,10 +50,9 @@ public class MainController {
 
 	public void playTurn() {
 		// Roll the dice
-		rollDice();
-		int sum = dice.getDiceValue()[0] + dice.getDiceValue()[1];
+		int diceSum = rollDice();
 		checkForExtraTurn();
-		movePlayer(sum);
+		movePlayer(diceSum);
 	}
 
 	public void playGame() {
@@ -97,9 +96,9 @@ public class MainController {
 		GUI.setCar(players[turn].getPosition(), players[turn].getName());
 	}
 	
-	public int[] rollDice(){
+	public int rollDice(){
 		dice.shakeCup();
-		return dice.getDiceValue();
+		return dice.getDiceValue()[0] + dice.getDiceValue()[1];
 	}
 
 	/**

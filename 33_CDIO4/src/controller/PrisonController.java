@@ -2,6 +2,7 @@ package controller;
 
 import desktop_resources.GUI;
 import entity.Player;
+import entity.DiceCup;
 
 public class PrisonController {
 	
@@ -29,12 +30,13 @@ public class PrisonController {
 		}
 		else
 		{
-			mainController.rollDice();
+			int diceSum = mainController.rollDice();
 			if(mainController.checkForExtraTurn())
 			{
 				inPrison = false;
-			}
-			
+				mainController.movePlayer(diceSum);
+				mainController.playTurn();
+			}			
 			else
 			{
 				inPrison = true;

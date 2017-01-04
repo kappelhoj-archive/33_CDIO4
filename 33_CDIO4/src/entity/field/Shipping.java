@@ -1,6 +1,6 @@
 package entity.field;
 
-public class Fleet extends Ownable {
+public class Shipping extends Ownable {
 
 	//Constants
 	final private int[] RENT = {500, 1000, 2000, 4000};
@@ -11,7 +11,7 @@ public class Fleet extends Ownable {
 	 * @param description The description of the field.
 	 * @param price The price of the field.
 	 */
-	public Fleet(String name, String type, String description, int price)
+	public Shipping(String name, String type, String description, int price)
 	{
 		super(name, type, description, price);
 	}

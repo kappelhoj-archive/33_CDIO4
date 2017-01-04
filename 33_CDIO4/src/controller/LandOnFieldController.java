@@ -9,7 +9,8 @@ public class LandOnFieldController {
 
 	
 	/**
-	 * Method landOnField decides what to be done when player lands on a Ownable Field.
+	 * Method landOnField: Decides what has to be done when a player lands on a field.
+	 * @param field The field the player landed on.
 	 * @param player The player to land on the field.
 	 */
 	public void landOnField(Field field, Player player)
@@ -28,6 +29,11 @@ public class LandOnFieldController {
 		}
 	}
 	
+	/**
+	 * Method landOnOwnable: Decides what has to be done when a player lands on an ownable field.
+	 * @param field The field the player landed on.
+	 * @param player The player to land on the field.
+	 */
 	public void landOnOwnable(Field field, Player player)
 	{
 		Ownable ownable = (Ownable)(field);
@@ -43,6 +49,7 @@ public class LandOnFieldController {
 		{
 			if(ownable.isFieldOwnedByAnotherPlayer(player))
 			{
+				GUI.getUserButtonPressed("Du skal betale " + field.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
 				player.payRent(ownable.getOwner(), field.getRent());
 			}
 		}
@@ -50,26 +57,34 @@ public class LandOnFieldController {
 	
 	
 	/**
-	 * Method landOnField decides what to be done when player lands on a Tax Field.
-	 * @param player The player to land on the tax field. 5(valg) 39
+	 * Method landOnField: Decides what has to be done when player lands on a Tax field.
+	 * @param field The field the player landed on.
+	 * @param player The player to land on the tax field.
 	 */
-	@Override
 	public void landOnTax(Field field, Player player)
 	{
+		int rent = 0;
 		Tax tax = (Tax)(field);
-		if (fields[player.getPosition()].get == 39)
-		
-		
-		
-		
-		if (getPlayerPayDecision()) //Checks if the player wants to pay taxrate or fixed taxAmount. True if he wants to pay taxRate
+		if (tax.getTaxRateAvailable() == true)
 		{
-			int rent = (int)(0.01 * fielRate * player.getPlayerFortune()); //The rent to be paid
-			player.changeAccountBalance(-rent);						  //Subtracts the rent from the balance of the player.
+			boolean percent = GUI.getUserLeftButtonPressed("Betal indkomstskat: 10% eller 4000 kr.","4.000","10%");
+			if (percent)
+			{
+				rent = (int)(0.1) * player.getFortune(); //The rent to be paid.
+				player.changeAccountBalance(-rent);      //Subtracts the rent from the balance of the player.
+			}
+			else
+			{
+				rent = 4000;							 //The rent to be paid.
+				player.changeAccountBalance(-rent);      //Substracts the rent from the balance of the player.
+			}
 		}
 		else
 		{
-			player.changeAccountBalance(-taxAmount);                  //Subtracts the rent from the balance of the player.
+			GUI.getUserButtonPressed("Ekstraordinærstatsskat: Betal 2000 kr.", "Ok");
+			rent = 2000;                                 //The rent to be paid.
+			player.changeAccountBalance(-rent);          //Subtracts the rent from the balance of the player.
 		}
+		
 	}
 }

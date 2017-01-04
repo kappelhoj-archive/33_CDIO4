@@ -63,6 +63,30 @@ public abstract class Ownable extends Field {
 	}
 	
 	/**
+	 * Method isFieldOwnedByAnotherPlayer: Checks if the field is owned by another player.
+	 * @param player The player who landed on the field.
+	 * @return true if the field is owned by another player, otherwise it returns false.
+	 */
+	public boolean isFieldOwnedByAnotherPlayer(Player player)
+	{
+		if(isFieldOwned())
+		{
+			if (owner.getName().equals(player.getName()))
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/**
 	 * The method getRent: Returns the rent to be paid by the player who lands on the Ownable field. <br>
 	 * A method to be overridden by subclasses.
 	 * @return The rent to be paid.

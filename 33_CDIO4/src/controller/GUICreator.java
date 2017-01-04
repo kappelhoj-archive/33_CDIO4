@@ -5,10 +5,10 @@ import java.awt.Color;
 import desktop_codebehind.Car;
 import desktop_resources.GUI;
 
-public class PlayerCreatorGUI {
+public class GUICreator {
 	private Car[] cars;
 	
-	public PlayerCreatorGUI(){
+	public GUICreator(){
 		cars=createCars();
 		GUI.setDice(1, 1);
 	}

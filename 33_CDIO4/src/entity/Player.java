@@ -146,19 +146,19 @@ public class Player {
 	public void setfields(Field field)
 	{
 		//Creates a new fields array with 1 more space than the original.
-		Field[] fields = new Field[this.fields.length + 1];
+		Field[] newFields = new Field[fields.length + 1];
 		
 		//Go through the original fields array and add its values to the new fields array.
-		for(int i = 0; i < this.fields.length; i++)
+		for(int i = 0; i < fields.length; i++)
 		{
-			fields[i] = this.fields[i];
+			newFields[i] = fields[i];
 		}
 		
 		//Add the newly bought street to the new fields array.
-		fields[this.fields.length] = field;
+		newFields[fields.length] = field;
 		
 		//Sets the original fields array to the new fields array.
-		this.fields = fields;		
+		fields = newFields;		
 	}
 	
 	/**

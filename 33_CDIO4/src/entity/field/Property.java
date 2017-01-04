@@ -7,10 +7,12 @@ public class Property extends Ownable
 	private int houseRent[];
 	private int numbOfHouses;
 	private String colour;
+	private int pledge;
 
 
 	/**
 	 * Object Property constructor
+	 * @param name The name of the field.
 	 * @param type The type of the field.
 	 * @param description The description of the field.
 	 * @param price The price of the field.
@@ -18,11 +20,12 @@ public class Property extends Ownable
 	 * @param baseRent The base rent of the unbuilt field.
 	 * @param houseRent The base rent of the empty field.
 	 * @param numbOfHouses The current number of houses built on the field.
+	 * @param pledge The value of a pledged field.
 	 */
 
-	public Property (String type, String description, int price, String colour, int baseRent, int houseRent[])
+	public Property (String name, String type, String description, int price, String colour, int baseRent, int houseRent[], int pledge)
 	{
-		super(type, description, price);
+		super(name, type, description, price);
 		this.colour = colour;
 		this.baseRent = baseRent;
 		this.houseRent[0] = houseRent[0];
@@ -31,6 +34,7 @@ public class Property extends Ownable
 		this.houseRent[3] = houseRent[3];
 		this.houseRent[4] = houseRent[4];
 		this.numbOfHouses = 0;
+		this.pledge = price/2;
 	}
 
 	/**
@@ -71,5 +75,12 @@ public class Property extends Ownable
 		}
 		
 		return rent;
+	}
+	
+	/**
+	 * The method getPledge returns the value of the pledge given to the player, by the bank, when the player pledges the field.
+	 */
+	public int getPledge(){
+		return pledge;
 	}
 }

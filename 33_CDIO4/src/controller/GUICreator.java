@@ -9,6 +9,7 @@ public class GUICreator {
 	private Car[] cars;
 	
 	public GUICreator(){
+		
 		cars=createCars();
 		GUI.setDice(1, 1);
 	}

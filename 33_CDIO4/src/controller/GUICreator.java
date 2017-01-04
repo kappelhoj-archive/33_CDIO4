@@ -6,7 +6,10 @@ import desktop_codebehind.Car;
 import desktop_fields.Brewery;
 import desktop_fields.Chance;
 import desktop_fields.Field;
+import desktop_fields.Jail;
+import desktop_fields.Refuge;
 import desktop_fields.Shipping;
+import desktop_fields.Start;
 import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
@@ -27,13 +30,12 @@ public class GUICreator {
 
 	public void addField(String[] information) {
 		String fieldType = information[information.length - 2];
-		System.out.println(fieldType);
 		switch (fieldType) {
 		case "Ejendom":
-			addProperty(information);
+			addStreet(information);
 			break;
 		case "Rederi":
-			addFleet(information);
+			addShipping(information);
 			break;
 		case "Tapperi":
 			addBrewery(information);
@@ -44,20 +46,31 @@ public class GUICreator {
 		case "Skat":
 			addTax(information);
 			break;
-		case "Start"
+		case "Start":
+			addStart(information);
+			break;
+		case "Jail":
+			addJail(information);
+			break;
+		case "Visit":
+			addParking(information);
+			break;
+		case "Parking":
+			addParking(information);
+			break;
 		default:
 			System.out.println("Not a valid field at field number: " + fieldCounter);
 		}
 		fieldCounter++;
 	}
 
-	public void addProperty(String[] information) {
+	public void addStreet(String[] information) {
 		Color color = getColorFromField(information[1]);
 		fields[fieldCounter - 1] = new Street.Builder().setTitle(information[0]).setSubText(information[2])
 				.setDescription("").setBgColor(color).build();
 	}
 
-	public void addFleet(String[] information) {
+	public void addShipping(String[] information) {
 		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(information[0]).setSubText(information[2])
 				.setBgColor(Color.BLUE).build();
 	}
@@ -74,9 +87,23 @@ public class GUICreator {
 				.setBgColor(Color.GRAY).build();
 	}
 	public void addStart(String[] information) {
-		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0])
+		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0])
+				.setBgColor(Color.RED).build();
+	}
+	public void addJail(String[] information) {
+		fields[fieldCounter - 1] = new Jail.Builder().setTitle(information[0])
 				.setBgColor(Color.GRAY).build();
 	}
+	public void addVisit(String[] information) {
+		fields[fieldCounter - 1] = new Jail.Builder().setTitle(information[0])
+				.setBgColor(Color.DARK_GRAY).build();
+	}
+	public void addParking(String[] information) {
+		fields[fieldCounter - 1] = new Refuge.Builder().setTitle(information[0])
+				.setBgColor(Color.DARK_GRAY).build();
+	}
+	
+	
 	
 	
 
@@ -178,15 +205,17 @@ public class GUICreator {
 			color = Color.GREEN;
 			break;
 		case "Grå":
-			color = Color.DARK_GRAY;
+			color = Color.GRAY;
 			break;
 		case "Hvid":
 			color = Color.WHITE;
 			break;
 		case "Gul":
 			color = Color.YELLOW;
+			break;
 		case "Lilla":
 			color = Color.MAGENTA;
+			break;
 		default:
 			color = Color.GRAY;
 			break;

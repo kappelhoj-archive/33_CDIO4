@@ -32,7 +32,7 @@ public class Reader {
 			}
 			
 			gui.addField(information);
-			board.addField(information);
+			//board.addField(information);
 		}
 		gui.endBoardBuilding();
 		

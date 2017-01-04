@@ -1,6 +1,6 @@
 package entity.field;
 
-public class Property extends Ownable
+public class Street extends Ownable
 {
 	//Instance variables
 	private int baseRent;
@@ -11,7 +11,7 @@ public class Property extends Ownable
 
 
 	/**
-	 * Object Property constructor
+	 * constructor: Constructs a Street.
 	 * @param name The name of the field.
 	 * @param type The type of the field.
 	 * @param description The description of the field.
@@ -23,7 +23,7 @@ public class Property extends Ownable
 	 * @param pledge The value of a pledged field.
 	 */
 
-	public Property (String name, String type, String description, int price, String colour, int baseRent, int houseRent[], int pledge)
+	public Street (String name, String type, String description, int price, String colour, int baseRent, int houseRent[], int pledge)
 	{
 		super(name, type, description, price);
 		this.colour = colour;
@@ -38,7 +38,7 @@ public class Property extends Ownable
 	}
 
 	/**
-	 * The method getColour: Returns the colour of the field.
+	 * Method getColour: Returns the colour of the field.
 	 * @return The colour of the field.
 	 */
 	public String getColour(){
@@ -46,20 +46,20 @@ public class Property extends Ownable
 	}
 
 	/**
-	 * The method getBaseRent returns the rent to be payed 
+	 * Method getBaseRent: Returns the rent to be paid.
 	 */
 	public int getBaseRent(){
 		return baseRent;
 	}
 
 	/**
-	 * The method getHouseRent returns the rent to be payed by a player landing on a built field.
+	 * Method getHouseRent: Returns the rent to be paid by a player landing on a built field.
 	 */
 	public int getHouseRent(int numbOfHouses){
 		return houseRent[numbOfHouses];
 	}
 	/**
-	 * The method getRent calculates and returns the rent to be payed, depending on the number of houses.
+	 * Method getRent: Calculates and returns the rent to be paid, depending on the number of houses.
 	 */
 	public int getRent(){
 		int rent = 0;
@@ -68,7 +68,6 @@ public class Property extends Ownable
 		{
 			rent = baseRent;
 		}
-		
 		else
 		{
 			rent = houseRent[numbOfHouses];
@@ -78,7 +77,7 @@ public class Property extends Ownable
 	}
 	
 	/**
-	 * The method getPledge returns the value of the pledge given to the player, by the bank, when the player pledges the field.
+	 * Method getPledge: Returns the value of the pledge given to the player, by the bank, when the player pledges the field.
 	 */
 	public int getPledge(){
 		return pledge;

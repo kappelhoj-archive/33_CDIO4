@@ -8,7 +8,6 @@ public class Player {
 	private Account account;	//The account of the player.
 	private boolean lost;		//Tells if the player has lost the game.
 	private boolean prison;		//Tells if the player is in prison.
-	private int dicePair;		//The amount of times a player rolls a dice pair in a row.
 	private int position;		//The board position of the player.
 	private Field[] streets;	//The streets owned by the player
 
@@ -22,7 +21,6 @@ public class Player {
 		account = new Account(30000);
 		lost = false;
 		prison = false;
-		dicePair = 0;
 		position = 0;
 		streets = null;		
 	}
@@ -161,15 +159,5 @@ public class Player {
 		
 		//Sets the original streets array to the new streets array.
 		this.streets = streets;		
-	}
-	
-	public int getDicePair()
-	{
-		return dicePair;
-	}
-	
-	public void setDicePair(int dicePair)
-	{
-		this.dicePair = dicePair;
 	}
 }

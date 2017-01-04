@@ -66,6 +66,7 @@ public class MainController {
 			return;
 		}
 		movePlayer(diceSum);
+		playerTurnDecision();
 	}
 
 	public void playGame() {
@@ -111,6 +112,7 @@ public class MainController {
 	
 	public int rollDice(){
 		dice.shakeCup();
+		GUI.setDice(dice.getDiceValue()[0], dice.getDiceValue()[1]);
 		return dice.getDiceValue()[0] + dice.getDiceValue()[1];
 	}
 
@@ -140,5 +142,18 @@ public class MainController {
 		movePlayerOnGUI();
 	}
 
-
+	public void playerTurnDecision()
+	{
+		boolean endTurn = false;
+		String output = "Hvad vil du foretage dig?";
+		final String ENDYOURTURN = "Slut din tur.";
+		String userSelection = GUI.getUserSelection(output, ENDYOURTURN);
+		while(!endTurn)
+		{
+			switch(userSelection){
+				case ENDYOURTURN: endTurn = true;
+				break;
+			}
+		}
+	}
 }

@@ -146,19 +146,19 @@ public class Player {
 	public void setfields(Field field)
 	{
 		//Creates a new fields array with 1 more space than the original.
-		Field[] fields = new Field[this.fields.length + 1];
+		Field[] newFields = new Field[fields.length + 1];
 		
 		//Go through the original fields array and add its values to the new fields array.
-		for(int i = 0; i < this.fields.length; i++)
+		for(int i = 0; i < fields.length; i++)
 		{
-			fields[i] = this.fields[i];
+			newFields[i] = fields[i];
 		}
 		
 		//Add the newly bought street to the new fields array.
-		fields[this.fields.length] = field;
+		newFields[fields.length] = field;
 		
 		//Sets the original fields array to the new fields array.
-		this.fields = fields;		
+		fields = newFields;		
 	}
 	
 	/**
@@ -209,6 +209,26 @@ public class Player {
 			{
 				numSameColour++;
 			}
+		}
+	}
+	
+	/**
+	 * Method buyField Lets the player buy a Ownable field.
+	 * @param player The player to buy the field.
+	 * @return Returns true if the buy succeeded.
+	 */
+	public boolean buyField(Field field)
+	{
+		Ownable ownable = (Ownable)(field);
+		if (getAccountBalance() > ownable.getPrice())  //Checks if the player has enough money to buy the field.
+		{
+			changeAccountBalance(-ownable.getPrice()); //Subtracts the price of the field from the player account balance.
+			ownable.setOwner(this);                    //Sets the player to be the owner of the field.
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

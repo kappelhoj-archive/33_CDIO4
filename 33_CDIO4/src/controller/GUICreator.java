@@ -8,6 +8,7 @@ import desktop_fields.Chance;
 import desktop_fields.Field;
 import desktop_fields.Shipping;
 import desktop_fields.Street;
+import desktop_fields.Tax;
 import desktop_resources.GUI;
 
 public class GUICreator {
@@ -38,8 +39,12 @@ public class GUICreator {
 			addBrewery(information);
 			break;	
 		case "Chancekort":
-			addChanceField(information);
-			break;	
+			addChance(information);
+			break;
+		case "Skat":
+			addTax(information);
+			break;
+		case "Start"
 		default:
 			System.out.println("Not a valid field at field number: " + fieldCounter);
 		}
@@ -64,6 +69,15 @@ public class GUICreator {
 		fields[fieldCounter - 1] = new Chance.Builder()
 				.setBgColor(Color.GRAY).build();
 	}
+	public void addTax(String[] information) {
+		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0])
+				.setBgColor(Color.GRAY).build();
+	}
+	public void addStart(String[] information) {
+		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0])
+				.setBgColor(Color.GRAY).build();
+	}
+	
 	
 
 	public void endBoardBuilding() {
@@ -123,7 +137,7 @@ public class GUICreator {
 						break;
 					} else {
 						nameEqual = false;
-					}
+					} 
 				}
 			}
 		}
@@ -164,7 +178,7 @@ public class GUICreator {
 			color = Color.GREEN;
 			break;
 		case "Grå":
-			color = Color.GRAY;
+			color = Color.DARK_GRAY;
 			break;
 		case "Hvid":
 			color = Color.WHITE;

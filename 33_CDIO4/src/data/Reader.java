@@ -32,13 +32,14 @@ public class Reader {
 			}
 			
 			gui.addField(information);
+			board.addField(information);
 		}
 		gui.endBoardBuilding();
 		
 
-		// Indsæt GameBoard Function her.
 
-		// Indsæt GUI Funktion her.
+
+
 	}
 
 	public void closeFile() {

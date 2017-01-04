@@ -1,16 +1,17 @@
 package entity;
 
+import entity.field.*;
+
 public class Player {
 
 	//Instance variables
 	private String playerName;       //The name of the player.
 	private Account account;         //The account of the player.
 	private boolean hasLost;         //Tells if the player has lost the game.
-	private int amountOfFleets;      //Amount of fleet fields the player owns.
-	private int amountOfLaborCamps;  //Amount of labor camp fields the player owns.
 	private int propertyFortune;  	     //Sum of player's balance and the value of all the player's field.
 	private boolean payDecision;     //True if player chooses to pay 10 % of his fortune, false otherwise.
 	private int position;
+	private Field[] fields;
 
 	/** 
 	 * Object Player constructor.
@@ -21,10 +22,9 @@ public class Player {
 		this.playerName = playerName;
 		account = new Account(30000);
 		hasLost = false;
-		amountOfFleets = 0;
-		amountOfLaborCamps = 0;
 		propertyFortune = 0;
 		position=0;
+		fields = null;
 	}
 	
 	/** 
@@ -61,24 +61,6 @@ public class Player {
 	public int getAccountBalance()
 	{
 		return account.getBalance();
-	}
-	
-	/**
-	 * Method getAmountOfFleets returns the amount of fleets the player owns.
-	 * @return The amount of fleets the player owns.
-	 */
-	public int getAmountOfFleets()
-	{
-		return amountOfFleets;
-	}
-	
-	/**
-	 * Method getAmountOfLaborCamps returns the amount of labor camps the player owns.
-	 * @return The amount of labor camps the player owns.
-	 */
-	public int getAmountOfLaborCamps() 
-	{
-		return amountOfLaborCamps;
 	}
 	
 	/**
@@ -169,18 +151,36 @@ public class Player {
 	}
 
 	/**
-	 * Method change AmountOfFleets changes the amount of fleets the player has by one.
+	 * Method getBottlersOwned: Returns the amount of bottler fields owned by the player.
+	 * @return The amount of bottler fields owned.
 	 */
-	public void changeAmountOfFleets()
+	public int getBottlersOwned()
 	{
-		amountOfFleets = amountOfFleets + 1;
+		int amountOfBottlers = 0;
+		for(int i = 0; i < fields.length; i++)
+		{
+			if ("Bottler".equals(fields[i].getType()))
+			{
+				amountOfBottlers++;
+			}
+		}
+		return amountOfBottlers;
 	}
 	
 	/**
-	 * Method changeAmountOfLaborCamps changes the amount of labor camps the player has by one.
+	 * Method getFleetsOwned: Returns the amount of fleet fields owned by the player.
+	 * @return The amount of fleet fields owned.
 	 */
-	public void changeAmountOfLaborCamps()
+	public int getFleetsOwned()
 	{
-		amountOfLaborCamps = amountOfLaborCamps + 1;
+		int amountOfFleets = 0;
+		for(int i = 0; i < fields.length; i++)
+		{
+			if ("Fleet".equals(fields[i].getType()))
+			{
+				amountOfFleets++;
+			}
+		}
+		return amountOfFleets;
 	}
 }

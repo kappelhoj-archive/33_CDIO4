@@ -11,4 +11,9 @@ public class Neutral extends Field
 	public Neutral (String name, String description, String type){
 		super(name, description, type);
 	}
+
+@Override
+public int getRent() {
+	return 0;
+}
 }

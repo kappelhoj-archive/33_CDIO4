@@ -183,4 +183,21 @@ public class Player {
 		}
 		return amountOfFleets;
 	}
+	
+	/**
+	 * Method getPropertiesOwned: Returns the amount of properties owned by the player with the same colour.
+	 * @param colour The colour of the field.
+	 * @return The amount of properties with the given colour.
+	 */
+	public int getPropertiesOwned(String colour)
+	{
+		int numSameColour;
+		for(int i = 0; i < fields.length; i++)
+		{
+			if ("Property".equals(fields[i].getType()) && colour.equals(fields[i].getColour()))
+			{
+				numSameColour++;
+			}
+		}
+	}
 }

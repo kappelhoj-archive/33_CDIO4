@@ -202,14 +202,16 @@ public class Player {
 	 */
 	public int getPropertiesOwned(String colour)
 	{
-		int numSameColour;
+		int numSameColour = 0;
 		for(int i = 0; i < fields.length; i++)
 		{
-			if ("Property".equals(fields[i].getType()) && colour.equals(fields[i].getColour()))
+			Property field_i = (Property)(fields[i]);
+			if ("Property".equals(fields[i].getType()) && colour.equals(field_i.getColour()))
 			{
 				numSameColour++;
 			}
 		}
+		return numSameColour;
 	}
 	
 	/**

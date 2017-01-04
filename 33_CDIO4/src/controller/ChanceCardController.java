@@ -1,5 +1,6 @@
 package controller;
 import entity.ChanceCardDeck;
+import entity.Player;
 import entity.ChanceCard.ChanceCard;
 import entity.ChanceCard.Movement;
 
@@ -7,6 +8,7 @@ import entity.ChanceCard.Movement;
 public class ChanceCardController {
 
 	ChanceCardDeck deck;
+	Player tempPlayer;
 	
 	ChanceCardController()
 	{
@@ -15,7 +17,8 @@ public class ChanceCardController {
 		
 		
 	}
-	public void draw(){
+	public void draw(Player player){
+		tempPlayer= player;
 		ChanceCard currentCard=deck.drawCard();
 		String type = currentCard.getType();
 		switch(type)
@@ -69,7 +72,7 @@ public class ChanceCardController {
 	}
 	public void movePlayerSpecificField()
 	{
-		
+		tempPlayer.setPosition(1);
 	}
 	
 	

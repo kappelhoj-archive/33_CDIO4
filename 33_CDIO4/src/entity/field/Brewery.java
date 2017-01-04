@@ -1,18 +1,18 @@
 package entity.field;
 
-public class Bottler extends Ownable{
+public class Brewery extends Ownable{
 
 	//Instance variables
 	private int baseRent;
 	private int diceSum;
 	
 	/**
-	 * Constructor: Constructs a bottler.
+	 * Constructor: Constructs a brewery.
 	 * @param type The type of the field.
 	 * @param description The description of the field.
 	 * @param price The price of the field.
 	 */
-	public Bottler(String name, String type, String description, int price)
+	public Brewery(String name, String type, String description, int price)
 	{
 		super(name, type, description, price);
 		this.baseRent = 100;
@@ -28,7 +28,7 @@ public class Bottler extends Ownable{
 	}
 	
 	/**
-	 * Method getRent: Returns the rent to be paid by the player who lands a bottler field.
+	 * Method getRent: Returns the rent to be paid by the player who lands a brewery field.
 	 * @return The rent to be paid.
 	 */
 	@Override

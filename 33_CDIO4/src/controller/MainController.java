@@ -14,7 +14,7 @@ import entity.Player;
 public class MainController {
 	private Player[] players;
 	private DiceCup dice;
-
+	private PrisonController prisonController;
 
 	private int turn;
 	private int numExtraTurn;
@@ -23,7 +23,7 @@ public class MainController {
 	/**
 	 * Creates the 
 	 */
-	private MainController() {
+	MainController() {
 		GUICreator createPlayers =new GUICreator();
 		String[] playerNames=createPlayers.getPlayerNames();
 		this.players = new Player[playerNames.length];
@@ -34,6 +34,7 @@ public class MainController {
 		
 		numExtraTurn = 0;
 		dice = new DiceCup();
+		prisonController = new PrisonController(this);
 	}
 
 	public static void main(String[] args) {
@@ -49,9 +50,21 @@ public class MainController {
 	
 
 	public void playTurn() {
-		// Roll the dice
+		
+		if(prisonController.checkIfInPrison(players[turn]))
+		{
+			prisonController.inPrison(players[turn]);
+			return;
+		}
+		
 		int diceSum = rollDice();
 		checkForExtraTurn();
+		if(numExtraTurn == 3)
+		{
+			prisonController.sentToPrison(players[turn]);
+			extraTurn = false;
+			return;
+		}
 		movePlayer(diceSum);
 	}
 
@@ -77,7 +90,7 @@ public class MainController {
 	}
 	
 	private void givePlayer4000(){
-		players[turn].setAccountBalance(4000);
+		players[turn].changeAccountBalance(4000);
 	}
 	
 	

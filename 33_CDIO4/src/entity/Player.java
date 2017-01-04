@@ -36,14 +36,14 @@ public class Player {
 		if(account.getBalance() > rent)       
 		{
 			//Adds the rent to the balance of the owner.
-			owner.setAccountBalance(rent); 
+			owner.changeAccountBalance(rent); 
 			//Subtracts the rent from the objects balance.
 			account.changeBalance(-rent);     
 		}
 		else
 		{
 			//Adds the object's balance to the balance of the owner.
-			owner.setAccountBalance(account.getBalance()); 
+			owner.changeAccountBalance(account.getBalance()); 
 			//Sets the object's hasLost condition to true.
 			setLost(true);                           
 		}
@@ -71,7 +71,7 @@ public class Player {
 	 * Method changeAccountBalance changes balance of the player's account with the parameter value.
 	 * @param The value the balance should be changed with.
 	 */
-	public void setAccountBalance(int value)
+	public void changeAccountBalance(int value)
 	{
 		account.changeBalance(value);
 	}

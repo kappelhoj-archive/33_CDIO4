@@ -27,7 +27,6 @@ public class MainController {
 		GUICreator createPlayers =new GUICreator();
 		String[] playerNames=createPlayers.getPlayerNames();
 		this.players = new Player[playerNames.length];
-
 		for (int i = 0; i < players.length; i++) {
 			this.players[i] = new Player(playerNames[i]);
 		}
@@ -45,7 +44,7 @@ public class MainController {
 	public void changeTurn() {
 		do {
 			turn = (turn + 1) % players.length;
-		} while (players[turn].getPlayerHasLost());
+		} while (players[turn].getLost());
 	}
 	
 

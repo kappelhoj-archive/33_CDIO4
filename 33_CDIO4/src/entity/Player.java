@@ -57,7 +57,7 @@ public class Player {
 	{
 		return name;
 	}
-		
+		 
 	/** 
 	 * Method getAccountBalance returns the balance of the player's account.
 	 * @return Returns the account balance value of the player.
@@ -159,5 +159,56 @@ public class Player {
 		
 		//Sets the original streets array to the new streets array.
 		this.streets = streets;		
+	}
+	
+	/**
+	 * Method getBottlersOwned: Returns the amount of bottler fields owned by the player.
+	 * @return The amount of bottler fields owned.
+	 */
+	public int getBottlersOwned()
+	{
+		int amountOfBottlers = 0;
+		for(int i = 0; i < fields.length; i++)
+		{
+			if ("Bottler".equals(fields[i].getType()))
+			{
+				amountOfBottlers++;
+			}
+		}
+		return amountOfBottlers;
+	}
+	
+	/**
+	 * Method getFleetsOwned: Returns the amount of fleet fields owned by the player.
+	 * @return The amount of fleet fields owned.
+	 */
+	public int getFleetsOwned()
+	{
+		int amountOfFleets = 0;
+		for(int i = 0; i < fields.length; i++)
+		{
+			if ("Fleet".equals(fields[i].getType()))
+			{
+				amountOfFleets++;
+			}
+		}
+		return amountOfFleets;
+	}
+	
+	/**
+	 * Method getPropertiesOwned: Returns the amount of properties owned by the player with the same colour.
+	 * @param colour The colour of the field.
+	 * @return The amount of properties with the given colour.
+	 */
+	public int getPropertiesOwned(String colour)
+	{
+		int numSameColour;
+		for(int i = 0; i < fields.length; i++)
+		{
+			if ("Property".equals(fields[i].getType()) && colour.equals(fields[i].getColour()))
+			{
+				numSameColour++;
+			}
+		}
 	}
 }

@@ -84,4 +84,14 @@ public class Street extends Ownable
 	public int getPledge(){
 		return pledge;
 	}
+	
+	/**
+	 * Method getValue: Returns the value of field (field price + prices for houses). <br>
+	 * @return The value of the field.
+	 */
+	@Override
+	public int getValue()
+	{
+		return super.getValue() + numbOfHouses * housePrice;
+	}
 }

@@ -66,6 +66,7 @@ public class MainController {
 			return;
 		}
 		movePlayer(diceSum);
+		//landOnField
 		playerTurnDecision();
 	}
 

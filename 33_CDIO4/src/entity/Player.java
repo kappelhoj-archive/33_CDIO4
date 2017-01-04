@@ -9,7 +9,7 @@ public class Player {
 	private boolean lost;		//Tells if the player has lost the game.
 	private boolean prison;		//Tells if the player is in prison.
 	private int position;		//The board position of the player.
-	private Field[] fields;	//The fields owned by the player
+	private Ownable[] fields;	//The fields owned by the player
 
 	/** 
 	 * Object Player constructor.
@@ -145,8 +145,9 @@ public class Player {
 	 */
 	public void setfields(Field field)
 	{
+		Ownable ownable = (Ownable)(field);
 		//Creates a new fields array with 1 more space than the original.
-		Field[] newFields = new Field[fields.length + 1];
+		Ownable[] newFields = new Ownable[fields.length + 1];
 		
 		//Go through the original fields array and add its values to the new fields array.
 		for(int i = 0; i < fields.length; i++)
@@ -155,7 +156,7 @@ public class Player {
 		}
 		
 		//Add the newly bought street to the new fields array.
-		newFields[fields.length] = field;
+		newFields[fields.length] = ownable;
 		
 		//Sets the original fields array to the new fields array.
 		fields = newFields;		
@@ -232,5 +233,19 @@ public class Player {
 		{
 			return false;
 		}
+	}
+	
+	/**
+	 * Method getFortune: Calculates and returns the total fortune of the player.
+	 * @return The fortune of the player.
+	 */
+	public int getFortune()
+	{
+		int fortune = 0;
+		for (int i = 0; 0 < fields.length; i++)
+		{
+			fortune = fortune + fields[i].getValue();
+		}
+		return fortune;
 	}
 }

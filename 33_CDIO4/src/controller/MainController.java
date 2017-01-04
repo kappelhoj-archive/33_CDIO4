@@ -44,7 +44,7 @@ public class MainController {
 	public void changeTurn() {
 		do {
 			turn = (turn + 1) % players.length;
-		} while (players[turn].getLost());
+		} while (players[turn].getPlayerHasLost());
 	}
 	
 

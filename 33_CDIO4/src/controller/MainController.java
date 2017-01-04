@@ -50,21 +50,10 @@ public class MainController {
 
 	public void playTurn() {
 		// Roll the dice
-		dice.shakeCup();
+		rollDice();
 		int sum = dice.getDiceValue()[0] + dice.getDiceValue()[1];
 		checkForExtraTurn();
-
-		// Move the player to his position and if he passes field 40 move him to
-		// 1 and continue counting.
-		if (players[turn].getPosition() + sum <= 40) {
-			players[turn].setPosition(players[turn].getPosition() + sum);
-		} else {
-			givePlayer4000();
-			int difference = 40 - players[turn].getPosition();
-			players[turn].setPosition(sum - difference);
-		}
-		movePlayerOnGUI();
-		
+		movePlayer(sum);
 	}
 
 	public void playGame() {
@@ -89,7 +78,7 @@ public class MainController {
 	}
 	
 	private void givePlayer4000(){
-		players[turn].changeAccountBalance(4000);
+		players[turn].setAccountBalance(4000);
 	}
 	
 	
@@ -103,9 +92,9 @@ public class MainController {
 	 */
 	public void movePlayerOnGUI() {
 		// Remove all the cars of the player
-		GUI.removeAllCars(players[turn].getPlayerName());
+		GUI.removeAllCars(players[turn].getName());
 		// Place a new car on the new position.
-		GUI.setCar(players[turn].getPosition(), players[turn].getPlayerName());
+		GUI.setCar(players[turn].getPosition(), players[turn].getName());
 	}
 	
 	public int[] rollDice(){
@@ -122,6 +111,21 @@ public class MainController {
 	public void removePlayerOnGUI(String playerName) {
 		// Remove all the cars of the player
 		GUI.removeAllCars(playerName);
+	}
+	
+	public void movePlayer(int diceSum)
+	{
+
+		// Move the player to his position and if he passes field 40 move him to
+		// 1 and continue counting.
+		if (players[turn].getPosition() + diceSum <= 40) {
+			players[turn].setPosition(players[turn].getPosition() + diceSum);
+		} else {
+			givePlayer4000();
+			int difference = 40 - players[turn].getPosition();
+			players[turn].setPosition(diceSum - difference);
+		}
+		movePlayerOnGUI();
 	}
 
 

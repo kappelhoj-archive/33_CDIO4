@@ -9,7 +9,7 @@ public class Player {
 	private boolean lost;		//Tells if the player has lost the game.
 	private boolean prison;		//Tells if the player is in prison.
 	private int position;		//The board position of the player.
-	private Field[] streets;	//The streets owned by the player
+	private Field[] fields;	//The fields owned by the player
 
 	/** 
 	 * Object Player constructor.
@@ -22,7 +22,7 @@ public class Player {
 		lost = false;
 		prison = false;
 		position = 0;
-		streets = null;		
+		fields = null;		
 	}
 	
 	/**
@@ -131,34 +131,34 @@ public class Player {
 	}
 	
 	/**
-	 * Method getStreets returns the streets owned by the player.
-	 * @return Returns the streets owned by the player.
+	 * Method getfields returns the fields owned by the player.
+	 * @return Returns the fields owned by the player.
 	 */
-	public Field[] getStreets()
+	public Field[] getfields()
 	{
-		return streets;
+		return fields;
 	}
 	
 	/**
-	 * Method setStreets sets the streets owned by the player.
+	 * Method setfields sets the fields owned by the player.
 	 * @param street The street to be added to the player's street list.
 	 */
-	public void setStreets(Field street)
+	public void setfields(Field field)
 	{
-		//Creates a new streets array with 1 more space than the original.
-		Field[] streets = new Field[this.streets.length + 1];
+		//Creates a new fields array with 1 more space than the original.
+		Field[] fields = new Field[this.fields.length + 1];
 		
-		//Go through the original streets array and add its values to the new streets array.
-		for(int i = 0; i < this.streets.length; i++)
+		//Go through the original fields array and add its values to the new fields array.
+		for(int i = 0; i < this.fields.length; i++)
 		{
-			streets[i] = this.streets[i];
+			fields[i] = this.fields[i];
 		}
 		
-		//Add the newly bought street to the new streets array.
-		streets[this.streets.length] = street;
+		//Add the newly bought street to the new fields array.
+		fields[this.fields.length] = field;
 		
-		//Sets the original streets array to the new streets array.
-		this.streets = streets;		
+		//Sets the original fields array to the new fields array.
+		this.fields = fields;		
 	}
 	
 	/**

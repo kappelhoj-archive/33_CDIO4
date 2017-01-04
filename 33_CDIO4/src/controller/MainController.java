@@ -77,7 +77,7 @@ public class MainController {
 		}
 	}
 
-	private void checkForExtraTurn() {
+	public boolean checkForExtraTurn() {
 		if (dice.getDiceValue()[0] == dice.getDiceValue()[1]) {
 			extraTurn = true;
 			numExtraTurn++;
@@ -85,6 +85,7 @@ public class MainController {
 			extraTurn = false;
 			numExtraTurn = 0;
 		}
+		return extraTurn;
 	}
 	
 	private void givePlayer4000(){

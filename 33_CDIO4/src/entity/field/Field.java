@@ -3,6 +3,7 @@ package entity.field;
 public abstract class Field {
 	
 	//Instance variables
+	private String name;
 	private String type;
 	private String description;
 	
@@ -11,8 +12,9 @@ public abstract class Field {
 	 * @param The type of the field.
 	 * @param The description of the field.
 	 */
-	public Field(String type, String description)
+	public Field(String name, String type, String description)
 	{
+		this.name = name;
 		this.type = type;
 		this.description = description;
 	}
@@ -33,6 +35,15 @@ public abstract class Field {
 	public String getDescription()
 	{
 		return description;
+	}
+	
+	/**
+	 * Method getName: Returns the name of the field.
+	 * @return The name of the field.
+	 */
+	public String getName()
+	{
+		return name;
 	}
 	
 	/**

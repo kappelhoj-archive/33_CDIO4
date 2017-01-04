@@ -7,7 +7,14 @@ import entity.GameBoard;
 
 public class LandOnFieldController {
 
+	private PrisonController prisonController;
 	
+	public LandOnFieldController(PrisonController pc, MainController mc)
+	{
+		this.prisonController = new PrisonController(mc);
+	}
+	
+	public
 	/**
 	 * Method landOnField: Decides what has to be done when a player lands on a field.
 	 * @param field The field the player landed on.
@@ -57,7 +64,7 @@ public class LandOnFieldController {
 	
 	
 	/**
-	 * Method landOnField: Decides what has to be done when player lands on a Tax field.
+	 * Method landOnField: Decides what has to be done when a player lands on a Tax field.
 	 * @param field The field the player landed on.
 	 * @param player The player to land on the tax field.
 	 */
@@ -86,5 +93,21 @@ public class LandOnFieldController {
 			player.changeAccountBalance(-rent);          //Subtracts the rent from the balance of the player.
 		}
 		
+	}
+	
+	/**
+	 * Method landOnNeutral: Decides what has to be done when a player lands on the following fields: <br>
+	 * - Sent to prison <br>
+	 * - Start <br>
+	 * - Parking <br>
+	 * - Visiting prison. <br>
+	 * @param player The player who landed on the neutral field.
+	 */
+	public void landOnNeutral(Player player){
+		int isPrison = 30;
+		if (player.getPosition() == isPrison)
+		{
+			prisonController.sentToPrison(player);
+		}
 	}
 }

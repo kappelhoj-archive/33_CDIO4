@@ -8,8 +8,8 @@ public class Neutral extends Field
  * @param type The type of the field.
  */
 	
-	public Neutral (String name, String description, String type){
-		super(name, description, type);
+	public Neutral (String name, String type, String description){
+		super(name, type, description);
 	}
 
 @Override

@@ -36,7 +36,7 @@ public class Street extends Ownable
 		this.houseRent[3] = houseRent[3];
 		this.houseRent[4] = houseRent[4];
 		this.numbOfHouses = 0;
-		this.pledge = price/2;
+		this.pledge = pledge;
 	}
 
 	/**

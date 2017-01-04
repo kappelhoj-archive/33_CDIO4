@@ -12,9 +12,9 @@ public class Tax extends Field {
 	 * @param amount The fixed tax amount the player can choose to pay.
 	 * @param rate The tax rate the player can choose to pay. The rate is in percent
 	 */
-	public Tax (String type, String description, int rate, int amount)
+	public Tax (String name, String type, String description, int rate, int amount)
 	{	
-		super(type, description);
+		super(name, type, description);
 		this.amount = amount;
 		this.rate = rate;
 	}

@@ -205,7 +205,7 @@ public class Player {
 		int numSameColour = 0;
 		for(int i = 0; i < fields.length; i++)
 		{
-			Property field_i = (Property)(fields[i]);
+			Street field_i = (Street)(fields[i]);
 			if ("Property".equals(fields[i].getType()) && colour.equals(field_i.getColour()))
 			{
 				numSameColour++;

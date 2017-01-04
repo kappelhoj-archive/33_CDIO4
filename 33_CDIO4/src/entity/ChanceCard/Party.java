@@ -1,12 +1,11 @@
 package entity.ChanceCard;
 
-
 public class Party extends ChanceCard{
 
 	private String type;
-	private String desc;
+	private String description;
 	
-	public Party(String type, String desc){
-		super(type,desc);
+	public Party(String type, String description){
+		super(type,description);
 	}
 }

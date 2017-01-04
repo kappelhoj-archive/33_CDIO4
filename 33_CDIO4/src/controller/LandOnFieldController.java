@@ -22,7 +22,7 @@ public class LandOnFieldController {
 			break;
 		case "ChanceField": landOnChanceField(player);
 			break;
-		case "Tax": landOnTax(player);
+		case "Tax": landOnTax(field, player);
 			break;
 		defualt: landOnNeutral(player);
 			break;
@@ -67,7 +67,7 @@ public class LandOnFieldController {
 		Tax tax = (Tax)(field);
 		if (tax.getTaxRateAvailable() == true)
 		{
-			boolean percent = GUI.getUserLeftButtonPressed("Betal indkomstskat: 10% eller 4000 kr.","4.000","10%");
+			boolean percent = GUI.getUserLeftButtonPressed("Betal indkomstskat: 10% eller 4.000 kr.","10%","4.000");
 			if (percent)
 			{
 				rent = (int)(0.1) * player.getFortune(); //The rent to be paid.
@@ -81,7 +81,7 @@ public class LandOnFieldController {
 		}
 		else
 		{
-			GUI.getUserButtonPressed("Ekstraordinærstatsskat: Betal 2000 kr.", "Ok");
+			GUI.getUserButtonPressed("Ekstraordinærstatsskat: Betal 2.000 kr.", "Ok");
 			rent = 2000;                                 //The rent to be paid.
 			player.changeAccountBalance(-rent);          //Subtracts the rent from the balance of the player.
 		}

@@ -106,6 +106,11 @@ public class MainController {
 		// Place a new car on the new position.
 		GUI.setCar(players[turn].getPosition(), players[turn].getPlayerName());
 	}
+	
+	public int[] rollDice(){
+		dice.shakeCup();
+		return dice.getDiceValue();
+	}
 
 	/**
 	 * Remove all cars of a player.

@@ -211,4 +211,24 @@ public class Player {
 			}
 		}
 	}
+	
+	/**
+	 * Method buyField Lets the player buy a Ownable field.
+	 * @param player The player to buy the field.
+	 * @return Returns true if the buy succeeded.
+	 */
+	public boolean buyField(Field field)
+	{
+		Ownable ownable = (Ownable)(field);
+		if (getAccountBalance() > ownable.getPrice())  //Checks if the player has enough money to buy the field.
+		{
+			changeAccountBalance(-ownable.getPrice()); //Subtracts the price of the field from the player account balance.
+			ownable.setOwner(this);                    //Sets the player to be the owner of the field.
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

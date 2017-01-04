@@ -32,8 +32,11 @@ public class LandOnFieldController {
 		Ownable ownable = (Ownable)(field);
 		if(!ownable.isFieldOwned())
 		{
-			GUI.getUserLeftButtonPressed("Vil du købe " + field.getName() + "?", "Yes", "No");
-			player.buy(field);
+			boolean bought = GUI.getUserLeftButtonPressed("Vil du købe " + field.getName() + "?", "Yes", "No");
+			if(bought)
+			{
+			player.buyField(field);
+			}
 		}
 		else
 		{

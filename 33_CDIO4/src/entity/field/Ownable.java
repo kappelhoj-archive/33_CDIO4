@@ -47,6 +47,15 @@ public abstract class Ownable extends Field {
 	}
 	
 	/**
+	 * Method setOwner: Sets the owner of the field to player.
+	 * @param player The player to be set to own the field.
+	 */
+	public void setOwner(Player player)
+	{
+		owner = player;
+	}
+	
+	/**
 	 * Method isFieldOwned: Checks if the field is owned by a player.
 	 * @return True if the field is owned.
 	 */

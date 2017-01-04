@@ -13,9 +13,9 @@ public abstract class Ownable extends Field {
 	 * @param description The description of the field.
 	 * @param price The price of the field.
 	 */
-	public Ownable(String type, String description, int price)
+	public Ownable(String name, String type, String description, int price)
 	{
-		super(type, description);
+		super(name, type, description);
 		this.price = price;
 		this.owner = null;
 	}
@@ -47,6 +47,15 @@ public abstract class Ownable extends Field {
 	}
 	
 	/**
+	 * Method setOwner: Sets the owner of the field to player.
+	 * @param player The player to be set to own the field.
+	 */
+	public void setOwner(Player player)
+	{
+		owner = player;
+	}
+	
+	/**
 	 * Method isFieldOwned: Checks if the field is owned by a player.
 	 * @return True if the field is owned.
 	 */
@@ -59,6 +68,30 @@ public abstract class Ownable extends Field {
 		else
 		{
 			return true;
+		}
+	}
+	
+	/**
+	 * Method isFieldOwnedByAnotherPlayer: Checks if the field is owned by another player.
+	 * @param player The player who landed on the field.
+	 * @return true if the field is owned by another player, otherwise it returns false.
+	 */
+	public boolean isFieldOwnedByAnotherPlayer(Player player)
+	{
+		if(isFieldOwned())
+		{
+			if (owner.getName().equals(player.getName()))
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		else
+		{
+			return false;
 		}
 	}
 	

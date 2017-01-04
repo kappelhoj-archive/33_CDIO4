@@ -3,7 +3,7 @@ package entity.field;
 public class Tax extends Field {
 	
 	//Instance variables
-	private int rate;
+	private boolean taxRateAvailable;
 	private int amount;
 	
 	/**
@@ -12,11 +12,11 @@ public class Tax extends Field {
 	 * @param amount The fixed tax amount the player can choose to pay.
 	 * @param rate The tax rate the player can choose to pay. The rate is in percent
 	 */
-	public Tax (String name, String type, String description, int rate, int amount)
+	public Tax (String name, String type, String description, boolean taxRateAvailable, int amount)
 	{	
 		super(name, type, description);
 		this.amount = amount;
-		this.rate = rate;
+		this.taxRateAvailable = taxRateAvailable;
 	}
 	
 	/**
@@ -32,9 +32,9 @@ public class Tax extends Field {
 	 * Method getRate returns tax rate to be paid by the player who lands on the tax field.
 	 * @return Returns the tax rate to be paid.
 	 */
-	public int getRate()
+	public boolean getTaxRateAvailable()
 	{
-		return rate;
+		return taxRateAvailable;
 	}
 	
 	

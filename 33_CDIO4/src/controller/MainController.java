@@ -14,7 +14,7 @@ import entity.Player;
 public class MainController {
 	private Player[] players;
 	private DiceCup dice;
-
+	private PrisonController prisonController;
 
 	private int turn;
 	private int numExtraTurn;
@@ -23,7 +23,7 @@ public class MainController {
 	/**
 	 * Creates the 
 	 */
-	private MainController() {
+	MainController() {
 		GUICreator createPlayers =new GUICreator();
 		String[] playerNames=createPlayers.getPlayerNames();
 		this.players = new Player[playerNames.length];
@@ -34,6 +34,7 @@ public class MainController {
 		
 		numExtraTurn = 0;
 		dice = new DiceCup();
+		prisonController = new PrisonController(this);
 	}
 
 	public static void main(String[] args) {
@@ -49,22 +50,23 @@ public class MainController {
 	
 
 	public void playTurn() {
-		// Roll the dice
-		dice.shakeCup();
-		int sum = dice.getDiceValue()[0] + dice.getDiceValue()[1];
-		checkForExtraTurn();
-
-		// Move the player to his position and if he passes field 40 move him to
-		// 1 and continue counting.
-		if (players[turn].getPosition() + sum <= 40) {
-			players[turn].setPosition(players[turn].getPosition() + sum);
-		} else {
-			givePlayer4000();
-			int difference = 40 - players[turn].getPosition();
-			players[turn].setPosition(sum - difference);
-		}
-		movePlayerOnGUI();
 		
+		if(prisonController.checkIfInPrison(players[turn]))
+		{
+			prisonController.inPrison(players[turn]);
+			return;
+		}
+		
+		int diceSum = rollDice();
+		checkForExtraTurn();
+		if(numExtraTurn == 3)
+		{
+			prisonController.sentToPrison(players[turn]);
+			extraTurn = false;
+			return;
+		}
+		movePlayer(diceSum);
+		playerTurnDecision();
 	}
 
 	public void playGame() {
@@ -77,7 +79,7 @@ public class MainController {
 		}
 	}
 
-	private void checkForExtraTurn() {
+	public boolean checkForExtraTurn() {
 		if (dice.getDiceValue()[0] == dice.getDiceValue()[1]) {
 			extraTurn = true;
 			numExtraTurn++;
@@ -85,6 +87,7 @@ public class MainController {
 			extraTurn = false;
 			numExtraTurn = 0;
 		}
+		return extraTurn;
 	}
 	
 	private void givePlayer4000(){
@@ -102,14 +105,15 @@ public class MainController {
 	 */
 	public void movePlayerOnGUI() {
 		// Remove all the cars of the player
-		GUI.removeAllCars(players[turn].getPlayerName());
+		GUI.removeAllCars(players[turn].getName());
 		// Place a new car on the new position.
-		GUI.setCar(players[turn].getPosition(), players[turn].getPlayerName());
+		GUI.setCar(players[turn].getPosition(), players[turn].getName());
 	}
 	
-	public int[] rollDice(){
+	public int rollDice(){
 		dice.shakeCup();
-		return dice.getDiceValue();
+		GUI.setDice(dice.getDiceValue()[0], dice.getDiceValue()[1]);
+		return dice.getDiceValue()[0] + dice.getDiceValue()[1];
 	}
 
 	/**
@@ -122,6 +126,34 @@ public class MainController {
 		// Remove all the cars of the player
 		GUI.removeAllCars(playerName);
 	}
+	
+	public void movePlayer(int diceSum)
+	{
 
+		// Move the player to his position and if he passes field 40 move him to
+		// 1 and continue counting.
+		if (players[turn].getPosition() + diceSum <= 40) {
+			players[turn].setPosition(players[turn].getPosition() + diceSum);
+		} else {
+			givePlayer4000();
+			int difference = 40 - players[turn].getPosition();
+			players[turn].setPosition(diceSum - difference);
+		}
+		movePlayerOnGUI();
+	}
 
+	public void playerTurnDecision()
+	{
+		boolean endTurn = false;
+		String output = "Hvad vil du foretage dig?";
+		final String ENDYOURTURN = "Slut din tur.";
+		String userSelection = GUI.getUserSelection(output, ENDYOURTURN);
+		while(!endTurn)
+		{
+			switch(userSelection){
+				case ENDYOURTURN: endTurn = true;
+				break;
+			}
+		}
+	}
 }

@@ -1,8 +1,9 @@
 package entity;
 
 public class Account {
+	
 	// Instance variables
-	private int balance;
+	private int balance;	//The balance of the account.
 
 	/**
 	 * Object Account constructor.

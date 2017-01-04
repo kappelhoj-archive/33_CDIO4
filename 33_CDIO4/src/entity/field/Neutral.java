@@ -14,6 +14,6 @@ public class Neutral extends Field
 
 @Override
 public int getRent() {
-	return 0;
+	return -1;
 }
 }

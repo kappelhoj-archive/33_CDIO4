@@ -14,19 +14,35 @@ public class PrisonController {
 		mainController.movePlayerOnGUI();
 	}
 	
-	public boolean inPrison()
+	public boolean inPrison(Player player)
 	{
-		GUI.getUserSelection("Du er i fængsel, hvad vil du gøre?", "Betal dig ud: 1.000,-", "Rul med terningerne");
+		boolean inPrison;
+		String payOut = "Betal dig ud: 1.000,-";
+		String rollOut = "Rul med terningerne.";
+		String input = GUI.getUserSelection("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
 		
-		
-		mainController.rollDice();
-		if(mainController.checkForExtraTurn())
+		if(input.equals(payOut))
 		{
-			return false;
+			player.setAccountBalance(-1000);
+			player.setPrison(false);
+			inPrison = false;
 		}
 		else
 		{
-			return true;
+			mainController.rollDice();
+			if(mainController.checkForExtraTurn())
+			{
+				inPrison = false;
+			}
+			
+			else
+			{
+				inPrison = true;
+			}
 		}
+		
+		return inPrison;
 	}
+	
+	
 }

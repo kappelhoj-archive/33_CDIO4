@@ -3,11 +3,12 @@ package entity.ChanceCard;
 public class Grant extends ChanceCard{
 
 	private String type;
-	private String desc;
+	private String description;
 	private int price;
 	
-	public Grant(String type, String desc, int price)
+	public Grant(String type, String description, int price)
 	{
-		super(type, desc);
+		super(type, description);
 	}
+	
 }

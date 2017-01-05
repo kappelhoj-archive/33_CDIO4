@@ -3,10 +3,11 @@ package entity.field;
 public class Street extends Ownable
 {
 	//Instance variables
+	private String colour;
 	private int baseRent;
+	private int housePrice;
 	private int houseRent[];
 	private int numbOfHouses;
-	private String colour;
 	private int pledge;
 
 
@@ -23,18 +24,19 @@ public class Street extends Ownable
 	 * @param pledge The value of a pledged field.
 	 */
 
-	public Street (String name, String type, String description, int price, String colour, int baseRent, int houseRent[], int pledge)
+	public Street (String name, String type, String description, int price, String colour, int baseRent, int housePrice, int houseRent[], int pledge)
 	{
 		super(name, type, description, price);
 		this.colour = colour;
 		this.baseRent = baseRent;
+		this.housePrice = housePrice;
 		this.houseRent[0] = houseRent[0];
 		this.houseRent[1] = houseRent[1];
 		this.houseRent[2] = houseRent[2];
 		this.houseRent[3] = houseRent[3];
 		this.houseRent[4] = houseRent[4];
 		this.numbOfHouses = 0;
-		this.pledge = price/2;
+		this.pledge = pledge;
 	}
 
 	/**
@@ -82,4 +84,34 @@ public class Street extends Ownable
 	public int getPledge(){
 		return pledge;
 	}
+	
+	/**
+	 * Method getValue: Returns the value of field (field price + prices for houses). <br>
+	 * @return The value of the field.
+	 */
+	@Override
+	public int getValue()
+	{
+		return super.getValue() + numbOfHouses * housePrice;
+	}
+	
+	public int getHousePrice()
+	{
+		return housePrice;
+	}
+	
+	
+	/**
+	 * Methods needed for the Bank class. Might need revisiting later.
+	 */
+	public int getNumbOfHouses()
+	{
+		return numbOfHouses;
+	}
+	public int setNumbOfHouses()
+	{
+		numbOfHouses--;
+		return numbOfHouses;
+	}
+	
 }

@@ -3,9 +3,9 @@ package entity.ChanceCard;
 	public class Payment extends ChanceCard{
 
 		private String type;
-		private String desc;
+		private String description;
 		
-		public Payment(String type, String desc){
-			super(type,desc);
+		public Payment(String type, String description){
+			super(type,description);
 		}
 }

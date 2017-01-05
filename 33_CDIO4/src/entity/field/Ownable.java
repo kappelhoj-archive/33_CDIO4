@@ -96,9 +96,18 @@ public abstract class Ownable extends Field {
 	}
 	
 	/**
-	 * The method getRent: Returns the rent to be paid by the player who lands on the Ownable field. <br>
+	 * Method getRent: Returns the rent to be paid by the player who lands on the Ownable field. <br>
 	 * A method to be overridden by subclasses.
 	 * @return The rent to be paid.
 	 */
 	public abstract int getRent();
+	
+	/**
+	 * Method getValue: Returns the value of field (The price of the field).
+	 * @return The value of the field.
+	 */
+	public int getValue()
+	{
+		return getPrice();
+	}
 }

@@ -74,17 +74,17 @@ public class Street extends Ownable
 		{
 			rent = houseRent[numbOfHouses];
 		}
-		
+
 		return rent;
 	}
-	
+
 	/**
 	 * Method getPledge: Returns the value of the pledge given to the player, by the bank, when the player pledges the field.
 	 */
 	public int getPledge(){
 		return pledge;
 	}
-	
+
 	/**
 	 * Method getValue: Returns the value of field (field price + prices for houses). <br>
 	 * @return The value of the field.
@@ -94,13 +94,13 @@ public class Street extends Ownable
 	{
 		return super.getValue() + numbOfHouses * housePrice;
 	}
-	
+
 	public int getHousePrice()
 	{
 		return housePrice;
 	}
-	
-	
+
+
 	/**
 	 * Methods needed for the Bank class. Might need revisiting later.
 	 */
@@ -108,10 +108,22 @@ public class Street extends Ownable
 	{
 		return numbOfHouses;
 	}
-	public int setNumbOfHouses()
+	public int subtractNumbOfHouses()
 	{
-		numbOfHouses--;
+		if (numbOfHouses == 0)
+		{
+			System.out.println("Du har ikke nogen huse på " + getName() + ".");
+		}
+		if (numbOfHouses > 0)
+		{
+			numbOfHouses--;
+			System.out.println("Ét hus er blevet fjernet fra " + getName() + ".");
+		}
 		return numbOfHouses;
 	}
 	
+	public void setNumbOfHouses(int houseLoss)
+	{
+		numbOfHouses = houseLoss;
+	}
 }

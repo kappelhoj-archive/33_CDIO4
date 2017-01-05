@@ -59,11 +59,13 @@ public class MainController {
 
 	public void playTurn() {
 		
+		GUI.displayChanceCard("Gå til Penis og gå derefter i fængsel.");
 		if(prisonController.checkIfInPrison(players[turn]))
 		{
 			prisonController.inPrison(players[turn]);
 			return;
 		}
+		GUI.getUserButtonPressed(players[turn].getName()+" det er din tur.","Slå med terninger");
 		
 		int diceSum = rollDice();
 		checkForExtraTurn();
@@ -139,7 +141,7 @@ public class MainController {
 	public void movePlayer(int diceSum)
 	{
 
-		// Move the player to his position and if he passes field 40 move him to
+		// Move the player to his position according to the dice and if he passes field 40 move him to
 		// 1 and continue counting.
 		if (players[turn].getPosition() + diceSum <= 40) {
 			players[turn].setPosition(players[turn].getPosition() + diceSum);
@@ -164,5 +166,15 @@ public class MainController {
 				break;
 			}
 		}
+	}
+	
+	public static String[] addReturnToArray(String[] input){
+		String[] output=new String[input.length+1];
+		for(int i=0;i<input.length;i++){
+			output[i]=input[i];
+		}
+		
+		output[output.length-1]="Gå tilbage";
+		return output;
 	}
 }

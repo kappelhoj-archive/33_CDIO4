@@ -23,9 +23,9 @@ public class Shipping extends Ownable {
 	@Override
 	public int getRent()
 	{
-		int amountOfFleets = super.getOwner().getFleetsOwned(); //The amount of fleet fields the owner of the fleet field owns.
+		int numbOfShippings = super.getOwner().getShippingsOwned(); //The amount of fleet fields the owner of the fleet field owns.
 		int rent;
-		switch(amountOfFleets)
+		switch(numbOfShippings)
 		{
 		case 1: rent = RENT[0]; //The rent to be paid if the owner owns one fleet field.
 			break;

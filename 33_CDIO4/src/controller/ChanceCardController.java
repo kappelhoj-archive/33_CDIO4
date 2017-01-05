@@ -1,19 +1,23 @@
 package controller;
 import entity.ChanceCardDeck;
 import entity.Player;
+import controller.PrisonController;
 import entity.ChanceCard.ChanceCard;
 import entity.ChanceCard.Movement;
-import entity.ChanceCard.Payment;
+import desktop_resources.GUI;
+import controller.Bank;
 
 
 public class ChanceCardController {
 
 	ChanceCardDeck deck;
 	Player tempPlayer;
-
-	ChanceCardController()
+	PrisonController prison;
+	
+	ChanceCardController(PrisonController prison)
 	{
 		deck = new ChanceCardDeck();
+		this.prison = prison;
 
 
 
@@ -24,8 +28,9 @@ public class ChanceCardController {
 		
 		ChanceCard currentCard=deck.drawCard();
 		
-		String type = currentCard.getType();
 		
+		String type = currentCard.getType();
+		GUI.displayChanceCard(currentCard.getDesc());
 		switch(type)
 		{
 		case "Grant": drawGrant(currentCard);
@@ -46,8 +51,6 @@ public class ChanceCardController {
 	}
 	public void drawGrant(ChanceCard currentCard)
 	{
-		Payment card = ((Payment)currentCard);
-		tempPlayer.
 
 	}
 	public void drawMovement(ChanceCard currentCard)
@@ -97,7 +100,7 @@ public class ChanceCardController {
 	}
 	public void movePlayerPrison()//ER DETTE RIGTIGT ?????????????????????????????????????? og skal denne metode rykke ham dertil ?
 	{
-		tempPlayer.setPrison(true);
+		prison.sentToPrison(tempPlayer);
 	}
 	public void movePlayerSpecificField(int moveToField)
 	{

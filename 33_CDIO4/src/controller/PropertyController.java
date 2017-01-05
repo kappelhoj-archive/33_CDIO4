@@ -1,5 +1,7 @@
 package controller;
 
+import entity.Player;
+
 public class PropertyController {
 	
 	private int houses;

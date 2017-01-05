@@ -1,7 +1,9 @@
 package controller;
 
+import data.Reader;
 import desktop_resources.GUI;
 import entity.DiceCup;
+import entity.GameBoard;
 import entity.Player;
 
 
@@ -15,6 +17,7 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
+	private GameBoard board;
 
 	private int turn;
 	private int numExtraTurn;
@@ -24,8 +27,14 @@ public class MainController {
 	 * Creates the 
 	 */
 	MainController() {
-		GUICreator createPlayers =new GUICreator();
-		String[] playerNames=createPlayers.getPlayerNames();
+		GUICreator createGUI =new GUICreator();
+		Reader dataReader = new Reader();
+		
+		dataReader.openFieldData();
+		dataReader.readFields(board, createGUI);
+		dataReader.closeFile();
+		
+		String[] playerNames=createGUI.getPlayerNames();
 		this.players = new Player[playerNames.length];
 		for (int i = 0; i < players.length; i++) {
 			this.players[i] = new Player(playerNames[i]);

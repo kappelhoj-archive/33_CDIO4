@@ -31,7 +31,7 @@ public class ChanceCardDeck {
 				String[] values = data.split(",");
 
 				if(values[0]=="Grant"){
-					chanceCards[card] = new Grant(values[0],values[1]);
+					chanceCards[card] = new Grant(values[0],values[1],Integer.parseInt(values[2]));
 					card++;
 				}
 				if(values[0].equals("Movement")){

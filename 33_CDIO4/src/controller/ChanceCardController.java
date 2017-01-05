@@ -2,8 +2,14 @@ package controller;
 import entity.ChanceCardDeck;
 import entity.Player;
 import controller.PrisonController;
+import desktop_fields.Tax;
 import entity.ChanceCard.ChanceCard;
+import entity.ChanceCard.Grant;
 import entity.ChanceCard.Movement;
+import entity.ChanceCard.Party;
+import entity.ChanceCard.Payment;
+import entity.ChanceCard.Prison;
+import entity.ChanceCard.TaxCard;
 import desktop_resources.GUI;
 import controller.Bank;
 
@@ -13,46 +19,50 @@ public class ChanceCardController {
 	ChanceCardDeck deck;
 	Player tempPlayer;
 	PrisonController prison;
+	Bank bank;
 	
-	ChanceCardController(PrisonController prison)
+	ChanceCardController(PrisonController prison,Bank bank)
 	{
 		deck = new ChanceCardDeck();
 		this.prison = prison;
-
-
+		this.bank = bank;
 
 	}
+	
 	public void draw(Player player)
+
 	{
 		tempPlayer= player;
 		
 		ChanceCard currentCard=deck.drawCard();
 		
-		
 		String type = currentCard.getType();
+		
 		GUI.displayChanceCard(currentCard.getDesc());
+		
 		switch(type)
 		{
 		case "Grant": drawGrant(currentCard);
 		break;
 		case "Movement": drawMovement(currentCard);
 		break;
-		case "Party": drawParty();
+		case "Party": drawParty(currentCard);
 		break;
-		case "Payment": drawPayment();
+		case "Payment": drawPayment(currentCard);
 		break;
-		case "Prison": drawPrison();
+		case "Prison": drawPrison(currentCard);
 		break;
-		case "Tax": drawTax();
+		case "Tax": drawTaxCard(currentCard);
 		break;		
-		}
-
-
+		}	
 	}
+	
 	public void drawGrant(ChanceCard currentCard)
 	{
-
+	Grant card = ((Grant)currentCard);
+	bank.chancePaymentChecker(card.getAmount(), tempPlayer);
 	}
+	
 	public void drawMovement(ChanceCard currentCard)
 	{
 		Movement card = ((Movement)currentCard);
@@ -82,26 +92,32 @@ public class ChanceCardController {
 		}
 
 	}
-	public void drawParty()
+	
+	public void drawParty(ChanceCard currentCard)
 	{
-
+		Party card = ((Party)currentCard);
 	}
-	public void drawPayment()
+	
+	public void drawPayment(ChanceCard currentCard)
 	{
-
+		Payment card = ((Payment)currentCard);
 	}
-	public void drawPrison()
+	
+	public void drawPrison(ChanceCard currentCard)
 	{
-
+		Prison card = ((Prison)currentCard);
 	}
-	public void drawTax()
+	
+	public void drawTaxCard(ChanceCard currentCard)
 	{
-
+		TaxCard card = ((TaxCard)currentCard);
 	}
+	
 	public void movePlayerPrison()//ER DETTE RIGTIGT ?????????????????????????????????????? og skal denne metode rykke ham dertil ?
 	{
 		prison.sentToPrison(tempPlayer);
 	}
+	
 	public void movePlayerSpecificField(int moveToField)
 	{
 		tempPlayer.setPosition(moveToField);

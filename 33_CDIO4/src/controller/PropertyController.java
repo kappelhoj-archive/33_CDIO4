@@ -3,6 +3,7 @@ package controller;
 import desktop_resources.GUI;
 import entity.Player;
 import controller.MainController;
+import entity.field.*;
 
 public class PropertyController {
 	
@@ -58,9 +59,9 @@ public class PropertyController {
 	private int[] countStreetColours(Player player)
 	{
 		int[] colours = new int[8];
-		for(int i = 0; i < player.getfields().length;i++)
+		for(int i = 0; i < player.getFields().length;i++)
 		{
-			String colour = player.getfields()[i].getColour();
+			String colour = player.getFields()[i].getColour();
 			switch(colour)
 			{
 			case "Blå": colours[0]++;
@@ -128,9 +129,86 @@ public class PropertyController {
 		return buyAble;
 	}
 	
+	public int colourAmount(String colour)
+	{
+		int colourAmount = 0;
+		if (colour.equals("Blå") || colour.equals("Lilla"))
+		{
+			colourAmount = 2;
+		}
+		else
+		{
+			colourAmount = 3;
+		}
+		return colourAmount;
+	}
+	
+	public int minimum(int[] i)
+	{
+		int min = 0;
+		if (i.length == 2)
+		{
+			min = Math.min(i[0], i[1]);
+		}
+		else
+		{
+			min = Math.min(i[0], Math.min(i[1],i[2]));
+		}
+		return min;
+	}
+	
+	public String[] findStreetNames(Player player, String colour)
+	{
+		int[] houses = new int[colourAmount(colour)];
+		String[] streetNames = new String[colourAmount(colour)];
+		for (int i = 0; i < player.getFields().length; i++)
+		{
+			int j = 0;
+			if (player.getFields()[i].getColour().equals(colour))	
+			{
+				streetNames[j] = player.getFields()[i].getName();
+				houses[j] = ((Street)(player.getFields()[i])).getNumbOfHouses();
+				j++;
+			}
+		}
+		int minimum = minimum(houses);
+		int amount = 0;
+		for(int i = 0; i < streetNames.length; i++)
+		{
+			if(houses[i] == minimum)
+			{
+				amount++;
+			}
+		}
+		String[] streetNamesNew = new String[amount];
+		for(int i = 0; i < streetNames.length;i++)
+		{
+			if (minimum==houses[i])
+			{
+				streetNamesNew[i] = streetNames[i];
+			}
+		}
+		return streetNamesNew;	
+	}
+	
+	public void setHouse(Player player, String streetName)
+	{
+		Street street = null;
+		for (int i = 0; i < player.getFields().length; i++)
+		{
+			if(player.getFields()[i].getName() == streetName)
+			{
+				street = (Street)(player.getFields()[i]);
+			}
+		}
+		street.getNumbOfHouses();
+	}
+	
 	public void showHouseMenu(Player player)
 	{
-		String [] options = MainController.addReturnToArray(buyableColours(player));
-		GUI.getUserSelection("Hvilken farve ejendom vil du købe huse på?", options);
+		String[] options = MainController.addReturnToArray(buyableColours(player));
+		String answer = GUI.getUserSelection("Hvilken farve ejendom vil du købe huse på?", options);
+		String[] options2 = MainController.addReturnToArray(findStreetNames(player,answer));
+		String answer2 = GUI.getUserSelection("Du har valgt" + answer, options2);
 	}
 }

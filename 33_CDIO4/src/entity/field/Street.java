@@ -108,6 +108,7 @@ public class Street extends Ownable
 	{
 		return numbOfHouses;
 	}
+	
 	public int subtractNumbOfHouses()
 	{
 		if (numbOfHouses == 0)
@@ -126,4 +127,6 @@ public class Street extends Ownable
 	{
 		numbOfHouses = houseLoss;
 	}
+	
+	
 }

@@ -35,5 +35,13 @@ public class Movement extends ChanceCard{
 	{
 		return field4;
 	}
+	public boolean getInprisoned()
+	{
+		return inprisoned;
+	}
+	public boolean getDoubleRent()
+	{
+		return doublerent;
+	}
 	
 }

@@ -161,7 +161,11 @@ public class Player {
 		//Sets the original fields array to the new fields array.
 		fields = newFields;		
 	}
-
+	/**
+	 * Method to remove fields from a players property list.
+	 * @param field The specific field to be removed.
+	 * @param player The player affected by this removal.
+	 */
 	public void loseFields (Ownable field, Player player)
 	{
 		if (field.getOwner().equals(player.getLost()))

@@ -21,12 +21,12 @@ public class LandOnFieldController {
 	 * @param field The field the player landed on.
 	 * @param player The player to land on the field.
 	 */
-	public void landOnField(Field field, Player player)
+	public void landOnField(Field field, Player player, int diceSum)
 	{
 		String type = field.getType();
 		switch(type)
 		{
-		case "Ownable": landOnOwnable(field, player);
+		case "Ownable": landOnOwnable(field, player, diceSum);
 			break;
 		case "ChanceField": landOnChanceField(player);
 			break;
@@ -42,7 +42,7 @@ public class LandOnFieldController {
 	 * @param field The field the player landed on.
 	 * @param player The player to land on the field.
 	 */
-	public void landOnOwnable(Field field, Player player)
+	public void landOnOwnable(Field field, Player player, int diceSum)
 	{
 		Ownable ownable = (Ownable)(field);
 		if(!ownable.isFieldOwned())
@@ -57,6 +57,11 @@ public class LandOnFieldController {
 		{
 			if(ownable.isFieldOwnedByAnotherPlayer(player))
 			{
+				if (field.getType().equals("Brewery"))
+				{
+					Brewery brewery = (Brewery)(field);
+					brewery.setDiceSum(diceSum);
+				}
 				GUI.getUserButtonPressed("Du skal betale " + field.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
 				player.payRent(ownable.getOwner(), field.getRent());
 			}

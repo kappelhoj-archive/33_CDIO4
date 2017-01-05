@@ -34,8 +34,8 @@ public class Brewery extends Ownable{
 	@Override
 	public int getRent()
 	{
-		int amountOfLaborCamps = super.getOwner().getBottlersOwned();
-		int rent = baseRent * diceSum * amountOfLaborCamps;
+		int numbOfBreweries = super.getOwner().getBeweriesOwned();
+		int rent = baseRent * diceSum * numbOfBreweries;
 		return rent;
 	}
 }

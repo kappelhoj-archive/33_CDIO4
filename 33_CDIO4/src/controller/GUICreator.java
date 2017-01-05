@@ -86,24 +86,28 @@ public class GUICreator {
 	}
 
 	public void addTax(String[] information) {
-		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0]).setSubText(information[2]).setDescription(information[1]).setBgColor(Color.GRAY).build();
+		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0]).setSubText(information[2])
+				.setDescription(information[1]).setBgColor(Color.GRAY).build();
 	}
 
 	public void addStart(String[] information) {
-		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0]).setSubText(information[2]).setDescription(information[1]).setBgColor(Color.RED).build();
+		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0]).setSubText(information[2])
+				.setDescription(information[1]).setBgColor(Color.RED).build();
 	}
 
 	public void addJail(String[] information) {
-		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1]).setBgColor(Color.GRAY).build();
+		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1])
+				.setBgColor(Color.GRAY).build();
 	}
 
 	public void addVisit(String[] information) {
-		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1]).setBgColor(Color.GRAY).build();
+		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1])
+				.setBgColor(Color.GRAY).build();
 	}
 
 	public void addParking(String[] information) {
-		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(information[0]).setDescription(information[1]).setBgColor(Color.LIGHT_GRAY)
-				.setPicture("src/data/pictures/Parkeringslogo.png").build();
+		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(information[0]).setDescription(information[1])
+				.setBgColor(Color.LIGHT_GRAY).setPicture("src/data/pictures/Parkeringslogo.png").build();
 	}
 
 	public void endBoardBuilding() {

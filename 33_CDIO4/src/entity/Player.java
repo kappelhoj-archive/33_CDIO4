@@ -193,7 +193,7 @@ public class Player {
 	 * Method getBottlersOwned: Returns the amount of bottler fields owned by the player.
 	 * @return The amount of bottler fields owned.
 	 */
-	public int getBottlersOwned()
+	public int getBeweriesOwned()
 	{
 		int amountOfBottlers = 0;
 		for(int i = 0; i < fields.length; i++)
@@ -210,17 +210,17 @@ public class Player {
 	 * Method getFleetsOwned: Returns the amount of fleet fields owned by the player.
 	 * @return The amount of fleet fields owned.
 	 */
-	public int getFleetsOwned()
+	public int getShippingsOwned()
 	{
-		int amountOfFleets = 0;
+		int amountOfShippings = 0;
 		for(int i = 0; i < fields.length; i++)
 		{
 			if ("Fleet".equals(fields[i].getType()))
 			{
-				amountOfFleets++;
+				amountOfShippings++;
 			}
 		}
-		return amountOfFleets;
+		return amountOfShippings;
 	}
 
 	/**

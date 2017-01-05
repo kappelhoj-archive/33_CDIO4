@@ -39,7 +39,7 @@ public class GUICreator {
 			break;
 		case "Tapperi":
 			addBrewery(information);
-			break;	
+			break;
 		case "Chancekort":
 			addChance(information);
 			break;
@@ -53,7 +53,7 @@ public class GUICreator {
 			addJail(information);
 			break;
 		case "Visit":
-			addParking(information);
+			addJail(information);
 			break;
 		case "Parking":
 			addParking(information);
@@ -67,45 +67,44 @@ public class GUICreator {
 	public void addStreet(String[] information) {
 		Color color = getColorFromField(information[1]);
 		fields[fieldCounter - 1] = new Street.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription("").setBgColor(color).build();
+				.setDescription("").setBgColor(color).setRent(information[3]).build();
 	}
 
 	public void addShipping(String[] information) {
 		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(information[0]).setSubText(information[2])
-				.setBgColor(Color.BLUE).build();
+				.setDescription(information[1]).setBgColor(Color.BLUE).setPicture("src/data/pictures/Ferry.png")
+				.build();
 	}
+
 	public void addBrewery(String[] information) {
 		fields[fieldCounter - 1] = new Brewery.Builder().setTitle(information[0]).setSubText(information[2])
-				.setBgColor(Color.BLACK).build();
+				.setDescription(information[1]).setBgColor(Color.BLACK).build();
 	}
+
 	public void addChance(String[] information) {
-		fields[fieldCounter - 1] = new Chance.Builder()
-				.setBgColor(Color.GRAY).build();
+		fields[fieldCounter - 1] = new Chance.Builder().setBgColor(Color.LIGHT_GRAY).build();
 	}
+
 	public void addTax(String[] information) {
-		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0])
-				.setBgColor(Color.GRAY).build();
+		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0]).setSubText(information[2]).setDescription(information[1]).setBgColor(Color.GRAY).build();
 	}
+
 	public void addStart(String[] information) {
-		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0])
-				.setBgColor(Color.RED).build();
+		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0]).setSubText(information[2]).setDescription(information[1]).setBgColor(Color.RED).build();
 	}
+
 	public void addJail(String[] information) {
-		fields[fieldCounter - 1] = new Jail.Builder().setTitle(information[0])
-				.setBgColor(Color.GRAY).build();
+		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1]).setBgColor(Color.GRAY).build();
 	}
+
 	public void addVisit(String[] information) {
-		fields[fieldCounter - 1] = new Jail.Builder().setTitle(information[0])
-				.setBgColor(Color.DARK_GRAY).build();
+		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1]).setBgColor(Color.GRAY).build();
 	}
+
 	public void addParking(String[] information) {
-		fields[fieldCounter - 1] = new Refuge.Builder().setTitle(information[0])
-				.setBgColor(Color.DARK_GRAY).build();
+		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(information[0]).setDescription(information[1]).setBgColor(Color.LIGHT_GRAY)
+				.setPicture("src/data/pictures/Parkeringslogo.png").build();
 	}
-	
-	
-	
-	
 
 	public void endBoardBuilding() {
 		GUI.create(fields);
@@ -164,7 +163,7 @@ public class GUICreator {
 						break;
 					} else {
 						nameEqual = false;
-					} 
+					}
 				}
 			}
 		}

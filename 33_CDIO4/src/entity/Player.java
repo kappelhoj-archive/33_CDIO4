@@ -134,7 +134,7 @@ public class Player {
 	 * Method getfields returns the fields owned by the player.
 	 * @return Returns the fields owned by the player.
 	 */
-	public Ownable[] getfields()
+	public Ownable[] getFields()
 	{
 		return fields;
 	}
@@ -143,7 +143,7 @@ public class Player {
 	 * Method setfields sets the fields owned by the player.
 	 * @param street The street to be added to the player's street list.
 	 */
-	public void setfields(Field field)
+	public void setFields(Field field)
 	{
 		Ownable ownable = (Ownable)(field);
 		//Creates a new fields array with 1 more space than the original.
@@ -176,14 +176,13 @@ public class Player {
 		}
 		String removedField = field.getName();
 
-		Ownable ownable = (Ownable)(field);
 		Ownable[] fewerFields = new Ownable[fields.length - 1];
 
 		for (int j = 0; j < fields.length; j++)
 		{
 			if (removedField.equals(fields[j]))
 			{
-				fewerFields[j] = fields[j+1];
+				fewerFields[j] = fields[j++];
 			}
 			
 			else

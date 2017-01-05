@@ -52,11 +52,6 @@ public class BankController
 
 	}
 
-	public int changeChanceCardPayment(ChanceCard chancecard)
-	{
-		chancePayment += chancecard.chanceCardSum;
-		return chancePayment;
-	}
 
 	/**
 	 * The method chancePaymentChecker checks if the player has enough funds
@@ -65,14 +60,13 @@ public class BankController
 	 * @param chancecard The chancecard dictates what type of payment is either requested off the player, or given to the player. 
 	 * @param player The player will lose if they can not pay their rent.
 	 */
-	public void chancePaymentChecker (ChanceCard chancecard, Player player)
+	public void chancePaymentChecker (int chancePayment, Player player)
 	{
-		if (chancePayment < 0 && player.getFortune() < chancePayment)
+		if (!playerAffordPayment(player,chancePayment))
 		{
 			GUI.getUserButtonPressed("Du har ikke nok midler til at betale din leje. Du har tabt, og udgår fra spillet.", "Ok");
-			player.setLost(true);
+			playerHasLost(player);
 		}
-
 		else if (chancePayment < 0 && player.getFortune() > chancePayment)
 		{
 			player.changeAccountBalance(chancePayment);
@@ -103,7 +97,7 @@ public class BankController
 			return true;
 	}
 
-	public void playerHasLost (Player player, Ownable field)
+	public void playerHasLost (Player player)
 	{
 		Ownable[] loseAllFields;
 

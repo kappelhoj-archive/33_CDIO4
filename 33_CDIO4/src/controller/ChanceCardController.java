@@ -11,7 +11,7 @@ import entity.ChanceCard.Payment;
 import entity.ChanceCard.Prison;
 import entity.ChanceCard.TaxCard;
 import desktop_resources.GUI;
-import controller.Bank;
+import controller.BankController;
 
 
 public class ChanceCardController {
@@ -19,9 +19,9 @@ public class ChanceCardController {
 	ChanceCardDeck deck;
 	Player tempPlayer;
 	PrisonController prison;
-	Bank bank;
+	BankController bank;
 	
-	ChanceCardController(PrisonController prison,Bank bank)
+	ChanceCardController(PrisonController prison,BankController bank)
 	{
 		deck = new ChanceCardDeck();
 		this.prison = prison;

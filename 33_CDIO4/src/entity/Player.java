@@ -164,7 +164,7 @@ public class Player {
 
 	public void loseFields (Ownable field, Player player)
 	{
-		if (field.getOwner().equals(player.getLost(true)))
+		if (field.getOwner().equals(player.getLost()))
 		field.setOwner(null);
 		if (field.getType().equals("Ejendom"))
 		{

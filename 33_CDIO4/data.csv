@@ -1,0 +1,6 @@
+[type][beskrivelse][move eller beløb][move felt 1][move felt 2][move felt 3][move felt 4][modtag 4000 hvis passere start, eller doublerent][fængsel]
+
+Movement,"Ryk frem til "START".",1,0,0,0,0,false,false
+Movement,"Ryk frem til "START".",1,0,0,0,0,FALSE,FALSE
+Movement,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",11,0,0,0,0,FALSE,FALSE
+Movement,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",11,0,0,0,0,FALSE,FALSE

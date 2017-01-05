@@ -1,6 +1,38 @@
-[type][beskrivelse][move eller beløb][move felt 1][move felt 2][move felt 3][move felt 4][modtag 4000 hvis passere start, eller doublerent][fængsel]
-
+[type][beskrivelse][move eller beløb][move felt 1][move felt 2][move felt 3][move felt 4][fængsel][doublerent]
 Movement,"Ryk frem til "START".",1,0,0,0,0,false,false
 Movement,"Ryk frem til "START".",1,0,0,0,0,FALSE,FALSE
-Movement,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",11,0,0,0,0,FALSE,FALSE
-Movement,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",11,0,0,0,0,FALSE,FALSE
+Movement,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",0,11,0,0,0,true,FALSE
+Movement,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",0,11,0,0,0,true,FALSE
+Movement,"Ryk frem til Grønningen. Hvis De passerer "START" indkassér da kr. 4.000.",0,25,0,0,0,false,FALSE
+Movement,"Tag ind på Rådhuspladsen.",0,40,0,0,0,false,false
+Movement,"Ryk frem til Strandvejen. Hvis De passerer "START" indkassér da kr. 4.000.",0,20,0,0,0,false,false
+Movement,"Ryk frem til Vimmelskaftet. Hvis De passerer "START" indkassér da kr. 4.000.",0,33,0,0,0,false,false
+Movement,"Ryk frem til Frederiksberg Allé. Hvis De passerer "START" indkassér da kr. 4.000.",0,12,0,0,0,false,false
+Movement,"Tag med Mols-Linien. Flyt brikken frem, og hvis De passerer "START" indkassér da kr. 4.000.",0,16,0,0,0,false,false
+Movement,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",0,6,16,26,36,false,true
+Movement,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",0,6,16,26,36,false,true
+Movement,"Tag med den nærmeste færge. Flyt brikken frem, og hvis De passerer "START" indkassér da kr. 4.000.",0,6,16,26,36,false,false
+Movement,"Ryk tre felter tilbage.",-3,0,0,0,0,false,false
+Movement,"Ryk tre felter tilbage.",-3,0,0,0,0,false,false
+Movement,"Ryk tre felter frem.",3,0,0,0,0,false,false
+Payment,"Betal kr. 200 for levering af 2 kasser øl.",-200
+Payment,"Kommunen har eftergivet et kvartals skat. Hæv i banken kr. 3.000.",3000
+Payment,"Betal kr. 3.000 for reparation af Deres vogn.",-3000
+Payment,"Modtag udbytte af Deres aktier - kr. 1.000.",1000
+Payment,"De har købt 4 nye dæk til deres vogn. Betal kr. 1.000.",-1000
+Payment,"Værdien af egen avl fra nyttehaven udgør kr. 200, som De modtager af banken.",200
+Payment,"De modtager Deres aktieudbytte. Modtag kr. 1.000 af banken.",1000
+Payment,"Grundet dyrtiden har De fået gageforhøjelse. Modtag kr. 1.000.",1000
+Payment,"Betal Deres bilforsikring - kr. 1.000.",-1000
+Payment,"De har været en tur i udlandet og haft for mange cigaretter med hjem. Betal told kr. 200.",-200
+Payment,"De har fået en parkeringsbøde. Betal kr. 200 i bøde.",-200
+Payment,"De har solgt nogle gamle møbler på auktion. Modtag kr. 1.000 af banken.",1000
+Payment,"De har kørt frem for Fuldt stop. Betal kr. 1.000 i bøde.",-1000
+Payment,"Deres præmieobligationer er udtrukket. De modtager kr. 1.000 af banken.",1000
+Payment,"Betal kr. 3.000 for reparation af Deres vogn.",-3000
+Payment,"De havde en række med elleve rigtige i tipning. Modtag kr. 1.000.",1000
+Payment,"Modtag udbytte af Deres aktier - kr. 1.000.",1000
+Payment,"Deres præmieobligationer er udtrukket. De modtager kr. 1.000 af banken.",1000
+Payment,"De har vundet i Klasselotteriet. Modtag kr. 500.",500
+Payment,"Betal for vognvask og smøring kr. 300.",-300
+Payment,"De har fået en parkeringsbøde. Betal kr. 200 i bøde."-200

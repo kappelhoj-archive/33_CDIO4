@@ -9,11 +9,13 @@ public class LandOnFieldController {
 
 	private PrisonController prisonController;
 	private ChanceCardController chanceCardController;
+	private GameBoard gameBoard;
 	
-	public LandOnFieldController(PrisonController pc, MainController mc)
+	public LandOnFieldController(PrisonController pC, MainController mC)
 	{
-		this.prisonController = new PrisonController(mc);
+		this.prisonController = new PrisonController(mC);
 		this.chanceCardController = new ChanceCardController();
+		this.gameBoard = new GameBoard();
 	}
 	
 	/**
@@ -21,8 +23,10 @@ public class LandOnFieldController {
 	 * @param field The field the player landed on.
 	 * @param player The player to land on the field.
 	 */
-	public void landOnField(Field field, Player player, int diceSum)
+	public void landOnField(Player player, int diceSum)
 	{
+		
+		Field field = gameBoard.getField(player.getPosition());
 		String type = field.getType();
 		switch(type)
 		{
@@ -50,7 +54,10 @@ public class LandOnFieldController {
 			boolean bought = GUI.getUserLeftButtonPressed("Vil du købe " + field.getName() + "?", "Yes", "No");
 			if(bought)
 			{
-			player.buyField(field);
+			if(!player.buyField(field))
+			{
+				GUI.getUserButtonPressed("Du har ikke råd til at købe" + field.getName(), "Ok");
+			}
 			}
 		}
 		else
@@ -110,7 +117,7 @@ public class LandOnFieldController {
 	 * @param player The player who landed on the neutral field.
 	 */
 	public void landOnNeutral(Player player){
-		int isPrison = 30;
+		int isPrison = 31;
 		if (player.getPosition() == isPrison)
 		{
 			GUI.getUserButtonPressed("De fængsels", "Ok");

@@ -1,5 +1,9 @@
 package entity;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import entity.ChanceCard.*;
 
 public class ChanceCardDeck {
@@ -8,10 +12,58 @@ public class ChanceCardDeck {
 	private ChanceCard[] chanceCards;
 
 	public ChanceCardDeck() {
+			
 
 		chanceCards = new ChanceCard[39];
+		int card = 0;
+		
+		
+		String fileName = "data.csv";
+		File file = new File(fileName);
 
-		// beskrivelser af Grant kort
+		try 
+		{
+			Scanner inputStream = new Scanner(file);
+			while(inputStream.hasNext())
+			{
+				String data = inputStream.next();
+				String[] values = data.split(",");
+				
+				if(values[0]=="Grant"){
+				chanceCards[card] = new Grant(values[0],values[1]);
+				card++;
+				}
+				if(values[0]=="Movement"){
+				chanceCards[card] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
+				card++;
+				}
+				if(values[0]=="Party"){
+				chanceCards[card] = new Party(values[0],values[1],Integer.parseInt(values[2]));
+				card++;
+				}
+				if(values[0]=="Payment"){
+				chanceCards[card] = new Payment(values[0],values[1],Integer.parseInt(values[2]));
+				card++;
+				}
+				if(values[0]=="Prison"){
+				chanceCards[card] = new Prison(values[0],values[1],Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
+				card++;
+				}
+				if(values[0]=="Tax"){
+				chanceCards[card] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
+				card++;
+				}
+
+			}
+			inputStream.close();
+
+
+		} catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+		}
+
+		// beskrivelser af Payment kort
 		String[] description = { "De har modtaget deres tandlægeregning. Betal kr. 2.000.",
 				"Betal kr. 200 for levering af 2 kasser øl.",
 				"Kommunen har eftergivet et kvartals skat. Hæv i banken kr. 3.000.",
@@ -36,7 +88,7 @@ public class ChanceCardDeck {
 				-3000, 1000, 1000, 1000, 500, -300, -200 };
 
 		for (int i = 0; i < 23; i++) {
-			chanceCards[i] = new Grant("Grant", description[i], price[i]);
+			chanceCards[i] = new Payment("Payment", description[i], price[i]);
 		}
 
 		/**

@@ -3,6 +3,7 @@ import entity.ChanceCardDeck;
 import entity.Player;
 import entity.ChanceCard.ChanceCard;
 import entity.ChanceCard.Movement;
+import entity.ChanceCard.Payment;
 
 
 public class ChanceCardController {
@@ -27,7 +28,7 @@ public class ChanceCardController {
 		
 		switch(type)
 		{
-		case "Grant": drawGrant();
+		case "Grant": drawGrant(currentCard);
 		break;
 		case "Movement": drawMovement(currentCard);
 		break;
@@ -43,8 +44,10 @@ public class ChanceCardController {
 
 
 	}
-	public void drawGrant()
+	public void drawGrant(ChanceCard currentCard)
 	{
+		Payment card = ((Payment)currentCard);
+		tempPlayer.
 
 	}
 	public void drawMovement(ChanceCard currentCard)

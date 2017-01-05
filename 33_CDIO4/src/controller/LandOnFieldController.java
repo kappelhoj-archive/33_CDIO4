@@ -54,7 +54,11 @@ public class LandOnFieldController {
 			boolean bought = GUI.getUserLeftButtonPressed("Vil du købe " + field.getName() + "?", "Yes", "No");
 			if(bought)
 			{
-			if(!player.buyField(field))
+			if(player.buyField(field))
+			{
+				GUI.setOwner(player.getPosition(), player.getName());
+			}
+			else
 			{
 				GUI.getUserButtonPressed("Du har ikke råd til at købe" + field.getName(), "Ok");
 			}

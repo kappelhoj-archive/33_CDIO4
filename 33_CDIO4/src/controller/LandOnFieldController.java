@@ -8,13 +8,14 @@ import entity.GameBoard;
 public class LandOnFieldController {
 
 	private PrisonController prisonController;
+	private ChanceCardController chanceCardController;
 	
 	public LandOnFieldController(PrisonController pc, MainController mc)
 	{
 		this.prisonController = new PrisonController(mc);
+		this.chanceCardController = new ChanceCardController();
 	}
 	
-	public
 	/**
 	 * Method landOnField: Decides what has to be done when a player lands on a field.
 	 * @param field The field the player landed on.
@@ -31,7 +32,7 @@ public class LandOnFieldController {
 			break;
 		case "Tax": landOnTax(field, player);
 			break;
-		defualt: landOnNeutral(player);
+		default: landOnNeutral(player);
 			break;
 		}
 	}
@@ -107,7 +108,18 @@ public class LandOnFieldController {
 		int isPrison = 30;
 		if (player.getPosition() == isPrison)
 		{
+			GUI.getUserButtonPressed("De fængsels", "Ok");
 			prisonController.sentToPrison(player);
 		}
+	}
+	
+	/**
+	 * Method landOnChanceField: Decides what has to be done when a player lands on a chance field.
+	 * @param player The player who landed on the chance field.
+	 */
+	public void landOnChanceField(Player player)
+	{
+		GUI.getUserButtonPressed("Prøv lykken", "Ok");
+		chanceCardController.draw(player);
 	}
 }

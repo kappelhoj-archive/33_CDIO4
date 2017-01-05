@@ -1,11 +1,12 @@
 package controller;
 
 import desktop_resources.GUI;
+import entity.field.Ownable;
 import entity.field.Street;
 import entity.Account;
 import entity.Player;
 import entity.ChanceCard.*;
-public class Bank 
+public class BankController 
 {
 
 	private int chancePayment = 0;
@@ -37,16 +38,16 @@ public class Bank
 	 * @param street The street is needed to draw upon information like number of current houses, house pricing, and street name.
 	 */
 	public void houseSaleBank (Account account, Street street){
-	
+
 		if (street.getNumbOfHouses()==0)
 		{
-			System.out.println("Der står ingen huse på " + street.getName());
+		GUI.getUserButtonPressed("Der står ingen huse på " + street.getName(), "Ok");
 		}
 		else
 		{
 			street.subtractNumbOfHouses();
 			account.changeBalance(street.getHousePrice()/2);
-			System.out.println("Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice()/2 + " kr.");
+			GUI.getUserButtonPressed("Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice()/2 + " kr.", "Ok");
 		}
 
 	}
@@ -64,23 +65,30 @@ public class Bank
 	 * @param chancecard The chancecard dictates what type of payment is either requested off the player, or given to the player. 
 	 * @param player The player will lose if they can not pay their rent.
 	 */
-	public void chancePaymentChecker (ChanceCard chancecard, Player player, Street street)
+	public void chancePaymentChecker (ChanceCard chancecard, Player player)
 	{
 		if (chancePayment < 0 && player.getFortune() < chancePayment)
 		{
-			System.out.println("Du har ikke nok midler til at betale din leje. Du har tabt, og udgår fra spillet.");
+			GUI.getUserButtonPressed("Du har ikke nok midler til at betale din leje. Du har tabt, og udgår fra spillet.", "Ok");
 			player.setLost(true);
 		}
 
-		if (chancePayment > 0)
+		else if (chancePayment < 0 && player.getFortune() > chancePayment)
 		{
-			System.out.println("Du modtager " + chancePayment + " kr. af banken.");
 			player.changeAccountBalance(chancePayment);
-
+			GUI.getUserButtonPressed("Du betaler " + chancePayment + " kr. til banken", "Ok");
 		}
+
+		else if (chancePayment > 0)
+		{
+			GUI.getUserButtonPressed("Du modtager " + chancePayment + " kr. af banken.", "Fuck yea.");
+			player.changeAccountBalance(chancePayment);
+		}
+
 		else		
 		{
-			System.out.println("Du betaler " + chancePayment + " kr. til banken.");
+			GUI.getUserButtonPressed("Du betaler " + chancePayment + " kr. til banken.", "Fuck yea.");
+			player.changeAccountBalance(chancePayment);
 		}
 	}
 
@@ -88,15 +96,26 @@ public class Bank
 	{
 		if (player.getAccountBalance() < payment)
 		{
+			player.setLost(true);
 			return false;
 		}
 		else
 			return true;
 	}
-	
-	public void playerHasLost (Player player, Street street)
+
+	public void playerHasLost (Player player, Ownable field)
 	{
-		player.set
+		Ownable[] loseAllFields;
+
+		if (player.getfields()!=null)
+		{
+
+			loseAllFields = new Ownable[player.getfields().length];
+
+			for(int i = 0; i < player.getfields().length; i++)
+			{
+				player.loseFields(loseAllFields[i]);
+			}
+		}
 	}
-	
 }

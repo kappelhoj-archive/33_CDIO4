@@ -166,9 +166,9 @@ public class Player {
 	 * @param field The specific field to be removed.
 	 * @param player The player affected by this removal.
 	 */
-	public void loseFields (Ownable field, Player player)
+	public void loseFields (Ownable field)
 	{
-		if (field.getOwner().equals(player.getLost()))
+		if (field.getOwner().equals(this.getLost()))
 		field.setOwner(null);
 		if (field.getType().equals("Ejendom"))
 		{
@@ -176,7 +176,6 @@ public class Player {
 		}
 		String removedField = field.getName();
 
-		Ownable ownable = (Ownable)(field);
 		Ownable[] fewerFields = new Ownable[fields.length - 1];
 
 		for (int j = 0; j < fields.length; j++)

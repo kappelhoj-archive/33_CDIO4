@@ -24,7 +24,7 @@ public class Player {
 		position = 0;
 		fields = null;		
 	}
-	
+
 	/**
 	 * Method payRent The object pays the rent to the owner.
 	 * @param owner The owner to be paid.
@@ -48,7 +48,7 @@ public class Player {
 			setLost(true);                           
 		}
 	}
-	
+
 	/** 
 	 * Method getPlayerName returns the name of the player.
 	 * @return The name of the player.
@@ -57,7 +57,7 @@ public class Player {
 	{
 		return name;
 	}
-		 
+
 	/** 
 	 * Method getAccountBalance returns the balance of the player's account.
 	 * @return Returns the account balance value of the player.
@@ -66,7 +66,7 @@ public class Player {
 	{
 		return account.getBalance();
 	}
-	
+
 	/** 
 	 * Method changeAccountBalance changes balance of the player's account with the parameter value.
 	 * @param The value the balance should be changed with.
@@ -75,7 +75,7 @@ public class Player {
 	{
 		account.changeBalance(value);
 	}
-	
+
 	/**
 	 * Method getLost returns the player's lost status.
 	 * @return The player's lost status. If true then the player has lost the game.
@@ -84,7 +84,7 @@ public class Player {
 	{
 		return lost;
 	}
-	
+
 	/**
 	 * Method setLost sets the player's lost status.
 	 * @param condition The condition to be set. If condition is true then the player has lost.
@@ -93,7 +93,7 @@ public class Player {
 	{
 		lost = condition;
 	}
-	
+
 	/**
 	 * Method getPrison returns the player's prison status.
 	 * @return The player's prison status. If true then the player is in prison.
@@ -102,7 +102,7 @@ public class Player {
 	{
 		return prison;
 	}
-	
+
 	/**
 	 * Method setPrison sets the player's prison status.
 	 * @param condition The condition to be set. If condition is true then the player is in prison.
@@ -120,7 +120,7 @@ public class Player {
 	{
 		return position;
 	}
-	
+
 	/**
 	 * Method setPosition sets the position of the player.
 	 * @param position The position to be set.
@@ -129,7 +129,7 @@ public class Player {
 	{
 		this.position = position;
 	}
-	
+
 	/**
 	 * Method getfields returns the fields owned by the player.
 	 * @return Returns the fields owned by the player.
@@ -138,7 +138,7 @@ public class Player {
 	{
 		return fields;
 	}
-	
+
 	/**
 	 * Method setfields sets the fields owned by the player.
 	 * @param street The street to be added to the player's street list.
@@ -148,20 +148,51 @@ public class Player {
 		Ownable ownable = (Ownable)(field);
 		//Creates a new fields array with 1 more space than the original.
 		Ownable[] newFields = new Ownable[fields.length + 1];
-		
+
 		//Go through the original fields array and add its values to the new fields array.
 		for(int i = 0; i < fields.length; i++)
 		{
 			newFields[i] = fields[i];
 		}
-		
+
 		//Add the newly bought street to the new fields array.
 		newFields[fields.length] = ownable;
-		
+
 		//Sets the original fields array to the new fields array.
 		fields = newFields;		
 	}
-	
+	/**
+	 * Method to remove fields from a players property list.
+	 * @param field The specific field to be removed.
+	 * @param player The player affected by this removal.
+	 */
+	public void loseFields (Ownable field, Player player)
+	{
+		if (field.getOwner().equals(player.getLost()))
+		field.setOwner(null);
+		if (field.getType().equals("Ejendom"))
+		{
+			((Street) field).setNumbOfHouses(0);
+		}
+		String removedField = field.getName();
+
+		Ownable ownable = (Ownable)(field);
+		Ownable[] fewerFields = new Ownable[fields.length - 1];
+
+		for (int j = 0; j < fields.length; j++)
+		{
+			if (removedField.equals(fields[j]))
+			{
+				fewerFields[j] = fields[j+1];
+			}
+			
+			else
+			{
+				fewerFields[j] = fields[j];
+			}
+		}
+	}
+
 	/**
 	 * Method getBottlersOwned: Returns the amount of bottler fields owned by the player.
 	 * @return The amount of bottler fields owned.
@@ -178,7 +209,7 @@ public class Player {
 		}
 		return amountOfBottlers;
 	}
-	
+
 	/**
 	 * Method getFleetsOwned: Returns the amount of fleet fields owned by the player.
 	 * @return The amount of fleet fields owned.
@@ -195,7 +226,7 @@ public class Player {
 		}
 		return amountOfShippings;
 	}
-	
+
 	/**
 	 * Method getPropertiesOwned: Returns the amount of properties owned by the player with the same colour.
 	 * @param colour The colour of the field.
@@ -214,7 +245,7 @@ public class Player {
 		}
 		return numSameColour;
 	}
-	
+
 	/**
 	 * Method buyField Lets the player buy a Ownable field.
 	 * @param player The player to buy the field.
@@ -234,7 +265,7 @@ public class Player {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Method getFortune: Calculates and returns the total fortune of the player.
 	 * @return The fortune of the player.

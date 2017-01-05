@@ -134,7 +134,7 @@ public class Player {
 	 * Method getfields returns the fields owned by the player.
 	 * @return Returns the fields owned by the player.
 	 */
-	public Field[] getfields()
+	public Ownable[] getfields()
 	{
 		return fields;
 	}

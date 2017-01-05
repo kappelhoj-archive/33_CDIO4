@@ -110,4 +110,9 @@ public abstract class Ownable extends Field {
 	{
 		return getPrice();
 	}
+	
+	public String getColour()
+	{
+		return null;
+	}
 }

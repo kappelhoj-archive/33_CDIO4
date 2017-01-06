@@ -23,9 +23,9 @@ public class PrisonController {
 	public boolean inPrison(Player player)
 	{
 		boolean paidOut = false;
-		String payOut = "Betal dig ud: 1.000,-";
-		String rollOut = "Rul med terningerne.";
-		String input = GUI.getUserSelection("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
+		String payOut = "Betal dig ud: 1.000 kr";
+		String rollOut = "Prøv at slå dig ud med terningerne";
+		String input = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
 		
 		if(input.equals(payOut))
 		{
@@ -39,7 +39,7 @@ public class PrisonController {
 			int diceSum = mainController.rollDice();
 			if(mainController.checkForExtraTurn())
 			{
-				GUI.getUserButtonPressed("Du slog to ens! Du er nu fri og må slå igen.", "Ok");
+				GUI.getUserButtonPressed("Du slog to ens! Du er nu fri og må slå igen.", "Slå med terningerne");
 				mainController.movePlayer(diceSum);
 				mainController.playTurn();
 			}			

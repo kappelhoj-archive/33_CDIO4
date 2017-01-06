@@ -282,11 +282,13 @@ public class Player {
 	 */
 	public int getFortune()
 	{
-		int fortune = 0;
-		for (int i = 0; 0 < fields.length; i++)
-		{
-			fortune = fortune + fields[i].getValue();
-		}
+		int fortune = this.getAccountBalance();
+		if(fields != null) {
+			for (int i = 0; i < fields.length; i++)
+			{
+				fortune = fortune + fields[i].getValue();
+			}
+		}		
 		return fortune;
 	}
 	

@@ -37,6 +37,8 @@ public class TestModeController {
 		if (diff < 0) {
 			diff = (40 - player.getPosition()) + player.getPosition() + diff;
 		}
+		
+		GUI.setCar((diff%41)+1, player.getName());
 
 		return diff;
 	}

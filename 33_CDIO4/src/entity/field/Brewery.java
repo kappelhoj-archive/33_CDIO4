@@ -12,9 +12,9 @@ public class Brewery extends Ownable{
 	 * @param description The description of the field.
 	 * @param price The price of the field.
 	 */
-	public Brewery(String name, String type, String description, int price)
+	public Brewery(int fieldNumber,String name, String type, String description, int price)
 	{
-		super(name, type, description, price);
+		super(fieldNumber, name, type, description, price);
 		this.baseRent = 100;
 	}
 	

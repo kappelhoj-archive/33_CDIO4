@@ -134,7 +134,7 @@ public class Player {
 	 * Method getfields returns the fields owned by the player.
 	 * @return Returns the fields owned by the player.
 	 */
-	public Field[] getfields()
+	public Ownable[] getFields()
 	{
 		return fields;
 	}
@@ -143,7 +143,7 @@ public class Player {
 	 * Method setfields sets the fields owned by the player.
 	 * @param street The street to be added to the player's street list.
 	 */
-	public void setfields(Field field)
+	public void setFields(Field field)
 	{
 		Ownable ownable = (Ownable)(field);
 		
@@ -191,7 +191,7 @@ public class Player {
 		{
 			if (removedField.equals(fields[j]))
 			{
-				fewerFields[j] = fields[j+1];
+				fewerFields[j] = fields[j++];
 			}
 			
 			else
@@ -266,7 +266,7 @@ public class Player {
 		{
 			changeAccountBalance(-ownable.getPrice()); //Subtracts the price of the field from the player account balance.
 			ownable.setOwner(this);                    //Sets the player to be the owner of the field.
-			this.setfields(field);
+			this.setFields(field);
 			
 			return true;
 		}
@@ -288,5 +288,52 @@ public class Player {
 			fortune = fortune + fields[i].getValue();
 		}
 		return fortune;
+	}
+	
+	/**
+	 * Method getFieldFromName: Returns the field with the given name.
+	 * @param name The name of the field that you want to find.
+	 * @return The field with the name.
+	 */
+	public Street getFieldFromName(String name)
+	{
+		Street field = null;
+		for (int i = 0; i < fields.length; i++)
+		{
+			if (name == fields[i].getName())
+			{
+				field = (Street) (fields[i]);
+			}
+		}
+		return field;
+	}
+	
+	/**
+	 * Method getHousePriceFromColour
+	 * @param colour
+	 * @return
+	 */
+	public int getHousePriceFromColour(String colour)
+	{
+		int housePrice = 0;
+		int housePriceBlue = 1000;
+		int housePriceOrange = 1000;
+		int housePriceGreen = 2000;
+		int housePriceGrey = 2000;
+		int housePriceRed = 3000;
+		int housePriceWhite = 3000;
+		int housePriceYellow = 4000;
+		int housePricePurple = 4000;
+		int[] housePrices = {housePriceBlue, housePriceOrange, housePriceGreen, housePriceGrey, housePriceRed, housePriceWhite, housePriceYellow, housePricePurple};
+		String[] streetColours = {"Blå", "Orange", "Grøn", "Grå", "Rød", "Hvid", "Gul", "Lilla"};
+		
+		for(int i = 0; i < streetColours.length; i++)
+		{
+			if (colour.equals(streetColours[i]))
+			{
+				housePrice = housePrices[i];
+			}
+		}
+		return housePrice;
 	}
 }

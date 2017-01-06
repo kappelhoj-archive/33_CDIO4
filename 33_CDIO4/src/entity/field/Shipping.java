@@ -11,9 +11,9 @@ public class Shipping extends Ownable {
 	 * @param description The description of the field.
 	 * @param price The price of the field.
 	 */
-	public Shipping(String name, String type, String description, int price)
+	public Shipping(int fieldNumber, String name, String type, String description, int price)
 	{
-		super(name, type, description, price);
+		super(fieldNumber, name, type, description, price);
 	}
 	
 	/**

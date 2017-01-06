@@ -32,9 +32,9 @@ public class Street extends Ownable {
 	 *            The value of a pledged field.
 	 */
 
-	public Street(String name, String type, String description, int price, String colour, int baseRent, int housePrice,
+	public Street(int fieldNumber,String name, String type, String description, int price, String colour, int baseRent, int housePrice,
 			int[] houseRent, int pledge) {
-		super(name, type, description, price);
+		super(fieldNumber,name, type, description, price);
 		this.colour = colour;
 		this.baseRent = baseRent;
 		this.housePrice = housePrice;
@@ -125,17 +125,6 @@ public class Street extends Ownable {
 	 * Methods needed for the Bank class. Might need revisiting later.
 	 */
 	public int getNumbOfHouses() {
-		return numbOfHouses;
-	}
-
-	public int subtractNumbOfHouses() {
-		if (numbOfHouses == 0) {
-			System.out.println("Du har ikke nogen huse på " + getName() + ".");
-		}
-		if (numbOfHouses > 0) {
-			numbOfHouses--;
-			System.out.println("Ét hus er blevet fjernet fra " + getName() + ".");
-		}
 		return numbOfHouses;
 	}
 

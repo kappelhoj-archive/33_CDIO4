@@ -13,9 +13,9 @@ public abstract class Ownable extends Field {
 	 * @param description The description of the field.
 	 * @param price The price of the field.
 	 */
-	public Ownable(String name, String type, String description, int price)
+	public Ownable(int fieldNumber, String name, String type, String description, int price)
 	{
-		super(name, type, description);
+		super(fieldNumber, name, type, description);
 		this.price = price;
 		this.owner = null;
 	}
@@ -109,5 +109,10 @@ public abstract class Ownable extends Field {
 	public int getValue()
 	{
 		return getPrice();
+	}
+	
+	public String getColour()
+	{
+		return null;
 	}
 }

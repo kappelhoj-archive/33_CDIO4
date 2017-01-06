@@ -2,9 +2,9 @@ package entity.field;
 
 public class ChanceField extends Field{
 	
-	public ChanceField(String name, String type, String description)
+	public ChanceField(int fieldNumber, String name, String type, String description)
 	{
-		super(name, type, description);
+		super(fieldNumber, name, type, description);
 	}
 	
 	public int getRent()

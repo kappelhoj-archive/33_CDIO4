@@ -133,8 +133,9 @@ public class Street extends Ownable {
 	 * Method changeOfNumbOfHouses: Change the numbOfhouses variable with the given amount.
 	 * @param amount The amount to change the variable with.
 	 */
-	public void changeNumbOfHouses(int amount)
+	public int changeNumbOfHouses(int amount)
 	{
 		numbOfHouses = numbOfHouses + amount;
+		return numbOfHouses;
 	}
 }

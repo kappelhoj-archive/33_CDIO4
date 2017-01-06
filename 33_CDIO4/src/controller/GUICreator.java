@@ -31,6 +31,7 @@ public class GUICreator {
 			addField(data[i]);
 		}
 		endBoardBuilding();
+		System.out.println("Finnished building board on GUI");
 		
 	}
 /**
@@ -80,7 +81,7 @@ public class GUICreator {
 			addParking(information);
 			break;
 		default:
-			System.out.println("Not a valid field at field number: " + fieldCounter);
+			System.out.println("GUI: Not a valid field at field number: " + fieldCounter);
 		}
 		fieldCounter++;
 	}
@@ -139,8 +140,9 @@ public class GUICreator {
 	}
 
 	private void addPlayersToGUI(String[] players) {
-		for (int i = 0; i < players.length; i++)
+		for (int i = 0; i < players.length; i++){
 			GUI.addPlayer(players[i], 30000, cars[i]);
+		GUI.setCar(1, players[i]);}
 	}
 
 	/**

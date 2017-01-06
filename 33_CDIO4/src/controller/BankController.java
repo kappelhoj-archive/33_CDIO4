@@ -42,7 +42,7 @@ public class BankController
 		}
 		else
 		{
-			street.subtractNumbOfHouses();
+			street.changeNumbOfHouses(-1);
 			account.changeBalance(street.getHousePrice()/2);
 			GUI.getUserButtonPressed("Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice()/2 + " kr.", "Ok");
 		}
@@ -112,12 +112,12 @@ public class BankController
 	{
 		Ownable[] loseAllFields;
 
-		if (player.getfields()!=null)
+		if (player.getFields()!=null)
 		{
 
-			loseAllFields = new Ownable[player.getfields().length];
+			loseAllFields = new Ownable[player.getFields().length];
 
-			for(int i = 0; i < player.getfields().length; i++)
+			for(int i = 0; i < player.getFields().length; i++)
 			{
 				player.loseFields(loseAllFields[i]);
 			}

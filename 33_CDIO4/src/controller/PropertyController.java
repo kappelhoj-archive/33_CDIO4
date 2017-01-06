@@ -155,7 +155,7 @@ public class PropertyController {
 		int[] houses = new int[numbOfStreetsFromColour(colour)];
 		//An array to hold the names of the different streets.
 		String[] streetNames = new String[numbOfStreetsFromColour(colour)];
-		//Fills the array with informations.
+		//Fills the arrays with informations.
 		for (int i = 0; i < player.getFields().length; i++) {
 			int j = 0;
 			if (player.getFields()[i].getColour().equals(colour)) {
@@ -208,6 +208,7 @@ public class PropertyController {
 	 * @param player The player who wants to build a hotel.
 	 * @param street The street the player wants to build on.
 	 */
+	
 	private void setHotel(Player player, Street street)
 	{
 		if (getHotels() > 0)

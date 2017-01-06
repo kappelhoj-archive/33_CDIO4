@@ -256,7 +256,7 @@ public class MainController {
 		// the player.
 		String userSelection;
 		while (!endTurn) {
-			userSelection = GUI.getUserSelection(output, END_YOUR_TURN);
+			userSelection = GUI.getUserSelection(output, END_YOUR_TURN,HOUSES_AND_HOTELS);
 			switch (userSelection) {
 			case END_YOUR_TURN:
 				endTurn = true;

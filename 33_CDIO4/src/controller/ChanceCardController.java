@@ -3,7 +3,7 @@ import entity.ChanceCardDeck;
 import entity.Player;
 import controller.PrisonController;
 import desktop_fields.Tax;
-import entity.ChanceCard.ChanceCard;
+import entity.ChanceCard.chanceCard;
 import entity.ChanceCard.Grant;
 import entity.ChanceCard.Movement;
 import entity.ChanceCard.Party;
@@ -39,7 +39,7 @@ public class ChanceCardController {
 	{
 		tempPlayer= player;
 		
-		ChanceCard currentCard=deck.drawCard();
+		chanceCard currentCard=deck.drawCard();
 		
 		String type = currentCard.getType();
 		
@@ -66,7 +66,7 @@ public class ChanceCardController {
 	 * The method drawGrant is invoked if the drawn card is of the type Grant.
 	 * @param currentCard The currently drawn card.
 	 */
-	public void drawGrant(ChanceCard currentCard)
+	public void drawGrant(chanceCard currentCard)
 	{
 	Grant card = ((Grant)currentCard);
 	bank.chancePaymentChecker(card.getAmount(), tempPlayer);
@@ -78,7 +78,7 @@ public class ChanceCardController {
 	 * The method moves the player a specific distance, or to a specific field.
 	 * @param currentCard The currently drawn card.
 	 */
-	public void drawMovement(ChanceCard currentCard)
+	public void drawMovement(chanceCard currentCard)
 	{
 		Movement card = ((Movement)currentCard);
 
@@ -112,7 +112,7 @@ public class ChanceCardController {
 	 * The method drawParty is invoked if the drawn card is of the type Party.
 	 * @param currentCard The currently drawn card.
 	 */
-	public void drawParty(ChanceCard currentCard)
+	public void drawParty(chanceCard currentCard)
 	{
 		Party card = ((Party)currentCard);
 	}
@@ -121,7 +121,7 @@ public class ChanceCardController {
 	 * The method drawPayment is invoked if the drawn card is of the type Payment.
 	 * @param currentCard The currently drawn card.
 	 */
-	public void drawPayment(ChanceCard currentCard)
+	public void drawPayment(chanceCard currentCard)
 	{
 		Payment card = ((Payment)currentCard);
 	}
@@ -130,7 +130,7 @@ public class ChanceCardController {
 	 * The method drawPrison is invoked if the drawn card is of the type Prison.
 	 * @param currentCard The currently drawn card.
 	 */
-	public void drawPrison(ChanceCard currentCard)
+	public void drawPrison(chanceCard currentCard)
 	{
 		Prison card = ((Prison)currentCard);
 	}
@@ -140,7 +140,7 @@ public class ChanceCardController {
 	 * The method drawTaxCard is invoked if the drawn card is of the type TaxCard.
 	 * @param currentCard The currently drawn card.
 	 */
-	public void drawTaxCard(ChanceCard currentCard)
+	public void drawTaxCard(chanceCard currentCard)
 	{
 		TaxCard card = ((TaxCard)currentCard);
 	}

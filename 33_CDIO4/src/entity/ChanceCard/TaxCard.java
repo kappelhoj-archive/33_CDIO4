@@ -1,6 +1,6 @@
 package entity.ChanceCard;
 
-public class TaxCard extends ChanceCard{
+public class TaxCard extends chanceCard{
 
 	private String type;
 	private String description;

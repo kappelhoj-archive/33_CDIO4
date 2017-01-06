@@ -1,6 +1,6 @@
 package entity.ChanceCard;
 
-public class Movement extends ChanceCard{
+public class Movement extends chanceCard{
 
 	private int move;
 	private int fieldPosition[];

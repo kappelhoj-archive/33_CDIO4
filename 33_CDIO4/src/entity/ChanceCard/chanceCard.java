@@ -1,13 +1,13 @@
 package entity.ChanceCard;
 
-public abstract class ChanceCard {
+public abstract class chanceCard {
 	
 	//Instance variables
 	private String type;
 	private String description;
 
 	
-	public ChanceCard(String type, String description)
+	public chanceCard(String type, String description)
 	{
 		this.type = type;
 		this.description = description;

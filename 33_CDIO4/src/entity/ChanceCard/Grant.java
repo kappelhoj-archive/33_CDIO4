@@ -1,6 +1,6 @@
 package entity.ChanceCard;
 
-public class Grant extends ChanceCard{
+public class Grant extends chanceCard{
 
 	//Instance variables
 	private int amount;

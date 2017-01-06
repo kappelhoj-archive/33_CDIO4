@@ -1,23 +1,41 @@
 package controller;
 import entity.ChanceCardDeck;
 import entity.Player;
+import controller.PrisonController;
+import desktop_fields.Tax;
 import entity.ChanceCard.ChanceCard;
+import entity.ChanceCard.Grant;
 import entity.ChanceCard.Movement;
+import entity.ChanceCard.Party;
+import entity.ChanceCard.Payment;
+import entity.ChanceCard.Prison;
+import entity.ChanceCard.TaxCard;
+import desktop_resources.GUI;
+import controller.BankController;
 
 
 public class ChanceCardController {
 
 	ChanceCardDeck deck;
 	Player tempPlayer;
-
-	ChanceCardController()
+	PrisonController prison;
+	BankController bank;
+	
+	ChanceCardController(PrisonController prison,BankController bank)
 	{
 		deck = new ChanceCardDeck();
-
-
+		this.prison = prison;
+		this.bank = bank;
 
 	}
+	/**
+	 * The method draw draws a card from a newly generated chancecarddeck.
+	 * Depending on what type of chancecard is drawn, the draw method invokes different
+	 * methods. The method uses a switch to differ between the individual types of chancecard.
+	 * @param player The player who's "drawing" a card.
+	 */
 	public void draw(Player player)
+
 	{
 		tempPlayer= player;
 		
@@ -25,33 +43,46 @@ public class ChanceCardController {
 		
 		String type = currentCard.getType();
 		
+		GUI.displayChanceCard(currentCard.getDesc());
+		
 		switch(type)
 		{
-		case "Grant": drawGrant();
+		case "Grant": drawGrant(currentCard);
 		break;
 		case "Movement": drawMovement(currentCard);
 		break;
-		case "Party": drawParty();
+		case "Party": drawParty(currentCard);
 		break;
-		case "Payment": drawPayment();
+		case "Payment": drawPayment(currentCard);
 		break;
-		case "Prison": drawPrison();
+		case "Prison": drawPrison(currentCard);
 		break;
-		case "Tax": drawTax();
+		case "Tax": drawTaxCard(currentCard);
 		break;		
-		}
-
-
+		}	
 	}
-	public void drawGrant()
+	
+	/**
+	 * The method drawGrant is invoked if the drawn card is of the type Grant.
+	 * @param currentCard The currently drawn card.
+	 */
+	public void drawGrant(ChanceCard currentCard)
 	{
-
+	Grant card = ((Grant)currentCard);
+	bank.chancePaymentChecker(card.getAmount(), tempPlayer);
 	}
+	
+
+	/**
+	 * The method drawMovement is invoked if the drawn card is of the type Movement.
+	 * The method moves the player a specific distance, or to a specific field.
+	 * @param currentCard The currently drawn card.
+	 */
 	public void drawMovement(ChanceCard currentCard)
 	{
 		Movement card = ((Movement)currentCard);
 
-		//if the card wants to move a player to a specific field
+		//if the card wants to move a player to a specific field.
 		if(card.getMove()==0 & card.getField1()!=0 & card.getField2()==0)
 		{
 			movePlayerSpecificField(card.getField1());	
@@ -70,40 +101,79 @@ public class ChanceCardController {
 		}
 		
 		//prison card
-		if(card.getInprisoned()==true)
+		if(card.getInprisoned())
 		{
 			movePlayerPrison();
 		}
 
 	}
-	public void drawParty()
-	{
 
-	}
-	public void drawPayment()
+	/**
+	 * The method drawParty is invoked if the drawn card is of the type Party.
+	 * @param currentCard The currently drawn card.
+	 */
+	public void drawParty(ChanceCard currentCard)
 	{
+		Party card = ((Party)currentCard);
+	}
 
-	}
-	public void drawPrison()
+	/**
+	 * The method drawPayment is invoked if the drawn card is of the type Payment.
+	 * @param currentCard The currently drawn card.
+	 */
+	public void drawPayment(ChanceCard currentCard)
 	{
+		Payment card = ((Payment)currentCard);
+	}
+	
+	/**
+	 * The method drawPrison is invoked if the drawn card is of the type Prison.
+	 * @param currentCard The currently drawn card.
+	 */
+	public void drawPrison(ChanceCard currentCard)
+	{
+		Prison card = ((Prison)currentCard);
+	}
+	
 
-	}
-	public void drawTax()
+	/**
+	 * The method drawTaxCard is invoked if the drawn card is of the type TaxCard.
+	 * @param currentCard The currently drawn card.
+	 */
+	public void drawTaxCard(ChanceCard currentCard)
 	{
+		TaxCard card = ((TaxCard)currentCard);
+	}
 
-	}
-	public void movePlayerPrison()//ER DETTE RIGTIGT ?????????????????????????????????????? og skal denne metode rykke ham dertil ?
+	/**
+	 * The method movePlayerPrison sends the player to prison.
+	 */
+	public void movePlayerPrison()
 	{
-		tempPlayer.setPrison(true);
+		prison.sentToPrison(tempPlayer);
 	}
+	/**
+	 * The method movePlayerSpecificField moves the player to a specific field.
+	 * @param moveToField The field the player is moved to.
+	 */
 	public void movePlayerSpecificField(int moveToField)
 	{
 		tempPlayer.setPosition(moveToField);
 	}
+	
 	public void movePlayer(int move)
 	{
 		tempPlayer.setPosition(tempPlayer.getPosition() + move);
 	}
+	/**
+	 * The method movePlayerSeveralSpecificField is capable of moving a player to a number of specified fields.
+	 * This is needed for when a player has to move to the nearest shipping company
+	 * @param field1 Specific ownable field 1.
+	 * @param field2 Specific ownable field 2.
+	 * @param field3 Specific ownable field 3.
+	 * @param field4 Specific ownable field 4.
+	 * @param rent The rent to be payed to the owner of the shipping company.
+	 */
 	public void movePlayerSeveralSpecificField(int field1, int field2, int field3, int field4, boolean rent)
 	{
 		int[] fields = {tempPlayer.getPosition()-field1,

@@ -1,52 +1,46 @@
 package data;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
-import controller.GUICreator;
-import entity.GameBoard;
-
+import java.util.Scanner;
+ 
 public class Reader {
-
-	BufferedReader reader = null;
-
-	public void openFieldData() {
-		try {
-			reader = new BufferedReader(new FileReader("src/data/Feltliste.txt"));
-		} catch (FileNotFoundException e) {
-			System.out.println("File can not be opened\n");
-		}
+	
+	File file;
+	
+	public Reader(String fileName)
+	{
+		file = new File(fileName);
 	}
-
-	public void readFields(GameBoard board, GUICreator gui) {
-		String[] information = null;
-		gui.beginBoardBuilding();
-		for (int i = 0; i < 40; i++) {
-			if (reader != null) {
-				try {
-					information = reader.readLine().split(";");
-				} catch (IOException e) {
-				}
-			}
+	
+	public String[][] readFile()
+	{
+		String[][] fileData = new String[40][12];
+		try {
+			Scanner scanner = new Scanner(file);
 			
-			gui.addField(information);
-			//board.addField(information);
+			for(int i = 0; i < 40; i++)
+			{
+				fileData[i] = scanner.nextLine().split(";");
+			}
+			scanner.close();
 		}
-		gui.endBoardBuilding();
-		
-
-
-
-
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return fileData;
 	}
-
-	public void closeFile() {
-		try {
-			reader.close();
-		} catch (IOException e) {
-
+	
+	public String[][] formatFileData(String[][] fieldData)
+	{
+		String[][] formattedFieldData = new String[fieldData.length][fieldData[1].length];
+		for(int i = 0; i < fieldData.length; i++)
+		{
+			for(int j = 0; j < fieldData[i].length; j++)
+			{
+				formattedFieldData[i][j] = fieldData[i][j].replaceAll("\\.", "");
+			}	
 		}
+		return formattedFieldData;
 	}
 }

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Color;
 
+import data.Reader;
 import desktop_codebehind.Car;
 import desktop_fields.Brewery;
 import desktop_fields.Chance;
@@ -19,17 +20,38 @@ public class GUICreator {
 	private Field[] fields;
 	private int fieldCounter;
 
-	public GUICreator() {
-
+	
+	
+	
+	public GUICreator(){
+		Reader dataReader = new Reader("src/data/Feltliste.txt");
+		String[][] data=dataReader.readFile();
+		beginBoardBuilding();
+		for(int i=0;i<40;i++){
+			addField(data[i]);
+		}
+		endBoardBuilding();
+		System.out.println("Finnished building board on GUI");
+		
 	}
-
+/**
+ * Method beginBoardbuidling: Create a list of GUI_Fields. This should be used before the addField Method.
+ *
+ */
 	public void beginBoardBuilding() {
 		fields = new Field[40];
 		fieldCounter = 1;
 	}
 
+	/**
+	 * Method addField: Adds a field to the GUIBoard
+	 * @param information Array of all the field information.
+	 */
 	public void addField(String[] information) {
+		//Gets the type of the fields.
 		String fieldType = information[information.length - 2];
+		
+		//Calls the respective method that handles specific types of fields.
 		switch (fieldType) {
 		case "Ejendom":
 			addStreet(information);
@@ -49,65 +71,66 @@ public class GUICreator {
 		case "Start":
 			addStart(information);
 			break;
-		case "Jail":
+		case "Fængsel":
 			addJail(information);
 			break;
-		case "Visit":
-			addJail(information);
+		case "Besøg":
+			addVisit(information);
 			break;
-		case "Parking":
+		case "Parkering":
 			addParking(information);
 			break;
 		default:
-			System.out.println("Not a valid field at field number: " + fieldCounter);
+			System.out.println("GUI: Not a valid field at field number: " + fieldCounter);
 		}
 		fieldCounter++;
 	}
 
-	public void addStreet(String[] information) {
+	
+	private void addStreet(String[] information) {
 		Color color = getColorFromField(information[1]);
 		fields[fieldCounter - 1] = new Street.Builder().setTitle(information[0]).setSubText(information[2])
 				.setDescription("").setBgColor(color).setRent(information[3]).build();
 	}
 
-	public void addShipping(String[] information) {
+	private void addShipping(String[] information) {
 		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.BLUE).setPicture("src/data/pictures/Ferry.png")
+				.setDescription(information[1]).setBgColor(Color.getHSBColor((float)(216.21/360.0), (float)(72.5/100.0), (float)(62.75/100.0))).setPicture("src/data/pictures/Ferry.png")
 				.build();
 	}
 
-	public void addBrewery(String[] information) {
+	private void addBrewery(String[] information) {
 		fields[fieldCounter - 1] = new Brewery.Builder().setTitle(information[0]).setSubText(information[2])
 				.setDescription(information[1]).setBgColor(Color.BLACK).build();
 	}
 
-	public void addChance(String[] information) {
+	private void addChance(String[] information) {
 		fields[fieldCounter - 1] = new Chance.Builder().setBgColor(Color.LIGHT_GRAY).build();
 	}
 
-	public void addTax(String[] information) {
+	private void addTax(String[] information) {
 		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.GRAY).build();
+				.setDescription(information[1]).setBgColor(Color.LIGHT_GRAY).build();
 	}
 
-	public void addStart(String[] information) {
+	private void addStart(String[] information) {
 		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0]).setSubText(information[2])
 				.setDescription(information[1]).setBgColor(Color.RED).build();
 	}
 
-	public void addJail(String[] information) {
+	private void addJail(String[] information) {
 		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1])
 				.setBgColor(Color.GRAY).build();
 	}
 
-	public void addVisit(String[] information) {
+	private void addVisit(String[] information) {
 		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1])
 				.setBgColor(Color.GRAY).build();
 	}
 
-	public void addParking(String[] information) {
+	private void addParking(String[] information) {
 		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(information[0]).setDescription(information[1])
-				.setBgColor(Color.LIGHT_GRAY).setPicture("src/data/pictures/Parkeringslogo.png").build();
+				.setBgColor(Color.getHSBColor((float)(198.1/360.0), (float)(100.0/100.0), (float)(90.98/100.0))).setPicture("src/data/pictures/Parkeringslogo.png").build();
 	}
 
 	public void endBoardBuilding() {
@@ -117,8 +140,9 @@ public class GUICreator {
 	}
 
 	private void addPlayersToGUI(String[] players) {
-		for (int i = 0; i < players.length; i++)
+		for (int i = 0; i < players.length; i++){
 			GUI.addPlayer(players[i], 30000, cars[i]);
+		GUI.setCar(1, players[i]);}
 	}
 
 	/**
@@ -156,7 +180,7 @@ public class GUICreator {
 
 			while (nameEqual) {
 				do {
-					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer" + (i + 1));
+					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer " + (i + 1));
 				} while (playerNames[i].equals(""));
 
 				for (int j = 0; j < i; j++) {

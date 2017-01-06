@@ -6,7 +6,7 @@ public class Street extends Ownable
 	private String colour;
 	private int baseRent;
 	private int housePrice;
-	private int houseRent[];
+	private int[] houseRent;
 	private int numbOfHouses;
 	private int pledge;
 
@@ -24,17 +24,13 @@ public class Street extends Ownable
 	 * @param pledge The value of a pledged field.
 	 */
 
-	public Street (String name, String type, String description, int price, String colour, int baseRent, int housePrice, int houseRent[], int pledge)
+	public Street (String name, String type, String description, int price, String colour, int baseRent, int housePrice, int[] houseRent, int pledge)
 	{
 		super(name, type, description, price);
 		this.colour = colour;
 		this.baseRent = baseRent;
 		this.housePrice = housePrice;
-		this.houseRent[0] = houseRent[0];
-		this.houseRent[1] = houseRent[1];
-		this.houseRent[2] = houseRent[2];
-		this.houseRent[3] = houseRent[3];
-		this.houseRent[4] = houseRent[4];
+		this.houseRent = houseRent;
 		this.numbOfHouses = 0;
 		this.pledge = pledge;
 	}

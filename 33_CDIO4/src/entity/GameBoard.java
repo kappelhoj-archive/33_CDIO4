@@ -22,6 +22,7 @@ public class GameBoard {
 
 	public void addField(String[] information) {
 		String fieldType = information[10];
+//		System.out.println(fieldType);
 		switch (fieldType) {
 			case "Ejendom":
 				addStreet(information);
@@ -45,7 +46,7 @@ public class GameBoard {
 				addNeutral(information);
 				break;
 			default:
-				System.out.println("Not a valid field at field number: " + fieldCounter);
+				System.out.println("GameBoard: Not a valid field at field number: " + fieldCounter);
 		}
 		fieldCounter++;
 	}
@@ -95,7 +96,7 @@ public class GameBoard {
 		String type = information[10];
 		String description = "";
 		boolean rate = Boolean.parseBoolean(information[5]);
-		int amount = Integer.parseInt(information[10]);
+		int amount = Integer.parseInt(information[4]);
 		fields[fieldCounter - 1] = new Tax(name, type, description, rate, amount);
 	}
 	

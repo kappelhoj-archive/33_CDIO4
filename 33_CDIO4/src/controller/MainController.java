@@ -17,7 +17,7 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
-	private GameBoard board;
+//	private GameBoard board;
 	private LandOnFieldController fieldController;
 
 	private TestModeController testMode;
@@ -37,7 +37,7 @@ public class MainController {
 			testMode = new TestModeController(args[0]);
 
 		// Creates a board that can store all the fields.
-		board = new GameBoard();
+//		board = new GameBoard();
 		// Creates an objet that iniliazie the GUI gameboard.
 		GUICreator createGUI = new GUICreator();
 		// Initialise the class that reads fields from a text file.

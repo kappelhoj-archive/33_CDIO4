@@ -38,7 +38,7 @@ public class Reader {
 		{
 			for(int j = 0; j < fieldData[i].length; j++)
 			{
-				formattedFieldData[i][j] = fieldData[i][j].replaceAll(".", "");
+				formattedFieldData[i][j] = fieldData[i][j].replaceAll("\\.", "");
 			}	
 		}
 		return formattedFieldData;

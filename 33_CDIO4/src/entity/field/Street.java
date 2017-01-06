@@ -122,13 +122,20 @@ public class Street extends Ownable {
 	}
 
 	/**
-	 * Methods needed for the Bank class. Might need revisiting later.
+	 * Method getNumbOfHouses: Returns the number of houses on the street.
+	 * @return The number of the houses on the street.
 	 */
 	public int getNumbOfHouses() {
 		return numbOfHouses;
 	}
 
-	public void setNumbOfHouses(int houseLoss) {
-		numbOfHouses = houseLoss;
+	/**
+	 * Method changeOfNumbOfHouses: Change the numbOfhouses variable with the given amount.
+	 * @param amount The amount to change the variable with.
+	 */
+	public int changeNumbOfHouses(int amount)
+	{
+		numbOfHouses = numbOfHouses + amount;
+		return numbOfHouses;
 	}
 }

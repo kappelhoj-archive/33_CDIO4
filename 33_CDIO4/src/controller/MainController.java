@@ -2,7 +2,6 @@ package controller;
 
 import desktop_resources.GUI;
 import entity.DiceCup;
-import entity.GameBoard;
 import entity.Player;
 import test.TestModeController;
 
@@ -15,8 +14,8 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
-	// private GameBoard board;
 	private LandOnFieldController fieldController;
+	private PropertyController propertyController;
 
 	private TestModeController testMode;
 
@@ -59,6 +58,7 @@ public class MainController {
 
 		// Construct a field controller
 		fieldController = new LandOnFieldController(prisonController, this);
+		propertyController= new PropertyController();
 	}
 
 	/**
@@ -167,6 +167,7 @@ public class MainController {
 	private void givePlayer4000() {
 		players[turn].changeAccountBalance(4000);
 		GUI.setBalance(players[turn].getName(), players[turn].getAccountBalance());
+		GUI.getUserButtonPressed("Du passerede start og modtager 4.000.", "Ok");
 	}
 
 	/**
@@ -243,22 +244,27 @@ public class MainController {
 	 * to do.
 	 */
 	public void playerTurnDecision() {
-		// Boolean that holds the decision of if the player want to end his
+	 	// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
 
 		String output = "Hvad vil du foretage dig?";
 		final String END_YOUR_TURN = "Slut din tur.";
+		final String HOUSES_AND_HOTELS="Køb huse.";
 
 		// Keep asking for what the player wants to do until he chooses to add
 		// the player.
 		String userSelection;
 		while (!endTurn) {
-			userSelection = GUI.getUserSelection(output, END_YOUR_TURN);
+			userSelection = GUI.getUserSelection(output, END_YOUR_TURN,HOUSES_AND_HOTELS);
 			switch (userSelection) {
 			case END_YOUR_TURN:
 				endTurn = true;
 				break;
+			case HOUSES_AND_HOTELS:
+				propertyController.showBuidlingMenu(players[turn]);
+				break;
+			
 			}
 		}
 

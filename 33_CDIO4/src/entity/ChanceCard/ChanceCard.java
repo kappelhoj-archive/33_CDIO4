@@ -3,13 +3,13 @@ package entity.ChanceCard;
 public abstract class ChanceCard {
 	
 	private String type;
-	private String desc;
+	private String description;
 
 	
-	public ChanceCard(String type,String desc)
+	public ChanceCard(String type,String description)
 	{
 		this.type = type;
-		this.desc = desc;
+		this.description = description;
 
 	}
 	public String getType()
@@ -18,7 +18,7 @@ public abstract class ChanceCard {
 	}
 	public String getDesc()
 	{
-		return desc;
+		return description;
 	}
 
 	

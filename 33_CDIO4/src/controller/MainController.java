@@ -15,7 +15,7 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
-	private GameBoard board;
+//	private GameBoard board;
 	private LandOnFieldController fieldController;
 
 	private TestModeController testMode;

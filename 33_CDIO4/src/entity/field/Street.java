@@ -65,6 +65,10 @@ public class Street extends Ownable
 		if (numbOfHouses == 0)
 		{
 			rent = baseRent;
+			switch(super.getOwner().getStreetsOwned(colour)){
+			
+			}
+			
 		}
 		else
 		{

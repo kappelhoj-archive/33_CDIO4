@@ -50,6 +50,7 @@ public class TestModeController {
 	private void setPlayerBalance(Player player) {
 		int newBalance = GUI.getUserInteger(testingModeMessage + "Hvad skal den nye balance være?", 0, 10000000);
 		player.changeAccountBalance(newBalance - player.getAccountBalance());
+		GUI.setBalance(player.getName(), player.getAccountBalance());
 	}
 
 	private void claimField(GameBoard board,Player player) {

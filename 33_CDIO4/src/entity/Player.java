@@ -284,16 +284,45 @@ public class Player {
 	 * @param name The name of the field that you want to find.
 	 * @return The field with the name.
 	 */
-	public Ownable getFieldFromName(String name)
+	public Street getFieldFromName(String name)
 	{
-		Ownable field = null;
+		Street field = null;
 		for (int i = 0; i < fields.length; i++)
 		{
 			if (name == fields[i].getName())
 			{
-				field = fields[i];
+				field = (Street) (fields[i]);
 			}
 		}
 		return field;
+	}
+	
+	/**
+	 * Method getHousePriceFromColour
+	 * @param colour
+	 * @return
+	 */
+	public int getHousePriceFromColour(String colour)
+	{
+		int housePrice = 0;
+		int housePriceBlue = 1000;
+		int housePriceOrange = 1000;
+		int housePriceGreen = 2000;
+		int housePriceGrey = 2000;
+		int housePriceRed = 3000;
+		int housePriceWhite = 3000;
+		int housePriceYellow = 4000;
+		int housePricePurple = 4000;
+		int[] housePrices = {housePriceBlue, housePriceOrange, housePriceGreen, housePriceGrey, housePriceRed, housePriceWhite, housePriceYellow, housePricePurple};
+		String[] streetColours = {"Blå", "Orange", "Grøn", "Grå", "Rød", "Hvid", "Gul", "Lilla"};
+		
+		for(int i = 0; i < streetColours.length; i++)
+		{
+			if (colour.equals(streetColours[i]))
+			{
+				housePrice = housePrices[i];
+			}
+		}
+		return housePrice;
 	}
 }

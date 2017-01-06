@@ -1,6 +1,5 @@
 package controller;
 
-import data.Reader;
 import desktop_resources.GUI;
 import entity.DiceCup;
 import entity.GameBoard;
@@ -10,7 +9,6 @@ import test.TestModeController;
 /**
  * MainControler class controls all the other controllers and is responsible for
  * moving the players around the board.
- * 
  *
  */
 public class MainController {
@@ -36,7 +34,7 @@ public class MainController {
 			testMode = new TestModeController(args[0]);
 
 		// Creates a board that can store all the fields.
-		board = new GameBoard();
+		//board = new GameBoard();
 		// Creates an objet that iniliazie the GUI gameboard.
 		GUICreator createGUI = new GUICreator();
 		// Initialise the class that reads fields from a text file.
@@ -190,7 +188,7 @@ public class MainController {
 
 		// Only used if testing is active.
 		if (testMode.isActive()) {
-			int newRoll = testMode.options(players[turn], this);
+			int newRoll = testMode.options(players[turn], this,board);
 			if (newRoll >= 0)
 				return newRoll;
 		}

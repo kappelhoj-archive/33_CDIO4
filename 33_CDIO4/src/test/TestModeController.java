@@ -1,7 +1,9 @@
 package test;
 
+import entity.field.*;
 import controller.MainController;
 import desktop_resources.GUI;
+import entity.GameBoard;
 import entity.Player;
 
 public class TestModeController {
@@ -49,13 +51,34 @@ public class TestModeController {
 		player.changeAccountBalance(newBalance - player.getAccountBalance());
 	}
 
-	public int options(Player player, MainController main) {
+	private void claimField(GameBoard board,Player player) {
+		int fieldNum = GUI.getUserInteger("Hvilket felt vil du overtage?", 1, 40);
+		Field testField = board.getField(fieldNum);
+		if ((testField instanceof entity.field.Ownable)) {
+			Ownable currentField=(Ownable)testField;
+			if(currentField.getOwner()==null){
+				currentField.getOwner().loseFields(currentField);
+				currentField.removeOwner();
+			}
+			player.changeAccountBalance(currentField.getPrice());
+			player.buyField(currentField);
+			
+			
+			
+		}
+		else{
+			GUI.getUserButtonPressed("Dette felt kan ikke købes","Ok");
+		}
+
+	}
+
+	public int options(Player player, MainController main, GameBoard board) {
 		int output = -1;
 
 		final String MOVE_PLAYER_TO_FIELD = "Ryk spilleren til et felt.";
 		final String EXTRA_TURN = "Giv denne spiller en ekstra tur.";
 		final String SET_PLAYER_BALANCE = "Ændre spillerens balance.";
-		final String CLAIM_FIELD="Giv spilleren et felt, kan også stjæle fra andre spillere.";
+		final String CLAIM_FIELD = "Giv spilleren et felt, kan også stjæle fra andre spillere.";
 		final String DEACTIVATE_TEST_MODE = "Deaktiver testmode.";
 		final String STOP_TEST_MODE = "Fortsæt spil.";
 
@@ -71,7 +94,7 @@ public class TestModeController {
 		} else
 			do {
 				input = GUI.getUserSelection(testingModeMessage + "Hvad vil du gøre?", MOVE_PLAYER_TO_FIELD, EXTRA_TURN,
-						SET_PLAYER_BALANCE, STOP_TEST_MODE, DEACTIVATE_TEST_MODE);
+						SET_PLAYER_BALANCE, CLAIM_FIELD, STOP_TEST_MODE, DEACTIVATE_TEST_MODE);
 				switch (input) {
 				case MOVE_PLAYER_TO_FIELD:
 					output = setPlayerOnField(player);
@@ -92,6 +115,9 @@ public class TestModeController {
 					break;
 				case STOP_TEST_MODE:
 					menuActive = false;
+					break;
+				case CLAIM_FIELD:
+					claimField(board,player);
 					break;
 
 				// Claim et felt for spilleren.

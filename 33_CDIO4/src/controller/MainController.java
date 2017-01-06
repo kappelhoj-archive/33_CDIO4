@@ -167,6 +167,7 @@ public class MainController {
 	private void givePlayer4000() {
 		players[turn].changeAccountBalance(4000);
 		GUI.setBalance(players[turn].getName(), players[turn].getAccountBalance());
+		GUI.getUserButtonPressed("Du passerede start og modtager 4.000.", "Ok");
 	}
 
 	/**
@@ -243,7 +244,7 @@ public class MainController {
 	 * to do.
 	 */
 	public void playerTurnDecision() {
-		// Boolean that holds the decision of if the player want to end his
+	 	// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
 

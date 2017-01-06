@@ -15,7 +15,7 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
-//	private GameBoard board;
+	// private GameBoard board;
 	private LandOnFieldController fieldController;
 
 	private TestModeController testMode;
@@ -35,11 +35,10 @@ public class MainController {
 			testMode = new TestModeController(args[0]);
 
 		// Creates a board that can store all the fields.
-		//board = new GameBoard();
+		// board = new GameBoard();
 		// Creates an objet that iniliazie the GUI gameboard.
 		GUICreator createGUI = new GUICreator();
 		// Initialise the class that reads fields from a text file.
-		
 
 		// Ask the players their names on the GUI
 		String[] playerNames = createGUI.getPlayerNames();
@@ -55,7 +54,7 @@ public class MainController {
 		dice = new DiceCup();
 		// Construct a prison controller.
 		prisonController = new PrisonController(this);
-		
+
 		// Construct a field controller
 		fieldController = new LandOnFieldController(prisonController, this);
 	}
@@ -89,8 +88,9 @@ public class MainController {
 		// Check if the player is in prison. If he is, hand over control of the
 		// turn to the prison.
 		if (prisonController.checkIfInPrison(players[turn])) {
-			prisonController.inPrison(players[turn]);
-			return;
+
+			if (!prisonController.inPrison(players[turn]))
+				return;
 		}
 		// Tell the player it is his turn on the GUI.
 		GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
@@ -111,7 +111,7 @@ public class MainController {
 
 		// add landOnField methods.
 		fieldController.landOnField(players[turn], diceSum);
-		
+
 		// Ask the player what he wants to do now.
 		playerTurnDecision();
 	}
@@ -162,6 +162,7 @@ public class MainController {
 	 */
 	private void givePlayer4000() {
 		players[turn].changeAccountBalance(4000);
+		GUI.setBalance(players[turn].getName(), players[turn].getAccountBalance());
 	}
 
 	/**
@@ -192,7 +193,7 @@ public class MainController {
 
 		// Only used if testing is active.
 		if (testMode.isActive()) {
-			int newRoll = testMode.options(players[turn], this,fieldController);
+			int newRoll = testMode.options(players[turn], this, fieldController);
 			if (newRoll >= 0)
 				return newRoll;
 		}

@@ -60,14 +60,14 @@ public class TestModeController {
 		Field testField = board.getField(fieldNum);
 		if ((testField instanceof entity.field.Ownable)) {
 			Ownable currentField=(Ownable)testField;
-			if(currentField.getOwner()==null){
+			if(currentField.getOwner()!=null){
 				currentField.getOwner().loseFields(currentField);
 				currentField.removeOwner();
 			}
+
 			player.changeAccountBalance(currentField.getPrice());
 			player.buyField(currentField);
-			
-			
+			GUI.setOwner(fieldNum, currentField.getOwner().getName());
 			
 		}
 		else{

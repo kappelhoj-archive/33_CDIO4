@@ -67,7 +67,7 @@ public class ChanceCardController {
 	{
 		Movement card = ((Movement)currentCard);
 
-		//if the card wants to move a player to a specific field
+		//if the card wants to move a player to a specific field.
 		if(card.getMove()==0 & card.getField1()!=0 & card.getField2()==0)
 		{
 			movePlayerSpecificField(card.getField1());	

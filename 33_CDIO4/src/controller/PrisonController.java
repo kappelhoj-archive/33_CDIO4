@@ -17,12 +17,12 @@ public class PrisonController {
 		player.setPrison(true);
 		player.setPosition(31);
 		mainController.movePlayerOnGUI();
-		GUI.getUserButtonPressed("Du er blevet smidt i fængsel", "Ok");
+		GUI.getUserButtonPressed("De fængsles.", "Ok");
 	}
 	
-	public void inPrison(Player player)
+	public boolean inPrison(Player player)
 	{
-//		boolean inPrison = false;
+		boolean paidOut = false;
 		String payOut = "Betal dig ud: 1.000,-";
 		String rollOut = "Rul med terningerne.";
 		String input = GUI.getUserSelection("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
@@ -30,8 +30,9 @@ public class PrisonController {
 		if(input.equals(payOut))
 		{
 			player.changeAccountBalance(-1000);
+			GUI.setBalance(player.getName(), player.getAccountBalance());
 			player.setPrison(false);
-//			inPrison = false;
+			paidOut = true;
 		}
 		else
 		{
@@ -47,8 +48,7 @@ public class PrisonController {
 				GUI.getUserButtonPressed("Du slog dig ikke ud af fængslet", "Ok");
 			}
 		}
-		
-//		return inPrison;
+		return paidOut;
 	}
 	
 	public boolean checkIfInPrison(Player player)

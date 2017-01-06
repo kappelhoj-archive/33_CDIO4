@@ -110,7 +110,7 @@ public class GUICreator {
 
 	private void addTax(String[] information) {
 		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.GRAY).build();
+				.setDescription(information[1]).setBgColor(Color.LIGHT_GRAY).build();
 	}
 
 	private void addStart(String[] information) {

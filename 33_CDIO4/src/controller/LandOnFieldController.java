@@ -80,6 +80,7 @@ public class LandOnFieldController {
 				GUI.getUserButtonPressed(
 						"Du skal betale " + ownable.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
 				player.payRent(ownable.getOwner(), ownable.getRent());
+				GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
 				GUI.setBalance(player.getName(), player.getAccountBalance());
 			}
 		}

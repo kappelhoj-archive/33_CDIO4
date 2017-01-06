@@ -2,46 +2,51 @@ package entity.ChanceCard;
 
 public class Movement extends ChanceCard{
 
-	private String type;
-	private String description;
 	private int move;
-	private int field1;
-	private int field2;
-	private int field3;
-	private int field4;
-	private boolean inprisoned;
-	private boolean doublerent;
+	private int fieldPosition[];
+	private boolean sentToPrison;
+	private boolean doubleRent;
 	
-	public Movement(String type, String description, int move, int field1, int field2, int field3, int field4, boolean inprisoned,boolean doublerent){
+	public Movement(String type, String description, int move, int fieldPosition[], boolean sentToPrison, boolean doubleRent){
 		super(type,description);
+		this.move = move;
+		this.fieldPosition = fieldPosition;
+		this.sentToPrison = sentToPrison;
+		this.doubleRent = doubleRent;
 	}
+	/**
+	 * Method getMove(): Returns the amount to move.
+	 * @return The amount to move.
+	 */
 	public int getMove()
 	{
 		return move;
 	}
-	public int getField1()
+	
+	/**
+	 * Method getFields: Returns the position of the fields.
+	 * @return The position of the fields.
+	 */
+	public int[] getFieldPosition()
 	{
-		return field1;
+		return fieldPosition;
 	}
-	public int getField2()
+
+	/**
+	 * Method getSentToPrison: Returns if the player should be sent to prison.
+	 * @return True if the player should be sent to prison and false otherwise.
+	 */
+	public boolean getSentToPrison()
 	{
-		return field2;
+		return sentToPrison;
 	}
-	public int getField3()
-	{
-		return field3;
-	}
-	public int getField4()
-	{
-		return field4;
-	}
-	public boolean getInprisoned()
-	{
-		return inprisoned;
-	}
+	/**
+	 * Method getDoubleRent: Returns if the player should pay double rent.
+	 * @return True if the player should pay double rent. False otherwise.
+	 */
 	public boolean getDoubleRent()
 	{
-		return doublerent;
+		return doubleRent;
 	}
 	
 }

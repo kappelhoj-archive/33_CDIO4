@@ -1,11 +1,22 @@
 package entity.ChanceCard;
 
 public class Party extends ChanceCard{
-
-	private String type;
-	private String description;
 	
-	public Party(String type, String description,int price){
+	//Instance variables
+	private int cost;
+	
+	public Party(String type, String description,int cost)
+	{
 		super(type,description);
+		this.cost = cost;
+	}
+	
+	/**
+	 * Method getPrice: Returns the cost of the party.
+	 * @return The cost of the party.
+	 */
+	public int getCost()
+	{
+		return cost;
 	}
 }

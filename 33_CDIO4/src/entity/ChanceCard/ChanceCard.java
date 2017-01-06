@@ -6,7 +6,7 @@ public abstract class ChanceCard {
 	private String description;
 
 	
-	public ChanceCard(String type,String description)
+	public ChanceCard(String type, String description)
 	{
 		this.type = type;
 		this.description = description;
@@ -20,8 +20,6 @@ public abstract class ChanceCard {
 	{
 		return description;
 	}
-
-	
 }
 
 	

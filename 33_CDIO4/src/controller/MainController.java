@@ -16,6 +16,7 @@ public class MainController {
 	private DiceCup dice;
 	private PrisonController prisonController;
 	private GameBoard board;
+	private LandOnFieldController fieldController;
 
 	private TestModeController testMode;
 
@@ -39,7 +40,6 @@ public class MainController {
 		GUICreator createGUI = new GUICreator();
 		// Initialise the class that reads fields from a text file.
 		
-		
 
 		// Ask the players their names on the GUI
 		String[] playerNames = createGUI.getPlayerNames();
@@ -55,6 +55,9 @@ public class MainController {
 		dice = new DiceCup();
 		// Construct a prison controller.
 		prisonController = new PrisonController(this);
+		
+		// Construct a field controller
+		fieldController = new LandOnFieldController(prisonController, this);
 	}
 
 	/**
@@ -107,7 +110,8 @@ public class MainController {
 		movePlayer(diceSum);
 
 		// add landOnField methods.
-
+		fieldController.landOnField(players[turn], diceSum);
+		
 		// Ask the player what he wants to do now.
 		playerTurnDecision();
 	}

@@ -4,8 +4,11 @@ package entity.ChanceCard;
 
 		private String type;
 		private String description;
+		private int price;
 		
-		public Payment(String type, String description){
-			super(type,description);
+		public Payment(String type, String description, int price)
+		{
+			super(type, description);
 		}
 }
+

@@ -192,7 +192,7 @@ public class MainController {
 
 		// Only used if testing is active.
 		if (testMode.isActive()) {
-			int newRoll = testMode.options(players[turn], this,board);
+			int newRoll = testMode.options(players[turn], this,fieldController);
 			if (newRoll >= 0)
 				return newRoll;
 		}

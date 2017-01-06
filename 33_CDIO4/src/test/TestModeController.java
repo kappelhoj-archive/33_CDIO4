@@ -1,6 +1,7 @@
 package test;
 
 import entity.field.*;
+import controller.LandOnFieldController;
 import controller.MainController;
 import desktop_resources.GUI;
 import entity.GameBoard;
@@ -72,7 +73,7 @@ public class TestModeController {
 
 	}
 
-	public int options(Player player, MainController main, GameBoard board) {
+	public int options(Player player, MainController main, LandOnFieldController fieldController) {
 		int output = -1;
 
 		final String MOVE_PLAYER_TO_FIELD = "Ryk spilleren til et felt.";
@@ -117,7 +118,7 @@ public class TestModeController {
 					menuActive = false;
 					break;
 				case CLAIM_FIELD:
-					claimField(board,player);
+					claimField(fieldController.TESTgetGameBoard(),player);
 					break;
 
 				// Claim et felt for spilleren.

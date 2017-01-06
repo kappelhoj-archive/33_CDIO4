@@ -140,4 +140,9 @@ public class LandOnFieldController {
 		GUI.getUserButtonPressed("Prøv lykken", "Ok");
 		chanceCardController.draw(player);
 	}
+	
+	
+	public GameBoard TESTgetGameBoard(){
+		return gameBoard;
+	}
 }

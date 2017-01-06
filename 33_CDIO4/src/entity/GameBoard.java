@@ -1,20 +1,32 @@
 package entity;
 
 import entity.field.*;
-
+import data.Reader;
 
 public class GameBoard {
 	private Field[] fields;
 	private int fieldCounter;
-
+	private Reader reader;
+	//oprette eller anvende reader, som returnerer et String array med 
+	//informationerne fra Feltlist tekstfilen.
+	
+	
 	public GameBoard(){
 		fields = new Field[40];
 		fieldCounter = 1;
+		reader = new Reader()
+		reader.openFile("src/data/Feltliste.txt");
+		String[] fieldData = reader.readFileData();
+		
+		//oprette felterne
+		for(int i = 0; i < fields.length; i++)
+		{
+			addField(fieldData);
+		}
 	}
 
 	public void addField(String[] information) {
-		String fieldType = information[information.length - 2];
-		System.out.println(fieldType);
+		String fieldType = information[10];
 		switch (fieldType) {
 			case "Ejendom":
 				addStreet(information);
@@ -32,6 +44,9 @@ public class GameBoard {
 				addTax(information);
 				break;
 			case "Start":
+			case "Visit":
+			case "Parking":
+			case "Jail":
 				addNeutral(information);
 				break;
 			default:

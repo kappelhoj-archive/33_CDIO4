@@ -8,10 +8,10 @@ Movement,"Tag ind på Rådhuspladsen.",0,40,0,0,0,false,false
 Movement,"Ryk frem til Strandvejen. Hvis De passerer "START" indkassér da kr. 4.000.",0,20,0,0,0,false,false
 Movement,"Ryk frem til Vimmelskaftet. Hvis De passerer "START" indkassér da kr. 4.000.",0,33,0,0,0,false,false
 Movement,"Ryk frem til Frederiksberg Allé. Hvis De passerer "START" indkassér da kr. 4.000.",0,12,0,0,0,false,false
-Movement,"Tag med Mols-Linien. Flyt brikken frem, og hvis De passerer "START" indkassér da kr. 4.000.",0,16,0,0,0,false,false
+Movement,"Tag med Mols-Linien. Flyt brikken frem og hvis De passerer "START" indkassér da kr. 4.000.",0,16,0,0,0,false,false
 Movement,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",0,6,16,26,36,false,true
 Movement,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",0,6,16,26,36,false,true
-Movement,"Tag med den nærmeste færge. Flyt brikken frem, og hvis De passerer "START" indkassér da kr. 4.000.",0,6,16,26,36,false,false
+Movement,"Tag med den nærmeste færge. Flyt brikken frem og hvis De passerer "START" indkassér da kr. 4.000.",0,6,16,26,36,false,false
 Movement,"Ryk tre felter tilbage.",-3,0,0,0,0,false,false
 Movement,"Ryk tre felter tilbage.",-3,0,0,0,0,false,false
 Movement,"Ryk tre felter frem.",3,0,0,0,0,false,false

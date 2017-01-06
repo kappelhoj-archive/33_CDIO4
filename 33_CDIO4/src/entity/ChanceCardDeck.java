@@ -32,7 +32,6 @@ public class ChanceCardDeck {
 			while(inputStream.hasNextLine())
 			{
 				String data = inputStream.nextLine();
-				System.out.println(data);
 				String[] values = data.split(",");
 				
 				//If the type is a Grant card, then it saves it in the chanceCards[]
@@ -42,9 +41,7 @@ public class ChanceCardDeck {
 				}
 				//If the type is a Movement card, then it saves it in the chanceCards[]
 				if(values[0].equals("Movement")){
-					System.out.println("Bøh");
 					chanceCards[card] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
-					System.out.println("Bøh");
 					card++;
 				}
 				//If the type is a Party card, then it saves it in the chanceCards[]

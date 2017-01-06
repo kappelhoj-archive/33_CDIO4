@@ -40,12 +40,8 @@ public class MainController {
 		// Creates an objet that iniliazie the GUI gameboard.
 		GUICreator createGUI = new GUICreator();
 		// Initialise the class that reads fields from a text file.
-		Reader dataReader = new Reader();
-
-		// Read the field data and add it to GUI board and board object.
-		dataReader.openFieldData();
-		dataReader.readFields(board, createGUI);
-		dataReader.closeFile();
+		
+		
 
 		// Ask the players their names on the GUI
 		String[] playerNames = createGUI.getPlayerNames();

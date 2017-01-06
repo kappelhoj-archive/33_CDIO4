@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Color;
 
+import data.Reader;
 import desktop_codebehind.Car;
 import desktop_fields.Brewery;
 import desktop_fields.Chance;
@@ -19,6 +20,19 @@ public class GUICreator {
 	private Field[] fields;
 	private int fieldCounter;
 
+	
+	
+	
+	public GUICreator(){
+		Reader dataReader = new Reader("src/data/Feltliste.txt");
+		String[][] data=dataReader.readFile();
+		beginBoardBuilding();
+		for(int i=0;i<40;i++){
+			addField(data[i]);
+		}
+		endBoardBuilding();
+		
+	}
 /**
  * Method beginBoardbuidling: Create a list of GUI_Fields. This should be used before the addField Method.
  *

@@ -9,12 +9,14 @@ public class LandOnFieldController {
 
 	private PrisonController prisonController;
 	private ChanceCardController chanceCardController;
+	private BankController bankController;
 	private GameBoard gameBoard;
 	
 	public LandOnFieldController(PrisonController pC, MainController mC)
 	{
+		bankController = new BankController();
 		this.prisonController = new PrisonController(mC);
-		this.chanceCardController = new ChanceCardController();
+		this.chanceCardController = new ChanceCardController(prisonController, bankController);
 		this.gameBoard = new GameBoard();
 	}
 	

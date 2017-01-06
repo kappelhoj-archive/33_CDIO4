@@ -86,7 +86,7 @@ public class ChanceCardController {
 		}
 		
 		//prison card
-		if(card.getInprisoned()==true)
+		if(card.getInprisoned())
 		{
 			movePlayerPrison();
 		}
@@ -113,7 +113,7 @@ public class ChanceCardController {
 		TaxCard card = ((TaxCard)currentCard);
 	}
 	
-	public void movePlayerPrison()//ER DETTE RIGTIGT ?????????????????????????????????????? og skal denne metode rykke ham dertil ?
+	public void movePlayerPrison()
 	{
 		prison.sentToPrison(tempPlayer);
 	}
@@ -122,10 +122,12 @@ public class ChanceCardController {
 	{
 		tempPlayer.setPosition(moveToField);
 	}
+	
 	public void movePlayer(int move)
 	{
 		tempPlayer.setPosition(tempPlayer.getPosition() + move);
 	}
+	
 	public void movePlayerSeveralSpecificField(int field1, int field2, int field3, int field4, boolean rent)
 	{
 		int[] fields = {tempPlayer.getPosition()-field1,

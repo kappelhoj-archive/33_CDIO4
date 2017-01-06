@@ -11,16 +11,21 @@ public class ChanceCardDeck {
 
 	private ChanceCard[] chanceCards;
 
+	/**
+	 * Object ChanceCardDeck creates a deck of Chance cards.
+	 * 
+	 */
 	public ChanceCardDeck() {
 
 
 		chanceCards = new ChanceCard[39];
 		int card = 0;
 
-
+		//Imports file
 		String fileName = "data.csv";
 		File file = new File(fileName);
-
+		
+		//Scans the file and splits it up by commas
 		try 
 		{
 			Scanner inputStream = new Scanner(file);
@@ -29,30 +34,36 @@ public class ChanceCardDeck {
 				String data = inputStream.nextLine();
 				System.out.println(data);
 				String[] values = data.split(",");
-
+				
+				//If the type is a Grant card, then it saves it in the chanceCards[]
 				if(values[0]=="Grant"){
 					chanceCards[card] = new Grant(values[0],values[1],Integer.parseInt(values[2]));
 					card++;
 				}
+				//If the type is a Movement card, then it saves it in the chanceCards[]
 				if(values[0].equals("Movement")){
 					System.out.println("Bøh");
 					chanceCards[card] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
 					System.out.println("Bøh");
 					card++;
 				}
+				//If the type is a Party card, then it saves it in the chanceCards[]
 				if(values[0]=="Party"){
 					chanceCards[card] = new Party(values[0],values[1],Integer.parseInt(values[2]));
 					card++;
 				}
+				//If the type is a Payment card, then it saves it in the chanceCards[]
 				if(values[0]=="Payment"){
 					chanceCards[card] = new Payment(values[0],values[1],Integer.parseInt(values[2]));
 					card++;
 				}
+				//If the type is a Prison card, then it saves it in the chanceCards[]
 				if(values[0]=="Prison"){
 					chanceCards[card] = new Prison(values[0],values[1],Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
 					card++;
 				}
-				if(values[0]=="Tax"){
+				//If the type is a TaxCard card, then it saves it in the chanceCards[]
+				if(values[0]=="TaxCard"){
 					chanceCards[card] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
 					card++;
 				}
@@ -141,7 +152,11 @@ public class ChanceCardDeck {
 	//		chanceCards[39] = new Movement("Movement", "Ryk tre felter frem.", 3, 0, 0, 0, 0, false, false);
 	//
 	//	}
-
+	
+	/**
+	 * Method to shuffle the chanceCardDeck
+	 * 
+	 */
 	public void shuffleDeck() {
 		for (int i = chanceCards.length - 1; i > 0; i--) {
 			int index = (int) (Math.random() * chanceCards.length);
@@ -151,7 +166,11 @@ public class ChanceCardDeck {
 			chanceCards[i] = a;
 		}
 	}
-
+	
+	/**
+	 * Method drawCard, draws a card and if the deck is empty, calls shuffleDeck()
+	 * @return returns a chance card
+	 */
 	public ChanceCard drawCard() {
 
 		if (num == chanceCards.length+1) {

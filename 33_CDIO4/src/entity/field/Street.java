@@ -24,9 +24,9 @@ public class Street extends Ownable
 	 * @param pledge The value of a pledged field.
 	 */
 
-	public Street (String name, String type, String description, int price, String colour, int baseRent, int housePrice, int houseRent[], int pledge)
+	public Street (int fieldNumber, String name, String type, String description, int price, String colour, int baseRent, int housePrice, int houseRent[], int pledge)
 	{
-		super(name, type, description, price);
+		super(fieldNumber, name, type, description, price);
 		this.colour = colour;
 		this.baseRent = baseRent;
 		this.housePrice = housePrice;
@@ -109,24 +109,15 @@ public class Street extends Ownable
 		return numbOfHouses;
 	}
 	
-	public int subtractNumbOfHouses()
+	public int changeNumbOfHouses(int amount)
 	{
-		if (numbOfHouses == 0)
-		{
-			System.out.println("Du har ikke nogen huse på " + getName() + ".");
-		}
-		if (numbOfHouses > 0)
-		{
-			numbOfHouses--;
-			System.out.println("Ét hus er blevet fjernet fra " + getName() + ".");
-		}
+		numbOfHouses = numbOfHouses + amount;
 		return numbOfHouses;
 	}
 	
-	public void setNumbOfHouses(int houseLoss)
+	public void setNumbOfHouses(int amount)
 	{
-		numbOfHouses = houseLoss;
+		numbOfHouses = amount;
 	}
-	
 	
 }

@@ -278,4 +278,22 @@ public class Player {
 		}
 		return fortune;
 	}
+	
+	/**
+	 * Method getFieldFromName: Returns the field with the given name.
+	 * @param name The name of the field that you want to find.
+	 * @return The field with the name.
+	 */
+	public Ownable getFieldFromName(String name)
+	{
+		Ownable field = null;
+		for (int i = 0; i < fields.length; i++)
+		{
+			if (name == fields[i].getName())
+			{
+				field = fields[i];
+			}
+		}
+		return field;
+	}
 }

@@ -193,6 +193,7 @@ public class PropertyController {
 	
 	public void setHouse(Player player, String streetName)
 	{
+		
 		Street street = null;
 		for (int i = 0; i < player.getFields().length; i++)
 		{
@@ -201,14 +202,24 @@ public class PropertyController {
 				street = (Street)(player.getFields()[i]);
 			}
 		}
-		street.getNumbOfHouses();
+		
+		if(player.getAccountBalance() > street.getHousePrice())
+		{
+		// Adds an amount of houses to the GUI and changes the value of numbOfHouses.
+		GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(1));
+		}
+		else
+		{
+			
+		}
 	}
 	
 	public void showHouseMenu(Player player)
 	{
 		String[] options = MainController.addReturnToArray(buyableColours(player));
 		String answer = GUI.getUserSelection("Hvilken farve ejendom vil du købe huse på?", options);
+		
 		String[] options2 = MainController.addReturnToArray(findStreetNames(player,answer));
-		String answer2 = GUI.getUserSelection("Du har valgt" + answer, options2);
+		String answer2 = GUI.getUserSelection("Du har valgt" + answer + ". Husene på " + answer + " koster ", options2);
 	}
 }

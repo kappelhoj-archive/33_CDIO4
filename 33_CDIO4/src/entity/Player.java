@@ -181,7 +181,7 @@ public class Player {
 		field.setOwner(null);
 		if (field.getType().equals("Ejendom"))
 		{
-			((Street) field).setNumbOfHouses(0);
+			((Street) field).changeNumbOfHouses(0);
 		}
 		String removedField = field.getName();
 

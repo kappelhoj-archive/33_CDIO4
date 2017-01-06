@@ -10,7 +10,7 @@ public class PropertyController {
 	private int houses;
 	private int hotels;
 
-	public PropertyController(int houses, int hotel) {
+	public PropertyController() {
 		this.houses = 32;
 		this.hotels = 12;
 		

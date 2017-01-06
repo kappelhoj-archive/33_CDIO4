@@ -2,7 +2,6 @@ package controller;
 
 import desktop_resources.GUI;
 import entity.DiceCup;
-import entity.GameBoard;
 import entity.Player;
 import test.TestModeController;
 
@@ -15,8 +14,8 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
-	// private GameBoard board;
 	private LandOnFieldController fieldController;
+	private PropertyController propertyController;
 
 	private TestModeController testMode;
 
@@ -59,6 +58,7 @@ public class MainController {
 
 		// Construct a field controller
 		fieldController = new LandOnFieldController(prisonController, this);
+		propertyController= new PropertyController();
 	}
 
 	/**
@@ -250,6 +250,7 @@ public class MainController {
 
 		String output = "Hvad vil du foretage dig?";
 		final String END_YOUR_TURN = "Slut din tur.";
+		final String HOUSES_AND_HOTELS="Køb huse.";
 
 		// Keep asking for what the player wants to do until he chooses to add
 		// the player.
@@ -260,6 +261,10 @@ public class MainController {
 			case END_YOUR_TURN:
 				endTurn = true;
 				break;
+			case HOUSES_AND_HOTELS:
+				propertyController.showBuidlingMenu(players[turn]);
+				break;
+			
 			}
 		}
 

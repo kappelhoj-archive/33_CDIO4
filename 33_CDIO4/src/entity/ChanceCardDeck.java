@@ -6,7 +6,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 import entity.chanceCard.*;
-import kortspil.Kort;
 
 public class ChanceCardDeck {
 	private int num = 0;
@@ -19,9 +18,8 @@ public class ChanceCardDeck {
 	 */
 	public ChanceCardDeck() {
 
-
 		chanceCardDeck = new ChanceCard[39];
-		int card = 0;
+		int cardNumber = 0;
 
 		//Imports file
 		String fileName = "data.csv";
@@ -36,47 +34,30 @@ public class ChanceCardDeck {
 				String data = inputStream.nextLine();
 				String[] values = data.split(",");
 				
-				//If the type is a Grant card, then it saves it in the chanceCards[]
-				if(values[0]=="Grant"){
-					chanceCardDeck[card] = new Grant(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
+				//Lav små metoder der laver hver af de forskellige chanceCards.
+				switch (values[0])
+				{
+				case "Grant": chanceCardDeck[cardNumber] = new Grant(values[0],values[1],Integer.parseInt(values[2]));
+					break;
+				//case "Movement": chanceCardDeck[cardNumber] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
+					break;
+				case "Party": chanceCardDeck[cardNumber] = new Party(values[0],values[1],Integer.parseInt(values[2]));
+					break;
+				case "Payment": chanceCardDeck[cardNumber] = new Payment(values[0],values[1],Integer.parseInt(values[2]));
+					break;
+				case "Prison": chanceCardDeck[cardNumber] = new Prison(values[0],values[1],Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
+					break;
+				case "TaxCard": chanceCardDeck[cardNumber] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
+					break;
 				}
-				//If the type is a Movement card, then it saves it in the chanceCards[]
-				if(values[0].equals("Movement")){
-					chanceCardDeck[card] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
-					card++;
-				}
-				//If the type is a Party card, then it saves it in the chanceCards[]
-				if(values[0]=="Party"){
-					chanceCardDeck[card] = new Party(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
-				}
-				//If the type is a Payment card, then it saves it in the chanceCards[]
-				if(values[0]=="Payment"){
-					chanceCardDeck[card] = new Payment(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
-				}
-				//If the type is a Prison card, then it saves it in the chanceCards[]
-				if(values[0]=="Prison"){
-					chanceCardDeck[card] = new Prison(values[0],values[1],Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
-					card++;
-				}
-				//If the type is a TaxCard card, then it saves it in the chanceCards[]
-				if(values[0]=="TaxCard"){
-					chanceCardDeck[card] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
-				}
-
-
+				cardNumber++;
 			}
 			inputStream.close();
-
-
-		} catch (FileNotFoundException e) 
+		} 
+		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
 		}
-
 	}
 	
 	/**

@@ -17,6 +17,7 @@ public class PrisonController {
 		player.setPrison(true);
 		player.setPosition(31);
 		mainController.movePlayerOnGUI();
+		GUI.getUserButtonPressed("Du er blevet smidt i fængsel", "Ok");
 	}
 	
 	public void inPrison(Player player)
@@ -37,14 +38,14 @@ public class PrisonController {
 			int diceSum = mainController.rollDice();
 			if(mainController.checkForExtraTurn())
 			{
-//				inPrison = false;
+				GUI.getUserButtonPressed("Du slog to ens! Du er nu fri og må slå igen.", "Ok");
 				mainController.movePlayer(diceSum);
 				mainController.playTurn();
 			}			
-//			else
-//			{
-//				inPrison = true;
-//			}
+			else
+			{
+				GUI.getUserButtonPressed("Du slog dig ikke ud af fængslet", "Ok");
+			}
 		}
 		
 //		return inPrison;

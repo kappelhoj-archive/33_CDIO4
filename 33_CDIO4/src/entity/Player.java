@@ -21,7 +21,7 @@ public class Player {
 		account = new Account(30000);
 		lost = false;
 		prison = false;
-		position = 0;
+		position = 1;
 		fields = null;		
 	}
 

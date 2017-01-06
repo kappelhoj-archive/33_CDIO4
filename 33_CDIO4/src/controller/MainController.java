@@ -5,6 +5,7 @@ import desktop_resources.GUI;
 import entity.DiceCup;
 import entity.GameBoard;
 import entity.Player;
+import test.TestModeController;
 
 /**
  * MainControler class controls all the other controllers and is responsible for
@@ -18,15 +19,22 @@ public class MainController {
 	private PrisonController prisonController;
 	private GameBoard board;
 
+	private TestModeController testMode;
+
 	private int turn;
 	private int numExtraTurn;
 	private boolean extraTurn;
+	private boolean testExtraTurn = false;
 
 	/**
 	 * Constructor: Creates the needed variables for the main controller and
 	 * construct new objects of some of the other classes.
 	 */
-	MainController() {
+	MainController(String[] args) {
+		// Used for testmode only.
+		if (args != null)
+			testMode = new TestModeController(args[0]);
+
 		// Creates a board that can store all the fields.
 		board = new GameBoard();
 		// Creates an objet that iniliazie the GUI gameboard.
@@ -60,7 +68,7 @@ public class MainController {
 	 */
 	public static void main(String[] args) {
 		// Creates the main controller.
-		MainController game = new MainController();
+		MainController game = new MainController(args);
 		// Starts the game
 		game.playGame();
 	}
@@ -114,7 +122,7 @@ public class MainController {
 	 * Method playGame: Plays the game until someone has won.
 	 */
 	public void playGame() {
-		// Keep changing turn untill someone has won.
+		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();
 			do {
@@ -133,15 +141,20 @@ public class MainController {
 	public boolean checkForExtraTurn() {
 		// Check if the dice have equals value, if it does give it an extra
 		// turn.
-		if (dice.getDiceValue()[0] == dice.getDiceValue()[1]) {
+		// testExtraTurn Er kune relevant når testmode er aktiv. Det gør
+		// at man kan give spilleren en ekstra tur. Uanset hvad han slår.
+		if (dice.getDiceValue()[0] == dice.getDiceValue()[1] || testExtraTurn) {
 			extraTurn = true;
 			numExtraTurn++;
 		}
-		// If not end the game.
+		// If not end the turn.
 		else {
 			extraTurn = false;
 			numExtraTurn = 0;
 		}
+
+		// Testing stuff:
+		testExtraTurn = false;
 		return extraTurn;
 	}
 
@@ -178,7 +191,16 @@ public class MainController {
 		dice.shakeCup();
 		// Set the dice on the GUI
 		GUI.setDice(dice.getDiceValue()[0], dice.getDiceValue()[1]);
+
+		// Only used if testing is active.
+		if (testMode.isActive()) {
+			int newRoll = testMode.options(players[turn], this);
+			if (newRoll >= 0)
+				return newRoll;
+		}
+
 		return dice.getDiceValue()[0] + dice.getDiceValue()[1];
+
 	}
 
 	/**
@@ -239,6 +261,10 @@ public class MainController {
 
 	}
 
+	public void TESTsetExtraTurn(boolean input) {
+		testExtraTurn = true;
+	}
+
 	/**
 	 * Static Method addReturnArray: Add the String "Gå tilbage" at the end of a
 	 * String[]. Can be used for menus.
@@ -256,4 +282,5 @@ public class MainController {
 		output[output.length - 1] = "Gå tilbage";
 		return output;
 	}
+
 }

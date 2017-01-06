@@ -80,7 +80,7 @@ public class GUICreator {
 
 	private void addShipping(String[] information) {
 		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.BLUE).setPicture("src/data/pictures/Ferry.png")
+				.setDescription(information[1]).setBgColor(Color.getHSBColor((float)(216.21/360.0), (float)(72.5/100.0), (float)(62.75/100.0))).setPicture("src/data/pictures/Ferry.png")
 				.build();
 	}
 
@@ -115,7 +115,7 @@ public class GUICreator {
 
 	private void addParking(String[] information) {
 		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(information[0]).setDescription(information[1])
-				.setBgColor(Color.LIGHT_GRAY).setPicture("src/data/pictures/Parkeringslogo.png").build();
+				.setBgColor(Color.getHSBColor((float)(198.1/360.0), (float)(100.0/100.0), (float)(90.98/100.0))).setPicture("src/data/pictures/Parkeringslogo.png").build();
 	}
 
 	public void endBoardBuilding() {

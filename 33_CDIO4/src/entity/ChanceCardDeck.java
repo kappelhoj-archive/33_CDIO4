@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
-import entity.ChanceCard.*;
+
+import entity.chanceCard.*;
 import kortspil.Kort;
 
 public class ChanceCardDeck {
 	private int num = 0;
 
-	private chanceCard[] chanceCardDeck;
+	private ChanceCard[] chanceCardDeck;
 
 	/**
 	 * Object ChanceCardDeck creates a deck of Chance cards.
@@ -19,7 +20,7 @@ public class ChanceCardDeck {
 	public ChanceCardDeck() {
 
 
-		chanceCardDeck = new chanceCard[39];
+		chanceCardDeck = new ChanceCard[39];
 		int card = 0;
 
 		//Imports file
@@ -83,9 +84,9 @@ public class ChanceCardDeck {
 	 * and afterwards puts it in the bottom of the deck
 	 * @return The first card of the deck.
 	 */
-	public chanceCard draw()
+	public ChanceCard draw()
 	{	
-		chanceCard first = chanceCardDeck[0];
+		ChanceCard first = chanceCardDeck[0];
 		
 		for (int i = 0; i < chanceCardDeck.length - 1; i++)
 		{
@@ -114,7 +115,7 @@ public class ChanceCardDeck {
 	{
 		Random generator = new Random();
 		int cardNumber1 = generator.nextInt(chanceCardDeck.length);
-		chanceCard temp = chanceCardDeck[cardNumber1];
+		ChanceCard temp = chanceCardDeck[cardNumber1];
 		int cardNumber2 = generator.nextInt(chanceCardDeck.length);
 		chanceCardDeck[cardNumber1] = chanceCardDeck[cardNumber2];
 		chanceCardDeck[cardNumber2] = temp;

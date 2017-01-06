@@ -1,6 +1,6 @@
-package entity.ChanceCard;
+package entity.chanceCard;
 
-public class TaxCard extends chanceCard{
+public class TaxCard extends ChanceCard{
 
 	private String type;
 	private String description;

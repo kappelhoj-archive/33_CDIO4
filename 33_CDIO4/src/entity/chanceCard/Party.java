@@ -1,6 +1,6 @@
-package entity.ChanceCard;
+package entity.chanceCard;
 
-public class Party extends chanceCard{
+public class Party extends ChanceCard{
 	
 	//Instance variables
 	private int cost;

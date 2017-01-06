@@ -1,6 +1,6 @@
-package entity.ChanceCard;
+package entity.chanceCard;
 
-public class Prison extends chanceCard{
+public class Prison extends ChanceCard{
 
 	
 	public Prison(String type, String description,boolean startGrant,boolean inprisoned){

@@ -135,7 +135,7 @@ public class LandOnFieldController {
 	public void landOnNeutral(Player player) {
 		int isPrison = 31;
 		if (player.getPosition() == isPrison) {
-			GUI.getUserButtonPressed("De fængsels", "Ok");
+
 			prisonController.sentToPrison(player);
 		}
 	}

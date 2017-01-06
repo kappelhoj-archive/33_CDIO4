@@ -32,9 +32,9 @@ public class Street extends Ownable {
 	 *            The value of a pledged field.
 	 */
 
-	public Street(String name, String type, String description, int price, String colour, int baseRent, int housePrice,
+	public Street(int fieldNumber,String name, String type, String description, int price, String colour, int baseRent, int housePrice,
 			int[] houseRent, int pledge) {
-		super(name, type, description, price);
+		super(fieldNumber,name, type, description, price);
 		this.colour = colour;
 		this.baseRent = baseRent;
 		this.housePrice = housePrice;

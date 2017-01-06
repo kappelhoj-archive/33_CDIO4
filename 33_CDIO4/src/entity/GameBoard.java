@@ -62,7 +62,7 @@ public class GameBoard {
 		int housePrice = Integer.parseInt(information[11]);
 		int[] houseRent = { Integer.parseInt(information[4]), Integer.parseInt(information[5]), Integer.parseInt(information[6]), Integer.parseInt(information[7]), Integer.parseInt(information[8]) };
 		int pledge = Integer.parseInt(information[9]);
-		fields[fieldCounter - 1] = new Street(name, type, description, price, colour, baseRent, housePrice, houseRent, pledge);
+		fields[fieldCounter - 1] = new Street(fieldCounter,name, type, description, price, colour, baseRent, housePrice, houseRent, pledge);
 	}
 	
 	public void addShipping(String[] information)
@@ -71,7 +71,7 @@ public class GameBoard {
 		String type = information[10];
 		String description = information[3];
 		int price = Integer.parseInt(information[2]);
-		fields[fieldCounter - 1] = new Shipping(name, type, description, price);
+		fields[fieldCounter - 1] = new Shipping(fieldCounter,name, type, description, price);
 	}
 	public void addBrewery(String[] information) 
 	{
@@ -79,7 +79,7 @@ public class GameBoard {
 		String type = information[10];
 		String description = information[3];
 		int price = Integer.parseInt(information[2]);
-		fields[fieldCounter - 1] = new Brewery(name, type, description, price);
+		fields[fieldCounter - 1] = new Brewery(fieldCounter,name, type, description, price);
 	}
 	
 	public void addChance(String[] information) 
@@ -87,7 +87,7 @@ public class GameBoard {
 		String name = information[0];
 		String type = information[10];
 		String description = information[3];
-		fields[fieldCounter - 1] = new ChanceField(name, type, description);
+		fields[fieldCounter - 1] = new ChanceField(fieldCounter,name, type, description);
 	}
 	
 	public void addTax(String[] information) 
@@ -97,7 +97,7 @@ public class GameBoard {
 		String description = "";
 		boolean rate = Boolean.parseBoolean(information[5]);
 		int amount = Integer.parseInt(information[4]);
-		fields[fieldCounter - 1] = new Tax(name, type, description, rate, amount);
+		fields[fieldCounter - 1] = new Tax(fieldCounter,name, type, description, rate, amount);
 	}
 	
 	public void addNeutral(String[] information) 
@@ -105,7 +105,7 @@ public class GameBoard {
 		String name = information[0];
 		String type = information[10];
 		String description = "";
-		fields[fieldCounter - 1] = new Neutral(name, description, type);
+		fields[fieldCounter - 1] = new Neutral(fieldCounter,name, description, type);
 	}
 		
 	public Field getField(int fieldNum)

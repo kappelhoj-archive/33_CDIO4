@@ -12,7 +12,7 @@ public class GameBoard {
 		fieldCounter = 1;
 		Reader reader = new Reader("src/data/Feltliste.txt");
 		String[][] fieldData = reader.readFile();
-		
+		fieldData = reader.formatFileData(fieldData);
 		//oprette felterne
 		for(int i = 0; i < fields.length; i++)
 		{
@@ -83,7 +83,10 @@ public class GameBoard {
 	
 	public void addChance(String[] information) 
 	{
-		fields[fieldCounter - 1] = new ChanceField();
+		String name = information[0];
+		String type = information[10];
+		String description = information[3];
+		fields[fieldCounter - 1] = new ChanceField(name, type, description);
 	}
 	
 	public void addTax(String[] information) 

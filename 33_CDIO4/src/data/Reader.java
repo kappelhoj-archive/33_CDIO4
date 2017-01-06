@@ -30,4 +30,17 @@ public class Reader {
 		}
 		return fileData;
 	}
+	
+	public String[][] formatFileData(String[][] fieldData)
+	{
+		String[][] formattedFieldData = new String[fieldData.length][fieldData[1].length];
+		for(int i = 0; i < fieldData.length; i++)
+		{
+			for(int j = 0; j < fieldData[i].length; j++)
+			{
+				formattedFieldData[i][j] = fieldData[i][j].replaceAll(".", "");
+			}	
+		}
+		return formattedFieldData;
+	}
 }

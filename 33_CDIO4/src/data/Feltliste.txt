@@ -8,7 +8,7 @@ Roskildevej;Orange;2.000;100;600;1.800;5.400;8.000;11.000;1.000;Ejendom;1.000
 Prøv lykken;Ingen;NAN;Nej;X;X;X;X;X;X;Chancekort;NAN
 Valby Langgade;Orange;2.000;100;600;1.800;5.400;8.000;11.000;1.000;Ejendom;1.000
 Allégade;Orange;2.400;150;800;2.000;6.000;9.000;12.000;1.200;Ejendom;1.000
-På besøg;Dette er fængslet.;NAN;Nej;X;X;X;X;X;X;Visit;NAN
+På besøg;Dette er fængslet.;NAN;Nej;X;X;X;X;X;X;Besøg;NAN
 Frederiksberg Allé;Grøn;2.800;200;1.000;3.000;9.000;12.500;15.000;1.400;Ejendom;2.000
 Tuborg;Tuborg Squash;3.000;100*X eller 200*X;X;X;X;X;X;1.500;Tapperi;NAN
 Bülowsvej;Grøn;2.800;200;1.000;3.000;9.000;12.500;15.000;1.400;Ejendom;2.000
@@ -18,7 +18,7 @@ Bernstorffsvej;Grå;3.600;300;1.400;4.000;11.000;15.000;19.000;1.800;Ejendom;2.0
 Prøv lykken;Ingen;NAN;Nej;X;X;X;X;X;X;Chancekort;NAN
 Hellerupvej;Grå;3.600;300;1.400;4.000;11.000;15.000;19.000;1.800;Ejendom;2.000
 Strandvejen;Grå;4.000;350;1.600;4.400;12.000;16.000;20.000;2.000;Ejendom;2.000
-Parkering;Her er der fri parkering.;NAN;Nej;X;X;X;X;X;X;Parking;NAN
+Parkering;Her er der fri parkering.;NAN;Nej;X;X;X;X;X;X;Parkering;NAN
 Trianglen;Rød;4.400;350;1.800;5.000;14.000;17.500;21.000;2.200;Ejendom;3.000
 Prøv lykken;Ingen;NAN;Nej;X;X;X;X;X;X;Chancekort;NAN
 Østerbrogade;Rød;4.400;350;1.800;5.000;14.000;17.500;21.000;2.200;Ejendom;3.000
@@ -28,7 +28,7 @@ Bredgade;Hvid;5.200;450;2.200;6.600;16.000;19.500;23.000;2.600;Ejendom;3.000
 Kgs. Nytorv;Hvid;5.200;450;2.200;6.600;16.000;19.500;23.000;2.600;Ejendom;3.000
 Coca Cola;Coca Cola;3.000;100*X eller 200*X;X;X;X;X;X;1.500;Tapperi;NAN
 Østergade;Hvid;5.600;500;2.400;7.200;17.000;20.500;24.000;2.800;Ejendom;3.000
-De fængsles;Hvis du lander her, bliver du smidt i fængslet.;NAN;Nej;X;X;X;X;X;X;Jail;NAN
+De fængsles;Hvis du lander her, bliver du smidt i fængslet.;NAN;Nej;X;X;X;X;X;X;Fængsel;NAN
 Amagertorv;Gul;6.000;550;2.600;7.800;18.000;22.000;25.000;3.000;Ejendom;4.000
 Vimmelskaftet;Gul;6.000;550;2.600;7.800;18.000;22.000;25.000;3.000;Ejendom;4.000
 Prøv lykken;Ingen;NAN;Nej;X;X;X;X;X;X;Chancekort;NAN

@@ -71,13 +71,13 @@ public class GUICreator {
 		case "Start":
 			addStart(information);
 			break;
-		case "Jail":
+		case "Fængsel":
 			addJail(information);
 			break;
-		case "Visit":
+		case "Besøg":
 			addVisit(information);
 			break;
-		case "Parking":
+		case "Parkering":
 			addParking(information);
 			break;
 		default:
@@ -180,7 +180,7 @@ public class GUICreator {
 
 			while (nameEqual) {
 				do {
-					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer" + (i + 1));
+					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer " + (i + 1));
 				} while (playerNames[i].equals(""));
 
 				for (int j = 0; j < i; j++) {

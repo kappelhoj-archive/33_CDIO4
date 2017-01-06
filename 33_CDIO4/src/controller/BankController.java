@@ -5,11 +5,8 @@ import entity.field.Ownable;
 import entity.field.Street;
 import entity.Account;
 import entity.Player;
-import entity.ChanceCard.*;
 public class BankController 
 {
-
-	private int chancePayment = 0;
 
 
 	/**
@@ -41,7 +38,7 @@ public class BankController
 
 		if (street.getNumbOfHouses()==0)
 		{
-		GUI.getUserButtonPressed("Der står ingen huse på " + street.getName(), "Ok");
+			GUI.getUserButtonPressed("Der står ingen huse på " + street.getName(), "Ok");
 		}
 		else
 		{
@@ -85,7 +82,16 @@ public class BankController
 			player.changeAccountBalance(chancePayment);
 		}
 	}
-
+	
+	/**
+	 * The method playerAffordPayment checks to see if a player can afford
+	 * a payment. If the player can not afford the required payment,
+	 * the player loses the game.
+	 * @param player The player to be checked.
+	 * @param payment The payment to be withdrawn from the player's account.
+	 * @return the current state of the player.setLost() condition.
+	 * If true, the player will lose. If false, the player may pay the payment, and continue playing.
+	 */
 	public boolean playerAffordPayment (Player player, int payment)
 	{
 		if (player.getAccountBalance() < payment)
@@ -96,7 +102,12 @@ public class BankController
 		else
 			return true;
 	}
-
+	/**
+	 * The method playerHasLost is a method which, when a player loses,
+	 * sets all of the player's owned fields free for other players to purchase again.
+	 * @param player The affected player.
+	 * 
+	 */
 	public void playerHasLost (Player player)
 	{
 		Ownable[] loseAllFields;

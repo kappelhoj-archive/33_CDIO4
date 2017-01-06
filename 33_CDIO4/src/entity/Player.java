@@ -266,7 +266,7 @@ public class Player {
 		{
 			changeAccountBalance(-ownable.getPrice()); //Subtracts the price of the field from the player account balance.
 			ownable.setOwner(this);                    //Sets the player to be the owner of the field.
-			this.setfields(field);
+			this.setFields(field);
 			
 			return true;
 		}

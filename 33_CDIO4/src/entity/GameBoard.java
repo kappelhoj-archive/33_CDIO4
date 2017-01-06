@@ -40,9 +40,9 @@ public class GameBoard {
 				addTax(information);
 				break;
 			case "Start":
-			case "Visit":
-			case "Parking":
-			case "Jail":
+			case "Besøg":
+			case "Parkering":
+			case "Fængsel":
 				addNeutral(information);
 				break;
 			default:

@@ -29,7 +29,7 @@ public class MainController {
 	 * Constructor: Creates the needed variables for the main controller and
 	 * construct new objects of some of the other classes.
 	 */
-	MainController(String[] args) {
+	private MainController(String[] args) {
 		// Used for testmode only.
 		if (args != null)
 			testMode = new TestModeController(args[0]);
@@ -48,6 +48,8 @@ public class MainController {
 		for (int i = 0; i < players.length; i++) {
 			this.players[i] = new Player(playerNames[i]);
 		}
+		
+		turn = (int) (Math.random() * players.length);
 
 		numExtraTurn = 0;
 		// Construct a dicecup
@@ -120,6 +122,7 @@ public class MainController {
 	 * Method playGame: Plays the game until someone has won.
 	 */
 	public void playGame() {
+		GUI.getUserButtonPressed("En tilfældig spiller er valgt til at starte", "Ok");
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();

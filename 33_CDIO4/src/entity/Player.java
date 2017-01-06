@@ -146,17 +146,26 @@ public class Player {
 	public void setfields(Field field)
 	{
 		Ownable ownable = (Ownable)(field);
+		
+		
+		int length;
+		if(fields==null){
+			length=1;
+		}
+		else{
+			length=fields.length+1;
+		}
 		//Creates a new fields array with 1 more space than the original.
-		Ownable[] newFields = new Ownable[fields.length + 1];
+		Ownable[] newFields = new Ownable[length];
 
 		//Go through the original fields array and add its values to the new fields array.
-		for(int i = 0; i < fields.length; i++)
+		for(int i = 0; i < newFields.length-1; i++)
 		{
 			newFields[i] = fields[i];
 		}
 
 		//Add the newly bought street to the new fields array.
-		newFields[fields.length] = ownable;
+		newFields[newFields.length-1] = ownable;
 
 		//Sets the original fields array to the new fields array.
 		fields = newFields;		
@@ -196,12 +205,12 @@ public class Player {
 	 * Method getBottlersOwned: Returns the amount of bottler fields owned by the player.
 	 * @return The amount of bottler fields owned.
 	 */
-	public int getBeweriesOwned()
+	public int getBreweriesOwned()
 	{
 		int amountOfBottlers = 0;
 		for(int i = 0; i < fields.length; i++)
 		{
-			if ("Bottler".equals(fields[i].getType()))
+			if ("Tapperi".equals(fields[i].getType()))
 			{
 				amountOfBottlers++;
 			}
@@ -218,7 +227,7 @@ public class Player {
 		int amountOfShippings = 0;
 		for(int i = 0; i < fields.length; i++)
 		{
-			if ("Fleet".equals(fields[i].getType()))
+			if (fields[i].getType().equals("Rederi"))
 			{
 				amountOfShippings++;
 			}
@@ -231,13 +240,13 @@ public class Player {
 	 * @param colour The colour of the field.
 	 * @return The amount of properties with the given colour.
 	 */
-	public int getPropertiesOwned(String colour)
+	public int getStreetsOwned(String colour)
 	{
 		int numSameColour = 0;
 		for(int i = 0; i < fields.length; i++)
 		{
 			Street field_i = (Street)(fields[i]);
-			if ("Property".equals(fields[i].getType()) && colour.equals(field_i.getColour()))
+			if ("Ejendom".equals(fields[i].getType()) && colour.equals(field_i.getColour()))
 			{
 				numSameColour++;
 			}
@@ -257,6 +266,8 @@ public class Player {
 		{
 			changeAccountBalance(-ownable.getPrice()); //Subtracts the price of the field from the player account balance.
 			ownable.setOwner(this);                    //Sets the player to be the owner of the field.
+			this.setfields(field);
+			
 			return true;
 		}
 		else

@@ -17,7 +17,6 @@ import controller.BankController;
 public class ChanceCardController {
 
 	ChanceCardDeck deck;
-	Player tempPlayer;
 	PrisonController prison;
 	BankController bank;
 	
@@ -36,14 +35,12 @@ public class ChanceCardController {
 	 */
 	public void draw(Player player)
 
-	{
-		tempPlayer= player;
-		
-		ChanceCard currentCard=deck.drawCard();
+	{	
+		ChanceCard currentCard = deck.draw();
 		
 		String type = currentCard.getType();
 		
-		GUI.displayChanceCard(currentCard.getDesc());
+		GUI.displayChanceCard(currentCard.getDescription());
 		
 		switch(type)
 		{

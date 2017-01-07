@@ -97,7 +97,7 @@ public class LandOnFieldController {
 	 */
 	public void landOnTax(Field field, Player player) {
 		int rent = 0;
-		Tax tax = (Tax) (field);
+		Tax tax = (Tax) field;
 		if (tax.getTaxRateAvailable() == true) {
 			boolean percent = GUI.getUserLeftButtonPressed("Betal indkomstskat: 10% eller 4.000 kr.", "10%", "4.000");
 			if (percent) {

@@ -32,22 +32,21 @@ public class ChanceCardDeck {
 			while(inputStream.hasNextLine())
 			{
 				String data = inputStream.nextLine();
-				String[] values = data.split(",");
+				String[] fromInfo = data.split(",");
 				
-				//Lav små metoder der laver hver af de forskellige chanceCards.
-				switch (values[0])
+				switch (fromInfo[0])
 				{
-				case "Grant": chanceCardDeck[cardNumber] = new Grant(values[0],values[1],Integer.parseInt(values[2]));
+				case "Grant": chanceCardDeck[cardNumber] = createGrant(fromInfo);
 					break;
-				//case "Movement": chanceCardDeck[cardNumber] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
+				case "Movement": chanceCardDeck[cardNumber] = createMovement(fromInfo);
 					break;
-				case "Party": chanceCardDeck[cardNumber] = new Party(values[0],values[1],Integer.parseInt(values[2]));
+				case "Party": chanceCardDeck[cardNumber] = createParty(fromInfo);
 					break;
-				case "Payment": chanceCardDeck[cardNumber] = new Payment(values[0],values[1],Integer.parseInt(values[2]));
+				case "Payment": chanceCardDeck[cardNumber] = createPayment(fromInfo);
 					break;
-				case "Prison": chanceCardDeck[cardNumber] = new Prison(values[0],values[1],Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
+				case "Prison": chanceCardDeck[cardNumber] = createPrison(fromInfo);
 					break;
-				case "TaxCard": chanceCardDeck[cardNumber] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
+				case "TaxCard": chanceCardDeck[cardNumber] = createTaxCard(fromInfo);
 					break;
 				}
 				cardNumber++;
@@ -101,5 +100,65 @@ public class ChanceCardDeck {
 		chanceCardDeck[cardNumber1] = chanceCardDeck[cardNumber2];
 		chanceCardDeck[cardNumber2] = temp;
 	}
-
+	
+	/**
+	 * Method creatGrant: Returns a Grant chanceCard from the given information.
+	 * @param information The information given.
+	 * @return The Grant chanceCard.
+	 */
+	private Grant createGrant(String[] i)
+	{
+		Grant grant = new Grant(i[0],i[1],toInt(i[2]));
+		return grant;
+	}
+	
+	private TaxCard createTaxCard(String[] i)
+	{
+		TaxCard taxCard = new TaxCard(i[0],i[1],toInt(i[2]));
+		return taxCard;
+	}
+	
+	private Payment createPayment(String[] i)
+	{
+		Payment payment = new Payment(i[0],i[1],toInt(i[2]));
+		return payment;
+	}
+	
+	private Party createParty(String[] i)
+	{
+		Party party = new Party(i[0],i[1],toInt(i[2]));
+		return party;
+	}
+	
+	private Prison createPrison(String[] i)
+	{
+		Prison prison = new Prison(i[0],i[1],toBoolean(i[7]), toBoolean(i[8]));
+		return prison;
+	}
+	
+	private Movement createMovement(String[] i)
+	{
+		Movement movement = new Movement(i[0],i[1],toInt(i[2]),toIntArray(i[3],i[4],i[5],i[6]),toBoolean(i[7]),toBoolean(i[8]));
+		return movement;
+	}
+	
+	private int toInt(String s)
+	{
+		return Integer.parseInt(s);
+	}
+	
+	private boolean toBoolean(String s)
+	{
+		return Boolean.parseBoolean(s);
+	}
+	
+	private int[] toIntArray(String... s)
+	{
+		int[] intArray = new int[s.length];
+		for(int i = 0; i < s.length; i++)
+		{
+			intArray[i] = toInt(s[i]);
+		}
+		return intArray;
+	}
 }

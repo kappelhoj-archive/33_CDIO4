@@ -282,10 +282,14 @@ public class Player {
 	 */
 	public int getFortune()
 	{
-		int fortune = 0;
+		int fortune = getAccountBalance();
 		for (int i = 0; 0 < fields.length; i++)
 		{
 			fortune = fortune + fields[i].getValue();
+			if (fields[i].getType().equals("Street"))
+			{
+				fortune = fortune + ((Street) fields[i]).getHousePrice() * ((Street) fields[i]).getNumbOfHouses();
+			}
 		}
 		return fortune;
 	}

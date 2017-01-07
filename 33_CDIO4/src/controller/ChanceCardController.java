@@ -33,7 +33,7 @@ public class ChanceCardController {
 	 * methods. The method uses a switch to differ between the individual types of chancecard.
 	 * @param player The player who's "drawing" a card.
 	 */
-	public void draw(Player player)
+	public void draw(Player player, Player[] borrowers)
 
 	{	
 		ChanceCard currentCard = deck.draw();
@@ -44,151 +44,34 @@ public class ChanceCardController {
 		
 		switch(type)
 		{
-		case "Grant": drawGrant(currentCard);
-		break;
-		case "Movement": drawMovement(currentCard);
-		break;
-		case "Party": drawParty(currentCard);
-		break;
-		case "Payment": drawPayment(currentCard);
-		break;
-		case "Prison": drawPrison(currentCard);
-		break;
-		case "Tax": drawTaxCard(currentCard);
-		break;		
+		case "Grant": drawGrant(currentCard, player);
+			break;
+		case "Party": drawParty(currentCard, player);
+			break;
+		case "Payment": drawPayment(currentCard, player);
+			break;
+		case "Prison": drawPrison(currentCard, player);
+			break;
+		case "Tax": drawTaxCard(currentCard, player);
+			break;	
+		case "MoveThreeSteps": drawMoveThreeSteps(currentCard, player);
+			break;
+		case "MoveToField": drawMoveToField(currentCard, player);
+			break;
+		case "MoveToNearestShipping": drawMoveToNearestShipping(currentCard, player);
+			break;
+		case "MoveToPrison": drawMoveToPrison(currentCard, player);
+			break;
 		}	
 	}
 	
-	/**
-	 * The method drawGrant is invoked if the drawn card is of the type Grant.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawGrant(ChanceCard currentCard)
+	private void drawGrant(ChanceCard currentCard, Player player)
 	{
-	Grant card = ((Grant)currentCard);
-	bank.chancePaymentChecker(card.getAmount(), tempPlayer);
+		Grant grant = (Grant) currentCard;
+		if (player.getFortune() <= 15000)
+		{
+			player.changeAccountBalance(grant.getAmount());
+		}
 	}
 	
-
-	/**
-	 * The method drawMovement is invoked if the drawn card is of the type Movement.
-	 * The method moves the player a specific distance, or to a specific field.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawMovement(ChanceCard currentCard)
-	{
-		Movement card = ((Movement)currentCard);
-
-		//if the card wants to move a player to a specific field.
-		if(card.getMove()==0 & card.getField1()!=0 & card.getField2()==0)
-		{
-			movePlayerSpecificField(card.getField1());	
-		}
-
-		//if the card wants to move the player to the closest specific field of several.
-		if(card.getMove()==0 & card.getField1()!=0 & card.getField2()!=0)
-		{
-			movePlayerSeveralSpecificField(card.getField1(),card.getField2(),card.getField3(),card.getField4(),card.getDoubleRent());
-		}
-
-		//if the card wants to move a player forwards or backwards
-		if(card.getMove()!=0)
-		{
-			movePlayer(card.getMove());
-		}
-		
-		//prison card
-		if(card.getInprisoned())
-		{
-			movePlayerPrison();
-		}
-
-	}
-
-	/**
-	 * The method drawParty is invoked if the drawn card is of the type Party.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawParty(ChanceCard currentCard)
-	{
-		Party card = ((Party)currentCard);
-	}
-
-	/**
-	 * The method drawPayment is invoked if the drawn card is of the type Payment.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawPayment(ChanceCard currentCard)
-	{
-		Payment card = ((Payment)currentCard);
-	}
-	
-	/**
-	 * The method drawPrison is invoked if the drawn card is of the type Prison.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawPrison(ChanceCard currentCard)
-	{
-		Prison card = ((Prison)currentCard);
-	}
-	
-
-	/**
-	 * The method drawTaxCard is invoked if the drawn card is of the type TaxCard.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawTaxCard(ChanceCard currentCard)
-	{
-		TaxCard card = ((TaxCard)currentCard);
-	}
-
-	/**
-	 * The method movePlayerPrison sends the player to prison.
-	 */
-	public void movePlayerPrison()
-	{
-		prison.sentToPrison(tempPlayer);
-	}
-	/**
-	 * The method movePlayerSpecificField moves the player to a specific field.
-	 * @param moveToField The field the player is moved to.
-	 */
-	public void movePlayerSpecificField(int moveToField)
-	{
-		tempPlayer.setPosition(moveToField);
-	}
-	
-	public void movePlayer(int move)
-	{
-		tempPlayer.setPosition(tempPlayer.getPosition() + move);
-	}
-	/**
-	 * The method movePlayerSeveralSpecificField is capable of moving a player to a number of specified fields.
-	 * This is needed for when a player has to move to the nearest shipping company
-	 * @param field1 Specific ownable field 1.
-	 * @param field2 Specific ownable field 2.
-	 * @param field3 Specific ownable field 3.
-	 * @param field4 Specific ownable field 4.
-	 * @param rent The rent to be payed to the owner of the shipping company.
-	 */
-	public void movePlayerSeveralSpecificField(int field1, int field2, int field3, int field4, boolean rent)
-	{
-		int[] fields = {tempPlayer.getPosition()-field1,
-						tempPlayer.getPosition()-field2,
-						tempPlayer.getPosition()-field3,
-						tempPlayer.getPosition()-field4};
-		
-		int temp = 15;
-		for(int i = 0; i < fields.length ; i++)
-		{
-			if(fields[i]>0)
-			{
-				temp = Math.min(fields[i], temp);
-			}
-		}
-		//if(rent==true){tempPlayer.} Der skal laves double rent hvis true!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		movePlayer(temp);
-	}
-
-
 }

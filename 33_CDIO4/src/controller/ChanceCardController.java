@@ -172,7 +172,7 @@ public class ChanceCardController {
 	 * @param field2 Specific ownable field 2.
 	 * @param field3 Specific ownable field 3.
 	 * @param field4 Specific ownable field 4.
-	 * @param rent The rent to be payed to the owner of the shipping company.
+	 * @param rent checks if the rent has to be double
 	 */
 	public void movePlayerSeveralSpecificField(int field1, int field2, int field3, int field4, boolean rent)
 	{
@@ -190,7 +190,7 @@ public class ChanceCardController {
 			}
 		}
 		//if(rent==true){tempPlayer.} Der skal laves double rent hvis true!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		movePlayer(temp);
+		tempPlayer.setPosition(temp);
 	}
 
 

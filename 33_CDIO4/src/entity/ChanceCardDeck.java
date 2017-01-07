@@ -64,9 +64,11 @@ public class ChanceCardDeck {
 					chanceCards[card] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
 					card++;
 				}
+				
 
 
 			}
+			shuffleDeck();
 			inputStream.close();
 
 

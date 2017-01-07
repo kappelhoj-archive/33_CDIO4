@@ -29,8 +29,8 @@ public class ChanceCardDeckTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void ChanceCardDeck() {
+	chanceCardDeck.drawCard();
 	}
 
 }

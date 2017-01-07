@@ -33,6 +33,9 @@ public class PrisonController {
 			GUI.setBalance(player.getName(), player.getAccountBalance());
 			player.setPrison(false);
 			paidOut = true;
+			GUI.getUserButtonPressed("Du valgte at betale dig ud af fængslet. Slå med terningerne for at rykke dine brik.", "Slå med terninger");
+			int diceSum = mainController.rollDice();
+			mainController.movePlayer(diceSum);
 		}
 		else
 		{

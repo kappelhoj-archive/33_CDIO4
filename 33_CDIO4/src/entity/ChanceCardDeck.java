@@ -38,8 +38,6 @@ public class ChanceCardDeck {
 				{
 				case "Grant": chanceCardDeck[cardNumber] = createGrant(fromInfo);
 					break;
-				case "Movement": chanceCardDeck[cardNumber] = createMovement(fromInfo);
-					break;
 				case "Party": chanceCardDeck[cardNumber] = createParty(fromInfo);
 					break;
 				case "Payment": chanceCardDeck[cardNumber] = createPayment(fromInfo);
@@ -48,6 +46,13 @@ public class ChanceCardDeck {
 					break;
 				case "TaxCard": chanceCardDeck[cardNumber] = createTaxCard(fromInfo);
 					break;
+				case "MoveToNearestShipping": chanceCardDeck[cardNumber] = createMoveToNearestShipping(fromInfo);
+					break;
+				case "MoveToPrison": chanceCardDeck[cardNumber] = createMoveToPrison(fromInfo);
+					break;
+				case "MoveToField": chanceCardDeck[cardNumber] = createMoveToField(fromInfo);
+					break;
+				case "MoveThreeSteps": chanceCardDeck[cardNumber] = createMoveThreeSteps(fromInfo);
 				}
 				cardNumber++;
 			}
@@ -136,10 +141,29 @@ public class ChanceCardDeck {
 		return prison;
 	}
 	
-	private Movement createMovement(String[] i)
+	private MoveThreeSteps createMoveThreeSteps(String[] i)
 	{
-		Movement movement = new Movement(i[0],i[1],toInt(i[2]),toIntArray(i[3],i[4],i[5],i[6]),toBoolean(i[7]),toBoolean(i[8]));
-		return movement;
+		MoveThreeSteps moveThreeSteps = new MoveThreeSteps(i[0], i[1], toInt(i[2]));
+		return moveThreeSteps;
+	}
+	
+	private MoveToField createMoveToField(String[] i)
+	{
+		MoveToField moveToField = new MoveToField(i[0], i[1], toInt(i[2]));
+		return moveToField;
+	}
+	
+	private MoveToPrison createMoveToPrison(String[] i)
+	{
+		MoveToPrison moveToPrison = new MoveToPrison(i[0],i[1]);
+		return moveToPrison;
+	}
+	
+	private MoveToNearestShipping createMoveToNearestShipping(String[] i)
+	{
+		String[] stringArray = {i[2], i[3], i[4], i[5]};
+		MoveToNearestShipping moveToNearestShipping = new MoveToNearestShipping(i[0], i[1], toIntArray(stringArray), toBoolean(i[6]));
+		return moveToNearestShipping;
 	}
 	
 	private int toInt(String s)

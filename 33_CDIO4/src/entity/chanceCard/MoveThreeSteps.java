@@ -12,10 +12,10 @@ public class MoveThreeSteps extends Movement {
 	}
 	
 	/**
-	 * Method getMove(): Returns how many steps to move.
+	 * Method getSteps(): Returns how many steps to move.
 	 * @return The steps to move.
 	 */
-	public int getMoveTo()
+	public int getSteps()
 	{
 		return steps;
 	}

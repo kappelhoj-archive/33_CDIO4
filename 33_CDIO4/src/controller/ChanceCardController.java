@@ -1,13 +1,7 @@
 package controller;
 import entity.ChanceCardDeck;
 import entity.Player;
-import entity.chanceCard.ChanceCard;
-import entity.chanceCard.Grant;
-import entity.chanceCard.Movement;
-import entity.chanceCard.Party;
-import entity.chanceCard.Payment;
-import entity.chanceCard.Prison;
-import entity.chanceCard.TaxCard;
+import entity.chanceCard.*;
 import controller.PrisonController;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
@@ -19,12 +13,14 @@ public class ChanceCardController {
 	ChanceCardDeck deck;
 	PrisonController prison;
 	BankController bank;
+	MainController main;
 	
-	ChanceCardController(PrisonController prison,BankController bank)
+	ChanceCardController(PrisonController prison,BankController bank, MainController main)
 	{
 		deck = new ChanceCardDeck();
 		this.prison = prison;
 		this.bank = bank;
+		this.main = main;
 
 	}
 	/**
@@ -72,6 +68,14 @@ public class ChanceCardController {
 		{
 			player.changeAccountBalance(grant.getAmount());
 		}
+	}
+	
+	private void drawMoveThreeSteps(ChanceCard currentCard, Player player)
+	{
+		MoveThreeSteps move = (MoveThreeSteps) currentCard;
+		main.movePlayer(move.getSteps());
+		main.getLandOnFieldController().landOnField(player, move.getSteps());
+		main.playerTurnDecision();
 	}
 	
 }

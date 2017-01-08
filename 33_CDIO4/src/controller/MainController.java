@@ -287,4 +287,8 @@ public class MainController {
 		return output;
 	}
 
+	public LandOnFieldController getLandOnFieldController()
+	{
+		return fieldController;
+	}
 }

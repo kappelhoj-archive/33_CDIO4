@@ -129,7 +129,7 @@ public class MainController {
 			changeTurn();
 			do {
 				playTurn();
-			} while (extraTurn);
+			} while (extraTurn&&!players[turn].getHasLost());
 
 		}
 	}

@@ -136,7 +136,7 @@ public class MainController {
 			
 			do {
 				playTurn();
-			} while (extraTurn);
+			} while (extraTurn&&!players[turn].getHasLost());
 
 		}
 	}

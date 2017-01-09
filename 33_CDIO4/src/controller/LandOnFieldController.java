@@ -122,19 +122,23 @@ public class LandOnFieldController {
 					"Betal 10% (" + rentTaxRate + " kr.)", "Betal 4.000 kr.");
 			if (payTaxRate) {
 				// Subtract the tax rate rent from the player's balance.
-				player.changeAccountBalance(-rentTaxRate);
+				if(bankController.playerAffordPayment(player, rentTaxRate))
+					player.changeAccountBalance(-rentTaxRate);
+				
 			} else {
 				// Subtract the rent amount from the player's balance.
-				player.changeAccountBalance(-rentAmount);
+				if(bankController.playerAffordPayment(player, rentAmount))
+					player.changeAccountBalance(-rentAmount);
 			}
 		} else {
 			GUI.getUserButtonPressed("Du skal betale ekstraordinærstatsskat.", "Betal 2.000 kr.");
 			
 			// The rent amount to be paid.
-			rentAmount = 2000; // The rent to be paid.
+			rentAmount = 2000;
 			
 			// Subtract the rent amount from the player's balance.
-			player.changeAccountBalance(-rentAmount);
+			if(bankController.playerAffordPayment(player, rentAmount))
+				player.changeAccountBalance(-rentAmount);
 		}
 		GUI.setBalance(player.getName(), player.getAccountBalance());
 	}

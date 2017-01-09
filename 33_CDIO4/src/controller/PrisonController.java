@@ -26,7 +26,7 @@ public class PrisonController {
 		player.setInPrison(true);
 		player.setPosition(31);
 		mainController.movePlayerOnGUI();	
-		GUI.getUserButtonPressed("De fængsles.", "Afslut tur");
+		GUI.getUserButtonPressed("De fængsles.", "Ok");
 	}
 	
 	/**
@@ -38,8 +38,17 @@ public class PrisonController {
 	{
 		boolean boughtOut = false;
 		String payOut = "Betal dig ud: 1.000 kr";
-		String rollOut = "Slå dig ud fængslet med terningerne";
-		String input = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
+		String rollOut = "Slå dig ud af fængslet med terningerne";
+		String input = null;
+		
+		if(player.getAccountBalance() > 1000)
+		{
+			input = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
+		}
+		else 
+		{
+			input = GUI.getUserButtonPressed("Du er i fængsel og har ikke mulighed for at betale dig ud, da du ikke har råd.", rollOut);
+		}	
 		
 		if(input.equals(payOut))
 		{

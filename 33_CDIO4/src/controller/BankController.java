@@ -7,8 +7,6 @@ import entity.Account;
 import entity.Player;
 public class BankController 
 {
-
-
 	/**
 	 * The method houseSaleBank conducts a transaction,
 	 * when a player wants to buy a house.
@@ -96,7 +94,8 @@ public class BankController
 	{
 		if (player.getAccountBalance() < payment)
 		{
-			player.setHasLost(true);
+			handleDebt(player, payment);
+			
 			return false;
 		}
 		else
@@ -121,6 +120,21 @@ public class BankController
 			{
 				player.loseFields(loseAllFields[i]);
 			}
+		}
+		GUI.getUserButtonPressed("Du tabte spillet.", "Ok");
+		
+	}
+	
+	public boolean handleDebt(Player player, int debt)
+	{
+		boolean whatever = false;
+		if(whatever) {
+			return true;
+		}
+			
+		else {
+			playerHasLost(player);
+			return false;
 		}
 	}
 }

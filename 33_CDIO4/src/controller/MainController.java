@@ -249,6 +249,9 @@ public class MainController {
 		// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
+		if(players[turn].getInPrison()){
+			return;
+		}
 
 		String output = "Hvad vil du foretage dig?";
 		final String END_YOUR_TURN = "Slut din tur.";

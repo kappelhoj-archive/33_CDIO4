@@ -24,9 +24,10 @@ public class PrisonController {
 	public void sendToPrison(Player player)
 	{
 		player.setInPrison(true);
-		player.setPosition(31);
-		mainController.movePlayerOnGUI();	
 		GUI.getUserButtonPressed("De fængsles.", "Afslut tur");
+		player.setPosition(11);
+		mainController.movePlayerOnGUI();	
+
 	}
 	
 	/**
@@ -47,9 +48,6 @@ public class PrisonController {
 			GUI.setBalance(player.getName(), player.getAccountBalance());
 			player.setInPrison(false);
 			boughtOut = true;
-			GUI.getUserButtonPressed("Du valgte at betale dig ud af fængslet. Slå med terningerne for at rykke dine brik.", "Slå med terninger");
-			int diceSum = mainController.rollDice();
-			mainController.movePlayer(diceSum);
 		}
 		else
 		{

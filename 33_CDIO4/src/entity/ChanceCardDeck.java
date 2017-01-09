@@ -29,9 +29,10 @@ public class ChanceCardDeck {
 		try 
 		{
 			Scanner inputStream = new Scanner(file);
+			String data = inputStream.nextLine();
 			while(inputStream.hasNextLine())
 			{
-				String data = inputStream.nextLine();
+				data = inputStream.nextLine();
 				String[] fromInfo = data.split(",");
 				
 				switch (fromInfo[0])

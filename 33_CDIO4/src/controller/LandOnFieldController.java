@@ -11,6 +11,7 @@ public class LandOnFieldController {
 	private ChanceCardController chanceCardController;
 	private BankController bankController;
 	private GameBoard gameBoard;
+	private boolean doubleRent = false;
 
 	public LandOnFieldController(PrisonController pC, MainController mC) {
 		bankController = new BankController();
@@ -48,6 +49,8 @@ public class LandOnFieldController {
 			landOnNeutral(player);
 			break;
 		}
+		//Reset the doubleRent, this variable is used in  one type of chanceCard
+		doubleRent = false;
 	}
 
 	/**
@@ -62,7 +65,8 @@ public class LandOnFieldController {
 	public void landOnOwnable(Field field, Player player, int diceSum) {
 		Ownable ownable = (Ownable) field;
 		if (!ownable.isFieldOwned()) {
-			boolean bought = GUI.getUserLeftButtonPressed("Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
+			boolean bought = GUI.getUserLeftButtonPressed(
+					"Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
 			if (bought) {
 				if (player.buyField(ownable)) {
 					GUI.setOwner(player.getPosition(), player.getName());
@@ -77,9 +81,13 @@ public class LandOnFieldController {
 					Brewery brewery = (Brewery) (ownable);
 					brewery.setDiceSum(diceSum);
 				}
-				GUI.getUserButtonPressed(
-					"Du skal betale " + ownable.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
-				player.payRent(ownable.getOwner(), ownable.getRent());
+				int rent = ownable.getRent();
+				// Only used for some specific chancecards
+				if (doubleRent == true) {
+					rent = rent * 2;
+				}
+				GUI.getUserButtonPressed("Du skal betale " + rent + " til " + ownable.getOwner().getName() + ".", "Ok");
+				player.payRent(ownable.getOwner(), rent);
 				GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
 				GUI.setBalance(player.getName(), player.getAccountBalance());
 			}
@@ -100,8 +108,9 @@ public class LandOnFieldController {
 		Tax tax = (Tax) field;
 		if (tax.getTaxRateAvailable() == true) {
 			// The rent to be paid
-			rent = (int)(0.1 * player.getFortune());
-			boolean percent = GUI.getUserLeftButtonPressed("Du skal betale indkomstskat.", "Betal 10% (" + rent + " kr.)", "Betal 4.000 kr.");
+			rent = (int) (0.1 * player.getFortune());
+			boolean percent = GUI.getUserLeftButtonPressed("Du skal betale indkomstskat.",
+					"Betal 10% (" + rent + " kr.)", "Betal 4.000 kr.");
 			if (percent) {
 				player.changeAccountBalance(-rent); // Subtracts the rent from
 													// the balance of the
@@ -151,6 +160,9 @@ public class LandOnFieldController {
 	public void landOnChanceField(Player player) {
 		GUI.getUserButtonPressed("Du landte på prøv lykken.", "Træk et kort");
 		chanceCardController.draw(player);
+	}
+	public void setDoubleRent(boolean doubleRent){
+		this.doubleRent=doubleRent;
 	}
 
 	public GameBoard TESTgetGameBoard() {

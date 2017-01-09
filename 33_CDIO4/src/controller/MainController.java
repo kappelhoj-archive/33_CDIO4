@@ -230,10 +230,12 @@ public class MainController {
 		// and continue moving forward.
 		if (players[turn].getPosition() + diceSum <= 40) {
 			players[turn].setPosition(players[turn].getPosition() + diceSum);
+		} else if (players[turn].getPosition() + diceSum < 1) {
+			players[turn].setPosition(40 + diceSum + players[turn].getPosition());
 		} else {
 			givePlayer4000();
 			int difference = 40 - players[turn].getPosition();
-			players[turn].setPosition(diceSum - difference);
+			players[turn].setPosition(diceSum - difference);s
 		}
 		// Moves the player to his new position on the GUI.
 		movePlayerOnGUI();
@@ -273,8 +275,8 @@ public class MainController {
 	public void TESTsetExtraTurn(boolean input) {
 		testExtraTurn = true;
 	}
-	
-	public Player[] getPlayers(){
+
+	public Player[] getPlayers() {
 		return players;
 	}
 
@@ -301,8 +303,7 @@ public class MainController {
 		return output;
 	}
 
-	public LandOnFieldController getLandOnFieldController()
-	{
+	public LandOnFieldController getLandOnFieldController() {
 		return fieldController;
 	}
 }

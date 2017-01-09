@@ -1,7 +1,7 @@
 package test;
 
 import entity.ChanceCardDeck;
-import entity.ChanceCard.*;
+import entity.chanceCard.*;
 public class TestChanceCardReader {
 
 	public static void main(String[] args) {

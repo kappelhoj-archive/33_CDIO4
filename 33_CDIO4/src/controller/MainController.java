@@ -228,8 +228,10 @@ public class MainController {
 
 		// Check if the player can move to the next field. If not move him to 1
 		// and continue moving forward.
-		if (players[turn].getPosition() + diceSum <= 40) {
+		if (players[turn].getPosition() + diceSum <= 40&&players[turn].getPosition() + diceSum>0) {
 			players[turn].setPosition(players[turn].getPosition() + diceSum);
+		} else if (players[turn].getPosition() + diceSum < 1) {
+			players[turn].setPosition(40 + diceSum + players[turn].getPosition());
 		} else {
 			givePlayer4000();
 			int difference = 40 - players[turn].getPosition();
@@ -274,6 +276,10 @@ public class MainController {
 		testExtraTurn = true;
 	}
 
+	public Player[] getPlayers() {
+		return players;
+	}
+
 	/**
 	 * Static Method addReturnArray: Add the String "Gå tilbage" at the end of a
 	 * String[]. Can be used for menus.
@@ -297,4 +303,7 @@ public class MainController {
 		return output;
 	}
 
+	public LandOnFieldController getLandOnFieldController() {
+		return fieldController;
+	}
 }

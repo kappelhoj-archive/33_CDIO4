@@ -30,7 +30,7 @@ public class ChanceCardDeckTest {
 
 	@Test
 	public void ChanceCardDeck() {
-	chanceCardDeck.drawCard();
+	chanceCardDeck.draw();
 	}
 
 }

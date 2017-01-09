@@ -1,197 +1,119 @@
 package controller;
+
 import entity.ChanceCardDeck;
 import entity.Player;
+import entity.chanceCard.*;
 import controller.PrisonController;
 import desktop_fields.Tax;
-import entity.ChanceCard.ChanceCard;
-import entity.ChanceCard.Grant;
-import entity.ChanceCard.Movement;
-import entity.ChanceCard.Party;
-import entity.ChanceCard.Payment;
-import entity.ChanceCard.Prison;
-import entity.ChanceCard.TaxCard;
 import desktop_resources.GUI;
 import controller.BankController;
-
 
 public class ChanceCardController {
 
 	ChanceCardDeck deck;
-	Player tempPlayer;
 	PrisonController prison;
 	BankController bank;
-	
-	ChanceCardController(PrisonController prison,BankController bank)
-	{
+	MainController main;
+
+	ChanceCardController(PrisonController prison, BankController bank, MainController main) {
 		deck = new ChanceCardDeck();
 		this.prison = prison;
 		this.bank = bank;
+		this.main = main;
 
 	}
+
 	/**
 	 * The method draw draws a card from a newly generated chancecarddeck.
-	 * Depending on what type of chancecard is drawn, the draw method invokes different
-	 * methods. The method uses a switch to differ between the individual types of chancecard.
-	 * @param player The player who's "drawing" a card.
+	 * Depending on what type of chancecard is drawn, the draw method invokes
+	 * different methods. The method uses a switch to differ between the
+	 * individual types of chancecard.
+	 * 
+	 * @param player
+	 *            The player who's "drawing" a card.
 	 */
 	public void draw(Player player)
 
 	{
-		tempPlayer= player;
-		
-		ChanceCard currentCard=deck.drawCard();
-		
+		ChanceCard currentCard = deck.draw();
+
 		String type = currentCard.getType();
-		
-		GUI.displayChanceCard(currentCard.getDesc());
-		
-		switch(type)
-		{
-		case "Grant": drawGrant(currentCard);
-		break;
-		case "Movement": drawMovement(currentCard);
-		break;
-		case "Party": drawParty(currentCard);
-		break;
-		case "Payment": drawPayment(currentCard);
-		break;
-		case "Prison": drawPrison(currentCard);
-		break;
-		case "Tax": drawTaxCard(currentCard);
-		break;		
-		}	
-	}
-	
-	/**
-	 * The method drawGrant is invoked if the drawn card is of the type Grant.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawGrant(ChanceCard currentCard)
-	{
-	Grant card = ((Grant)currentCard);
-	bank.chancePaymentChecker(card.getAmount(), tempPlayer);
-	}
-	
+		System.out.println(type);
+		System.out.println(currentCard.getDescription());
+		GUI.displayChanceCard(currentCard.getDescription());
 
-	/**
-	 * The method drawMovement is invoked if the drawn card is of the type Movement.
-	 * The method moves the player a specific distance, or to a specific field.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawMovement(ChanceCard currentCard)
-	{
-		Movement card = ((Movement)currentCard);
-
-		//if the card wants to move a player to a specific field.
-		if(card.getMove()==0 & card.getField1()!=0 & card.getField2()==0)
-		{
-			movePlayerSpecificField(card.getField1());	
+		switch (type) { 
+		case "Grant":
+			drawGrant(currentCard, player);
+			break;
+		// case "Party": drawParty(currentCard, player);
+		// break;
+		case "Payment": drawPayment(currentCard, player);
+		 break;
+		// case "Prison": drawPrison(currentCard, player);
+		// break;
+		// case "Tax": drawTaxCard(currentCard, player);
+		// break;
+		case "MoveToNearestShipping":
+			drawMoveToNearestShipping(currentCard, player);
+			break;
+		case "MoveToPrison":
+			drawMoveToPrison(currentCard, player);
+			break;
+		case "MoveToField":
+			drawMoveToField(currentCard, player);
+			break;
+		case "MoveThreeSteps":
+			drawMoveThreeSteps(currentCard, player);
+			break;
 		}
-
-		//if the card wants to move the player to the closest specific field of several.
-		if(card.getMove()==0 & card.getField1()!=0 & card.getField2()!=0)
-		{
-			movePlayerSeveralSpecificField(card.getField1(),card.getField2(),card.getField3(),card.getField4(),card.getDoubleRent());
-		}
-
-		//if the card wants to move a player forwards or backwards
-		if(card.getMove()!=0)
-		{
-			movePlayer(card.getMove());
-		}
-		
-		//prison card
-		if(card.getInprisoned())
-		{
-			movePlayerPrison();
-		}
-
 	}
 
-	/**
-	 * The method drawParty is invoked if the drawn card is of the type Party.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawParty(ChanceCard currentCard)
-	{
-		Party card = ((Party)currentCard);
-	}
+	private void drawMoveToNearestShipping(ChanceCard currentCard, Player player) {
+		MoveToNearestShipping card = (MoveToNearestShipping) currentCard;
+		int[] shippingPos = card.getShippingPositions();
 
-	/**
-	 * The method drawPayment is invoked if the drawn card is of the type Payment.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawPayment(ChanceCard currentCard)
-	{
-		Payment card = ((Payment)currentCard);
-	}
-	
-	/**
-	 * The method drawPrison is invoked if the drawn card is of the type Prison.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawPrison(ChanceCard currentCard)
-	{
-		Prison card = ((Prison)currentCard);
-	}
-	
-
-	/**
-	 * The method drawTaxCard is invoked if the drawn card is of the type TaxCard.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawTaxCard(ChanceCard currentCard)
-	{
-		TaxCard card = ((TaxCard)currentCard);
-	}
-
-	/**
-	 * The method movePlayerPrison sends the player to prison.
-	 */
-	public void movePlayerPrison()
-	{
-		prison.sendToPrison(tempPlayer);
-	}
-	/**
-	 * The method movePlayerSpecificField moves the player to a specific field.
-	 * @param moveToField The field the player is moved to.
-	 */
-	public void movePlayerSpecificField(int moveToField)
-	{
-		tempPlayer.setPosition(moveToField);
-	}
-	
-	public void movePlayer(int move)
-	{
-		tempPlayer.setPosition(tempPlayer.getPosition() + move);
-	}
-	/**
-	 * The method movePlayerSeveralSpecificField is capable of moving a player to a number of specified fields.
-	 * This is needed for when a player has to move to the nearest shipping company
-	 * @param field1 Specific ownable field 1.
-	 * @param field2 Specific ownable field 2.
-	 * @param field3 Specific ownable field 3.
-	 * @param field4 Specific ownable field 4.
-	 * @param rent checks if the rent has to be double
-	 */
-	public void movePlayerSeveralSpecificField(int field1, int field2, int field3, int field4, boolean rent)
-	{
-		int[] fields = {tempPlayer.getPosition()-field1,
-						tempPlayer.getPosition()-field2,
-						tempPlayer.getPosition()-field3,
-						tempPlayer.getPosition()-field4};
-		
-		int temp = 15;
-		for(int i = 0; i < fields.length ; i++)
-		{
-			if(fields[i]>0)
-			{
-				temp = Math.min(fields[i], temp);
+		player.setPosition(shippingPos[0]);
+		for (int i = 0; i < shippingPos.length; i++)
+			if (shippingPos[i] > player.getPosition()) {
+				player.setPosition(shippingPos[i]);
+				break;
 			}
-		}
-		//if(rent==true){tempPlayer.} Der skal laves double rent hvis true!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		tempPlayer.setPosition(temp);
+		main.getLandOnFieldController().setDoubleRent(card.getDoubleRent());
+		
+		main.movePlayerOnGUI();
+		main.getLandOnFieldController().landOnField(player, 2);
 	}
 
+	private void drawMoveToPrison(ChanceCard currentCard, Player player) {
+		prison.sendToPrison(player);
+	}
+
+	private void drawMoveToField(ChanceCard currentCard, Player player) {
+		player.setPosition(((MoveToField) currentCard).getMoveTo());
+		main.movePlayerOnGUI();
+		main.getLandOnFieldController().landOnField(player, 2);
+
+	}
+
+	private void drawGrant(ChanceCard currentCard, Player player) {
+		Grant grant = (Grant) currentCard;
+		if (player.getFortune() <= 15000) {
+			player.changeAccountBalance(grant.getAmount());
+			GUI.setBalance(player.getName(), player.getAccountBalance());
+		}
+	}
+
+	private void drawMoveThreeSteps(ChanceCard currentCard, Player player) {
+		MoveThreeSteps move = (MoveThreeSteps) currentCard;
+		main.movePlayer(move.getSteps());
+		main.getLandOnFieldController().landOnField(player, main.rollDice());
+		main.playerTurnDecision();
+	}
+	
+	private void drawPayment(ChanceCard currentCard, Player player){
+		player.changeAccountBalance(((Payment)currentCard).getAmount());
+		GUI.setBalance(player.getName(), player.getAccountBalance());
+	}
 
 }

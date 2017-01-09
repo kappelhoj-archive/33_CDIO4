@@ -12,7 +12,7 @@ public class LandOnFieldController {
 	private ChanceCardController chanceCardController;
 	private BankController bankController;
 	private GameBoard gameBoard;
-
+	private boolean doubleRent = false;
 	/**
 	 * FieldController constructor.
 	 * 
@@ -57,6 +57,8 @@ public class LandOnFieldController {
 			landOnNeutral(player);
 			break;
 		}
+		//Reset the doubleRent, this variable is used in  one type of chanceCard
+		doubleRent = false;
 	}
 
 	/**
@@ -89,9 +91,13 @@ public class LandOnFieldController {
 					Brewery brewery = (Brewery) (ownable);
 					brewery.setDiceSum(diceSum);
 				}
-				GUI.getUserButtonPressed(
-						"Du skal betale " + ownable.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
-				player.payRent(ownable.getOwner(), ownable.getRent());
+				int rent = ownable.getRent();
+				// Only used for some specific chancecards
+				if (doubleRent == true) {
+					rent = rent * 2;
+				}
+				GUI.getUserButtonPressed("Du skal betale " + rent + " til " + ownable.getOwner().getName() + ".", "Ok");
+				player.payRent(ownable.getOwner(), rent);
 				GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
 				GUI.setBalance(player.getName(), player.getAccountBalance());
 			}
@@ -171,6 +177,10 @@ public class LandOnFieldController {
 	public void landOnChanceField(Player player) {
 		GUI.getUserButtonPressed("Du landte på prøv lykken.", "Træk et kort");
 		chanceCardController.draw(player);
+	}
+	
+	public void setDoubleRent(boolean doubleRent){
+		this.doubleRent=doubleRent;
 	}
 
 	public GameBoard TESTgetGameBoard() {

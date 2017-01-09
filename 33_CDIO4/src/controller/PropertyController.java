@@ -155,9 +155,11 @@ public class PropertyController {
 		int[] houses = new int[numbOfStreetsFromColour(colour)];
 		//An array to hold the names of the different streets.
 		String[] streetNames = new String[numbOfStreetsFromColour(colour)];
+		
 		//Fills the arrays with informations.
+		int j = 0;
 		for (int i = 0; i < player.getFields().length; i++) {
-			int j = 0;
+			
 			if (player.getFields()[i].getColour().equals(colour)) {
 				streetNames[j] = player.getFields()[i].getName();
 				houses[j] = ((Street) (player.getFields()[i])).getNumbOfHouses();

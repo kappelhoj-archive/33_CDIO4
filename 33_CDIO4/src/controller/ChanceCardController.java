@@ -10,10 +10,10 @@ import controller.BankController;
 
 public class ChanceCardController {
 
-	ChanceCardDeck deck;
-	PrisonController prison;
-	BankController bank;
-	MainController main;
+	private ChanceCardDeck deck;
+	private PrisonController prison;
+	private BankController bank;
+	private MainController main;
 
 	ChanceCardController(PrisonController prison, BankController bank, MainController main) {
 		deck = new ChanceCardDeck();

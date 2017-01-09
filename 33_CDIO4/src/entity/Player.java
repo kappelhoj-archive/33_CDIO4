@@ -6,8 +6,8 @@ public class Player {
 	//Instance variables
 	private String name;		//The name of the player.
 	private Account account;	//The account of the player.
-	private boolean lost;		//Tells if the player has lost the game.
-	private boolean prison;		//Tells if the player is in prison.
+	private boolean hasLost;	//Tells if the player has lost the game.
+	private boolean inPrison;	//Tells if the player is in prison.
 	private int position;		//The board position of the player.
 	private Ownable[] fields;	//The fields owned by the player
 
@@ -19,8 +19,8 @@ public class Player {
 	{
 		this.name = name;
 		account = new Account(30000);
-		lost = false;
-		prison = false;
+		hasLost = false;
+		inPrison = false;
 		position = 1;
 		fields = null;		
 	}
@@ -45,7 +45,7 @@ public class Player {
 			//Adds the object's balance to the balance of the owner.
 			owner.changeAccountBalance(account.getBalance()); 
 			//Sets the object's hasLost condition to true.
-			setLost(true);                           
+			setHasLost(true);                           
 		}
 	}
 
@@ -80,36 +80,36 @@ public class Player {
 	 * Method getLost returns the player's lost status.
 	 * @return The player's lost status. If true then the player has lost the game.
 	 */
-	public boolean getLost()
+	public boolean getHasLost()
 	{
-		return lost;
+		return hasLost;
 	}
 
 	/**
 	 * Method setLost sets the player's lost status.
 	 * @param condition The condition to be set. If condition is true then the player has lost.
 	 */
-	public void setLost(boolean condition) 
+	public void setHasLost(boolean condition) 
 	{
-		lost = condition;
+		hasLost = condition;
 	}
 
 	/**
 	 * Method getPrison returns the player's prison status.
 	 * @return The player's prison status. If true then the player is in prison.
 	 */
-	public boolean getPrison()
+	public boolean getInPrison()
 	{
-		return prison;
+		return inPrison;
 	}
 
 	/**
 	 * Method setPrison sets the player's prison status.
 	 * @param condition The condition to be set. If condition is true then the player is in prison.
 	 */
-	public void setPrison(boolean condition)
+	public void setInPrison(boolean condition)
 	{
-		prison = condition;
+		inPrison = condition;
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class Player {
 	 */
 	public void loseFields (Ownable field)
 	{
-		if (field.getOwner().equals(this.getLost()))
+		if (field.getOwner().equals(this.getHasLost()))
 		field.setOwner(null);
 		if (field.getType().equals("Ejendom"))
 		{

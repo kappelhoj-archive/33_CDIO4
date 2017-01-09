@@ -5,34 +5,48 @@ import entity.Player;
 
 public class PrisonController {
 	
+	// Instance variables
 	private MainController mainController;
 	
-	public PrisonController(MainController main)
+	/**
+	 * PrisonController constructor.
+	 * @param mainController MainController.
+	 */
+	public PrisonController(MainController mainController)
 	{
-		mainController = main;
+		this.mainController = mainController;
 	}
 
-	public void sentToPrison(Player player)
+	/**
+	 * Method sendToPrison sends a player to the prison.
+	 * @param player Player to be send to prison.
+	 */
+	public void sendToPrison(Player player)
 	{
-		player.setPrison(true);
+		player.setInPrison(true);
 		player.setPosition(31);
-		mainController.movePlayerOnGUI();
-		GUI.getUserButtonPressed("De fængsles.", "Ok");
+		mainController.movePlayerOnGUI();	
+		GUI.getUserButtonPressed("De fængsles.", "Afslut tur");
 	}
 	
+	/**
+	 * Method inPrison controls the prison turn.
+	 * @param player Player in prison.
+	 * @return boolean Returns a boolean whether a player bought himself out of the prison or not.
+	 */
 	public boolean inPrison(Player player)
 	{
-		boolean paidOut = false;
+		boolean boughtOut = false;
 		String payOut = "Betal dig ud: 1.000 kr";
-		String rollOut = "Prøv at slå dig ud med terningerne";
+		String rollOut = "Slå dig ud fængslet med terningerne";
 		String input = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
 		
 		if(input.equals(payOut))
 		{
 			player.changeAccountBalance(-1000);
 			GUI.setBalance(player.getName(), player.getAccountBalance());
-			player.setPrison(false);
-			paidOut = true;
+			player.setInPrison(false);
+			boughtOut = true;
 			GUI.getUserButtonPressed("Du valgte at betale dig ud af fængslet. Slå med terningerne for at rykke dine brik.", "Slå med terninger");
 			int diceSum = mainController.rollDice();
 			mainController.movePlayer(diceSum);
@@ -48,15 +62,20 @@ public class PrisonController {
 			}			
 			else
 			{
-				GUI.getUserButtonPressed("Du slog dig ikke ud af fængslet", "Ok");
+				GUI.getUserButtonPressed("Du slog dig ikke ud af fængslet", "Afslut tur");
 			}
 		}
-		return paidOut;
+		return boughtOut;
 	}
 	
-	public boolean checkIfInPrison(Player player)
+	/**
+	 * Method checkInPrison checks whether a player is in prison or not.
+	 * @param player Player to check for.
+	 * @return boolean.
+	 */
+	public boolean checkInPrison(Player player)
 	{
-		if(player.getPrison())
+		if(player.getInPrison())
 			return true;
 		else
 			return false;

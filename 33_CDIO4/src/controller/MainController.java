@@ -268,6 +268,10 @@ public class MainController {
 	public void TESTsetExtraTurn(boolean input) {
 		testExtraTurn = true;
 	}
+	
+	public Player[] getPlayers(){
+		return players;
+	}
 
 	/**
 	 * Static Method addReturnArray: Add the String "Gå tilbage" at the end of a

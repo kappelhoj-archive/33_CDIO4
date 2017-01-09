@@ -15,7 +15,7 @@ public class LandOnFieldController {
 	public LandOnFieldController(PrisonController pC, MainController mC) {
 		bankController = new BankController();
 		this.prisonController = new PrisonController(mC);
-		this.chanceCardController = new ChanceCardController(prisonController, bankController);
+		this.chanceCardController = new ChanceCardController(prisonController, bankController, mC);
 		this.gameBoard = new GameBoard();
 	}
 

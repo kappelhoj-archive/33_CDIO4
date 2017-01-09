@@ -29,7 +29,7 @@ public class ChanceCardController {
 	 * methods. The method uses a switch to differ between the individual types of chancecard.
 	 * @param player The player who's "drawing" a card.
 	 */
-	public void draw(Player player, Player[] borrowers)
+	public void draw(Player player)
 
 	{	
 		ChanceCard currentCard = deck.draw();
@@ -42,22 +42,22 @@ public class ChanceCardController {
 		{
 		case "Grant": drawGrant(currentCard, player);
 			break;
-		case "Party": drawParty(currentCard, player);
-			break;
-		case "Payment": drawPayment(currentCard, player);
-			break;
-		case "Prison": drawPrison(currentCard, player);
-			break;
-		case "Tax": drawTaxCard(currentCard, player);
-			break;	
+//		case "Party": drawParty(currentCard, player);
+//			break;
+//		case "Payment": drawPayment(currentCard, player);
+//			break;
+//		case "Prison": drawPrison(currentCard, player);
+//			break;
+//		case "Tax": drawTaxCard(currentCard, player);
+//			break;	
 		case "MoveThreeSteps": drawMoveThreeSteps(currentCard, player);
 			break;
-		case "MoveToField": drawMoveToField(currentCard, player);
-			break;
-		case "MoveToNearestShipping": drawMoveToNearestShipping(currentCard, player);
-			break;
-		case "MoveToPrison": drawMoveToPrison(currentCard, player);
-			break;
+//		case "MoveToField": drawMoveToField(currentCard, player);
+//			break;
+//		case "MoveToNearestShipping": drawMoveToNearestShipping(currentCard, player);
+//			break;
+//		case "MoveToPrison": drawMoveToPrison(currentCard, player);
+//			break;
 		}	
 	}
 	

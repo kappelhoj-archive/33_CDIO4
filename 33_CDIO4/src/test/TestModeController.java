@@ -88,12 +88,12 @@ public class TestModeController {
 
 		String input;
 		boolean menuActive = true;
-		if (player.getPrison()) {
+		if (player.getInPrison()) {
 			input = GUI.getUserSelection(testingModeMessage + "Hvad vil du gøre?", "Slip ud af fængslet.",
 					"FortsætSpil");
 			if (input.equals("Slip ud af fængslet.")) {
 				main.TESTsetExtraTurn(true);
-				player.setPrison(false);
+				player.setInPrison(false);
 			}
 		} else
 			do {

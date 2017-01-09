@@ -150,7 +150,7 @@ public class ChanceCardController {
 	 */
 	public void movePlayerPrison()
 	{
-		prison.sentToPrison(tempPlayer);
+		prison.sendToPrison(tempPlayer);
 	}
 	/**
 	 * The method movePlayerSpecificField moves the player to a specific field.

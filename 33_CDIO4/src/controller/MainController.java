@@ -256,7 +256,7 @@ public class MainController {
 		// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
-		if(players[turn].getInPrison()){
+		if(players[turn].getInPrison()||players[turn].getHasLost()){
 			return;
 		}
 

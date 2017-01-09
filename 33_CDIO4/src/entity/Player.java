@@ -283,6 +283,7 @@ public class Player {
 	public int getFortune()
 	{
 		int fortune = getAccountBalance();
+		if(fields != null) {
 		for (int i = 0; 0 < fields.length; i++)
 		{
 			fortune = fortune + fields[i].getValue();
@@ -290,6 +291,7 @@ public class Player {
 			{
 				fortune = fortune + ((Street) fields[i]).getHousePrice() * ((Street) fields[i]).getNumbOfHouses();
 			}
+		}
 		}
 		return fortune;
 	}

@@ -10,7 +10,7 @@ public class PropertyController {
 	private int houses;
 	private int hotels;
 
-	public PropertyController(int houses, int hotel) {
+	public PropertyController() {
 		this.houses = 32;
 		this.hotels = 12;
 		
@@ -103,11 +103,13 @@ public class PropertyController {
 			}
 		}
 		//New String array containing only the colours that you can build buildings at.
+		int j = 0;
 		String[] canBuildOn = new String[trueCount];
 		for (int i = 0; i < canBuildOnColour(player).length; i++) {
-			int j = 0;
+			
 			if (canBuildOnColour(player)[i] == true) {
 				canBuildOn[j] = colours[j];
+				j++;
 			}
 		}
 		return canBuildOn;
@@ -135,7 +137,8 @@ public class PropertyController {
 	 * @return The smallest element of the array.
 	 */
 	private int minimum(int[] numbs) {
-		int min = 0;
+		//Set an abretary high value
+		int min = 420;
 		
 		for(int i = 0; i < numbs.length; i++)
 		{
@@ -155,9 +158,11 @@ public class PropertyController {
 		int[] houses = new int[numbOfStreetsFromColour(colour)];
 		//An array to hold the names of the different streets.
 		String[] streetNames = new String[numbOfStreetsFromColour(colour)];
-		//Fills the array with informations.
+		
+		//Fills the arrays with informations.
+		int j = 0;
 		for (int i = 0; i < player.getFields().length; i++) {
-			int j = 0;
+			
 			if (player.getFields()[i].getColour().equals(colour)) {
 				streetNames[j] = player.getFields()[i].getName();
 				houses[j] = ((Street) (player.getFields()[i])).getNumbOfHouses();
@@ -166,6 +171,11 @@ public class PropertyController {
 		}
 		//Finds which street has the fewest houses.
 		int minimum = minimum(houses);
+		//Hvis der er hoteller på alle grunde:
+		if (minimum==5){
+			return null;
+		}
+		
 		int amountOfStreets = 0;
 		//Finds how many streets that has the minimum amount of houses
 		for (int i = 0; i < streetNames.length; i++) {
@@ -175,9 +185,11 @@ public class PropertyController {
 		}
 		//An array to hold the name of the differents streets that you can build on.
 		String[] streetNamesNew = new String[amountOfStreets];
+		j=0;
 		for (int i = 0; i < streetNames.length; i++) {
 			if (minimum == houses[i]) {
-				streetNamesNew[i] = streetNames[i];
+				streetNamesNew[j] = streetNames[i];
+				j++;
 			}
 		}
 		return streetNamesNew;
@@ -201,6 +213,7 @@ public class PropertyController {
 		{
 			setHouse(player, street);
 		}
+		GUI.setBalance(player.getName(), player.getAccountBalance());
 	}
 	
 	/**
@@ -208,6 +221,7 @@ public class PropertyController {
 	 * @param player The player who wants to build a hotel.
 	 * @param street The street the player wants to build on.
 	 */
+	
 	private void setHotel(Player player, Street street)
 	{
 		if (getHotels() > 0)
@@ -215,6 +229,8 @@ public class PropertyController {
 			if (player.getAccountBalance() > street.getHousePrice())
 			{
 				GUI.setHotel(street.getFieldNumber(), true);
+				
+				street.changeNumbOfHouses(1);
 				player.changeAccountBalance(-street.getHousePrice());
 				changeHouses(4);
 				changeHotels(-1);
@@ -270,8 +286,14 @@ public class PropertyController {
 				while (true) 
 				{	
 					String[] options2 = MainController.addReturnToArray(findStreetNames(player, answer));
-					String answer2 = GUI.getUserSelection("Du har valgt" + answer + ". Bygningerne på " + answer + " koster "
+					String answer2;
+					if(options2.length==1){
+						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);
+					}
+					else{
+					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne på " + answer + " koster "
 							+ player.getHousePriceFromColour(answer), options2);
+					}
 					if (answer2.equals("Gå tilbage")) {
 						break;
 					}

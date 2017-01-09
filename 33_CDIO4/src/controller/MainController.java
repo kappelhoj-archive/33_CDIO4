@@ -47,7 +47,7 @@ public class MainController {
 		for (int i = 0; i < players.length; i++) {
 			this.players[i] = new Player(playerNames[i]);
 		}
-		
+
 		turn = (int) (Math.random() * players.length);
 
 		numExtraTurn = 0;
@@ -58,7 +58,7 @@ public class MainController {
 
 		// Construct a field controller
 		fieldController = new LandOnFieldController(prisonController, this);
-		propertyController= new PropertyController();
+		propertyController = new PropertyController();
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class MainController {
 				return;
 		}
 		// Tell the player it is his turn on the GUI.
-		if (numExtraTurn < 1) 
+		if (numExtraTurn < 1)
 			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
 
 		// Roll the dice.
@@ -244,19 +244,19 @@ public class MainController {
 	 * to do.
 	 */
 	public void playerTurnDecision() {
-	 	// Boolean that holds the decision of if the player want to end his
+		// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
 
 		String output = "Hvad vil du foretage dig?";
 		final String END_YOUR_TURN = "Slut din tur.";
-		final String HOUSES_AND_HOTELS="Køb huse.";
+		final String HOUSES_AND_HOTELS = "Køb huse.";
 
 		// Keep asking for what the player wants to do until he chooses to add
 		// the player.
 		String userSelection;
 		while (!endTurn) {
-			userSelection = GUI.getUserSelection(output, END_YOUR_TURN,HOUSES_AND_HOTELS);
+			userSelection = GUI.getUserSelection(output, END_YOUR_TURN, HOUSES_AND_HOTELS);
 			switch (userSelection) {
 			case END_YOUR_TURN:
 				endTurn = true;
@@ -264,7 +264,7 @@ public class MainController {
 			case HOUSES_AND_HOTELS:
 				propertyController.showBuidlingMenu(players[turn]);
 				break;
-			
+
 			}
 		}
 
@@ -283,9 +283,14 @@ public class MainController {
 	 * @return The array with "Gå tilbage" at the end.
 	 */
 	public static String[] addReturnToArray(String[] input) {
-		String[] output = new String[input.length + 1];
-		for (int i = 0; i < input.length; i++) {
-			output[i] = input[i];
+		String[] output;
+		if (input == null) {
+			output = new String[1];
+		} else {
+			output = new String[input.length + 1];
+			for (int i = 0; i < input.length; i++) {
+				output[i] = input[i];
+			}
 		}
 
 		output[output.length - 1] = "Gå tilbage";

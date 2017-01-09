@@ -92,7 +92,7 @@ public class Street extends Ownable {
 			}
 
 		} else {
-			rent = houseRent[numbOfHouses];
+			rent = houseRent[numbOfHouses-1];
 		}
 
 		return rent;

@@ -37,7 +37,7 @@ public class MainControllerTestStub {
 		prisonController = new PrisonControllerTestStub(this);
 
 		// Construct a field controller
-		fieldController = new LandOnFieldController(prisonController, this);
+		fieldController = new FieldControllerTestStub(prisonController, this);
 		propertyController = new PropertyController();
 	}
 

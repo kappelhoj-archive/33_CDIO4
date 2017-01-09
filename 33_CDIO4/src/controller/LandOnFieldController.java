@@ -13,6 +13,7 @@ public class LandOnFieldController {
 	private BankController bankController;
 	private GameBoard gameBoard;
 	private boolean doubleRent = false;
+	
 	/**
 	 * FieldController constructor.
 	 * 
@@ -97,9 +98,14 @@ public class LandOnFieldController {
 					rent = rent * 2;
 				}
 				GUI.getUserButtonPressed("Du skal betale " + rent + " til " + ownable.getOwner().getName() + ".", "Ok");
-				player.payRent(ownable.getOwner(), rent);
-				GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
-				GUI.setBalance(player.getName(), player.getAccountBalance());
+				
+				// 
+				if(bankController.playerAffordPayment(player, rent))
+				{
+					player.payRent(ownable.getOwner(), rent);
+					GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
+					GUI.setBalance(player.getName(), player.getAccountBalance());
+				}
 			}
 		}
 	}

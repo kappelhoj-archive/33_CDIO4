@@ -44,9 +44,7 @@ public class BankController
 			account.changeBalance(street.getHousePrice()/2);
 			GUI.getUserButtonPressed("Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice()/2 + " kr.", "Ok");
 		}
-
 	}
-
 
 	/**
 	 * The method chancePaymentChecker checks if the player has enough funds

@@ -127,6 +127,13 @@ public class MainController {
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();
+			if(checkForWinner() != null)
+			{
+				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet", "Sweet");
+				GUI.close();
+				break;
+			}
+			
 			do {
 				playTurn();
 			} while (extraTurn);
@@ -305,6 +312,24 @@ public class MainController {
 		output[output.length - 1] = "Gå tilbage";
 		return output;
 	}
+	
+	/**
+	 * Method that checks if all players except one has lost the game.
+	 * @return Player winner
+	 */
+		public Player checkForWinner() {
+			Player winningPlayer = null;
+			for (int i = 0; i < players.length; i++) {
+				if (!players[i].getHasLost())
+					if (winningPlayer == null)
+						winningPlayer = players[i];
+					else
+						return null;
+
+			}
+			return winningPlayer;
+		}
+
 
 	public LandOnFieldController getLandOnFieldController() {
 		return fieldController;

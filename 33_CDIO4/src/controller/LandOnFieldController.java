@@ -7,12 +7,21 @@ import entity.GameBoard;
 
 public class LandOnFieldController {
 
+	// Instance variables
 	private PrisonController prisonController;
 	private ChanceCardController chanceCardController;
 	private BankController bankController;
 	private GameBoard gameBoard;
 	private boolean doubleRent = false;
 
+/**
+	 * FieldController constructor.
+	 * 
+	 * @param prisonController
+	 *            PrisonController
+	 * @param mainController
+	 *            MainController.
+	 */
 	public LandOnFieldController(PrisonController pC, MainController mC) {
 		bankController = new BankController();
 		this.prisonController = new PrisonController(mC);
@@ -24,10 +33,10 @@ public class LandOnFieldController {
 	 * Method landOnField: Decides what has to be done when a player lands on a
 	 * field.
 	 * 
-	 * @param field
-	 *            The field the player landed on.
 	 * @param player
 	 *            The player to land on the field.
+	 * @param diceSum
+	 *            The dice sum of the player's dice roll.
 	 */
 	public void landOnField(Player player, int diceSum) {
 
@@ -61,6 +70,8 @@ public class LandOnFieldController {
 	 *            The field the player landed on.
 	 * @param player
 	 *            The player to land on the field.
+	 * @param diceSum
+	 *            The dice sum of the player's dice roll
 	 */
 	public void landOnOwnable(Field field, Player player, int diceSum) {
 		Ownable ownable = (Ownable) field;
@@ -143,10 +154,9 @@ public class LandOnFieldController {
 	 *            The player who landed on the neutral field.
 	 */
 	public void landOnNeutral(Player player) {
-		int isPrison = 31;
-		if (player.getPosition() == isPrison) {
-
-			prisonController.sentToPrison(player);
+		int prisonFieldNum = 31;
+		if (player.getPosition() == prisonFieldNum) {
+			prisonController.sendToPrison(player);
 		}
 	}
 

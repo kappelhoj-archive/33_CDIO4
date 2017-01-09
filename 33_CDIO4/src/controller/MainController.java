@@ -28,7 +28,7 @@ public class MainController {
 	 * Constructor: Creates the needed variables for the main controller and
 	 * construct new objects of some of the other classes.
 	 */
-	private MainController(String[] args) {
+	public MainController(String[] args) {
 		// Used for testmode only.
 		if (args != null)
 			testMode = new TestModeController(args[0]);
@@ -79,7 +79,7 @@ public class MainController {
 		// Chance the players turn untill someone has lost.
 		do {
 			turn = (turn + 1) % players.length;
-		} while (players[turn].getLost());
+		} while (players[turn].getHasLost());
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class MainController {
 	public void playTurn() {
 		// Check if the player is in prison. If he is, hand over control of the
 		// turn to the prison.
-		if (prisonController.checkIfInPrison(players[turn])) {
+		if (prisonController.checkInPrison(players[turn])) {
 
 			if (!prisonController.inPrison(players[turn]))
 				return;
@@ -105,7 +105,7 @@ public class MainController {
 		// If this is the third time he rolled the double something. Send him to
 		// prison.
 		if (numExtraTurn == 3) {
-			prisonController.sentToPrison(players[turn]);
+			prisonController.sendToPrison(players[turn]);
 			extraTurn = false;
 			return;
 		}
@@ -123,7 +123,7 @@ public class MainController {
 	 * Method playGame: Plays the game until someone has won.
 	 */
 	public void playGame() {
-		GUI.getUserButtonPressed("En tilfældig spiller er valgt til at starte", "Ok");
+		GUI.getUserButtonPressed("En tilfældig spiller er valgt til at starte", "Start spil");
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();

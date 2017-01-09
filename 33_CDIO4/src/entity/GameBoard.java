@@ -51,7 +51,7 @@ public class GameBoard {
 		fieldCounter++;
 	}
 	
-	public void addStreet(String[] information)
+	private void addStreet(String[] information)
 	{
 		String name = information[0];
 		String type = information[10];
@@ -65,7 +65,7 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Street(fieldCounter,name, type, description, price, colour, baseRent, housePrice, houseRent, pledge);
 	}
 	
-	public void addShipping(String[] information)
+	private void addShipping(String[] information)
 	{
 		String name = information[0];
 		String type = information[10];
@@ -73,7 +73,7 @@ public class GameBoard {
 		int price = Integer.parseInt(information[2]);
 		fields[fieldCounter - 1] = new Shipping(fieldCounter,name, type, description, price);
 	}
-	public void addBrewery(String[] information) 
+	private void addBrewery(String[] information) 
 	{
 		String name = information[0];
 		String type = information[10];
@@ -82,7 +82,7 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Brewery(fieldCounter,name, type, description, price);
 	}
 	
-	public void addChance(String[] information) 
+	private void addChance(String[] information) 
 	{
 		String name = information[0];
 		String type = information[10];
@@ -90,7 +90,7 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new ChanceField(fieldCounter,name, type, description);
 	}
 	
-	public void addTax(String[] information) 
+	private void addTax(String[] information) 
 	{
 		String name = information[0];
 		String type = information[10];
@@ -100,7 +100,7 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Tax(fieldCounter,name, type, description, rate, amount);
 	}
 	
-	public void addNeutral(String[] information) 
+	private void addNeutral(String[] information) 
 	{
 		String name = information[0];
 		String type = information[10];

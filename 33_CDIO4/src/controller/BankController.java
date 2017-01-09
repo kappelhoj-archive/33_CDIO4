@@ -96,7 +96,7 @@ public class BankController
 	{
 		if (player.getAccountBalance() < payment)
 		{
-			player.setLost(true);
+			player.setHasLost(true);
 			return false;
 		}
 		else

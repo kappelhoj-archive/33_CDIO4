@@ -42,7 +42,7 @@ public class ChanceCardController {
 		System.out.println(currentCard.getDescription());
 		GUI.displayChanceCard(currentCard.getDescription());
 
-		switch (type) {
+		switch (type) { 
 		case "Grant":
 			drawGrant(currentCard, player);
 			break;

@@ -86,7 +86,7 @@ public class ChanceCardController {
 	}
 
 	private void drawMoveToPrison(ChanceCard currentCard, Player player) {
-		prison.sentToPrison(player);
+		prison.sendToPrison(player);
 	}
 
 	private void drawMoveToField(ChanceCard currentCard, Player player) {

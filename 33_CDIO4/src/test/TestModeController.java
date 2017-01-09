@@ -38,7 +38,11 @@ public class TestModeController {
 			diff = (40 - player.getPosition()) + player.getPosition() + diff;
 		}
 		GUI.removeAllCars(player.getName());
-		GUI.setCar((diff%41)+1, player.getName());
+		int printpos=player.getPosition()+diff;
+		if(printpos>40){
+			printpos-=40;
+		}
+		GUI.setCar(printpos, player.getName());
 
 		return diff;
 	}

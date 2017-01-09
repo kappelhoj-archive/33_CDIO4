@@ -1,6 +1,6 @@
 [type][beskrivelse][move eller beløb][move felt 1][move felt 2][move felt 3][move felt 4][fængsel][doublerent]
-MoveToField,"Ryk frem til "START".",1,0,0,0,0,false,false
-MoveToField,"Ryk frem til "START".",1,0,0,0,0,FALSE,FALSE
+MoveToField,"Ryk frem til "START".",0,1,0,0,0,false,false
+MoveToField,"Ryk frem til "START".",0,1,0,0,0,FALSE,FALSE
 MoveToPrison,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",0,11,0,0,0,true,FALSE
 MoveToPrison,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",0,11,0,0,0,true,FALSE
 MoveToField,"Ryk frem til Grønningen. Hvis De passerer "START" indkassér da kr. 4.000.",0,25,0,0,0,false,FALSE

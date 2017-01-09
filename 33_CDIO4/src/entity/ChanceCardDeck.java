@@ -18,89 +18,95 @@ public class ChanceCardDeck {
 	 */
 	public ChanceCardDeck() {
 
-		chanceCardDeck = new ChanceCard[39];
+		chanceCardDeck = new ChanceCard[37];
 		int cardNumber = 0;
 
-		//Imports file
+		// Imports file
 		String fileName = "data.csv";
 		File file = new File(fileName);
-		
-		//Scans the file and splits it up by commas
-		try 
-		{
+
+		// Scans the file and splits it up by commas
+		try {
 			Scanner inputStream = new Scanner(file);
 			String data = inputStream.nextLine();
-			while(inputStream.hasNextLine())
-			{
+			while (inputStream.hasNextLine()) {
 				data = inputStream.nextLine();
 				String[] fromInfo = data.split(",");
-				
-				switch (fromInfo[0])
-				{
-				case "Grant": chanceCardDeck[cardNumber] = createGrant(fromInfo);
+
+				switch (fromInfo[0]) {
+				case "Grant":
+					chanceCardDeck[cardNumber] = createGrant(fromInfo);
 					break;
-				case "Party": chanceCardDeck[cardNumber] = createParty(fromInfo);
+				case "Party":
+					chanceCardDeck[cardNumber] = createParty(fromInfo);
 					break;
-				case "Payment": chanceCardDeck[cardNumber] = createPayment(fromInfo);
+				case "Payment":
+					chanceCardDeck[cardNumber] = createPayment(fromInfo);
 					break;
-				case "Prison": chanceCardDeck[cardNumber] = createPrison(fromInfo);
+				case "Prison":
+					chanceCardDeck[cardNumber] = createPrison(fromInfo);
 					break;
-				case "TaxCard": chanceCardDeck[cardNumber] = createTaxCard(fromInfo);
+				case "TaxCard":
+					chanceCardDeck[cardNumber] = createTaxCard(fromInfo);
 					break;
-				case "MoveToNearestShipping": chanceCardDeck[cardNumber] = createMoveToNearestShipping(fromInfo);
+				case "MoveToNearestShipping":
+					chanceCardDeck[cardNumber] = createMoveToNearestShipping(fromInfo);
 					break;
-				case "MoveToPrison": chanceCardDeck[cardNumber] = createMoveToPrison(fromInfo);
+				case "MoveToPrison":
+					chanceCardDeck[cardNumber] = createMoveToPrison(fromInfo);
 					break;
-				case "MoveToField": chanceCardDeck[cardNumber] = createMoveToField(fromInfo);
+				case "MoveToField":
+					chanceCardDeck[cardNumber] = createMoveToField(fromInfo);
 					break;
-				case "MoveThreeSteps": chanceCardDeck[cardNumber] = createMoveThreeSteps(fromInfo);
+				case "MoveThreeSteps":
+					chanceCardDeck[cardNumber] = createMoveThreeSteps(fromInfo);
+					break;
+				default:
+					System.out.println("Error: This card is unknown");
+					System.out.println(chanceCardDeck[cardNumber].getType());
+					break;
 				}
+
 				cardNumber++;
 
 			}
 			shuffle();
 			inputStream.close();
-		} 
-		catch (FileNotFoundException e) 
-		{
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Method draw: Returns the first card in the deck 
-	 * and afterwards puts it in the bottom of the deck
+	 * Method draw: Returns the first card in the deck and afterwards puts it in
+	 * the bottom of the deck
+	 * 
 	 * @return The first card of the deck.
 	 */
-	public ChanceCard draw()
-	{	
+	public ChanceCard draw() {
 		ChanceCard first = chanceCardDeck[0];
-		
-		for (int i = 0; i < chanceCardDeck.length - 1; i++)
-		{
-			chanceCardDeck[i] = chanceCardDeck[i+1];
+
+		for (int i = 0; i < chanceCardDeck.length - 1; i++) {
+			chanceCardDeck[i] = chanceCardDeck[i + 1];
 		}
-		
-		chanceCardDeck[chanceCardDeck.length-1] = first;
+
+		chanceCardDeck[chanceCardDeck.length - 1] = first;
 		return first;
 	}
-	
+
 	/**
 	 * Method shuffle: Shuffles the chance card deck.
 	 */
-	public void shuffle()
-	{
-		for (int i = 0; i < 10000; i++)
-		{
+	public void shuffle() {
+		for (int i = 0; i < 10000; i++) {
 			swapTwoCards();
 		}
 	}
-	
+
 	/**
 	 * Method swapTwoCards: Swaps two chance cards in the deck.
 	 */
-	private void swapTwoCards()
-	{
+	private void swapTwoCards() {
 		Random generator = new Random();
 		int cardNumber1 = generator.nextInt(chanceCardDeck.length);
 		ChanceCard temp = chanceCardDeck[cardNumber1];
@@ -108,82 +114,72 @@ public class ChanceCardDeck {
 		chanceCardDeck[cardNumber1] = chanceCardDeck[cardNumber2];
 		chanceCardDeck[cardNumber2] = temp;
 	}
-	
+
 	/**
 	 * Method creatGrant: Returns a Grant chanceCard from the given information.
-	 * @param information The information given.
+	 * 
+	 * @param information
+	 *            The information given.
 	 * @return The Grant chanceCard.
 	 */
-	private Grant createGrant(String[] i)
-	{
-		Grant grant = new Grant(i[0],i[1],toInt(i[2]));
+	private Grant createGrant(String[] i) {
+		Grant grant = new Grant(i[0], i[1], toInt(i[2]));
 		return grant;
 	}
-	
-	private TaxCard createTaxCard(String[] i)
-	{
-		TaxCard taxCard = new TaxCard(i[0],i[1],toInt(i[2]));
+
+	private TaxCard createTaxCard(String[] i) {
+		TaxCard taxCard = new TaxCard(i[0], i[1], toInt(i[2]));
 		return taxCard;
 	}
-	
-	private Payment createPayment(String[] i)
-	{
-		Payment payment = new Payment(i[0],i[1],toInt(i[2]));
+
+	private Payment createPayment(String[] i) {
+		Payment payment = new Payment(i[0], i[1], toInt(i[2]));
 		return payment;
 	}
-	
-	private Party createParty(String[] i)
-	{
-		Party party = new Party(i[0],i[1],toInt(i[2]));
+
+	private Party createParty(String[] i) {
+		Party party = new Party(i[0], i[1], toInt(i[2]));
 		return party;
 	}
-	
-	private Prison createPrison(String[] i)
-	{
-		Prison prison = new Prison(i[0],i[1],toBoolean(i[7]), toBoolean(i[8]));
+
+	private Prison createPrison(String[] i) {
+		Prison prison = new Prison(i[0], i[1], toBoolean(i[7]), toBoolean(i[8]));
 		return prison;
 	}
-	
-	private MoveThreeSteps createMoveThreeSteps(String[] i)
-	{
+
+	private MoveThreeSteps createMoveThreeSteps(String[] i) {
 		MoveThreeSteps moveThreeSteps = new MoveThreeSteps(i[0], i[1], toInt(i[2]));
 		return moveThreeSteps;
 	}
-	
-	private MoveToField createMoveToField(String[] i)
-	{
-		MoveToField moveToField = new MoveToField(i[0], i[1], toInt(i[2]));
+
+	private MoveToField createMoveToField(String[] i) {
+		MoveToField moveToField = new MoveToField(i[0], i[1], toInt(i[3]));
 		return moveToField;
 	}
-	
-	private MoveToPrison createMoveToPrison(String[] i)
-	{
-		MoveToPrison moveToPrison = new MoveToPrison(i[0],i[1]);
+
+	private MoveToPrison createMoveToPrison(String[] i) {
+		MoveToPrison moveToPrison = new MoveToPrison(i[0], i[1]);
 		return moveToPrison;
 	}
-	
-	private MoveToNearestShipping createMoveToNearestShipping(String[] i)
-	{
-		String[] stringArray = {i[2], i[3], i[4], i[5]};
-		MoveToNearestShipping moveToNearestShipping = new MoveToNearestShipping(i[0], i[1], toIntArray(stringArray), toBoolean(i[6]));
+
+	private MoveToNearestShipping createMoveToNearestShipping(String[] i) {
+		String[] stringArray = { i[2], i[3], i[4], i[5] };
+		MoveToNearestShipping moveToNearestShipping = new MoveToNearestShipping(i[0], i[1], toIntArray(stringArray),
+				toBoolean(i[6]));
 		return moveToNearestShipping;
 	}
-	
-	private int toInt(String s)
-	{
+
+	private int toInt(String s) {
 		return Integer.parseInt(s);
 	}
-	
-	private boolean toBoolean(String s)
-	{
+
+	private boolean toBoolean(String s) {
 		return Boolean.parseBoolean(s);
 	}
-	
-	private int[] toIntArray(String... s)
-	{
+
+	private int[] toIntArray(String... s) {
 		int[] intArray = new int[s.length];
-		for(int i = 0; i < s.length; i++)
-		{
+		for (int i = 0; i < s.length; i++) {
 			intArray[i] = toInt(s[i]);
 		}
 		return intArray;

@@ -10,6 +10,7 @@ public class Player {
 	private boolean inPrison;	//Tells if the player is in prison.
 	private int position;		//The board position of the player.
 	private Ownable[] fields;	//The fields owned by the player
+	private int turnsInPrison;
 
 	/** 
 	 * Object Player constructor.
@@ -23,6 +24,7 @@ public class Player {
 		inPrison = false;
 		position = 1;
 		fields = null;		
+		setTurnsInPrison(0);
 	}
 
 	/**
@@ -342,4 +344,16 @@ public class Player {
 		}
 		return housePrice;
 	}
+
+	public int getTurnsInPrison() {
+		return turnsInPrison;
+	}
+
+	public void setTurnsInPrison(int turnsInPrison) {
+		this.turnsInPrison = turnsInPrison;
+	}
+	public void changeTurnsInPrison(int diffTurnsInPrison) {
+		this.turnsInPrison += diffTurnsInPrison;
+	}
+	
 }

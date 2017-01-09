@@ -33,7 +33,7 @@ public class PrisonController {
 	/**
 	 * Method inPrison controls the prison turn.
 	 * @param player Player in prison.
-	 * @return boolean Returns a boolean whether a player bought himself out of the prison or not.
+	 * @return boolean Returns a boolean whether a player can roll after he gets out of prison
 	 */
 	public boolean inPrison(Player player)
 	{
@@ -41,6 +41,12 @@ public class PrisonController {
 		String payOut = "Betal dig ud: 1.000 kr";
 		String rollOut = "Slå dig ud fængslet med terningerne";
 		String input = null;
+		if(player.getTurnsInPrison()>=3){
+			player.setInPrison(false);
+			player.setTurnsInPrison(0);
+			GUI.getUserButtonPressed("Du har nu siddet i fængsel i 3 runder, og bliver derfor sat fri.", "Ok");
+			return true;
+		}
 		
 		if(player.getAccountBalance() > 1000)
 		{
@@ -60,6 +66,7 @@ public class PrisonController {
 		else
 		{
 			int diceSum = mainController.rollDice();
+			player.changeTurnsInPrison(1);
 			if(mainController.checkForExtraTurn())
 			{
 				GUI.getUserButtonPressed("Du slog to ens! Du er nu fri og må slå igen.", "Slå med terningerne");

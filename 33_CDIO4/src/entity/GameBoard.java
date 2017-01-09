@@ -20,7 +20,7 @@ public class GameBoard {
 		}
 	}
 
-	private void addField(String[] information) {
+	public void addField(String[] information) {
 		String fieldType = information[10];
 //		System.out.println(fieldType);
 		switch (fieldType) {

@@ -54,40 +54,10 @@ public class ChanceCardDeck {
 					break;
 				case "MoveThreeSteps": chanceCardDeck[cardNumber] = createMoveThreeSteps(fromInfo);
 				}
-<<<<<<< HEAD
 				cardNumber++;
-=======
-				//If the type is a Movement card, then it saves it in the chanceCards[]
-				if(values[0].equals("Movement")){
-					chanceCards[card] = new Movement(values[0],values[1],Integer.parseInt(values[2]),Integer.parseInt(values[3]),Integer.parseInt(values[4]),Integer.parseInt(values[5]),Integer.parseInt(values[6]),Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
-					card++;
-				}
-				//If the type is a Party card, then it saves it in the chanceCards[]
-				if(values[0]=="Party"){
-					chanceCards[card] = new Party(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
-				}
-				//If the type is a Payment card, then it saves it in the chanceCards[]
-				if(values[0]=="Payment"){
-					chanceCards[card] = new Payment(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
-				}
-				//If the type is a Prison card, then it saves it in the chanceCards[]
-				if(values[0]=="Prison"){
-					chanceCards[card] = new Prison(values[0],values[1],Boolean.parseBoolean(values[7]),Boolean.parseBoolean(values[8]));
-					card++;
-				}
-				//If the type is a TaxCard card, then it saves it in the chanceCards[]
-				if(values[0]=="TaxCard"){
-					chanceCards[card] = new TaxCard(values[0],values[1],Integer.parseInt(values[2]));
-					card++;
-				}
-				
 
-
->>>>>>> refs/heads/Develop
 			}
-			shuffleDeck();
+			shuffle();
 			inputStream.close();
 		} 
 		catch (FileNotFoundException e) 

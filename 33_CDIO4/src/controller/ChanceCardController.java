@@ -67,6 +67,7 @@ public class ChanceCardController {
 		if (player.getFortune() <= 15000)
 		{
 			player.changeAccountBalance(grant.getAmount());
+			GUI.setBalance(player.getName(), player.getAccountBalance());
 		}
 	}
 	
@@ -78,75 +79,6 @@ public class ChanceCardController {
 		main.playerTurnDecision();
 	}
 	
-<<<<<<< HEAD
-=======
-	/**
-	 * The method drawPrison is invoked if the drawn card is of the type Prison.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawPrison(ChanceCard currentCard)
-	{
-		Prison card = ((Prison)currentCard);
-	}
-	
-
-	/**
-	 * The method drawTaxCard is invoked if the drawn card is of the type TaxCard.
-	 * @param currentCard The currently drawn card.
-	 */
-	public void drawTaxCard(ChanceCard currentCard)
-	{
-		TaxCard card = ((TaxCard)currentCard);
-	}
-
-	/**
-	 * The method movePlayerPrison sends the player to prison.
-	 */
-	public void movePlayerPrison()
-	{
-		prison.sentToPrison(tempPlayer);
-	}
-	/**
-	 * The method movePlayerSpecificField moves the player to a specific field.
-	 * @param moveToField The field the player is moved to.
-	 */
-	public void movePlayerSpecificField(int moveToField)
-	{
-		tempPlayer.setPosition(moveToField);
-	}
-	
-	public void movePlayer(int move)
-	{
-		tempPlayer.setPosition(tempPlayer.getPosition() + move);
-	}
-	/**
-	 * The method movePlayerSeveralSpecificField is capable of moving a player to a number of specified fields.
-	 * This is needed for when a player has to move to the nearest shipping company
-	 * @param field1 Specific ownable field 1.
-	 * @param field2 Specific ownable field 2.
-	 * @param field3 Specific ownable field 3.
-	 * @param field4 Specific ownable field 4.
-	 * @param rent checks if the rent has to be double
-	 */
-	public void movePlayerSeveralSpecificField(int field1, int field2, int field3, int field4, boolean rent)
-	{
-		int[] fields = {tempPlayer.getPosition()-field1,
-						tempPlayer.getPosition()-field2,
-						tempPlayer.getPosition()-field3,
-						tempPlayer.getPosition()-field4};
-		
-		int temp = 15;
-		for(int i = 0; i < fields.length ; i++)
-		{
-			if(fields[i]>0)
-			{
-				temp = Math.min(fields[i], temp);
-			}
-		}
-		//if(rent==true){tempPlayer.} Der skal laves double rent hvis true!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		tempPlayer.setPosition(temp);
-	}
 
 
->>>>>>> refs/heads/Develop
 }

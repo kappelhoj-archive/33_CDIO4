@@ -108,6 +108,7 @@ public class BankController
 	public void playerHasLost (Player player)
 	{
 		Ownable[] loseAllFields;
+		player.setHasLost(true);
 
 		if (player.getFields()!=null)
 		{

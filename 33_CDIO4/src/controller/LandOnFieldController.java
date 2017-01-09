@@ -13,8 +13,7 @@ public class LandOnFieldController {
 	private BankController bankController;
 	private GameBoard gameBoard;
 	private boolean doubleRent = false;
-
-/**
+	/**
 	 * FieldController constructor.
 	 * 
 	 * @param prisonController
@@ -22,10 +21,10 @@ public class LandOnFieldController {
 	 * @param mainController
 	 *            MainController.
 	 */
-	public LandOnFieldController(PrisonController pC, MainController mC) {
+	public LandOnFieldController(PrisonController prisonController, MainController mainController) {
 		bankController = new BankController();
-		this.prisonController = new PrisonController(mC);
-		this.chanceCardController = new ChanceCardController(prisonController, bankController, mC);
+		this.prisonController = new PrisonController(mainController);
+		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);
 		this.gameBoard = new GameBoard();
 	}
 
@@ -115,31 +114,39 @@ public class LandOnFieldController {
 	 *            The player to land on the tax field.
 	 */
 	public void landOnTax(Field field, Player player) {
-		int rent = 0;
-		Tax tax = (Tax) field;
+		int rentAmount = 0;
+		Tax tax = (Tax) (field);
 		if (tax.getHasTaxRate() == true) {
-			// The rent to be paid
-			rent = (int) (0.1 * player.getFortune());
-			boolean percent = GUI.getUserLeftButtonPressed("Du skal betale indkomstskat.",
-					"Betal 10% (" + rent + " kr.)", "Betal 4.000 kr.");
-			if (percent) {
-				player.changeAccountBalance(-rent); // Subtracts the rent from
-													// the balance of the
-													// player.
+
+			// The tax rate rent to be paid.
+			int rentTaxRate = (int) (0.1 * player.getFortune());
+			
+			// The rent amount to be paid.
+			rentAmount = 4000;
+
+			boolean payTaxRate = GUI.getUserLeftButtonPressed("Du skal betale indkomstskat.",
+					"Betal 10% (" + rentTaxRate + " kr.)", "Betal 4.000 kr.");
+			if (payTaxRate) {
+				// Subtract the tax rate rent from the player's balance.
+				if(bankController.playerAffordPayment(player, rentTaxRate))
+					player.changeAccountBalance(-rentTaxRate);
+				
 			} else {
-				rent = 4000; // The rent to be paid.
-				player.changeAccountBalance(-rent); // Substracts the rent from
-													// the balance of the
-													// player.
+				// Subtract the rent amount from the player's balance.
+				if(bankController.playerAffordPayment(player, rentAmount))
+					player.changeAccountBalance(-rentAmount);
 			}
 		} else {
 			GUI.getUserButtonPressed("Du skal betale ekstraordinærstatsskat.", "Betal 2.000 kr.");
-			rent = 2000; // The rent to be paid.
-			player.changeAccountBalance(-rent); // Subtracts the rent from the
-												// balance of the player.
+			
+			// The rent amount to be paid.
+			rentAmount = 2000;
+			
+			// Subtract the rent amount from the player's balance.
+			if(bankController.playerAffordPayment(player, rentAmount))
+				player.changeAccountBalance(-rentAmount);
 		}
 		GUI.setBalance(player.getName(), player.getAccountBalance());
-
 	}
 
 	/**
@@ -171,6 +178,7 @@ public class LandOnFieldController {
 		GUI.getUserButtonPressed("Du landte på prøv lykken.", "Træk et kort");
 		chanceCardController.draw(player);
 	}
+	
 	public void setDoubleRent(boolean doubleRent){
 		this.doubleRent=doubleRent;
 	}

@@ -7,14 +7,23 @@ import entity.GameBoard;
 
 public class LandOnFieldController {
 
+	// Instance variables
 	private PrisonController prisonController;
 	private ChanceCardController chanceCardController;
 	private BankController bankController;
 	private GameBoard gameBoard;
 
-	public LandOnFieldController(PrisonController pC, MainController mC) {
+	/**
+	 * FieldController constructor.
+	 * 
+	 * @param prisonController
+	 *            PrisonController
+	 * @param mainController
+	 *            MainController.
+	 */
+	public LandOnFieldController(PrisonController prisonController, MainController mainController) {
 		bankController = new BankController();
-		this.prisonController = new PrisonController(mC);
+		this.prisonController = new PrisonController(mainController);
 		this.chanceCardController = new ChanceCardController(prisonController, bankController);
 		this.gameBoard = new GameBoard();
 	}
@@ -23,10 +32,10 @@ public class LandOnFieldController {
 	 * Method landOnField: Decides what has to be done when a player lands on a
 	 * field.
 	 * 
-	 * @param field
-	 *            The field the player landed on.
 	 * @param player
 	 *            The player to land on the field.
+	 * @param diceSum
+	 *            The dice sum of the player's dice roll.
 	 */
 	public void landOnField(Player player, int diceSum) {
 
@@ -58,11 +67,14 @@ public class LandOnFieldController {
 	 *            The field the player landed on.
 	 * @param player
 	 *            The player to land on the field.
+	 * @param diceSum
+	 *            The dice sum of the player's dice roll
 	 */
 	public void landOnOwnable(Field field, Player player, int diceSum) {
 		Ownable ownable = (Ownable) field;
 		if (!ownable.isFieldOwned()) {
-			boolean bought = GUI.getUserLeftButtonPressed("Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
+			boolean bought = GUI.getUserLeftButtonPressed(
+					"Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
 			if (bought) {
 				if (player.buyField(ownable)) {
 					GUI.setOwner(player.getPosition(), player.getName());
@@ -78,7 +90,7 @@ public class LandOnFieldController {
 					brewery.setDiceSum(diceSum);
 				}
 				GUI.getUserButtonPressed(
-					"Du skal betale " + ownable.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
+						"Du skal betale " + ownable.getRent() + " til " + ownable.getOwner().getName() + ".", "Ok");
 				player.payRent(ownable.getOwner(), ownable.getRent());
 				GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
 				GUI.setBalance(player.getName(), player.getAccountBalance());
@@ -96,30 +108,35 @@ public class LandOnFieldController {
 	 *            The player to land on the tax field.
 	 */
 	public void landOnTax(Field field, Player player) {
-		int rent = 0;
+		int rentAmount = 0;
 		Tax tax = (Tax) (field);
 		if (tax.getHasTaxRate() == true) {
-			// The rent to be paid
-			rent = (int)(0.1 * player.getFortune());
-			boolean percent = GUI.getUserLeftButtonPressed("Du skal betale indkomstskat.", "Betal 10% (" + rent + " kr.)", "Betal 4.000 kr.");
-			if (percent) {
-				player.changeAccountBalance(-rent); // Subtracts the rent from
-													// the balance of the
-													// player.
+
+			// The tax rate rent to be paid.
+			int rentTaxRate = (int) (0.1 * player.getFortune());
+			
+			// The rent amount to be paid.
+			rentAmount = 4000;
+
+			boolean payTaxRate = GUI.getUserLeftButtonPressed("Du skal betale indkomstskat.",
+					"Betal 10% (" + rentTaxRate + " kr.)", "Betal 4.000 kr.");
+			if (payTaxRate) {
+				// Subtract the tax rate rent from the player's balance.
+				player.changeAccountBalance(-rentTaxRate);
 			} else {
-				rent = 4000; // The rent to be paid.
-				player.changeAccountBalance(-rent); // Substracts the rent from
-													// the balance of the
-													// player.
+				// Subtract the rent amount from the player's balance.
+				player.changeAccountBalance(-rentAmount);
 			}
 		} else {
 			GUI.getUserButtonPressed("Du skal betale ekstraordinærstatsskat.", "Betal 2.000 kr.");
-			rent = 2000; // The rent to be paid.
-			player.changeAccountBalance(-rent); // Subtracts the rent from the
-												// balance of the player.
+			
+			// The rent amount to be paid.
+			rentAmount = 2000; // The rent to be paid.
+			
+			// Subtract the rent amount from the player's balance.
+			player.changeAccountBalance(-rentAmount);
 		}
 		GUI.setBalance(player.getName(), player.getAccountBalance());
-
 	}
 
 	/**
@@ -134,9 +151,8 @@ public class LandOnFieldController {
 	 *            The player who landed on the neutral field.
 	 */
 	public void landOnNeutral(Player player) {
-		int isPrison = 31;
-		if (player.getPosition() == isPrison) {
-
+		int prisonFieldNum = 31;
+		if (player.getPosition() == prisonFieldNum) {
 			prisonController.sendToPrison(player);
 		}
 	}

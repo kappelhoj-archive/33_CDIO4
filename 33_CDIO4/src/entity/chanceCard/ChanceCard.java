@@ -6,7 +6,11 @@ public abstract class ChanceCard {
 	private String type;
 	private String description;
 
-	
+	/**
+	 * Constructor: Constructs a ChanceCard
+	 * @param type The type of the ChanceCard
+	 * @param description The description of the ChanceCard
+	 */
 	public ChanceCard(String type, String description)
 	{
 		this.type = type;

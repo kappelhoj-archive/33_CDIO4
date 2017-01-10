@@ -134,7 +134,8 @@ public class ChanceCardDeck
 	 */
 	private TaxCard createTaxCard(String[] i) 
 	{
-		TaxCard taxCard = new TaxCard(i[0], i[1], toInt(i[2]));
+		String[] stringArray = {i[2], i[3]};
+		TaxCard taxCard = new TaxCard(i[0], i[1], toIntArray(stringArray));
 		return taxCard;
 	}
 
@@ -167,7 +168,7 @@ public class ChanceCardDeck
 	 */
 	private Prison createPrison(String[] i) 
 	{
-		Prison prison = new Prison(i[0], i[1], toBoolean(i[7]), toBoolean(i[8]));
+		Prison prison = new Prison(i[0], i[1]);
 		return prison;
 	}
 

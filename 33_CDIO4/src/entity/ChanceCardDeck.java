@@ -7,17 +7,16 @@ import java.util.Scanner;
 
 import entity.chanceCard.*;
 
-public class ChanceCardDeck {
-	private int num = 0;
-
+public class ChanceCardDeck 
+{
+	//Instance variables
 	private ChanceCard[] chanceCardDeck;
 
 	/**
-	 * Object ChanceCardDeck creates a deck of Chance cards.
-	 * 
+	 * Constructor: Constructs a chanceCard deck.
 	 */
-	public ChanceCardDeck() {
-
+	public ChanceCardDeck() 
+	{
 		chanceCardDeck = new ChanceCard[37];
 		int cardNumber = 0;
 
@@ -80,13 +79,14 @@ public class ChanceCardDeck {
 	/**
 	 * Method draw: Returns the first card in the deck and afterwards puts it in
 	 * the bottom of the deck
-	 * 
 	 * @return The first card of the deck.
 	 */
-	public ChanceCard draw() {
+	public ChanceCard draw() 
+	{
 		ChanceCard first = chanceCardDeck[0];
 
-		for (int i = 0; i < chanceCardDeck.length - 1; i++) {
+		for (int i = 0; i < chanceCardDeck.length - 1; i++) 
+		{
 			chanceCardDeck[i] = chanceCardDeck[i + 1];
 		}
 
@@ -97,8 +97,10 @@ public class ChanceCardDeck {
 	/**
 	 * Method shuffle: Shuffles the chance card deck.
 	 */
-	public void shuffle() {
-		for (int i = 0; i < 10000; i++) {
+	public void shuffle() 
+	{
+		for (int i = 0; i < 10000; i++) 
+		{
 			swapTwoCards();
 		}
 	}
@@ -117,9 +119,7 @@ public class ChanceCardDeck {
 
 	/**
 	 * Method creatGrant: Returns a Grant chanceCard from the given information.
-	 * 
-	 * @param information
-	 *            The information given.
+	 * @param i The information given.
 	 * @return The Grant chanceCard.
 	 */
 	private Grant createGrant(String[] i) {
@@ -127,56 +127,119 @@ public class ChanceCardDeck {
 		return grant;
 	}
 
-	private TaxCard createTaxCard(String[] i) {
+	/**
+	 * Method createTaxCard: Returns a Tax chanceCard from the given information.
+	 * @param i The information given.
+	 * @return The Tax chanceCard.
+	 */
+	private TaxCard createTaxCard(String[] i) 
+	{
 		TaxCard taxCard = new TaxCard(i[0], i[1], toInt(i[2]));
 		return taxCard;
 	}
 
-	private Payment createPayment(String[] i) {
+	/**
+	 * Method createPayment: Returns a Payment chanceCard from the given information.
+	 * @param i The information given.
+	 * @return The Payment chanceCard.
+	 */
+	private Payment createPayment(String[] i) 
+	{
 		Payment payment = new Payment(i[0], i[1], toInt(i[2]));
 		return payment;
 	}
 
-	private Party createParty(String[] i) {
+	/**
+	 * Method createParty: Returns a Party chanceCard from the given information.
+	 * @param i The information given.
+	 * @return The Party chanceCard.
+	 */
+	private Party createParty(String[] i) 
+	{
 		Party party = new Party(i[0], i[1], toInt(i[2]));
 		return party;
 	}
 
-	private Prison createPrison(String[] i) {
+	/**
+	 * Method createPrison: Returns a Prison chanceCard from the given information.
+	 * @param i The information given.
+	 * @return The Prison chanceCard.
+	 */
+	private Prison createPrison(String[] i) 
+	{
 		Prison prison = new Prison(i[0], i[1], toBoolean(i[7]), toBoolean(i[8]));
 		return prison;
 	}
 
-	private MoveThreeSteps createMoveThreeSteps(String[] i) {
+	/**
+	 * Method createMoveThreeSteps: Returns a MoveThreeSteps chanceCard from the given information.
+	 * @param i The given information.
+	 * @return The MoveThreeSteps chanceCard.
+	 */
+	private MoveThreeSteps createMoveThreeSteps(String[] i) 
+	{
 		MoveThreeSteps moveThreeSteps = new MoveThreeSteps(i[0], i[1], toInt(i[2]));
 		return moveThreeSteps;
 	}
 
-	private MoveToField createMoveToField(String[] i) {
+	/**
+	 * Method createMoveToField: Returns a MoveToField chanceCard from the given information.
+	 * @param i The given information.
+	 * @return The MoveToField chanceCard.
+	 */
+	private MoveToField createMoveToField(String[] i) 
+	{
 		MoveToField moveToField = new MoveToField(i[0], i[1], toInt(i[3]));
 		return moveToField;
 	}
 
-	private MoveToPrison createMoveToPrison(String[] i) {
+	/**
+	 * Method createMoveToPrison: Returns a MoveToPrison chanceCard from the given information.
+	 * @param i The given information.
+	 * @return The MoveToPrison chanceCard.
+	 */
+	private MoveToPrison createMoveToPrison(String[] i) 
+	{
 		MoveToPrison moveToPrison = new MoveToPrison(i[0], i[1]);
 		return moveToPrison;
 	}
 
-	private MoveToNearestShipping createMoveToNearestShipping(String[] i) {
+	/**
+	 * Method createMoveToNearestShipping: Returns a MoveToNearestShipping chanceCard from the given information.
+	 * @param i The given information.
+	 * @return The MoveToNearestShipping chanceCard.
+	 */
+	private MoveToNearestShipping createMoveToNearestShipping(String[] i) 
+	{
 		String[] stringArray = { i[2], i[3], i[4], i[5] };
 		MoveToNearestShipping moveToNearestShipping = new MoveToNearestShipping(i[0], i[1], toIntArray(stringArray),
 				toBoolean(i[6]));
 		return moveToNearestShipping;
 	}
 
+	/**
+	 * Method toInt: Converts a string to an integer.
+	 * @param s The given String
+	 * @return The returned integer.
+	 */
 	private int toInt(String s) {
 		return Integer.parseInt(s);
 	}
 
+	/**
+	 * Method toBoolean: Converts a string to a boolean.
+	 * @param s The given String.
+	 * @return The returned boolean.
+	 */
 	private boolean toBoolean(String s) {
 		return Boolean.parseBoolean(s);
 	}
 
+	/**
+	 * Method toIntArray: Converts a String array to an integer array.
+	 * @param s The String array.
+	 * @return The returned integer array.
+	 */
 	private int[] toIntArray(String... s) {
 		int[] intArray = new int[s.length];
 		for (int i = 0; i < s.length; i++) {

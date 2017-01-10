@@ -7,13 +7,16 @@ import entity.field.*;
 
 public class PropertyController {
 
+	// Instance variables
 	private int houses;
 	private int hotels;
 
+	/**
+	 * PropertyController constructor
+	 */
 	public PropertyController() {
 		this.houses = 32;
 		this.hotels = 12;
-		
 	}
 
 	/**

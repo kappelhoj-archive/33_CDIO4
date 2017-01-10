@@ -11,8 +11,8 @@ public class TestModeController {
 	private boolean testModeStatus;
 	private String testingModeMessage = "*****DU ER I TESTING MODE*****\n";
 
-	public TestModeController(String testModeStatus) {
-		if (testModeStatus.toLowerCase().equals("testmode")) {
+	public TestModeController(boolean testmodeOn) {
+		if (testmodeOn) {
 			activateTestMode();
 		} else {
 			endTestMode();

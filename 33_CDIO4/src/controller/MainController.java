@@ -174,7 +174,7 @@ public class MainController {
 	 * Method givePlayer4000: Gives the player 4000. Should be used when they
 	 * pass the start field.
 	 */
-	private void givePlayer4000() {
+	public void givePlayer4000() {
 		players[turn].changeAccountBalance(4000);
 		GUI.setBalance(players[turn].getName(), players[turn].getAccountBalance());
 		GUI.getUserButtonPressed("Du passerede start og modtager 4.000.", "Ok");
@@ -205,6 +205,7 @@ public class MainController {
 		dice.shakeCup();
 		// Set the dice on the GUI
 		GUI.setDice(dice.getDiceValue()[0], dice.getDiceValue()[1]);
+		//GUI.setDice(faceValue1, x1, y1, faceValue2, x2, y2);
 
 		// Only used if testing is active.
 		if (testMode.isActive()) {
@@ -243,9 +244,10 @@ public class MainController {
 		} else if (players[turn].getPosition() + diceSum < 1) {
 			players[turn].setPosition(40 + diceSum + players[turn].getPosition());
 		} else {
-			givePlayer4000();
 			int difference = 40 - players[turn].getPosition();
 			players[turn].setPosition(diceSum - difference);
+			movePlayerOnGUI();
+			givePlayer4000();
 		}
 		// Moves the player to his new position on the GUI.
 		movePlayerOnGUI();

@@ -34,7 +34,7 @@ public class ChanceCardController {
 
 		String type = currentCard.getType();
 		GUI.displayChanceCard(currentCard.getDescription());
-
+		GUI.getUserButtonPressed("Du har trukket et Prøv-lykken kort \n" + current.getDescription(),"Ok");
 		switch (type) { 
 		case "Grant": drawGrant(currentCard, player);
 			break;

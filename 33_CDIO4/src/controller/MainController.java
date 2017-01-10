@@ -97,6 +97,10 @@ public class MainController {
 		// Tell the player it is his turn on the GUI.
 		if (numExtraTurn < 1)
 			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
+		else {
+			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens "
+					+ numExtraTurn + " gange.", "Slå med terninger");
+		}
 
 		// Roll the dice.
 		int diceSum = rollDice();
@@ -127,16 +131,15 @@ public class MainController {
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();
-			if(checkForWinner() != null)
-			{
+			if (checkForWinner() != null) {
 				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet", "Sweet");
 				GUI.close();
 				break;
 			}
-			
+
 			do {
 				playTurn();
-			} while (extraTurn&&!players[turn].getHasLost());
+			} while (extraTurn && !players[turn].getHasLost());
 
 		}
 	}
@@ -171,7 +174,7 @@ public class MainController {
 	 * Method givePlayer4000: Gives the player 4000. Should be used when they
 	 * pass the start field.
 	 */
-	private void givePlayer4000() {
+	public void givePlayer4000() {
 		players[turn].changeAccountBalance(4000);
 		GUI.setBalance(players[turn].getName(), players[turn].getAccountBalance());
 		GUI.getUserButtonPressed("Du passerede start og modtager 4.000.", "Ok");
@@ -202,6 +205,7 @@ public class MainController {
 		dice.shakeCup();
 		// Set the dice on the GUI
 		GUI.setDice(dice.getDiceValue()[0], dice.getDiceValue()[1]);
+		//GUI.setDice(faceValue1, x1, y1, faceValue2, x2, y2);
 
 		// Only used if testing is active.
 		if (testMode.isActive()) {
@@ -235,14 +239,15 @@ public class MainController {
 
 		// Check if the player can move to the next field. If not move him to 1
 		// and continue moving forward.
-		if (players[turn].getPosition() + diceSum <= 40&&players[turn].getPosition() + diceSum>0) {
+		if (players[turn].getPosition() + diceSum <= 40 && players[turn].getPosition() + diceSum > 0) {
 			players[turn].setPosition(players[turn].getPosition() + diceSum);
 		} else if (players[turn].getPosition() + diceSum < 1) {
 			players[turn].setPosition(40 + diceSum + players[turn].getPosition());
 		} else {
-			givePlayer4000();
 			int difference = 40 - players[turn].getPosition();
 			players[turn].setPosition(diceSum - difference);
+			movePlayerOnGUI();
+			givePlayer4000();
 		}
 		// Moves the player to his new position on the GUI.
 		movePlayerOnGUI();
@@ -256,7 +261,7 @@ public class MainController {
 		// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
-		if(players[turn].getInPrison()||players[turn].getHasLost()){
+		if (players[turn].getInPrison() || players[turn].getHasLost()) {
 			return;
 		}
 
@@ -312,24 +317,24 @@ public class MainController {
 		output[output.length - 1] = "Gå tilbage";
 		return output;
 	}
-	
+
 	/**
 	 * Method that checks if all players except one has lost the game.
+	 * 
 	 * @return Player winner
 	 */
-		public Player checkForWinner() {
-			Player winningPlayer = null;
-			for (int i = 0; i < players.length; i++) {
-				if (!players[i].getHasLost())
-					if (winningPlayer == null)
-						winningPlayer = players[i];
-					else
-						return null;
+	public Player checkForWinner() {
+		Player winningPlayer = null;
+		for (int i = 0; i < players.length; i++) {
+			if (!players[i].getHasLost())
+				if (winningPlayer == null)
+					winningPlayer = players[i];
+				else
+					return null;
 
-			}
-			return winningPlayer;
 		}
-
+		return winningPlayer;
+	}
 
 	public LandOnFieldController getLandOnFieldController() {
 		return fieldController;

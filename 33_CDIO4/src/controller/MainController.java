@@ -61,8 +61,9 @@ public class MainController {
 		prisonController = new PrisonController(this);
 
 		// Construct a field controller
-		fieldController = new LandOnFieldController(prisonController, this);
+		
 		propertyController = new PropertyController();
+		fieldController = new LandOnFieldController(prisonController, this,propertyController);
 	}
 
 	/**

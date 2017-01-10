@@ -22,8 +22,8 @@ public class LandOnFieldController {
 	 * @param mainController
 	 *            MainController.
 	 */
-	public LandOnFieldController(PrisonController prisonController, MainController mainController) {
-		bankController = new BankController();
+	public LandOnFieldController(PrisonController prisonController, MainController mainController,PropertyController houseCon) {
+		bankController = new BankController(houseCon);
 		this.prisonController = new PrisonController(mainController);
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);
 		this.gameBoard = new GameBoard();

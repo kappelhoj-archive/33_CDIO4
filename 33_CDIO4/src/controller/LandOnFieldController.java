@@ -22,8 +22,8 @@ public class LandOnFieldController {
 	 * @param mainController
 	 *            MainController.
 	 */
-	public LandOnFieldController(PrisonController prisonController, MainController mainController) {
-		bankController = new BankController();
+	public LandOnFieldController(PrisonController prisonController, MainController mainController,PropertyController houseCon) {
+		bankController = new BankController(houseCon);
 		this.prisonController = new PrisonController(mainController);
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);
 		this.gameBoard = new GameBoard();
@@ -97,7 +97,7 @@ public class LandOnFieldController {
 				if (doubleRent == true) {
 					rent = rent * 2;
 				}
-				GUI.getUserButtonPressed("Du skal betale " + rent + " til " + ownable.getOwner().getName() + ".", "Ok");
+				GUI.getUserButtonPressed("Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName() + ", og du skal betale en rente på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
 				
 				// 
 				if(bankController.playerAffordPayment(player, rent))

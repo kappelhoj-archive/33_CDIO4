@@ -252,8 +252,11 @@ public class Player {
 	 */
 	public int getStreetsOwned(String colour) {
 		int numSameColour = 0;
+		if (fields==null){
+			return numSameColour;
+		}
 		for (int i = 0; i < fields.length; i++) {
-			if ((fields[i]).getType().equals("Street")) {
+			if ((fields[i]).getType().equals("Ejendom")) {
 				Street field_i = (Street) (fields[i]);
 				if ("Ejendom".equals(fields[i].getType()) && colour.equals(field_i.getColour())) {
 					numSameColour++;
@@ -299,9 +302,10 @@ public class Player {
 	public int getFortune() {
 		int fortune = getAccountBalance();
 		if (fields != null) {
-			for (int i = 0; 0 < fields.length; i++) {
+			for (int i = 0; i < fields.length; i++) {
+				
 				fortune = fortune + fields[i].getValue();
-				if (fields[i].getType().equals("Street")) {
+				if (fields[i].getType().equals("Ejendom")) {
 					fortune = fortune + ((Street) fields[i]).getHousePrice() * ((Street) fields[i]).getNumbOfHouses();
 				}
 			}

@@ -252,6 +252,16 @@ public class MainController {
 		// Moves the player to his new position on the GUI.
 		movePlayerOnGUI();
 	}
+	
+	public void movePlayerTo(int newPos){
+		int currentPos=players[turn].getPosition();
+		players[turn].setPosition(newPos);
+		if(newPos<currentPos){
+			givePlayer4000();
+		}
+		movePlayerOnGUI();
+		
+	}
 
 	/**
 	 * Method playerTurnDecision: Gives the player some options of what he wants

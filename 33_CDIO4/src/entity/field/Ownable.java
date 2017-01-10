@@ -111,6 +111,10 @@ public abstract class Ownable extends Field {
 		return getPrice();
 	}
 	
+	/**
+	 * Method getColour: This method is not used but makes other classes simpler.
+	 * @return null
+	 */
 	public String getColour()
 	{
 		return null;

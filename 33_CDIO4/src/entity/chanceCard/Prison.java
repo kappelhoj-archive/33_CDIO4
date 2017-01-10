@@ -15,4 +15,9 @@ public class Prison extends ChanceCard{
 		super(type,description);
 		this.prisonStatus = false;
 	}
+	
+	public boolean getPrisonStatus()
+	{
+		return prisonStatus;
+	}
 }

@@ -6,13 +6,22 @@ import java.util.Scanner;
  
 public class Reader {
 	
+	//Instance variables
 	File file;
 	
+	/**
+	 * Constructor: Constructs a Reader.
+	 * @param fileName The file to be read.
+	 */
 	public Reader(String fileName)
 	{
 		file = new File(fileName);
 	}
 	
+	/**
+	 * Method readFile: Returns the information in the file as a 2-dimensional String array.
+	 * @return The 2-dimensional String array.
+	 */
 	public String[][] readFile()
 	{
 		String[][] fileData = new String[40][12];
@@ -31,6 +40,11 @@ public class Reader {
 		return fileData;
 	}
 	
+	/**
+	 * Method formatFileData: Returns the data without '.'.
+	 * @param fieldData The data to be formatted.
+	 * @return Returns the formatted data.
+	 */
 	public String[][] formatFileData(String[][] fieldData)
 	{
 		String[][] formattedFieldData = new String[fieldData.length][fieldData[1].length];

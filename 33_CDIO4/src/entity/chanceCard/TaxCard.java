@@ -16,4 +16,9 @@ public class TaxCard extends ChanceCard
 		super(type,description);
 		this.taxPrices = taxPrices;
 	}
+	
+	public int[] getTaxPrices()
+	{
+		return taxPrices;
+	}
 }

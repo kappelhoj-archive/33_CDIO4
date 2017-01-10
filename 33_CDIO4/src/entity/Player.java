@@ -1,5 +1,6 @@
 package entity;
 
+import desktop_resources.GUI;
 import entity.field.*;
 
 public class Player {
@@ -14,7 +15,7 @@ public class Player {
 	private int turnsInPrison;
 
 	/**
-	 * Object Player constructor.
+	 * Constructor: Constructs a player.
 	 * 
 	 * @param The
 	 *            name of the player.
@@ -30,7 +31,7 @@ public class Player {
 	}
 
 	/**
-	 * Method payRent The object pays the rent to the owner.
+	 * Method payRent: The object pays the rent to the owner.
 	 * 
 	 * @param owner
 	 *            The owner to be paid.
@@ -53,7 +54,7 @@ public class Player {
 	}
 
 	/**
-	 * Method getPlayerName returns the name of the player.
+	 * Method getPlayerName: Returns the name of the player.
 	 * 
 	 * @return The name of the player.
 	 */
@@ -62,27 +63,27 @@ public class Player {
 	}
 
 	/**
-	 * Method getAccountBalance returns the balance of the player's account.
+	 * Method getAccountBalance: Returns the balance of the player's account.
 	 * 
-	 * @return Returns the account balance value of the player.
+	 * @return The balance of the player's account.
 	 */
 	public int getAccountBalance() {
 		return account.getBalance();
 	}
 
 	/**
-	 * Method changeAccountBalance changes balance of the player's account with
+	 * Method changeAccountBalance: Changes balance of the player's account with
 	 * the parameter value.
 	 * 
-	 * @param The
-	 *            value the balance should be changed with.
+	 * @param value
+	 *            The balance should be changed with.
 	 */
 	public void changeAccountBalance(int value) {
 		account.changeBalance(value);
 	}
 
 	/**
-	 * Method getLost returns the player's lost status.
+	 * Method getLost: Returns the player's lost status.
 	 * 
 	 * @return The player's lost status. If true then the player has lost the
 	 *         game.
@@ -92,7 +93,7 @@ public class Player {
 	}
 
 	/**
-	 * Method setLost sets the player's lost status.
+	 * Method setLost: Sets the player's lost status.
 	 * 
 	 * @param condition
 	 *            The condition to be set. If condition is true then the player
@@ -103,7 +104,7 @@ public class Player {
 	}
 
 	/**
-	 * Method getPrison returns the player's prison status.
+	 * Method getPrison: Returns the player's prison status.
 	 * 
 	 * @return The player's prison status. If true then the player is in prison.
 	 */
@@ -112,7 +113,7 @@ public class Player {
 	}
 
 	/**
-	 * Method setPrison sets the player's prison status.
+	 * Method setPrison: Sets the player's prison status.
 	 * 
 	 * @param condition
 	 *            The condition to be set. If condition is true then the player
@@ -123,9 +124,9 @@ public class Player {
 	}
 
 	/**
-	 * Method getPosition returns the position of the player
+	 * Method getPosition: Returns the position of the player
 	 * 
-	 * @return Returns the position of the player
+	 * @return The position of the player
 	 */
 	public int getPosition() {
 		return position;
@@ -142,16 +143,16 @@ public class Player {
 	}
 
 	/**
-	 * Method getfields returns the fields owned by the player.
+	 * Method getFields: Returns the fields owned by the player.
 	 * 
-	 * @return Returns the fields owned by the player.
+	 * @return The fields owned by the player.
 	 */
 	public Ownable[] getFields() {
 		return fields;
 	}
 
 	/**
-	 * Method setfields sets the fields owned by the player.
+	 * Method setFields: Sets the fields owned by the player.
 	 * 
 	 * @param street
 	 *            The street to be added to the player's street list.
@@ -182,37 +183,42 @@ public class Player {
 	}
 
 	/**
-	 * Method to remove fields from a players property list.
+	 * Method loseFields: Removes a Ownable field from the player's field list.
 	 * 
 	 * @param field
 	 *            The specific field to be removed.
 	 * @param player
 	 *            The player affected by this removal.
 	 */
-	public void loseFields(Ownable field) {
-		if (field.getOwner().equals(this.getHasLost()))
+	public void removeField(Ownable field) {
+		if (field.getOwner().equals(this.getHasLost())) {
 			field.setOwner(null);
-		if (field.getType().equals("Ejendom")) {
-			((Street) field).changeNumbOfHouses(0);
-		}
-		String removedField = field.getName();
 
-		Ownable[] fewerFields = new Ownable[fields.length - 1];
+			String removedField = field.getName();
+			GUI.removeOwner(field.getFieldNumber());
 
-		for (int j = 0; j < fields.length; j++) {
-			if (removedField.equals(fields[j])) {
-				fewerFields[j] = fields[j++];
+			Ownable[] fewerFields = new Ownable[fields.length - 1];
+
+			if (fields.length == 1) {
+				fields = null;
+				return;
 			}
-
-			else {
-				fewerFields[j] = fields[j];
+			for (int j = 0; j < fields.length; j++) {
+				if (removedField.equals(fields[j].getName())) {
+					System.out.println("Du fjernede et felt.");
+					fewerFields[j] = fields[++j];
+				} else {
+					fewerFields[j] = fields[j];
+				}
 			}
+			fields = fewerFields;
 		}
 	}
 
 	/**
 	 * Method getBottlersOwned: Returns the amount of bottler fields owned by
 	 * the player.
+	 * 
 	 * 
 	 * @return The amount of bottler fields owned.
 	 */
@@ -252,7 +258,7 @@ public class Player {
 	 */
 	public int getStreetsOwned(String colour) {
 		int numSameColour = 0;
-		if (fields==null){
+		if (fields == null) {
 			return numSameColour;
 		}
 		for (int i = 0; i < fields.length; i++) {
@@ -267,11 +273,11 @@ public class Player {
 	}
 
 	/**
-	 * Method buyField Lets the player buy a Ownable field.
+	 * Method buyField: Lets the player buy a Ownable field.
 	 * 
 	 * @param player
 	 *            The player to buy the field.
-	 * @return Returns true if the buy succeeded.
+	 * @return True if the buy succeeded.
 	 */
 	public boolean buyField(Field field) {
 		Ownable ownable = (Ownable) (field);
@@ -303,7 +309,7 @@ public class Player {
 		int fortune = getAccountBalance();
 		if (fields != null) {
 			for (int i = 0; i < fields.length; i++) {
-				
+
 				fortune = fortune + fields[i].getValue();
 				if (fields[i].getType().equals("Ejendom")) {
 					fortune = fortune + ((Street) fields[i]).getHousePrice() * ((Street) fields[i]).getNumbOfHouses();
@@ -331,10 +337,12 @@ public class Player {
 	}
 
 	/**
-	 * Method getHousePriceFromColour
+	 * Method getHousePriceFromColour: Returns the house price of a specific
+	 * coloured street.
 	 * 
 	 * @param colour
-	 * @return
+	 *            The colour of the street that you want the house from.
+	 * @return The house price of a specific coloured street.
 	 */
 	public int getHousePriceFromColour(String colour) {
 		int housePrice = 0;
@@ -358,14 +366,32 @@ public class Player {
 		return housePrice;
 	}
 
+	/**
+	 * Method getTurnsInPrison: Returns how many turns the player has been in
+	 * Prison.
+	 * 
+	 * @return The amount of turns the player has been in the prison.
+	 */
 	public int getTurnsInPrison() {
 		return turnsInPrison;
 	}
 
+	/**
+	 * Method setTurnsInPrison: sets the value of the variable turnsInPrison.
+	 * 
+	 * @param turnsInPrison
+	 *            The value to be set.
+	 */
 	public void setTurnsInPrison(int turnsInPrison) {
 		this.turnsInPrison = turnsInPrison;
 	}
 
+	/**
+	 * Method changeTurnsInPrison: Changes the value of the variable
+	 * turnInPrison.
+	 * 
+	 * @param diffTurnsInPrison
+	 */
 	public void changeTurnsInPrison(int diffTurnsInPrison) {
 		this.turnsInPrison += diffTurnsInPrison;
 	}

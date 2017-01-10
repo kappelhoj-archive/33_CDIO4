@@ -4,7 +4,6 @@ import desktop_resources.GUI;
 import entity.field.Field;
 import entity.field.Ownable;
 import entity.field.Street;
-import entity.Account;
 import entity.Player;
 
 public class BankController {
@@ -101,9 +100,10 @@ public class BankController {
 					temp.changeNumbOfHouses(-temp.getNumbOfHouses());
 
 				}
-				player.loseFields(allFields[i]);
+				player.removeField(allFields[i]);
 			}
 		}
+		player.changeAccountBalance(-player.getAccountBalance()-1);
 		GUI.getUserButtonPressed("Du tabte spillet.", "Ok");
 
 	}

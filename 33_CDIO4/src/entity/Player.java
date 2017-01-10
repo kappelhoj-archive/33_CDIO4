@@ -253,9 +253,11 @@ public class Player {
 	public int getStreetsOwned(String colour) {
 		int numSameColour = 0;
 		for (int i = 0; i < fields.length; i++) {
-			Street field_i = (Street) (fields[i]);
-			if ("Ejendom".equals(fields[i].getType()) && colour.equals(field_i.getColour())) {
-				numSameColour++;
+			if ((fields[i]).getType().equals("Street")) {
+				Street field_i = (Street) (fields[i]);
+				if ("Ejendom".equals(fields[i].getType()) && colour.equals(field_i.getColour())) {
+					numSameColour++;
+				}
 			}
 		}
 		return numSameColour;

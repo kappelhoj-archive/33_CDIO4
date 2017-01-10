@@ -281,7 +281,11 @@ public class PropertyController {
 	public void showBuidlingMenu(Player player) {
 		while (true) {
 			String[] options = MainController.addReturnToArray(canBuildOnColourString(player));
-			String answer = GUI.getUserSelection("Hvilken farve ejendom vil du købe huse på?", options);
+			String out="Hvilken farve ejendom vil du købe huse på?";
+			if(options.length==1){
+				out="Du har ikke nogle grunde at købe huse på.";
+			}
+			String answer = GUI.getUserSelection(out, options);
 			if (answer.equals("Gå tilbage")) {
 				return;
 			} 

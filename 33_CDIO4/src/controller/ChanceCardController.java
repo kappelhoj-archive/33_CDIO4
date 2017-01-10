@@ -67,11 +67,14 @@ public class ChanceCardController {
 	{
 		MoveToNearestShipping card = (MoveToNearestShipping) currentCard;
 		int[] shippingPos = card.getShippingPositions();
-
+		int currentPos = player.getPosition();
+		
+		// Sets the position of the player to the first shipping field if you are passed the last shipping field.
 		player.setPosition(shippingPos[0]);
+		// Sets the position of the player to the next shipping field if you haven't passed the last shipping field.
 		for (int i = 0; i < shippingPos.length; i++)
 		{
-			if (shippingPos[i] > player.getPosition()) 
+			if (shippingPos[i] > currentPos) 
 			{
 				player.setPosition(shippingPos[i]);
 				break;
@@ -79,7 +82,11 @@ public class ChanceCardController {
 		}
 		main.getLandOnFieldController().setDoubleRent(card.getDoubleRent());
 		main.movePlayerOnGUI();
-		main.getLandOnFieldController().landOnField(player, 2);
+		if (currentPos > player.getPosition())
+		{
+			main.givePlayer4000();
+		}
+		main.getLandOnFieldController().landOnField(player, 0);
 	}
 
 	/**
@@ -101,9 +108,8 @@ public class ChanceCardController {
 	 */
 	private void drawMoveToField(ChanceCard currentCard, Player player) 
 	{
-		player.setPosition(((MoveToField) currentCard).getMoveTo());
-		main.movePlayerOnGUI();
-		main.getLandOnFieldController().landOnField(player, 2);
+		main.movePlayerTo(((MoveToField) currentCard).getMoveTo());
+		main.getLandOnFieldController().landOnField(player, 0);
 
 	}
 
@@ -132,8 +138,7 @@ public class ChanceCardController {
 	{
 		MoveThreeSteps move = (MoveThreeSteps) currentCard;
 		main.movePlayer(move.getSteps());
-		main.getLandOnFieldController().landOnField(player, main.rollDice());
-		main.playerTurnDecision();
+		main.getLandOnFieldController().landOnField(player, 0);
 	}
 	
 	/**
@@ -143,8 +148,12 @@ public class ChanceCardController {
 	 * @param player The player who draws the chance card.
 	 */
 	private void drawPayment(ChanceCard currentCard, Player player){
+		
+		if (bank.playerAffordPayment(player, ((Payment)currentCard).getAmount()))
+		{
 		player.changeAccountBalance(((Payment)currentCard).getAmount());
 		GUI.setBalance(player.getName(), player.getAccountBalance());
+		}
 	}
 
 }

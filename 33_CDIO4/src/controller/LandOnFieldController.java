@@ -97,7 +97,7 @@ public class LandOnFieldController {
 				if (doubleRent == true) {
 					rent = rent * 2;
 				}
-				GUI.getUserButtonPressed("Du skal betale " + rent + " til " + ownable.getOwner().getName() + ".", "Ok");
+				GUI.getUserButtonPressed("Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName() + ", og du skal betale en rente på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
 				
 				// 
 				if(bankController.playerAffordPayment(player, rent))

@@ -30,8 +30,12 @@ public class MainController {
 	 */
 	public MainController(String[] args) {
 		// Used for testmode only.
-		if (args != null)
-			testMode = new TestModeController(args[0]);
+		if (args.length != 0) {
+			if (args[0].toLowerCase().equals("testmode"))
+				testMode = new TestModeController(true);
+		} else {
+			testMode = new TestModeController(false);
+		}
 
 		// Creates a board that can store all the fields.
 		// board = new GameBoard();
@@ -204,8 +208,8 @@ public class MainController {
 		// Roll the dice.
 		dice.shakeCup();
 		// Set the dice on the GUI
-		GUI.setDice(dice.getDiceValue()[0], dice.getDiceValue()[1]);
-		//GUI.setDice(faceValue1, x1, y1, faceValue2, x2, y2);
+		GUI.setDice(dice.getDiceValue()[0], 2, (int) (2 * (Math.random() - 0.5) + 7), dice.getDiceValue()[1], 3,
+				(int) (2 * (Math.random() - 0.5) + 7));
 
 		// Only used if testing is active.
 		if (testMode.isActive()) {
@@ -252,15 +256,15 @@ public class MainController {
 		// Moves the player to his new position on the GUI.
 		movePlayerOnGUI();
 	}
-	
-	public void movePlayerTo(int newPos){
-		int currentPos=players[turn].getPosition();
+
+	public void movePlayerTo(int newPos) {
+		int currentPos = players[turn].getPosition();
 		players[turn].setPosition(newPos);
-		if(newPos<currentPos){
+		if (newPos < currentPos) {
 			givePlayer4000();
 		}
 		movePlayerOnGUI();
-		
+
 	}
 
 	/**

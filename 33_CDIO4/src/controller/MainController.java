@@ -97,6 +97,9 @@ public class MainController {
 		// Tell the player it is his turn on the GUI.
 		if (numExtraTurn < 1)
 			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
+		else{
+			GUI.getUserButtonPressed(players[turn].getName()+" det er din tur igen.", "Slå med terninger");
+		}
 
 		// Roll the dice.
 		int diceSum = rollDice();

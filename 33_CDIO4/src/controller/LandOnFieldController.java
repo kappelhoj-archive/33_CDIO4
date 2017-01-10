@@ -15,15 +15,13 @@ public class LandOnFieldController {
 	private boolean doubleRent = false;
 	
 	/**
-	 * FieldController constructor.
-	 * 
-	 * @param prisonController
-	 *            PrisonController
-	 * @param mainController
-	 *            MainController.
+	 * Constructor: Constructs a LandOnFieldController
+	 * @param prisonController The prisonController.
+	 * @param mainController The mainController.
+	 * @param propertyController The PropertyController. 
 	 */
-	public LandOnFieldController(PrisonController prisonController, MainController mainController,PropertyController houseCon) {
-		bankController = new BankController(houseCon);
+	public LandOnFieldController(PrisonController prisonController, MainController mainController,PropertyController propertyController) {
+		bankController = new BankController(propertyController);
 		this.prisonController = new PrisonController(mainController);
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);
 		this.gameBoard = new GameBoard();
@@ -32,11 +30,8 @@ public class LandOnFieldController {
 	/**
 	 * Method landOnField: Decides what has to be done when a player lands on a
 	 * field.
-	 * 
-	 * @param player
-	 *            The player to land on the field.
-	 * @param diceSum
-	 *            The dice sum of the player's dice roll.
+	 * @param player The player to land on the field.
+	 * @param diceSum The dice sum of the player's dice roll.
 	 */
 	public void landOnField(Player player, int diceSum) {
 
@@ -185,8 +180,12 @@ public class LandOnFieldController {
 		chanceCardController.draw(player);
 	}
 	
+	/**
+	 * Method setDoubleRent: Sets the value of doubleRent.
+	 * @param doubleRent The value to be set.
+	 */
 	public void setDoubleRent(boolean doubleRent){
-		this.doubleRent=doubleRent;
+		this.doubleRent = doubleRent;
 	}
 
 	public GameBoard TESTgetGameBoard() {

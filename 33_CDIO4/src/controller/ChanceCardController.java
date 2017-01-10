@@ -41,6 +41,7 @@ public class ChanceCardController {
 		System.out.println(type);
 		System.out.println(currentCard.getDescription());
 		GUI.displayChanceCard(currentCard.getDescription());
+		GUI.getUserButtonPressed(null, "fortsæt");
 
 		switch (type) { 
 		case "Grant":

@@ -1,6 +1,7 @@
 package controller;
 
 import desktop_resources.GUI;
+import entity.field.Field;
 import entity.field.Ownable;
 import entity.field.Street;
 import entity.Account;
@@ -36,14 +37,14 @@ public class BankController {
 			} else {
 				housesCon.changeHouses(1);
 			}
-			
+
 			street.changeNumbOfHouses(-1);
 			player.changeAccountBalance(street.getHousePrice() / 2);
 			GUI.getUserButtonPressed(
 					"Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice() / 2 + " kr.", "Ok");
 		}
 	}
-	
+
 	public void sellField(Player player, Ownable field)
 	{
 		player.changeAccountBalance(field.getPrice()/2);
@@ -108,8 +109,27 @@ public class BankController {
 	}
 
 	public boolean handleDebt(Player player, int debt) {
-		boolean whatever = false;
-		if (whatever) {
+		if(player.getFortune() > debt)
+		{
+			final String SELLFIELD = "Sælg grund";
+			final String SELLHOUSE = "Sælg hus";
+			String userSelection = GUI.getUserSelection("Du har ikke råd til at betale din gæld, hvad vil du gøre?", SELLFIELD, SELLHOUSE);
+			Ownable[] ownedFields = player.getFields();
+			String[] ownedFieldsNames = new String[ownedFields.length];
+			
+			
+			for (int i = 0; i < ownedFields.length; i++)
+			{
+				ownedFieldsNames[i] = ownedFields[i].getName();
+			}
+
+			switch(userSelection)
+			{
+			case SELLFIELD: GUI.getUserSelection("Hvilken grund vil du sælge?", ownedFieldsNames);
+			break;
+			case SELLHOUSE: GUI.getUserSelection("På hvilken grund vil du sælge et hus?", streetsWithMostHouses(ownedFields));
+			break;
+			}
 			return true;
 		}
 
@@ -117,5 +137,62 @@ public class BankController {
 			playerHasLost(player);
 			return false;
 		}
+	}
+	
+	
+	///////////////////////////
+	// Salg af huse
+	//////////////////////////
+	
+	private int maximum(int[] numbers) {
+		//Set an abretary high value
+		int max = 0;
+		
+		for(int i = 0; i < numbers.length; i++)
+		{
+			max = Math.max(max, numbers[i]);
+		}
+		return max;
+	}
+	
+	private String[] streetsWithMostHouses(Ownable[] streets) {
+		
+		Street[] streetsArr = (Street[])streets;
+		//An array to hold the amount of houses on the different streets.
+		int[] houses = new int[3];
+		String[] streetNames = new String[3];
+		
+		for(int k = 0; k < streetsArr.length; k++)
+		{
+			houses[k] = streetsArr[k].getNumbOfHouses();
+			streetNames[k] = streetsArr[k].getName();
+		}
+		
+		// Finds which street has the most houses.
+		int maximum = maximum(houses);
+		
+		// Hvis der ikke er nogen huse på en grund, så skal der ikke kunne sælges huse på den grund
+		if (maximum == 0){
+			return null;
+		}
+		
+		int amountOfStreets = 0;
+		
+		//Finds the streets that has the most houses
+		for (int i = 0; i < streetNames.length; i++) {
+			if (houses[i] == maximum) {
+				amountOfStreets++;
+			}
+		}
+		//An array to hold the name of the differents streets that you can build on.
+		String[] streetNamesNew = new String[amountOfStreets];
+		int j = 0;
+		for (int i = 0; i < streetNames.length; i++) {
+			if (maximum == houses[i]) {
+				streetNamesNew[j] = streetNames[i];
+				j++;
+			}
+		}
+		return streetNamesNew;
 	}
 }

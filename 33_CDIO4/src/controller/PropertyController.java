@@ -258,7 +258,7 @@ public class PropertyController {
 		if (getHouses() > 0)
 		{
 		if (player.getAccountBalance() > street.getHousePrice()) {
-			// Adds an amount of houses to the GUI and changes the value of
+			// Adds an amount of houses to the GUI and changes the value ofæ
 			// numbOfHouses.
 			GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(1));
 			player.changeAccountBalance(-street.getHousePrice());

@@ -6,7 +6,7 @@ public class Grant extends ChanceCard{
 	private int amount;
 
 	/**
-	 * Constructor: Constructs a Grant.
+	 * Constructor: Constructs a Grant ChanceCard.
 	 * @param type The type of the ChanceCard.
 	 * @param description The description of the ChanceCard.
 	 * @param amount The amount to be granted.

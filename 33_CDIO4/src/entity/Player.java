@@ -189,25 +189,28 @@ public class Player {
 	 * @param player
 	 *            The player affected by this removal.
 	 */
-	public void loseFields(Ownable field) {
+	public void removeField(Ownable field) {
 		if (field.getOwner().equals(this.getHasLost()))
 			field.setOwner(null);
-		if (field.getType().equals("Ejendom")) {
-			((Street) field).changeNumbOfHouses(0);
-		}
+
 		String removedField = field.getName();
 
 		Ownable[] fewerFields = new Ownable[fields.length - 1];
 
+		if(fields.length==1){
+			fields=null;
+			return;
+		}
 		for (int j = 0; j < fields.length; j++) {
-			if (removedField.equals(fields[j])) {
-				fewerFields[j] = fields[j++];
+			if (removedField.equals(fields[j].getName())) {
+				System.out.println("Du fjernede et felt.");
+				fewerFields[j] = fields[++j];
 			}
-
 			else {
 				fewerFields[j] = fields[j];
 			}
 		}
+		fields=fewerFields;
 	}
 
 	/**
@@ -252,7 +255,7 @@ public class Player {
 	 */
 	public int getStreetsOwned(String colour) {
 		int numSameColour = 0;
-		if (fields==null){
+		if (fields == null) {
 			return numSameColour;
 		}
 		for (int i = 0; i < fields.length; i++) {
@@ -303,7 +306,7 @@ public class Player {
 		int fortune = getAccountBalance();
 		if (fields != null) {
 			for (int i = 0; i < fields.length; i++) {
-				
+
 				fortune = fortune + fields[i].getValue();
 				if (fields[i].getType().equals("Ejendom")) {
 					fortune = fortune + ((Street) fields[i]).getHousePrice() * ((Street) fields[i]).getNumbOfHouses();

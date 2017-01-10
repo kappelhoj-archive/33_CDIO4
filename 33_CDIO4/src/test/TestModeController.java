@@ -65,7 +65,7 @@ public class TestModeController {
 		if ((testField instanceof entity.field.Ownable)) {
 			Ownable currentField=(Ownable)testField;
 			if(currentField.getOwner()!=null){
-				currentField.getOwner().loseFields(currentField);
+				currentField.getOwner().removeField(currentField);
 				currentField.removeOwner();
 			}
 

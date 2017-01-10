@@ -5,6 +5,12 @@ public class MoveThreeSteps extends Movement {
 	//Instance variables
 	private int steps;
 	
+	/**
+	 * Constructor: Constructs a MoveThreeSteps Movement ChanceCard.
+	 * @param type The type of the Movement ChanceCard.
+	 * @param description The description of the Movement ChanceCard.
+	 * @param steps The amount of steps to move.
+	 */
 	public MoveThreeSteps(String type, String description, int steps)
 	{
 		super(type, description);

@@ -74,7 +74,6 @@ public class ChanceCardController {
 		MoveToNearestShipping card = (MoveToNearestShipping) currentCard;
 		int[] shippingPos = card.getShippingPositions();
 
-		player.setPosition(shippingPos[0]);
 		for (int i = 0; i < shippingPos.length; i++)
 			if (shippingPos[i] > player.getPosition()) {
 				player.setPosition(shippingPos[i]);

@@ -6,6 +6,13 @@ public class MoveToNearestShipping extends Movement {
 	private int[] shippingPositions;
 	private boolean doubleRent;
 	
+	/**
+	 * Constructor: Constructs a MoveToNearestShipping Movement ChanceCard.
+	 * @param type The type of the Movement ChanceCard.
+	 * @param description The description of the Movement ChanceCard.
+	 * @param shippingPositions The positions of all the shipping fields.
+	 * @param doubleRent True if you should pay double rent.
+	 */
 	public MoveToNearestShipping(String type, String description, int[] shippingPositions, boolean doubleRent)
 	{
 		super(type, description);

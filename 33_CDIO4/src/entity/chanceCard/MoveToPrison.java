@@ -5,6 +5,11 @@ public class MoveToPrison extends Movement {
 	//Instance variables
 	private boolean sentToPrison;
 	
+	/**
+	 * Constructor: Constructs a MoveToPrison ChanceCard.
+	 * @param type The type of the Movement ChanceCard.
+	 * @param description The description of Movement ChanceCard.
+	 */
 	public MoveToPrison(String type, String description)
 	{
 		super(type, description);

@@ -252,6 +252,9 @@ public class Player {
 	 */
 	public int getStreetsOwned(String colour) {
 		int numSameColour = 0;
+		if (fields==null){
+			return numSameColour;
+		}
 		for (int i = 0; i < fields.length; i++) {
 			if ((fields[i]).getType().equals("Ejendom")) {
 				Street field_i = (Street) (fields[i]);

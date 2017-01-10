@@ -97,6 +97,7 @@ public class BankController {
 				player.loseFields(allFields[i]);
 			}
 		}
+		player.changeAccountBalance(-player.getAccountBalance()-1);
 		GUI.getUserButtonPressed("Du tabte spillet.", "Ok");
 
 	}

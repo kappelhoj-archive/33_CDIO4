@@ -16,42 +16,51 @@ import desktop_fields.Tax;
 import desktop_resources.GUI;
 
 public class GUICreator {
+
+	// Instance variables
 	private Car[] cars;
 	private Field[] fields;
 	private int fieldCounter;
 
-	
-	
-	
-	public GUICreator(){
+	/**
+	 * GUICreator constructor
+	 */
+	public GUICreator() {
 		Reader dataReader = new Reader("src/data/Feltliste.txt");
-		String[][] data=dataReader.readFile();
+		String[][] data = dataReader.readFile();
 		beginBoardBuilding();
-		for(int i=0;i<40;i++){
+		for (int i = 0; i < 40; i++) {
 			addField(data[i]);
 		}
 		endBoardBuilding();
-		System.out.println("Finnished building board on GUI");
-		
 	}
-/**
- * Method beginBoardbuidling: Create a list of GUI_Fields. This should be used before the addField Method.
- *
- */
+
+	/**
+	 * Method beginBoardbuidling: Create a list of GUI Fields. This should be
+	 * used before the addField Method.
+	 *
+	 */
 	public void beginBoardBuilding() {
 		fields = new Field[40];
 		fieldCounter = 1;
 	}
 
+	public void endBoardBuilding() {
+		GUI.create(fields);
+		cars = createCars();
+	}
+
 	/**
-	 * Method addField: Adds a field to the GUIBoard
-	 * @param information Array of all the field information.
+	 * Method addField: Adds a field to the GUI Game board
+	 * 
+	 * @param information
+	 *            Array of all the field information.
 	 */
 	public void addField(String[] information) {
-		//Gets the type of the fields.
+		// Gets the type of the fields.
 		String fieldType = information[information.length - 2];
-		
-		//Calls the respective method that handles specific types of fields.
+
+		// Calls the respective method that handles specific types of fields.
 		switch (fieldType) {
 		case "Ejendom":
 			addStreet(information);
@@ -86,107 +95,123 @@ public class GUICreator {
 		fieldCounter++;
 	}
 
-	
-	private void addStreet(String[] information) {
-		Color color = getColorFromField(information[1]);
-		fields[fieldCounter - 1] = new Street.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription("").setBgColor(color).setRent(information[3]).build();
+	/**
+	 * Method addStreet: Adds a Street field to the GUI's fields array.
+	 * 
+	 * @param fieldData String array of all the fields data.
+	 */
+	private void addStreet(String[] fieldData) {
+		Color color = getFieldColor(fieldData[1]);
+		fields[fieldCounter - 1] = new Street.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
+				.setDescription("").setBgColor(color).setRent(fieldData[3]).build();
 	}
 
-	private void addShipping(String[] information) {
-		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.getHSBColor((float)(216.21/360.0), (float)(72.5/100.0), (float)(62.75/100.0))).setPicture("src/data/pictures/Ferry.png")
-				.build();
+	/**
+	 * Method addShipping: Adds a Shipping field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 */
+	private void addShipping(String[] fieldData) {
+		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
+				.setDescription(fieldData[1])
+				.setBgColor(
+						Color.getHSBColor((float) (216.21 / 360.0), (float) (72.5 / 100.0), (float) (62.75 / 100.0)))
+				.setPicture("src/data/pictures/Ferry.png").build();
 	}
 
-	private void addBrewery(String[] information) {
-		fields[fieldCounter - 1] = new Brewery.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.BLACK).build();
+	private void addBrewery(String[] fieldData) {
+		fields[fieldCounter - 1] = new Brewery.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
+				.setDescription(fieldData[1]).setBgColor(Color.BLACK).build();
 	}
 
-	private void addChance(String[] information) {
+	private void addChance(String[] fieldData) {
 		fields[fieldCounter - 1] = new Chance.Builder().setBgColor(Color.LIGHT_GRAY).build();
 	}
 
-	private void addTax(String[] information) {
-		fields[fieldCounter - 1] = new Tax.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.LIGHT_GRAY).build();
+	private void addTax(String[] fieldData) {
+		fields[fieldCounter - 1] = new Tax.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
+				.setDescription(fieldData[1]).setBgColor(Color.LIGHT_GRAY).build();
 	}
 
-	private void addStart(String[] information) {
-		fields[fieldCounter - 1] = new Start.Builder().setTitle(information[0]).setSubText(information[2])
-				.setDescription(information[1]).setBgColor(Color.RED).build();
+	private void addStart(String[] fieldData) {
+		fields[fieldCounter - 1] = new Start.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
+				.setDescription(fieldData[1]).setBgColor(Color.RED).build();
 	}
 
-	private void addJail(String[] information) {
-		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1])
+	private void addJail(String[] fieldData) {
+		fields[fieldCounter - 1] = new Jail.Builder().setSubText(fieldData[0]).setDescription(fieldData[1])
 				.setBgColor(Color.GRAY).build();
 	}
 
-	private void addVisit(String[] information) {
-		fields[fieldCounter - 1] = new Jail.Builder().setSubText(information[0]).setDescription(information[1])
+	private void addVisit(String[] fieldsData) {
+		fields[fieldCounter - 1] = new Jail.Builder().setSubText(fieldsData[0]).setDescription(fieldsData[1])
 				.setBgColor(Color.GRAY).build();
 	}
 
-	private void addParking(String[] information) {
-		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(information[0]).setDescription(information[1])
-				.setBgColor(Color.getHSBColor((float)(198.1/360.0), (float)(100.0/100.0), (float)(90.98/100.0))).setPicture("src/data/pictures/Parkeringslogo.png").build();
-	}
-
-	public void endBoardBuilding() {
-		GUI.create(fields);
-		cars = createCars();
-		GUI.setDice(1, 1);
-	}
-
-	private void addPlayersToGUI(String[] players) {
-		for (int i = 0; i < players.length; i++){
-			GUI.addPlayer(players[i], 30000, cars[i]);
-		GUI.setCar(1, players[i]);}
+	private void addParking(String[] fieldsData) {
+		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(fieldsData[0]).setDescription(fieldsData[1])
+				.setBgColor(
+						Color.getHSBColor((float) (198.1 / 360.0), (float) (100.0 / 100.0), (float) (90.98 / 100.0)))
+				.setPicture("src/data/pictures/Parkeringslogo.png").build();
 	}
 
 	/**
-	 * Method that prompts the user to enter how many players will be playing.
+	 * Method addPlayersToGUI: Adds the players to the GUI.
 	 * 
-	 * @return The number of players that want to play.
+	 * @param players
+	 *            String array of player names
+	 */
+	private void addPlayersToGUI(String[] players) {
+		for (int i = 0; i < players.length; i++) {
+			GUI.addPlayer(players[i], 30000, cars[i]);
+			GUI.setCar(1, players[i]);
+		}
+	}
+
+	/**
+	 * Method askNumberOfPlayers: Lets the player insert how many players are
+	 * participating in the game.
+	 * 
+	 * @return int The number of players that are playing.
 	 */
 	private int askNumberOfPlayers() {
 		// Ask the players how many are playing
-		int numbPlayer = 0;
-		numbPlayer = GUI.getUserInteger("Indtast hvor mange spillere 2-6", 2, 6);
-		return numbPlayer;
+		int numberOfPlayers = GUI.getUserInteger("Indtast hvor mange spillere 2-6", 2, 6);
+		return numberOfPlayers;
 	}
 
 	/**
-	 * Method that prompts the users to enter their playernames. It also
-	 * prevents them from typing the same names.
+	 * Method getPlayerNames: Lets all the players enter their player names.
 	 * 
-	 * @param numbPlayer
-	 *            The number of players that want to play the game.
-	 * @return Player Names.
+	 * @return String array of the player names.
 	 */
 	public String[] getPlayerNames() {
-		int numbPlayer = askNumberOfPlayers();
-		String[] playerNames;
-		playerNames = new String[numbPlayer];
-		do { // Small do-while loop to check if the first player has entered an
-				// empty name, i.e. an empty string.
+		int numberOfPlayers = askNumberOfPlayers();
+		String[] playerNames = new String[numberOfPlayers];
+
+		// Lets player 1 enter a name that is not an empty String.
+		do {
 			playerNames[0] = GUI.getUserString("Indtast navn for spiller nummer 1");
 		} while (playerNames[0].equals(""));
 
-		for (int i = 1; i < numbPlayer; i++) {
+		// Lets all the users insert their player names
+		for (int i = 1; i < numberOfPlayers; i++) {
 			boolean nameEqual = true;
 			playerNames[i] = null;
 
 			while (nameEqual) {
+				// Lets player 2-6 enter a name that is not an empty String.
 				do {
 					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer " + (i + 1));
 				} while (playerNames[i].equals(""));
 
+				// Goes through the already added player names
 				for (int j = 0; j < i; j++) {
-					if (playerNames[j].equals(playerNames[i]) || playerNames[i].equals("")) {
-						GUI.getUserButtonPressed("Spiller navnet er allerede indtastede, vælg et andet spillernavn.",
-								"OK");
+
+					// If the entered player name matches an already existing
+					// name
+					if (playerNames[j].equals(playerNames[i])) {
+						GUI.getUserButtonPressed("Navnet findes allerede, vælg venligst et andet.", "OK");
 						nameEqual = true;
 						break;
 					} else {
@@ -199,6 +224,11 @@ public class GUICreator {
 		return playerNames;
 	}
 
+	/**
+	 * Method createCars builds all the available cars in the game.
+	 * 
+	 * @return Car array of all the cars.
+	 */
 	private Car[] createCars() {
 		Car[] carArray = new Car[6];
 		carArray[0] = new Car.Builder().primaryColor(Color.BLUE).secondaryColor(Color.BLACK).typeUfo().patternFill()
@@ -216,9 +246,15 @@ public class GUICreator {
 		return carArray;
 	}
 
-	private Color getColorFromField(String colorInformation) {
+	/**
+	 * Method getFieldColor: Gets the color of the field
+	 * 
+	 * @param fieldColor
+	 * @return Color
+	 */
+	private Color getFieldColor(String fieldColor) {
 		Color color;
-		switch (colorInformation) {
+		switch (fieldColor) {
 		case "Rød":
 			color = Color.RED;
 			break;

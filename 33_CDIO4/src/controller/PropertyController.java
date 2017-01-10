@@ -111,7 +111,7 @@ public class PropertyController {
 		for (int i = 0; i < canBuildOnColour(player).length; i++) {
 			
 			if (canBuildOnColour(player)[i] == true) {
-				canBuildOn[j] = colours[j];
+				canBuildOn[j] = colours[i];
 				j++;
 			}
 		}

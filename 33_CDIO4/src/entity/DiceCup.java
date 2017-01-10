@@ -9,7 +9,7 @@ public class DiceCup
 	private Die d2;
 	
 	/**
-	 * Object DiceCup constructor. 
+	 * Constructor: Constructs a DiceCup.
 	 * The diceCup object contains two die Objects.
 	 */
 	public DiceCup()
@@ -19,7 +19,7 @@ public class DiceCup
 	}
 	
 	/**
-	 * Method rollDice rolls both dice in the DiceCup object.
+	 * Method rollDice: Rolls the dice in the DiceCup.
 	 */
 	public void shakeCup()
 	{
@@ -28,8 +28,8 @@ public class DiceCup
 	}
 
 	/**
-	 * Method getDiceValue returns the value of the rolled dice as a integer array.
-	 * @return Returns the array with the two dice values.
+	 * Method getDiceValue: returns the value of the rolled dice as an integer array.
+	 * @return Returns the array with the DiceValues.
 	 */
 	public int[] getDiceValue()
 	{

@@ -9,8 +9,7 @@ public class Die
 	private int value;
 
 	/**
-	 * Object Die constructor.
-	 * Constructs a 6 sided die.
+	 * Constructor: Constructs a 6-sided die.
 	 */
 	public Die() 
 	{
@@ -19,8 +18,7 @@ public class Die
 	}
 
 	/**
-	 * Object die constructor.
-	 * Constructs a n sided die. 
+	 * Constructor: Constructs a n-sided die.
 	 * If the parameter given is less than 1, the constructor constructs a
 	 * 6-sided die. If the parameter overflows, the constructor constructs a
 	 * 6-sided die.
@@ -41,7 +39,7 @@ public class Die
 	}
 
 	/**
-	 * Method rollDie sets the face value of the die to a random integer between 1-MAX_VALUE.
+	 * Method rollDie: Sets the face value of the die to a random integer between 1-MAX_VALUE.
 	 * @return Returns the newly rolled value of the die.
 	 */
 	public int rollDie() 
@@ -51,7 +49,7 @@ public class Die
 	}
 
 	/**
-	 * Method getValue returns the face value of the die.
+	 * Method getValue: Returns the face value of the die.
 	 * @return Returns the current face value of the die.
 	 */
 	public int getValue() 
@@ -60,7 +58,7 @@ public class Die
 	}
 
 	/**
-	 * Method toString returns a string representation of the die.
+	 * Method toString: Returns a string representation of the die.
 	 */
 	public String toString() 
 	{
@@ -68,7 +66,7 @@ public class Die
 	}
 
 	/**
-	 * Method setValue sets the face value of the die. NB: This method is only
+	 * Method setValue: Sets the face value of the die. NB: This method is only
 	 * used when testing the Die class and is therefore not seen in the
 	 * diagrams.
 	 * @param value The face value to be set.

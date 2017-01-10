@@ -14,12 +14,11 @@ public class Player {
 	private int turnsInPrison;
 
 	/**
-	 * Object Player constructor.
-	 * 
-	 * @param The
-	 *            name of the player.
+	 * Constructor: Constructs a player.
+	 * @param The name of the player.
 	 */
-	public Player(String name) {
+	public Player(String name) 
+	{
 		this.name = name;
 		account = new Account(30000);
 		hasLost = false;
@@ -30,12 +29,9 @@ public class Player {
 	}
 
 	/**
-	 * Method payRent The object pays the rent to the owner.
-	 * 
-	 * @param owner
-	 *            The owner to be paid.
-	 * @param rent
-	 *            The rent to be paid.
+	 * Method payRent: The object pays the rent to the owner.
+	 * @param owner The owner to be paid.
+	 * @param rent The rent to be paid.
 	 */
 	public void payRent(Player owner, int rent) {
 		// Checks if the player has enough money to pay the rent.
@@ -53,8 +49,7 @@ public class Player {
 	}
 
 	/**
-	 * Method getPlayerName returns the name of the player.
-	 * 
+	 * Method getPlayerName: Returns the name of the player.
 	 * @return The name of the player.
 	 */
 	public String getName() {
@@ -62,99 +57,83 @@ public class Player {
 	}
 
 	/**
-	 * Method getAccountBalance returns the balance of the player's account.
-	 * 
-	 * @return Returns the account balance value of the player.
+	 * Method getAccountBalance: Returns the balance of the player's account.
+	 * @return The balance of the player's account.
 	 */
 	public int getAccountBalance() {
 		return account.getBalance();
 	}
 
 	/**
-	 * Method changeAccountBalance changes balance of the player's account with
+	 * Method changeAccountBalance: Changes balance of the player's account with
 	 * the parameter value.
-	 * 
-	 * @param The
-	 *            value the balance should be changed with.
+	 * @param value The balance should be changed with.
 	 */
 	public void changeAccountBalance(int value) {
 		account.changeBalance(value);
 	}
 
 	/**
-	 * Method getLost returns the player's lost status.
-	 * 
-	 * @return The player's lost status. If true then the player has lost the
-	 *         game.
+	 * Method getLost: Returns the player's lost status.
+	 * @return The player's lost status. If true then the player has lost the game.
 	 */
 	public boolean getHasLost() {
 		return hasLost;
 	}
 
 	/**
-	 * Method setLost sets the player's lost status.
-	 * 
-	 * @param condition
-	 *            The condition to be set. If condition is true then the player
-	 *            has lost.
+	 * Method setLost: Sets the player's lost status.
+	 * @param condition The condition to be set. If condition is true then the player has lost.
 	 */
 	public void setHasLost(boolean condition) {
 		hasLost = condition;
 	}
 
 	/**
-	 * Method getPrison returns the player's prison status.
-	 * 
+	 * Method getPrison: Returns the player's prison status.
 	 * @return The player's prison status. If true then the player is in prison.
 	 */
-	public boolean getInPrison() {
+	public boolean getInPrison() 
+	{
 		return inPrison;
 	}
 
 	/**
-	 * Method setPrison sets the player's prison status.
-	 * 
-	 * @param condition
-	 *            The condition to be set. If condition is true then the player
-	 *            is in prison.
+	 * Method setPrison: Sets the player's prison status.
+	 * @param condition The condition to be set. If condition is true then the player is in prison.
 	 */
-	public void setInPrison(boolean condition) {
+	public void setInPrison(boolean condition) 
+	{
 		inPrison = condition;
 	}
 
 	/**
-	 * Method getPosition returns the position of the player
-	 * 
-	 * @return Returns the position of the player
+	 * Method getPosition: Returns the position of the player
+	 * @return The position of the player
 	 */
 	public int getPosition() {
 		return position;
 	}
 
 	/**
-	 * Method setPosition sets the position of the player.
-	 * 
-	 * @param position
-	 *            The position to be set.
+	 * Method setPosition: Sets the position of the player.
+	 * @param position The position to be set.
 	 */
 	public void setPosition(int position) {
 		this.position = position;
 	}
 
 	/**
-	 * Method getfields returns the fields owned by the player.
-	 * 
-	 * @return Returns the fields owned by the player.
+	 * Method getFields: Returns the fields owned by the player.
+	 * @return The fields owned by the player.
 	 */
 	public Ownable[] getFields() {
 		return fields;
 	}
 
 	/**
-	 * Method setfields sets the fields owned by the player.
-	 * 
-	 * @param street
-	 *            The street to be added to the player's street list.
+	 * Method setFields: Sets the fields owned by the player.
+	 * @param street The street to be added to the player's street list.
 	 */
 	public void setFields(Field field) {
 		Ownable ownable = (Ownable) (field);
@@ -182,12 +161,9 @@ public class Player {
 	}
 
 	/**
-	 * Method to remove fields from a players property list.
-	 * 
-	 * @param field
-	 *            The specific field to be removed.
-	 * @param player
-	 *            The player affected by this removal.
+	 * Method loseFields: Removes a Ownable field from the player's field list.
+	 * @param field The specific field to be removed.
+	 * @param player The player affected by this removal.
 	 */
 	public void loseFields(Ownable field) {
 		if (field.getOwner().equals(this.getHasLost()))
@@ -203,8 +179,8 @@ public class Player {
 			if (removedField.equals(fields[j])) {
 				fewerFields[j] = fields[j++];
 			}
-
-			else {
+			else 
+			{
 				fewerFields[j] = fields[j];
 			}
 		}
@@ -267,28 +243,21 @@ public class Player {
 	}
 
 	/**
-	 * Method buyField Lets the player buy a Ownable field.
-	 * 
-	 * @param player
-	 *            The player to buy the field.
-	 * @return Returns true if the buy succeeded.
+	 * Method buyField: Lets the player buy a Ownable field.
+	 * @param player The player to buy the field.
+	 * @return True if the buy succeeded.
 	 */
 	public boolean buyField(Field field) {
 		Ownable ownable = (Ownable) (field);
-		if (getAccountBalance() > ownable.getPrice()) // Checks if the player
-														// has enough money to
-														// buy the field.
+		if (getAccountBalance() > ownable.getPrice()) // Checks if the player has enough money to buy the field.
 		{
-			changeAccountBalance(-ownable.getPrice()); // Subtracts the price of
-														// the field from the
-														// player account
-														// balance.
-			ownable.setOwner(this); // Sets the player to be the owner of the
-									// field.
+			changeAccountBalance(-ownable.getPrice()); // Subtracts the price of the field from the player account balance.
+			ownable.setOwner(this); // Sets the player to be the owner of the field.
 			this.setFields(field);
-
 			return true;
-		} else {
+		} 
+		else 
+		{
 			return false;
 		}
 	}
@@ -296,7 +265,6 @@ public class Player {
 	/**
 	 * Method getFortune: Calculates and returns the total fortune of the
 	 * player.
-	 * 
 	 * @return The fortune of the player.
 	 */
 	public int getFortune() {
@@ -315,9 +283,7 @@ public class Player {
 
 	/**
 	 * Method getFieldFromName: Returns the field with the given name.
-	 * 
-	 * @param name
-	 *            The name of the field that you want to find.
+	 * @param name The name of the field that you want to find.
 	 * @return The field with the name.
 	 */
 	public Street getFieldFromName(String name) {
@@ -331,10 +297,9 @@ public class Player {
 	}
 
 	/**
-	 * Method getHousePriceFromColour
-	 * 
-	 * @param colour
-	 * @return
+	 * Method getHousePriceFromColour: Returns the house price of a specific coloured street.
+	 * @param colour The colour of the street that you want the house from.
+	 * @return The house price of a specific coloured street.
 	 */
 	public int getHousePriceFromColour(String colour) {
 		int housePrice = 0;
@@ -358,14 +323,26 @@ public class Player {
 		return housePrice;
 	}
 
+	/**
+	 * Method getTurnsInPrison: Returns how many turns the player has been in Prison.
+	 * @return The amount of turns the player has been in the prison.
+	 */
 	public int getTurnsInPrison() {
 		return turnsInPrison;
 	}
 
+	/**
+	 * Method setTurnsInPrison: sets the value of the variable turnsInPrison.
+	 * @param turnsInPrison The value to be set.
+	 */
 	public void setTurnsInPrison(int turnsInPrison) {
 		this.turnsInPrison = turnsInPrison;
 	}
 
+	/**
+	 * Method changeTurnsInPrison: Changes the value of the variable turnInPrison.
+	 * @param diffTurnsInPrison
+	 */
 	public void changeTurnsInPrison(int diffTurnsInPrison) {
 		this.turnsInPrison += diffTurnsInPrison;
 	}

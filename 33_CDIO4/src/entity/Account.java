@@ -3,26 +3,27 @@ package entity;
 public class Account {
 	
 	// Instance variables
-	private int balance;	//The balance of the account.
+	private int balance;
 
 	/**
-	 * Object Account constructor.
-	 * @param balance The balance which the account should start with.
+	 * Constructor: Constructs an Account.
+	 * @param balance The start balance of the account..
 	 */
 	public Account(int balance) {
 		this.balance = balance;
 	}
 
 	/**
-	 * Method getBalance returns the balance of the Account.
-	 * @return balance balance of an account.
+	 * Method getBalance: Returns the balance of the account.
+	 * @return balance The Balance of the account.
 	 */
-	public int getBalance() {
+	public int getBalance() 
+	{
 		return balance;
 	}
 
 	/**
-	 * Method changeBalance calculates the new balance based on the parameter
+	 * Method changeBalance: Calculates the new balance based on the parameter
 	 * value.
 	 * @param value The value that the balance of the account should be changed
 	 * with. If the parameter is positive the method adds value to

@@ -1,6 +1,7 @@
 package controller;
 
 import desktop_resources.GUI;
+import entity.field.Field;
 import entity.field.Ownable;
 import entity.field.Street;
 import entity.Account;
@@ -44,6 +45,10 @@ public class BankController
 			account.changeBalance(street.getHousePrice()/2);
 			GUI.getUserButtonPressed("Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice()/2 + " kr.", "Ok");
 		}
+	}
+	
+	public void sellField(Player player, Ownable field) {
+		player.setFields(field);
 	}
 
 	/**
@@ -126,8 +131,8 @@ public class BankController
 	
 	public boolean handleDebt(Player player, int debt)
 	{
-		boolean whatever = false;
-		if(whatever) {
+		
+		if(player.getFortune() > player.getAccountBalance()) {
 			return true;
 		}
 			

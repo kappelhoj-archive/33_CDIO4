@@ -97,8 +97,9 @@ public class MainController {
 		// Tell the player it is his turn on the GUI.
 		if (numExtraTurn < 1)
 			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
-		else{
-			GUI.getUserButtonPressed(players[turn].getName()+" det er din tur igen.", "Slå med terninger");
+		else {
+			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens "
+					+ numExtraTurn + " gange.", "Slå med terninger");
 		}
 
 		// Roll the dice.
@@ -130,16 +131,15 @@ public class MainController {
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();
-			if(checkForWinner() != null)
-			{
+			if (checkForWinner() != null) {
 				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet", "Sweet");
 				GUI.close();
 				break;
 			}
-			
+
 			do {
 				playTurn();
-			} while (extraTurn&&!players[turn].getHasLost());
+			} while (extraTurn && !players[turn].getHasLost());
 
 		}
 	}
@@ -238,7 +238,7 @@ public class MainController {
 
 		// Check if the player can move to the next field. If not move him to 1
 		// and continue moving forward.
-		if (players[turn].getPosition() + diceSum <= 40&&players[turn].getPosition() + diceSum>0) {
+		if (players[turn].getPosition() + diceSum <= 40 && players[turn].getPosition() + diceSum > 0) {
 			players[turn].setPosition(players[turn].getPosition() + diceSum);
 		} else if (players[turn].getPosition() + diceSum < 1) {
 			players[turn].setPosition(40 + diceSum + players[turn].getPosition());
@@ -259,7 +259,7 @@ public class MainController {
 		// Boolean that holds the decision of if the player want to end his
 		// turn.
 		boolean endTurn = false;
-		if(players[turn].getInPrison()||players[turn].getHasLost()){
+		if (players[turn].getInPrison() || players[turn].getHasLost()) {
 			return;
 		}
 
@@ -315,24 +315,24 @@ public class MainController {
 		output[output.length - 1] = "Gå tilbage";
 		return output;
 	}
-	
+
 	/**
 	 * Method that checks if all players except one has lost the game.
+	 * 
 	 * @return Player winner
 	 */
-		public Player checkForWinner() {
-			Player winningPlayer = null;
-			for (int i = 0; i < players.length; i++) {
-				if (!players[i].getHasLost())
-					if (winningPlayer == null)
-						winningPlayer = players[i];
-					else
-						return null;
+	public Player checkForWinner() {
+		Player winningPlayer = null;
+		for (int i = 0; i < players.length; i++) {
+			if (!players[i].getHasLost())
+				if (winningPlayer == null)
+					winningPlayer = players[i];
+				else
+					return null;
 
-			}
-			return winningPlayer;
 		}
-
+		return winningPlayer;
+	}
 
 	public LandOnFieldController getLandOnFieldController() {
 		return fieldController;

@@ -12,7 +12,7 @@ public class PropertyController {
 	private int hotels;
 
 	/**
-	 * PropertyController constructor
+	 * Constructor: Constructs a PropertyController.
 	 */
 	public PropertyController() {
 		this.houses = 32;

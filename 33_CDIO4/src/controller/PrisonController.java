@@ -9,7 +9,7 @@ public class PrisonController {
 	private MainController mainController;
 	
 	/**
-	 * PrisonController constructor.
+	 * Constructor: Constructs a PrisonController.
 	 * @param mainController MainController.
 	 */
 	public PrisonController(MainController mainController)
@@ -18,7 +18,7 @@ public class PrisonController {
 	}
 
 	/**
-	 * Method sendToPrison sends a player to the prison.
+	 * Method sendToPrison: Sends a player to the prison.
 	 * @param player Player to be send to prison.
 	 */
 	public void sendToPrison(Player player)
@@ -31,9 +31,9 @@ public class PrisonController {
 	}
 	
 	/**
-	 * Method inPrison controls the prison turn.
+	 * Method inPrison: Controls the prison turn.
 	 * @param player Player in prison.
-	 * @return boolean Returns a boolean whether a player can roll after he gets out of prison
+	 * @return boolean True if the player can roll after he gets out of prison otherwise false.
 	 */
 	public boolean inPrison(Player player)
 	{
@@ -82,9 +82,9 @@ public class PrisonController {
 	}
 	
 	/**
-	 * Method checkInPrison checks whether a player is in prison or not.
+	 * Method checkInPrison: Checks whether a player is in prison or not.
 	 * @param player Player to check for.
-	 * @return boolean.
+	 * @return True if the player is in prison.
 	 */
 	public boolean checkInPrison(Player player)
 	{

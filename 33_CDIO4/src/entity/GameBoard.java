@@ -3,10 +3,15 @@ package entity;
 import entity.field.*;
 import data.Reader;
 
-public class GameBoard {
+public class GameBoard 
+{
+	// Instance variables.
 	private Field[] fields;
 	private int fieldCounter;
 	
+	/**
+	 * Constructor: Constructs a Gameboard from the data file "src/data/Feltliste.txt".
+	 */
 	public GameBoard(){
 		fields = new Field[40];
 		fieldCounter = 1;
@@ -20,9 +25,12 @@ public class GameBoard {
 		}
 	}
 
+	/**
+	 * Method addField: Adds a field to the GameBoard from the information given.
+	 * @param information The information given.
+	 */
 	public void addField(String[] information) {
 		String fieldType = information[10];
-//		System.out.println(fieldType);
 		switch (fieldType) {
 			case "Ejendom":
 				addStreet(information);
@@ -51,6 +59,10 @@ public class GameBoard {
 		fieldCounter++;
 	}
 	
+	/**
+	 * Method addStreet: Adds a field of the type Street to the GameBoard from the given information.
+	 * @param information The information given.
+	 */
 	private void addStreet(String[] information)
 	{
 		String name = information[0];
@@ -65,6 +77,10 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Street(fieldCounter,name, type, description, price, colour, baseRent, housePrice, houseRent, pledge);
 	}
 	
+	/**
+	 * Method addShipping: Adds a field of the type Shipping to the GameBoard from the given information.
+	 * @param information The information given.
+	 */
 	private void addShipping(String[] information)
 	{
 		String name = information[0];
@@ -73,6 +89,11 @@ public class GameBoard {
 		int price = Integer.parseInt(information[2]);
 		fields[fieldCounter - 1] = new Shipping(fieldCounter,name, type, description, price);
 	}
+	
+	/**
+	 * Method addBrewery: Adds a field of the type Brewery to the GameBoard from the given information.
+	 * @param information The information given.
+	 */
 	private void addBrewery(String[] information) 
 	{
 		String name = information[0];
@@ -82,6 +103,10 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Brewery(fieldCounter,name, type, description, price);
 	}
 	
+	/**
+	 * Method addChance: Adds a field of the type ChanceField to the GameBoard from the given information.
+	 * @param information The given information.
+	 */
 	private void addChance(String[] information) 
 	{
 		String name = information[0];
@@ -90,6 +115,10 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new ChanceField(fieldCounter,name, type, description);
 	}
 	
+	/**
+	 * Method addTax: Adds a field of the type TaxField to the GameBoard from the given information.
+	 * @param information The given information.
+	 */
 	private void addTax(String[] information) 
 	{
 		String name = information[0];
@@ -100,6 +129,10 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Tax(fieldCounter,name, type, description, rate, amount);
 	}
 	
+	/**
+	 * Method addNeutral: Adds a field of the type Neutral to the GameBoard from the given information.
+	 * @param information The given information.
+	 */
 	private void addNeutral(String[] information) 
 	{
 		String name = information[0];
@@ -108,6 +141,11 @@ public class GameBoard {
 		fields[fieldCounter - 1] = new Neutral(fieldCounter,name, description, type);
 	}
 		
+	/**
+	 * Method getField: Returns a field from the GameBoard.
+	 * @param fieldNum The number of the field you want to be returned.
+	 * @return The field.
+	 */
 	public Field getField(int fieldNum)
 	{
 		return fields[fieldNum-1];	

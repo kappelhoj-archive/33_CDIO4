@@ -7,10 +7,10 @@ public class Tax extends Field {
 	private int amount;
 	
 	/**
-	 * Tax constructor
-	 * @param type The type of the field
+	 * Constructor: Constructs Tax field.
+	 * @param type The type of the field.
 	 * @param amount The fixed tax amount the player can choose to pay.
-	 * @param rate The tax rate the player can choose to pay. The rate is in percent
+	 * @param hasTaxRate If hasTaxRate is true the player can choose to pay 10% of his fortune.
 	 */
 	public Tax (int fieldNumber, String name, String type, String description, boolean hasTaxRate, int amount)
 	{	
@@ -20,7 +20,7 @@ public class Tax extends Field {
 	}
 	
 	/**
-	 * Method getAmount returns the amount to be paid by the player who lands on the tax field.
+	 * Method getAmount: Returns the amount to be paid by the player who lands on the tax field.
 	 * @return Returns the tax amount to be paid.
 	 */
 	public int getAmount()
@@ -29,18 +29,16 @@ public class Tax extends Field {
 	}
 	
 	/**
-	 * Method getRate returns tax rate to be paid by the player who lands on the tax field.
-	 * @return Returns the tax rate to be paid.
+	 * Method getRate: Returns if the player can choose to pay 10% taxRate.
+	 * @return Returns True if the player can choose to pay 10% and false otherwise.
 	 */
 	public boolean getHasTaxRate()
 	{
 		return hasTaxRate;
 	}
 	
-	
 	/**
-	 * Method getRent is not used.
-	 * The getRent has to be implemented because the super class has the abstract method getRent().
+	 * Method getRent: This method is not used but makes other classes simpler.
 	 */
 	@Override
 	public int getRent(){

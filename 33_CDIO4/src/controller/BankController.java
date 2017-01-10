@@ -43,6 +43,12 @@ public class BankController {
 					"Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice() / 2 + " kr.", "Ok");
 		}
 	}
+	
+	public void sellField(Player player, Ownable field)
+	{
+		player.changeAccountBalance(field.getPrice()/2);
+		player.loseFields(field);
+	}
 
 	/**
 	 * The method playerAffordPayment checks to see if a player can afford a

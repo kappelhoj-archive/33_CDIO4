@@ -281,8 +281,8 @@ public class MainController {
 		}
 
 		String output = "Hvad vil du foretage dig?";
-		final String END_YOUR_TURN = "Slut din tur.";
-		final String HOUSES_AND_HOTELS = "Køb huse.";
+		final String END_YOUR_TURN = "Slut din tur";
+		final String HOUSES_AND_HOTELS = "Køb huse";
 
 		// Keep asking for what the player wants to do until he chooses to add
 		// the player.
@@ -294,7 +294,7 @@ public class MainController {
 				endTurn = true;
 				break;
 			case HOUSES_AND_HOTELS:
-				propertyController.showBuidlingMenu(players[turn]);
+				propertyController.showBuildingMenu(players[turn]);
 				break;
 
 			}

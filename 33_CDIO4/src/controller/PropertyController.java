@@ -278,7 +278,7 @@ public class PropertyController {
 	 * when he wants to buy a building on a street 
 	 * @param player The player who wants to buy a building
 	 */
-	public void showBuidlingMenu(Player player) {
+	public void showBuildingMenu(Player player) {
 		while (true) {
 			String[] options = MainController.addReturnToArray(canBuildOnColourString(player));
 			String answer = GUI.getUserSelection("Hvilken farve ejendom vil du købe huse på?", options);

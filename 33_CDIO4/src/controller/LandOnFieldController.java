@@ -88,9 +88,9 @@ public class LandOnFieldController {
 			}
 		} else {
 			if (ownable.isFieldOwnedByAnotherPlayer(player)) {
-				if (ownable.getType().equals("Brewery")) {
+				if (ownable.getType().equals("Tapperi")) {
 					Brewery brewery = (Brewery) (ownable);
-					brewery.setDiceSum(diceSum);
+					brewery.setDiceSum(diceSum);	
 				}
 				int rent = ownable.getRent();
 				// Only used for some specific chancecards

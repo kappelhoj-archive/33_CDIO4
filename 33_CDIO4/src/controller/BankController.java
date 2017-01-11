@@ -82,7 +82,7 @@ public class BankController {
 			allFields = new Ownable[player.getFields().length];
 			allFields = player.getFields();
 
-			for (int i = 0; i < player.getFields().length; i++) {
+			for (int i = 0; i < allFields.length; i++) {
 				if (allFields[i] instanceof Street) {
 					Street temp = (Street) allFields[i];
 					if (temp.getNumbOfHouses() == 5) {
@@ -91,12 +91,16 @@ public class BankController {
 						housesCon.changeHouses(temp.getNumbOfHouses());
 					}
 					temp.changeNumbOfHouses(-temp.getNumbOfHouses());
+					GUI.setHouses(temp.getFieldNumber(), temp.getNumbOfHouses());
+					GUI.setHotel(temp.getFieldNumber(), false);
 
 				}
 				player.removeField(allFields[i]);
 			}
 		}
+		
 		player.changeAccountBalance(-player.getAccountBalance()-1);
+		GUI.setBalance(player.getName(), player.getAccountBalance());
 		GUI.getUserButtonPressed("Du tabte spillet.", "Ok");
 
 	}

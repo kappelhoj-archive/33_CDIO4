@@ -191,7 +191,8 @@ public class Player {
 	 *            The player affected by this removal.
 	 */
 	public void removeField(Ownable field) {
-		if (field.getOwner().equals(this.getHasLost())) {
+		//Check that the owner of the field and this player is the same.
+		if (field.getOwner().getName().equals(this.getName())) {
 			field.setOwner(null);
 
 			String removedField = field.getName();
@@ -205,7 +206,6 @@ public class Player {
 			}
 			for (int j = 0; j < fields.length; j++) {
 				if (removedField.equals(fields[j].getName())) {
-					System.out.println("Du fjernede et felt.");
 					fewerFields[j] = fields[++j];
 				} else {
 					fewerFields[j] = fields[j];

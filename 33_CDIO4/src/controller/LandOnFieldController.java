@@ -186,6 +186,7 @@ public class LandOnFieldController {
 	 */
 	public void setDoubleRent(boolean doubleRent){
 		this.doubleRent = doubleRent;
+		System.out.println("doubleRent bliver sand.");
 	}
 
 	public GameBoard TESTgetGameBoard() {

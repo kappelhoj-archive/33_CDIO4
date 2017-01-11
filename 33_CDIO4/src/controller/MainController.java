@@ -365,7 +365,7 @@ public class MainController {
 	/**
 	 * Method that checks if all players except one has lost the game.
 	 * 
-	 * @return Player winner
+	 * @return Player winner.
 	 */
 	public Player checkForWinner() {
 		Player winningPlayer = null;

@@ -88,7 +88,6 @@ public class PropertyController {
 			canBuildOnColour[i] = countStreetColours(player)[i] == requiredStreets[i];
 		}
 		return canBuildOnColour;
-
 	}
 
 	/**
@@ -307,6 +306,31 @@ public class PropertyController {
 			GUI.getUserButtonPressed("Der er ikke flere huse tilbage i banken", "Ok");
 		}
 	}
+	
+	public void sellHouse(Player player, String streetName) {
+
+		Street street = player.getStreetFromName(streetName);
+
+		if (street.getNumbOfHouses() == 0) {
+			GUI.getUserButtonPressed("Der står ingen huse på " + street.getName(), "Ok");
+		} else {
+			if (street.getNumbOfHouses() == 5) {
+				changeHotels(1);
+				changeHouses(-4);
+				GUI.setHotel(street.getFieldNumber(), false);
+				GUI.setHouses(street.getFieldNumber(), street.getNumbOfHouses());
+				//Der er en fejl her hvor spillerne kan få huse selvom der ikke er nok huse.
+			} else {
+				GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(-1));
+				changeHouses(1);
+			}
+
+			street.changeNumbOfHouses(-1);
+			player.changeAccountBalance(street.getHousePrice() / 2);
+			GUI.getUserButtonPressed(
+					"Du solgte ét hus på " + street.getName() + " for " + street.getHousePrice() / 2 + " kr.", "Ok");
+		}
+	}
 
 	/**
 	 * Method showHouseMenu: Shows on the GUI which options the player has <br>
@@ -334,7 +358,7 @@ public class PropertyController {
 					}
 					else{
 					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne på " + answer + " koster "
-							+ player.getHousePriceFromColour(answer), options2);
+							+ player.getHousePriceFromColour(answer) + " kr.", options2);
 					}
 					if (answer2.equals("Gå tilbage")) {
 						break;
@@ -350,9 +374,9 @@ public class PropertyController {
 		while(true)
 		{
 			String[] options = MainController.addReturnToArray(canBuildOnColourString(player));
-			String out="Hvilken farve ejendom vil du købe huse på?";
+			String out="Hvilken farve grunde vil du sælge huse på?";
 			if(options.length==1){
-				out="Du har ikke nogle grunde at købe huse på.";
+				out="Du har ikke nogle grunde at sælge huse på.";
 			}
 			String answer = GUI.getUserSelection(out, options);
 			if (answer.equals("Gå tilbage")) {
@@ -361,19 +385,19 @@ public class PropertyController {
 			else {
 				while (true) 
 				{	
-					String[] options2 = MainController.addReturnToArray(streetsWithMostOrFewestHouses(player, answer, false));
+					String[] options2 = MainController.addReturnToArray(streetsWithMostOrFewestHouses(player, answer, true));
 					String answer2;
 					if(options2.length==1){
 						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);
 					}
 					else{
-					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne på " + answer + " koster "
-							+ player.getHousePriceFromColour(answer), options2);
+					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne sælges for "
+							+ (player.getHousePriceFromColour(answer)/2) + " kr.", options2);
 					}
 					if (answer2.equals("Gå tilbage")) {
 						break;
 					}
-					setBuilding(player, answer2);
+					sellHouse(player, answer2);
 				}
 			}
 		}

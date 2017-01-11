@@ -212,9 +212,9 @@ public class ChanceCardDeck
 	 */
 	private MoveToNearestShipping createMoveToNearestShipping(String[] i) 
 	{
-		String[] stringArray = { i[3], i[4], i[5], i[6] };
+		String[] stringArray = { i[2], i[3], i[4], i[5] };
 		MoveToNearestShipping moveToNearestShipping = new MoveToNearestShipping(i[0], i[1], toIntArray(stringArray),
-				toBoolean(i[8]));
+				toBoolean(i[6]));
 		return moveToNearestShipping;
 	}
 

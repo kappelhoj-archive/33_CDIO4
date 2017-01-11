@@ -86,10 +86,13 @@ public class BankController {
 	public boolean handleDebt(Player player, int debt) {
 		if((player.getFortune() / 2) > debt)
 		{
-			final String SELLFIELD = "Sælg grund";
-			final String SELLHOUSE = "Sælg hus";
-			String userSelection = GUI.getUserSelection("Du har ikke råd til at betale din gæld, hvad vil du gøre?", SELLFIELD, SELLHOUSE);
-			propertyController.sellBuildingMenu(player);
+			String sellField = "Sælg grund";
+			String sellHouse = "Sælg hus";
+			String userSelection = GUI.getUserSelection("Du har ikke råd til at betale din gæld, hvad vil du gøre?", sellField, sellHouse);
+			if(userSelection.equals(sellHouse))
+			{
+				propertyController.sellBuildingMenu(player);
+			}
 			return true;
 		}
 
@@ -144,28 +147,5 @@ public class BankController {
 //		return streetNamesNew;
 //	}
 	
-	public void sellHouse(Player player, String streetName) {
-		
-		Street street = player.getStreetFromName(streetName);
-
-		if (street.getNumbOfHouses() == 0) {
-			GUI.getUserButtonPressed("Der står ingen huse på " + street.getName(), "Ok");
-		} else {
-			if (street.getNumbOfHouses() == 5) {
-				propertyController.changeHotels(1);
-				propertyController.changeHouses(-4);
-				GUI.setHotel(street.getFieldNumber(), false);
-				GUI.setHouses(street.getFieldNumber(), street.getNumbOfHouses());
-				//Der er en fejl her hvor spillerne kan få huse selvom der ikke er nok huse.
-			} else {
-				GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(-1));
-				propertyController.changeHouses(1);
-			}
-
-			street.changeNumbOfHouses(-1);
-			player.changeAccountBalance(street.getHousePrice() / 2);
-			GUI.getUserButtonPressed(
-					"Du solgte ét hus på " + street.getName() + " for " + street.getHousePrice() / 2 + " kr.", "Ok");
-		}
-	}
+	
 }

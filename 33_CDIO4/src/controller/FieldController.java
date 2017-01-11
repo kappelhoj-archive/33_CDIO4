@@ -15,7 +15,7 @@ public class FieldController {
 	private boolean doubleRent = false;
 	
 	/**
-	 * Constructor: Constructs a LandOnFieldController
+	 * Constructor: Constructs a FieldController
 	 * @param prisonController The prisonController.
 	 * @param mainController The mainController.
 	 * @param propertyController The PropertyController. 
@@ -70,9 +70,11 @@ public class FieldController {
 	 */
 	public void landOnOwnable(Field field, Player player, int diceSum) {
 		Ownable ownable = (Ownable) field;
+		//If the field is not owned.
 		if (!ownable.isFieldOwned()) {
 			boolean bought = GUI.getUserLeftButtonPressed(
 					"Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
+			//Buy the field if the player wants to and he ca afford it.
 			if (bought) {
 				if (player.buyField(ownable)) {
 					GUI.setOwner(player.getPosition(), player.getName());
@@ -81,8 +83,12 @@ public class FieldController {
 					GUI.getUserButtonPressed("Du har ikke råd til at købe " + ownable.getName(), "Ok");
 				}
 			}
-		} else {
+		}
+		//If the field is owned.
+		else {
+			//If the field is owned by another player, and he is not in prison.
 			if (ownable.isFieldOwnedByAnotherPlayer(player) && !ownable.getOwner().getInPrison()) {
+				//If the field is a Brewery.
 				if (ownable.getType().equals("Tapperi")) {
 					Brewery brewery = (Brewery) (ownable);
 					brewery.setDiceSum(diceSum);	
@@ -94,7 +100,7 @@ public class FieldController {
 				}
 				GUI.getUserButtonPressed("Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName() + ", og du skal betale en rente på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
 				
-				// 
+				//If the player can afford to pay rent.
 				if(bankController.playerAffordPayment(player, rent))
 				{
 					player.payRent(ownable.getOwner(), rent);
@@ -172,7 +178,7 @@ public class FieldController {
 	 * Method landOnChanceField: Decides what has to be done when a player lands
 	 * on a chance field.
 	 * 
-	 * @param player
+	 * @param player 
 	 *            The player who landed on the chance field.
 	 */
 	public void landOnChanceField(Player player) {
@@ -188,7 +194,10 @@ public class FieldController {
 		this.doubleRent = doubleRent;
 
 	}
-
+/**
+ * Method TESTgetGameBoard: Used to get the Gameboard in the testmode controller.
+ * @return Gameboard
+ */
 	public GameBoard TESTgetGameBoard() {
 		return gameBoard;
 	}

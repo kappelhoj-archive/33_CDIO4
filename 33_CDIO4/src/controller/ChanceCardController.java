@@ -82,6 +82,7 @@ public class ChanceCardController {
 		}
 		main.getLandOnFieldController().setDoubleRent(card.getDoubleRent());
 		main.movePlayerOnGUI();
+		//Hvis start passeres.
 		if (currentPos > player.getPosition())
 		{
 			main.givePlayer4000();

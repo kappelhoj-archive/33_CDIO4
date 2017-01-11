@@ -38,9 +38,9 @@ public class TestModeController {
 			diff = (40 - player.getPosition()) + player.getPosition() + diff;
 		}
 		GUI.removeAllCars(player.getName());
-		int printpos=player.getPosition()+diff;
-		if(printpos>40){
-			printpos-=40;
+		int printpos = player.getPosition() + diff;
+		if (printpos > 40) {
+			printpos -= 40;
 		}
 		GUI.setCar(printpos, player.getName());
 
@@ -59,12 +59,17 @@ public class TestModeController {
 		GUI.setBalance(player.getName(), player.getAccountBalance());
 	}
 
-	private void claimField(GameBoard board,Player player) {
+	private void claimField(GameBoard board, Player player) {
 		int fieldNum = GUI.getUserInteger("Hvilket felt vil du overtage?", 1, 40);
+		changeField(board, player, fieldNum);
+
+	}
+
+	private void changeField(GameBoard board, Player player, int fieldNum) {
 		Field testField = board.getField(fieldNum);
 		if ((testField instanceof entity.field.Ownable)) {
-			Ownable currentField=(Ownable)testField;
-			if(currentField.getOwner()!=null){
+			Ownable currentField = (Ownable) testField;
+			if (currentField.getOwner() != null) {
 				currentField.getOwner().removeField(currentField);
 				currentField.removeOwner();
 			}
@@ -72,11 +77,27 @@ public class TestModeController {
 			player.changeAccountBalance(currentField.getPrice());
 			player.buyField(currentField);
 			GUI.setOwner(fieldNum, currentField.getOwner().getName());
-			
+
+		} else {
+			GUI.getUserButtonPressed("Dette felt kan ikke købes", "Ok");
 		}
-		else{
-			GUI.getUserButtonPressed("Dette felt kan ikke købes","Ok");
+	}
+
+	private void claimColor(GameBoard board, Player player) {
+		String[] streetColours = { "Blå", "Orange", "Grøn", "Grå", "Rød", "Hvid", "Gul", "Lilla" };
+		String color = GUI.getUserSelection("Hvilken farve vil du købe?", streetColours);
+
+
+		for (int i = 0; i < 40; i++) {
+			Field field = board.getField(i + 1);
+			if (field instanceof entity.field.Ownable) {
+				if (((Ownable) field).getColour().equals(color)) {
+					changeField(board,player,field.getFieldNumber());
+					
+				}
+			}
 		}
+		
 
 	}
 
@@ -87,8 +108,10 @@ public class TestModeController {
 		final String EXTRA_TURN = "Giv en ekstra tur.";
 		final String SET_PLAYER_BALANCE = "Ændre balance.";
 		final String CLAIM_FIELD = "Giv en grund.";
+		final String CLAIM_COLOR = "Giv en farve.";
 		final String DEACTIVATE_TEST_MODE = "Deaktiver testmode.";
 		final String STOP_TEST_MODE = "Fortsæt spil.";
+		
 
 		String input;
 		boolean menuActive = true;
@@ -102,7 +125,7 @@ public class TestModeController {
 		} else
 			do {
 				input = GUI.getUserSelection(testingModeMessage + "Hvad vil du gøre?", MOVE_PLAYER_TO_FIELD, EXTRA_TURN,
-						SET_PLAYER_BALANCE, CLAIM_FIELD, STOP_TEST_MODE, DEACTIVATE_TEST_MODE);
+						SET_PLAYER_BALANCE, CLAIM_FIELD,CLAIM_COLOR, STOP_TEST_MODE, DEACTIVATE_TEST_MODE);
 				switch (input) {
 				case MOVE_PLAYER_TO_FIELD:
 					output = setPlayerOnField(player);
@@ -125,7 +148,10 @@ public class TestModeController {
 					menuActive = false;
 					break;
 				case CLAIM_FIELD:
-					claimField(fieldController.TESTgetGameBoard(),player);
+					claimField(fieldController.TESTgetGameBoard(), player);
+					break;
+				case CLAIM_COLOR:
+					claimColor(fieldController.TESTgetGameBoard(), player);
 					break;
 
 				// Claim et felt for spilleren.

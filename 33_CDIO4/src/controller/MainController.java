@@ -209,7 +209,7 @@ public class MainController {
 	 */
 	public int rollDice() {
 		// Roll the dice.
-		dice.shakeCup();
+		dice.shake();
 		// Set the dice on the GUI
 		GUI.setDice(dice.getDiceValue()[0], 2, (int) (2 * (Math.random() - 0.5) + 7), dice.getDiceValue()[1], 3,
 				(int) (2 * (Math.random() - 0.5) + 7));

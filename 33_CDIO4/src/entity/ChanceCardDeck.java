@@ -214,7 +214,7 @@ public class ChanceCardDeck
 	{
 		String[] stringArray = { i[2], i[3], i[4], i[5] };
 		MoveToNearestShipping moveToNearestShipping = new MoveToNearestShipping(i[0], i[1], toIntArray(stringArray),
-				toBoolean(i[6]));
+				toBoolean(i[8]));
 		return moveToNearestShipping;
 	}
 

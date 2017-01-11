@@ -7,7 +7,7 @@ import test.TestModeController;
 
 /**
  * MainControler class controls all the other controllers and is responsible for
- * moving the players around the board.
+ * moving the players around the board.<br>
  *
  */
 public class MainController {
@@ -37,8 +37,6 @@ public class MainController {
 			testMode = new TestModeController(false);
 		}
 
-		// Creates a board that can store all the fields.
-		// board = new GameBoard();
 		// Creates an objet that iniliazie the GUI gameboard.
 		GUICreator createGUI = new GUICreator();
 		// Initialise the class that reads fields from a text file.
@@ -52,6 +50,7 @@ public class MainController {
 			this.players[i] = new Player(playerNames[i]);
 		}
 
+		// Set a random player to start.
 		turn = (int) (Math.random() * players.length);
 
 		numExtraTurn = 0;
@@ -61,9 +60,9 @@ public class MainController {
 		prisonController = new PrisonController(this);
 
 		// Construct a field controller
-		
+
 		propertyController = new PropertyController();
-		fieldController = new FieldController(prisonController, this,propertyController);
+		fieldController = new FieldController(prisonController, this, propertyController);
 	}
 
 	/**
@@ -81,7 +80,7 @@ public class MainController {
 	 * Ignores players that have lost.
 	 */
 	public void changeTurn() {
-		// Chance the players turn untill someone has lost.
+		// Chance the players turn until someone has lost.
 		do {
 			turn = (turn + 1) % players.length;
 		} while (players[turn].getHasLost());
@@ -99,14 +98,18 @@ public class MainController {
 			if (!prisonController.inPrison(players[turn]))
 				return;
 		}
-		// Tell the player it is his turn on the GUI.
+		// Tell the player it is his turn on the GUI. Say something different
+		// depending on his last roll.
 		if (numExtraTurn < 1)
 			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
-		else if(numExtraTurn == 1){
-			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens ", "Slå med terninger");
-		}
-		else {
-			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens. Næste gang bliver du sendt i fængsel.", "Slå med terninger");
+		else if (numExtraTurn == 1) {
+			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens ",
+					"Slå med terninger");
+		} else {
+			GUI.getUserButtonPressed(
+					players[turn].getName()
+							+ " det er din tur igen, fordi du har slået to ens. Næste gang bliver du sendt i fængsel.",
+					"Slå med terninger");
 		}
 
 		// Roll the dice.
@@ -138,6 +141,7 @@ public class MainController {
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();
+			// If a winner is found delcare him winner and close the game.
 			if (checkForWinner() != null) {
 				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet.", "Sweet");
 				GUI.close();
@@ -160,8 +164,8 @@ public class MainController {
 	public boolean checkForExtraTurn() {
 		// Check if the dice have equals value, if it does give it an extra
 		// turn.
-		// testExtraTurn Er kune relevant når testmode er aktiv. Det gør
-		// at man kan give spilleren en ekstra tur. Uanset hvad han slår.
+		// testExtraTurn is used by the testmode controller to force an extra
+		// turn.
 		if (dice.getDiceValue()[0] == dice.getDiceValue()[1] || testExtraTurn) {
 			extraTurn = true;
 			numExtraTurn++;
@@ -214,9 +218,10 @@ public class MainController {
 		GUI.setDice(dice.getDiceValue()[0], 2, (int) (2 * (Math.random() - 0.5) + 7), dice.getDiceValue()[1], 3,
 				(int) (2 * (Math.random() - 0.5) + 7));
 
-		// Only used if testing is active.
+		// If testmode is active open the testmode menu.
 		if (testMode.isActive()) {
 			int newRoll = testMode.options(players[turn], this, fieldController);
+			// Change the diceroll if the player chose to.
 			if (newRoll >= 0)
 				return newRoll;
 		}
@@ -244,13 +249,17 @@ public class MainController {
 	 */
 	public void movePlayer(int diceSum) {
 
-		// Check if the player can move to the next field. If not move him to 1
-		// and continue moving forward.
+		// Check if the player can move to the next field problem free.
 		if (players[turn].getPosition() + diceSum <= 40 && players[turn].getPosition() + diceSum > 0) {
 			players[turn].setPosition(players[turn].getPosition() + diceSum);
-		} else if (players[turn].getPosition() + diceSum < 1) {
+		}
+		// If the dicesum is negative, move backwards.
+		else if (players[turn].getPosition() + diceSum < 1) {
 			players[turn].setPosition(40 + diceSum + players[turn].getPosition());
-		} else {
+		}
+		// If the player passes 40. Calculate his new position based on his
+		// roll.
+		else {
 			int difference = 40 - players[turn].getPosition();
 			players[turn].setPosition(diceSum - difference);
 			movePlayerOnGUI();
@@ -260,6 +269,12 @@ public class MainController {
 		movePlayerOnGUI();
 	}
 
+	/**
+	 * Method movePlayerTo: Move the player to a specific location.
+	 * 
+	 * @param newPos
+	 *            The new position of the player.
+	 */
 	public void movePlayerTo(int newPos) {
 		int currentPos = players[turn].getPosition();
 		players[turn].setPosition(newPos);
@@ -304,10 +319,22 @@ public class MainController {
 
 	}
 
+	/**
+	 * Method TESTsetExtraTurn: This method is only for testing. But it makes
+	 * sure the player gets an extra turn.
+	 * 
+	 * @param input
+	 *            Whether or not to give an extra turn.
+	 */
 	public void TESTsetExtraTurn(boolean input) {
-		testExtraTurn = true;
+		testExtraTurn = input;
 	}
 
+	/**
+	 * Method getPlayer(): Returns the array.
+	 * 
+	 * @return Return a Player array.
+	 */
 	public Player[] getPlayers() {
 		return players;
 	}
@@ -353,6 +380,11 @@ public class MainController {
 		return winningPlayer;
 	}
 
+	/**
+	 * Method FieldController: Return the field controller from the Main.
+	 * 
+	 * @return FieldController.
+	 */
 	public FieldController getLandOnFieldController() {
 		return fieldController;
 	}

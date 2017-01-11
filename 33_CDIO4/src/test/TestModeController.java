@@ -1,7 +1,7 @@
 package test;
 
 import entity.field.*;
-import controller.LandOnFieldController;
+import controller.FieldController;
 import controller.MainController;
 import desktop_resources.GUI;
 import entity.GameBoard;
@@ -80,7 +80,7 @@ public class TestModeController {
 
 	}
 
-	public int options(Player player, MainController main, LandOnFieldController fieldController) {
+	public int options(Player player, MainController main, FieldController fieldController) {
 		int output = -1;
 
 		final String MOVE_PLAYER_TO_FIELD = "Ryk spilleren til et felt.";

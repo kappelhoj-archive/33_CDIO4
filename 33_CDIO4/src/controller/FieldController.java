@@ -5,7 +5,7 @@ import entity.Player;
 import entity.field.*;
 import entity.GameBoard;
 
-public class LandOnFieldController {
+public class FieldController {
 
 	// Instance variables
 	private PrisonController prisonController;
@@ -20,7 +20,7 @@ public class LandOnFieldController {
 	 * @param mainController The mainController.
 	 * @param propertyController The PropertyController. 
 	 */
-	public LandOnFieldController(PrisonController prisonController, MainController mainController,PropertyController propertyController) {
+	public FieldController(PrisonController prisonController, MainController mainController,PropertyController propertyController) {
 		bankController = new BankController(propertyController);
 		this.prisonController = new PrisonController(mainController);
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);

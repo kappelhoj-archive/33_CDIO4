@@ -14,7 +14,7 @@ public class MainController {
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
-	private LandOnFieldController fieldController;
+	private FieldController fieldController;
 	private PropertyController propertyController;
 
 	private TestModeController testMode;
@@ -63,7 +63,7 @@ public class MainController {
 		// Construct a field controller
 		
 		propertyController = new PropertyController();
-		fieldController = new LandOnFieldController(prisonController, this,propertyController);
+		fieldController = new FieldController(prisonController, this,propertyController);
 	}
 
 	/**
@@ -353,7 +353,7 @@ public class MainController {
 		return winningPlayer;
 	}
 
-	public LandOnFieldController getLandOnFieldController() {
+	public FieldController getLandOnFieldController() {
 		return fieldController;
 	}
 }

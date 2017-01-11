@@ -63,9 +63,9 @@ public class BankController {
 				if (allFields[i] instanceof Street) {
 					Street temp = (Street) allFields[i];
 					if (temp.getNumbOfHouses() == 5) {
-						housesCon.changeHotels(1);
+						propertyController.changeHotels(1);
 					} else {
-						housesCon.changeHouses(temp.getNumbOfHouses());
+						propertyController.changeHouses(temp.getNumbOfHouses());
 					}
 					temp.changeNumbOfHouses(-temp.getNumbOfHouses());
 					GUI.setHouses(temp.getFieldNumber(), temp.getNumbOfHouses());

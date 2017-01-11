@@ -26,7 +26,7 @@ public class BankController {
 	public void sellHouse(Player player, Street street) {
 
 		if (street.getNumbOfHouses() == 0) {
-			GUI.getUserButtonPressed("Der står ingen huse på " + street.getName(), "Ok");
+			GUI.getUserButtonPressed("Der står ingen huse på " + street.getName() + ".", "Ok");
 		} else {
 			if (street.getNumbOfHouses() == 5) {
 				housesCon.changeHotels(1);
@@ -39,7 +39,7 @@ public class BankController {
 			street.changeNumbOfHouses(-1);
 			player.changeAccountBalance(street.getHousePrice() / 2);
 			GUI.getUserButtonPressed(
-					"Du solgte ét hus på " + street.getName() + "for " + street.getHousePrice() / 2 + " kr.", "Ok");
+					"Du solgte ét hus på " + street.getName() + " for " + street.getHousePrice() / 2 + " kr.", "Ok");
 		}
 	}
 
@@ -102,7 +102,7 @@ public class BankController {
 		
 		player.changeAccountBalance(-player.getAccountBalance()-1);
 		GUI.setBalance(player.getName(), player.getAccountBalance());
-		GUI.getUserButtonPressed("Du tabte spillet.", "Ok");
+		GUI.getUserButtonPressed("Du tabte, og udgår fra spillet.", "Ok");
 
 	}
 

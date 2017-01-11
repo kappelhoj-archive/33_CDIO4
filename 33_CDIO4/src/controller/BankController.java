@@ -93,6 +93,7 @@ public class BankController {
 					temp.changeNumbOfHouses(-temp.getNumbOfHouses());
 					GUI.setHouses(temp.getFieldNumber(), temp.getNumbOfHouses());
 					GUI.setHotel(temp.getFieldNumber(), false);
+					GUI.removeOwner(temp.getFieldNumber());
 
 				}
 				player.removeField(allFields[i]);

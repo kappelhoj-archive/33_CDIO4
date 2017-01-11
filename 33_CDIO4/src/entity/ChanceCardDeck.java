@@ -28,7 +28,7 @@ public class ChanceCardDeck
 		try {
 			Scanner inputStream = new Scanner(file);
 			String data = inputStream.nextLine();
-			while (inputStream.hasNextLine()) {
+			for(int i=0;i<chanceCardDeck.length; i++) {
 				data = inputStream.nextLine();
 				String[] fromInfo = data.split(",");
 
@@ -190,7 +190,7 @@ public class ChanceCardDeck
 	 */
 	private MoveToField createMoveToField(String[] i) 
 	{
-		MoveToField moveToField = new MoveToField(i[0], i[1], toInt(i[3]));
+		MoveToField moveToField = new MoveToField(i[0], i[1], toInt(i[2]));
 		return moveToField;
 	}
 

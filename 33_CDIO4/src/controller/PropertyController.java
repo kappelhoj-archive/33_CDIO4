@@ -117,6 +117,17 @@ public class PropertyController {
 		}
 		return canBuildOn;
 	}
+	
+//	private String[] canSellBuildingOnStreet(Player player)
+//	{
+//		Ownable[] ownedFields = player.getFields();
+//		String[] ownedFieldsNames = new String[ownedFields.length];
+//		
+//		for (int i = 0; i < ownedFields.length; i++)
+//		{
+//			ownedFieldsNames[i] = ownedFields[i].getName();
+//		}
+//	}
 
 	/**
 	 * Method numbOfStreetsFromColour: Returns how many streets that is required 
@@ -124,14 +135,14 @@ public class PropertyController {
 	 * @param colour The colour of the street.
 	 * @return 2 if the street is blue 3 otherwise.
 	 */
-	private int numbOfStreetsFromColour(String colour) {
-		int colourAmount = 0;
+	private int streetsWithColour(String colour) {
+		int streetAmountWithColour = 0;
 		if (colour.equals("Blå") || colour.equals("Lilla")) {
-			colourAmount = 2;
+			streetAmountWithColour = 2;
 		} else {
-			colourAmount = 3;
+			streetAmountWithColour = 3;
 		}
-		return colourAmount;
+		return streetAmountWithColour;
 	}
 
 	/**
@@ -149,6 +160,17 @@ public class PropertyController {
 		}
 		return min;
 	}
+	
+	private int maximum(int[] numbers) {
+		//Set an abretary high value
+		int max = 0;
+		
+		for(int i = 0; i < numbers.length; i++)
+		{
+			max = Math.max(max, numbers[i]);
+		}
+		return max;
+	}
 
 	/**
 	 * Method findStreetNames: Returns all street names with the given colour that the player owns that he can build on.
@@ -156,11 +178,11 @@ public class PropertyController {
 	 * @param colour The colour that you want the streets return to have.
 	 * @return street names as a String array with the given colour that the player owns.
 	 */
-	private String[] findStreetNames(Player player, String colour) {
+	private String[] streetsWithMostOrFewestHouses(Player player, String colour, boolean maximum) {
 		//An array to hold the amount of houses on the different streets.
-		int[] houses = new int[numbOfStreetsFromColour(colour)];
+		int[] houses = new int[streetsWithColour(colour)];
 		//An array to hold the names of the different streets.
-		String[] streetNames = new String[numbOfStreetsFromColour(colour)];
+		String[] streetNames = new String[streetsWithColour(colour)];
 		
 		//Fills the arrays with informations.
 		int j = 0;
@@ -172,17 +194,30 @@ public class PropertyController {
 				j++;
 			}
 		}
-		//Finds which street has the fewest houses.
-		int minimum = minimum(houses);
-		//Hvis der er hoteller på alle grunde:
-		if (minimum==5){
-			return null;
+		int streetsWithEqualAmountHouses = 0;
+		
+		if(maximum)
+		{
+			streetsWithEqualAmountHouses = maximum(houses);
+			if (streetsWithEqualAmountHouses==0){
+				return null;
+			}
+		}
+		
+		else
+		{
+			streetsWithEqualAmountHouses = minimum(houses);
+			if(streetsWithEqualAmountHouses == 5){
+				return null;
+			}
+				
 		}
 		
 		int amountOfStreets = 0;
+		
 		//Finds how many streets that has the minimum amount of houses
 		for (int i = 0; i < streetNames.length; i++) {
-			if (houses[i] == minimum) {
+			if (houses[i] == streetsWithEqualAmountHouses) {
 				amountOfStreets++;
 			}
 		}
@@ -190,7 +225,7 @@ public class PropertyController {
 		String[] streetNamesNew = new String[amountOfStreets];
 		j=0;
 		for (int i = 0; i < streetNames.length; i++) {
-			if (minimum == houses[i]) {
+			if (streetsWithEqualAmountHouses == houses[i]) {
 				streetNamesNew[j] = streetNames[i];
 				j++;
 			}
@@ -205,7 +240,7 @@ public class PropertyController {
 	 */
 	private void setBuilding(Player player, String streetName)
 	{
-		Street street = player.getFieldFromName(streetName);
+		Street street = player.getStreetFromName(streetName);
 		int numbOfHouses = street.getNumbOfHouses();
 		
 		if (numbOfHouses == 4)
@@ -278,7 +313,7 @@ public class PropertyController {
 	 * when he wants to buy a building on a street 
 	 * @param player The player who wants to buy a building
 	 */
-	public void showBuildingMenu(Player player) {
+	public void buyBuildingMenu(Player player) {
 		while (true) {
 			String[] options = MainController.addReturnToArray(canBuildOnColourString(player));
 			String out="Hvilken farve ejendom vil du købe huse på?";
@@ -292,7 +327,41 @@ public class PropertyController {
 			else {
 				while (true) 
 				{	
-					String[] options2 = MainController.addReturnToArray(findStreetNames(player, answer));
+					String[] options2 = MainController.addReturnToArray(streetsWithMostOrFewestHouses(player, answer, false));
+					String answer2;
+					if(options2.length==1){
+						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);
+					}
+					else{
+					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne på " + answer + " koster "
+							+ player.getHousePriceFromColour(answer), options2);
+					}
+					if (answer2.equals("Gå tilbage")) {
+						break;
+					}
+					setBuilding(player, answer2);
+				}
+			}
+		}
+	}
+	
+	public void sellBuildingMenu(Player player)
+	{
+		while(true)
+		{
+			String[] options = MainController.addReturnToArray(canBuildOnColourString(player));
+			String out="Hvilken farve ejendom vil du købe huse på?";
+			if(options.length==1){
+				out="Du har ikke nogle grunde at købe huse på.";
+			}
+			String answer = GUI.getUserSelection(out, options);
+			if (answer.equals("Gå tilbage")) {
+				return;
+			} 
+			else {
+				while (true) 
+				{	
+					String[] options2 = MainController.addReturnToArray(streetsWithMostOrFewestHouses(player, answer, false));
 					String answer2;
 					if(options2.length==1){
 						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);

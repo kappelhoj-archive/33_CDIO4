@@ -296,7 +296,7 @@ public class MainController {
 				endTurn = true;
 				break;
 			case HOUSES_AND_HOTELS:
-				propertyController.showBuildingMenu(players[turn]);
+				propertyController.buyBuildingMenu(players[turn]);
 				break;
 
 			}

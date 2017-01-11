@@ -320,13 +320,13 @@ public class Player {
 	}
 
 	/**
-	 * Method getFieldFromName: Returns the field with the given name.
+	 * Method getStreetFromName: Returns the field with the given name.
 	 * 
 	 * @param name
-	 *            The name of the field that you want to find.
-	 * @return The field with the name.
+	 *            The name of the street that you want to find.
+	 * @return The street with the name.
 	 */
-	public Street getFieldFromName(String name) {
+	public Street getStreetFromName(String name) {
 		Street field = null;
 		for (int i = 0; i < fields.length; i++) {
 			if (name == fields[i].getName()) {

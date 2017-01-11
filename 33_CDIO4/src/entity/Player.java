@@ -204,10 +204,14 @@ public class Player {
 				fields = null;
 				return;
 			}
-			for (int j = 0; j < fields.length; j++) {
-				if (removedField.equals(fields[j].getName())) {
+			for (int j = 0; j < fields.length; j++)
+				{
+				if (removedField.equals(fields[j].getName())) 
+				{
 					fewerFields[j] = fields[++j];
-				} else {
+				} 
+				else 
+				{
 					fewerFields[j] = fields[j];
 				}
 			}

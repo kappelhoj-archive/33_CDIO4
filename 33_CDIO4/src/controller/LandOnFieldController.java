@@ -82,7 +82,7 @@ public class LandOnFieldController {
 				}
 			}
 		} else {
-			if (ownable.isFieldOwnedByAnotherPlayer(player)) {
+			if (ownable.isFieldOwnedByAnotherPlayer(player) && !ownable.getOwner().getInPrison()) {
 				if (ownable.getType().equals("Tapperi")) {
 					Brewery brewery = (Brewery) (ownable);
 					brewery.setDiceSum(diceSum);	

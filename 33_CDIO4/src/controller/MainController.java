@@ -101,12 +101,12 @@ public class MainController {
 		}
 		// Tell the player it is his turn on the GUI.
 		if (numExtraTurn < 1)
-			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur.", "Slå med terninger");
+			GUI.getUserButtonPressed(players[turn].getName() + ", det er din tur.", "Slå med terninger");
 		else if(numExtraTurn == 1){
-			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens ", "Slå med terninger");
+			GUI.getUserButtonPressed(players[turn].getName() + ", det er din tur igen, fordi du har slået to ens ", "Slå med terninger");
 		}
 		else {
-			GUI.getUserButtonPressed(players[turn].getName() + " det er din tur igen, fordi du har slået to ens. Næste gang bliver du sendt i fængsel.", "Slå med terninger");
+			GUI.getUserButtonPressed(players[turn].getName() + ", det er din tur igen, fordi du har slået to ens. Næste gang du slår to ens bliver du sendt i fængsel.", "Slå med terninger");
 		}
 
 		// Roll the dice.
@@ -134,12 +134,12 @@ public class MainController {
 	 * Method playGame: Plays the game until someone has won.
 	 */
 	public void playGame() {
-		GUI.getUserButtonPressed("En tilfældig spiller er valgt til at starte", "Start spil");
+		GUI.getUserButtonPressed("En tilfældig spiller er blevet valgt til at starte", "Start spil");
 		// Keep changing turn until someone has won.
 		while (true) {
 			changeTurn();
 			if (checkForWinner() != null) {
-				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet.", "Sweet");
+				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + ", du har vundet.", "Sweet");
 				GUI.close();
 				break;
 			}
@@ -184,7 +184,7 @@ public class MainController {
 	public void givePlayer4000() {
 		players[turn].changeAccountBalance(4000);
 		GUI.setBalance(players[turn].getName(), players[turn].getAccountBalance());
-		GUI.getUserButtonPressed("Du passerede start og modtager 4.000.", "Ok");
+		GUI.getUserButtonPressed("Du passerede start og modtager kr. 4.000.", "Ok");
 	}
 
 	/**

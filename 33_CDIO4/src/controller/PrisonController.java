@@ -70,8 +70,10 @@ public class PrisonController {
 			if(mainController.checkForExtraTurn())
 			{
 				GUI.getUserButtonPressed("Du slog to ens! Du er nu fri og må slå igen.", "Slå med terningerne");
+				player.setInPrison(false);
 				mainController.movePlayer(diceSum);
-				mainController.playTurn();
+				mainController.getLandOnFieldController().landOnField(player, diceSum);
+				mainController.playerTurnDecision();
 			}			
 			else
 			{

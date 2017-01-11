@@ -72,13 +72,13 @@ public class LandOnFieldController {
 		Ownable ownable = (Ownable) field;
 		if (!ownable.isFieldOwned()) {
 			boolean bought = GUI.getUserLeftButtonPressed(
-					"Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
+					"Du landede på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
 			if (bought) {
 				if (player.buyField(ownable)) {
 					GUI.setOwner(player.getPosition(), player.getName());
 					GUI.setBalance(player.getName(), player.getAccountBalance());
 				} else {
-					GUI.getUserButtonPressed("Du har ikke råd til at købe " + ownable.getName(), "Ok");
+					GUI.getUserButtonPressed("Du har ikke råd til at købe " + ownable.getName() + ".", "Ok");
 				}
 			}
 		} else {
@@ -92,7 +92,7 @@ public class LandOnFieldController {
 				if (doubleRent) {
 					rent = rent * 2;
 				}
-				GUI.getUserButtonPressed("Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName() + ", og du skal betale en rente på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
+				GUI.getUserButtonPressed("Du landede på " + ownable.getName() + ". Grunden er i forvejen ejet af " + ownable.getOwner().getName() + ", og du skal betale en leje på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
 				
 				// 
 				if(bankController.playerAffordPayment(player, rent))
@@ -138,7 +138,7 @@ public class LandOnFieldController {
 					player.changeAccountBalance(-rentAmount);
 			}
 		} else {
-			GUI.getUserButtonPressed("Du skal betale ekstraordinærstatsskat.", "Betal 2.000 kr.");
+			GUI.getUserButtonPressed("Du skal betale ekstraordinær statsskat.", "Betal 2.000 kr.");
 			
 			// The rent amount to be paid.
 			rentAmount = 2000;
@@ -176,7 +176,7 @@ public class LandOnFieldController {
 	 *            The player who landed on the chance field.
 	 */
 	public void landOnChanceField(Player player) {
-		GUI.getUserButtonPressed("Du landte på prøv lykken.", "Træk et kort");
+		GUI.getUserButtonPressed("Du landede på Prøv lykken.", "Træk et kort");
 		chanceCardController.draw(player);
 	}
 	

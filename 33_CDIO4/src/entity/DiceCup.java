@@ -21,7 +21,7 @@ public class DiceCup
 	/**
 	 * Method rollDice: Rolls the dice in the DiceCup.
 	 */
-	public void shakeCup()
+	public void shake()
 	{
 		d1.rollDie();
 		d2.rollDie();

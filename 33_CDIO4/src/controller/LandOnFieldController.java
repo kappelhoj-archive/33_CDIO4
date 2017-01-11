@@ -82,14 +82,14 @@ public class LandOnFieldController {
 				}
 			}
 		} else {
-			if (ownable.isFieldOwnedByAnotherPlayer(player)) {
+			if (ownable.isFieldOwnedByAnotherPlayer(player) && !ownable.getOwner().getInPrison()) {
 				if (ownable.getType().equals("Tapperi")) {
 					Brewery brewery = (Brewery) (ownable);
 					brewery.setDiceSum(diceSum);	
 				}
 				int rent = ownable.getRent();
 				// Only used for some specific chancecards
-				if (doubleRent == true) {
+				if (doubleRent) {
 					rent = rent * 2;
 				}
 				GUI.getUserButtonPressed("Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName() + ", og du skal betale en rente på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
@@ -186,6 +186,7 @@ public class LandOnFieldController {
 	 */
 	public void setDoubleRent(boolean doubleRent){
 		this.doubleRent = doubleRent;
+
 	}
 
 	public GameBoard TESTgetGameBoard() {

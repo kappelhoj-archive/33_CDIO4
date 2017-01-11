@@ -38,13 +38,13 @@ public class PrisonController {
 	public boolean inPrison(Player player)
 	{
 		boolean boughtOut = false;
-		String payOut = "Betal dig ud: 1.000 kr";
-		String rollOut = "Slå dig ud fængslet med terningerne";
+		String payOut = "Betal dig ud: 1.000 kr.";
+		String rollOut = "Slå dig ud fængslet med terningerne.";
 		String input = null;
 		if(player.getTurnsInPrison()>=3){
 			player.setInPrison(false);
 			player.setTurnsInPrison(0);
-			GUI.getUserButtonPressed("Du har nu siddet i fængsel i 3 runder, og bliver derfor sat fri.", "Ok");
+			GUI.getUserButtonPressed("Du har nu siddet i fængsel i 3 runder, og bliver derfor sat fri uden betaling.", "Ok");
 			return true;
 		}
 		

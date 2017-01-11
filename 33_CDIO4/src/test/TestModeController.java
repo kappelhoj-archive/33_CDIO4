@@ -83,10 +83,10 @@ public class TestModeController {
 	public int options(Player player, MainController main, FieldController fieldController) {
 		int output = -1;
 
-		final String MOVE_PLAYER_TO_FIELD = "Ryk spilleren til et felt.";
-		final String EXTRA_TURN = "Giv denne spiller en ekstra tur.";
-		final String SET_PLAYER_BALANCE = "Ændre spillerens balance.";
-		final String CLAIM_FIELD = "Giv spilleren et felt, kan også stjæle fra andre spillere.";
+		final String MOVE_PLAYER_TO_FIELD = "Ryk til et felt.";
+		final String EXTRA_TURN = "Giv en ekstra tur.";
+		final String SET_PLAYER_BALANCE = "Ændre balance.";
+		final String CLAIM_FIELD = "Giv en grund.";
 		final String DEACTIVATE_TEST_MODE = "Deaktiver testmode.";
 		final String STOP_TEST_MODE = "Fortsæt spil.";
 

@@ -183,7 +183,7 @@ public class Player {
 	}
 
 	/**
-	 * Method loseFields: Removes a Ownable field from the player's field list.
+	 * Method loseField: Removes a Ownable field from the player's field list.
 	 * 
 	 * @param field
 	 *            The specific field to be removed.

@@ -240,12 +240,12 @@ public class PropertyController {
 			}
 			else
 			{
-				GUI.getUserButtonPressed("Du har ikke råd til at købe et hotel på denne grund", "Ok");
+				GUI.getUserButtonPressed("Du har ikke råd til at købe et hotel på denne grund.", "Ok");
 			}
 		}
 		else
 		{
-			GUI.getUserButtonPressed("Der er ikke flere hoteller tilbage i banken", "Ok");
+			GUI.getUserButtonPressed("Der er ikke flere hoteller tilbage i banken.", "Ok");
 		}
 	}
 	
@@ -269,7 +269,7 @@ public class PropertyController {
 		}
 		else
 		{
-			GUI.getUserButtonPressed("Der er ikke flere huse tilbage i banken", "Ok");
+			GUI.getUserButtonPressed("Der er ikke flere huse tilbage i banken.", "Ok");
 		}
 	}
 
@@ -298,8 +298,8 @@ public class PropertyController {
 						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);
 					}
 					else{
-					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne på " + answer + " koster "
-							+ player.getHousePriceFromColour(answer), options2);
+					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne på " + answer + " koster: "
+							+ player.getHousePriceFromColour(answer), options2) + " kr.";
 					}
 					if (answer2.equals("Gå tilbage")) {
 						break;

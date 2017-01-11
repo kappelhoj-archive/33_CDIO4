@@ -20,6 +20,8 @@ public abstract class Ownable extends Field {
 		this.owner = null;
 	}
 	
+	
+	
 	/**
 	 * Method getOwner: Returns the owner of the field.
 	 * @return The player who owns the field.
@@ -117,6 +119,6 @@ public abstract class Ownable extends Field {
 	 */
 	public String getColour()
 	{
-		return null;
+		return "Empty";
 	}
 }

@@ -39,6 +39,7 @@ public class Street extends Ownable {
 	 * Method getColour: Returns the colour of the field.
 	 * @return The colour of the field.
 	 */
+	@Override
 	public String getColour() {
 		return colour;
 	}

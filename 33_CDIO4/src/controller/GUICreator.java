@@ -176,7 +176,7 @@ public class GUICreator {
 	 */
 	private int askNumberOfPlayers() {
 		// Ask the players how many are playing
-		int numberOfPlayers = GUI.getUserInteger("Indtast hvor mange spillere 2-6", 2, 6);
+		int numberOfPlayers = GUI.getUserInteger("Indtast hvor mange spillere der vil spille (2-6)", 2, 6);
 		return numberOfPlayers;
 	}
 
@@ -191,7 +191,7 @@ public class GUICreator {
 
 		// Lets player 1 enter a name that is not an empty String.
 		do {
-			playerNames[0] = GUI.getUserString("Indtast navn for spiller nummer 1");
+			playerNames[0] = GUI.getUserString("Indtast navn for spiller nummer 1:");
 		} while (playerNames[0].equals(""));
 
 		// Lets all the users insert their player names
@@ -202,7 +202,7 @@ public class GUICreator {
 			while (nameEqual) {
 				// Lets player 2-6 enter a name that is not an empty String.
 				do {
-					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer " + (i + 1));
+					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer " + (i + 1)) + ":";
 				} while (playerNames[i].equals(""));
 
 				// Goes through the already added player names
@@ -211,7 +211,7 @@ public class GUICreator {
 					// If the entered player name matches an already existing
 					// name
 					if (playerNames[j].equals(playerNames[i])) {
-						GUI.getUserButtonPressed("Navnet findes allerede, vælg venligst et andet.", "OK");
+						GUI.getUserButtonPressed("Navnet findes allerede. Vælg venligst et andet navn.", "Ok");
 						nameEqual = true;
 						break;
 					} else {

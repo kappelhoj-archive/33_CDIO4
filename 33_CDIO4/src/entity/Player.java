@@ -191,12 +191,12 @@ public class Player {
 	 *            The player affected by this removal.
 	 */
 	public void removeField(Ownable field) {
-		//Check that the owner of the field and this player is the same.
+		// Check that the owner of the field and this player is the same.
 		if (field.getOwner().getName().equals(this.getName())) {
 			field.setOwner(null);
 
 			String removedField = field.getName();
-			GUI.removeOwner(field.getFieldNumber());
+			
 
 			Ownable[] fewerFields = new Ownable[fields.length - 1];
 
@@ -204,13 +204,15 @@ public class Player {
 				fields = null;
 				return;
 			}
+			
+			int i=0;
 			for (int j = 0; j < fields.length; j++) {
-				if (removedField.equals(fields[j].getName())) {
-					fewerFields[j] = fields[++j];
-				} else {
-					fewerFields[j] = fields[j];
+				if (!removedField.equals(fields[j].getName())) {
+					fewerFields[i] = fields[j];
+					i++;
 				}
 			}
+			
 			fields = fewerFields;
 		}
 	}

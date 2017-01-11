@@ -139,7 +139,7 @@ public class MainController {
 		while (true) {
 			changeTurn();
 			if (checkForWinner() != null) {
-				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet", "Sweet");
+				GUI.getUserButtonPressed("Tillykke " + checkForWinner().getName() + " har vundet.", "Sweet");
 				GUI.close();
 				break;
 			}

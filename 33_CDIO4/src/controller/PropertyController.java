@@ -63,7 +63,7 @@ public class PropertyController {
 	 * @param player The player who owns the fields.
 	 * @return int array containing the information. fx int[0] = amount of blue coloured streets owned.
 	 */
-	private int[] countStreetColours(Player player) {
+	public int[] countStreetColours(Player player) {
 		int[] countedStreetColours = new int[8];
 		String[] streetColours = {"Blå", "Orange", "Grøn", "Grå", "Rød", "Hvid", "Gul", "Lilla"};
 		
@@ -177,7 +177,7 @@ public class PropertyController {
 	 * @param colour The colour that you want the streets return to have.
 	 * @return street names as a String array with the given colour that the player owns.
 	 */
-	private String[] streetsWithMostOrFewestHouses(Player player, String colour, boolean maximum) {
+	private String[] streetsWithBuildings(Player player, String colour, boolean maximum) {
 		//An array to hold the amount of houses on the different streets.
 		int[] houses = new int[streetsWithColour(colour)];
 		//An array to hold the names of the different streets.
@@ -318,17 +318,15 @@ public class PropertyController {
 				changeHotels(1);
 				changeHouses(-4);
 				GUI.setHotel(street.getFieldNumber(), false);
-				GUI.setHouses(street.getFieldNumber(), street.getNumbOfHouses());
+				GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(-1));
 				//Der er en fejl her hvor spillerne kan få huse selvom der ikke er nok huse.
 			} else {
-				GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(-1));
 				changeHouses(1);
+				GUI.setHouses(street.getFieldNumber(), street.changeNumbOfHouses(-1));
 			}
 
-			street.changeNumbOfHouses(-1);
 			player.changeAccountBalance(street.getHousePrice() / 2);
-			GUI.getUserButtonPressed(
-					"Du solgte ét hus på " + street.getName() + " for " + street.getHousePrice() / 2 + " kr.", "Ok");
+			GUI.setBalance(player.getName(), player.getAccountBalance());
 		}
 	}
 
@@ -351,7 +349,7 @@ public class PropertyController {
 			else {
 				while (true) 
 				{	
-					String[] options2 = MainController.addReturnToArray(streetsWithMostOrFewestHouses(player, answer, false));
+					String[] options2 = MainController.addReturnToArray(streetsWithBuildings(player, answer, false));
 					String answer2;
 					if(options2.length==1){
 						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);
@@ -385,10 +383,10 @@ public class PropertyController {
 			else {
 				while (true) 
 				{	
-					String[] options2 = MainController.addReturnToArray(streetsWithMostOrFewestHouses(player, answer, true));
+					String[] options2 = MainController.addReturnToArray(streetsWithBuildings(player, answer, true));
 					String answer2;
 					if(options2.length==1){
-						answer2 = GUI.getUserSelection("Du kan ikke bygge flere bygninger på denne farve grunde.", options2);
+						answer2 = GUI.getUserSelection("Du har ikke flere bygninger på denne farve grunde.", options2);
 					}
 					else{
 					answer2 = GUI.getUserSelection("Du har valgt " + answer + ". Bygningerne sælges for "

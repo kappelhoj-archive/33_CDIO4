@@ -6,9 +6,10 @@ import entity.field.Ownable;
 import entity.field.Street;
 import entity.Player;
 
-
 /**
- * This class is resposible for handling the debt of players when they owe the bank or another player money.
+ * This class is resposible for handling the debt of players when they owe the
+ * bank or another player money.
+ * 
  * @author Gruppe33
  *
  */
@@ -21,6 +22,22 @@ public class BankController {
 		this.propertyController = propertyController;
 	}
 
+	private boolean canStreetBeSold(Street street, Player player) {
+		if (street.getNumbOfHouses() > 0) {
+			return false;
+		}
+
+		for (int i = 0; i < player.getFields().length; i++) {
+			if (player.getFields()[i].getColour().equals(street.getColour())) {
+				if (((Street) player.getFields()[i]).getNumbOfHouses() > 0)
+					return false;
+			}
+		}
+
+		return true;
+
+	}
+
 	/**
 	 * Gets the player's fields without buildings on them.
 	 * 
@@ -31,7 +48,10 @@ public class BankController {
 	private Ownable[] getFieldsWithoutBuildings(Player player) {
 		// All the player's fields.
 		Ownable[] playerFields = player.getFields();
-
+		
+		if(playerFields==null){
+			return null;
+		}
 		// Array to hold the fields without buildings on them.
 		Ownable[] fieldsWithoutBuildings = new Ownable[playerFields.length];
 
@@ -42,35 +62,12 @@ public class BankController {
 		for (int i = 0; i < playerFields.length; i++) {
 			// If a field is a Street object
 			if (playerFields[i] instanceof Street) {
-				
-				if (playerFields[i].getColour().equals("Blå") || playerFields[i].getColour().equals("Lilla"))
-				{
-					if (player.getStreetsOwned(playerFields[i].getColour()) == 2)
-					{
-						// If the street has no houses on it
-						if (((Street) playerFields[i]).getNumbOfHouses() == 0) {
-							// Add the street to the array for the fields without
-							// buildings.
-							fieldsWithoutBuildings[j] = playerFields[i];
-							j++;
-						}
-					}
-				}
-				else
-				{
-					if(player.getStreetsOwned(playerFields[i].getColour()) == 3)
-					{
-						// If the street has no houses on it
-						if (((Street) playerFields[i]).getNumbOfHouses() == 0) {
-							// Add the street to the array for the fields without
-							// buildings.
-							fieldsWithoutBuildings[j] = playerFields[i];
-							j++;
-						}
-					}
+
+				if (canStreetBeSold((Street) playerFields[i], player)) {
+					fieldsWithoutBuildings[j] = playerFields[i];
+					j++;
 				}
 
-				
 			} else {
 				fieldsWithoutBuildings[j] = playerFields[i];
 				j++;
@@ -87,15 +84,28 @@ public class BankController {
 	 * @return String array of the fields names and price.
 	 */
 	private String[] fieldsToString(Ownable[] fields) {
+		if(fields==null){
+			return null;
+		}
 		String[] fieldsNames = new String[fields.length];
-
+		int fieldsNamesLength=0;
 		// Go through the fields array
 		for (int i = 0; i < fields.length; i++) {
+			if(fields[i]!=null){
 			// Type the fields name and price into the String array.
 			fieldsNames[i] = fields[i].getName() + " " + "(" + (fields[i].getPrice() / 2) + " kr.)";
+			fieldsNamesLength++;
+			}
 		}
-
-		return fieldsNames;
+		if(fieldsNamesLength==0){
+			return null;
+		}
+		String[] fieldsNamesNew=new String[fieldsNamesLength];
+		for(int i=0;i<fieldsNamesLength;i++){
+			fieldsNamesNew[i]=fieldsNames[i];
+		}
+		
+		return fieldsNamesNew;
 	}
 
 	/**
@@ -109,8 +119,16 @@ public class BankController {
 		Ownable[] fieldsWithoutBuildings = getFieldsWithoutBuildings(player);
 		String[] fieldsToString = fieldsToString(fieldsWithoutBuildings);
 		String message = "Hvilken grund vil du sælge?";
+		String failMessage ="Du har ikke nogle grunde at sælge";
 		String[] options = MainController.addReturnToArray(fieldsToString);
+		
+		if(options.length==1){
+			GUI.getUserSelection(failMessage, options);
+			return;
+		}
+		
 		String answer = GUI.getUserSelection(message, options);
+
 		
 		if (answer.equals("Gå tilbage")) {
 			return;
@@ -123,8 +141,7 @@ public class BankController {
 					break;
 				}
 			}
-			
-			
+
 			player.changeAccountBalance(fieldsWithoutBuildings[index].getPrice() / 2);
 			player.removeField(fieldsWithoutBuildings[index]);
 			GUI.setBalance(player.getName(), player.getAccountBalance());
@@ -194,12 +211,16 @@ public class BankController {
 
 	/**
 	 * Checks if a player can handle the debt he owes.
-	 * @param player The player that owes debt.
-	 * @param debt The debt that is owed.
+	 * 
+	 * @param player
+	 *            The player that owes debt.
+	 * @param debt
+	 *            The debt that is owed.
 	 * @return Whether the player can handle the debt or not.
 	 */
 	public boolean handleDebt(Player player, int debt) {
-		// If the player's debt is bigger than the players (fortune minus his balance) divided by 2.
+		// If the player's debt is bigger than the players (fortune minus his
+		// balance) divided by 2.
 		if (((player.getFortune() - player.getAccountBalance()) / 2) + player.getAccountBalance() > debt) {
 			while (true) {
 				String sellField = "Sælg grund";
@@ -207,14 +228,14 @@ public class BankController {
 				String payDebt = "Betal gæld";
 				String message = "Du har ikke råd til at betale din gæld, hvad vil du gøre?";
 				String[] options = { sellField, sellHouse };
-				
+
 				if (player.getAccountBalance() >= debt) {
 					String[] expandedOptions = { payDebt, options[0], options[1] };
 					options = expandedOptions;
 					message = "Du kan nu betale din gæld. Vil du sælge yderligere grunde eller bygninger?";
 				}
 				String userSelection = GUI.getUserSelection(message, options);
-				
+
 				if (userSelection.equals(sellHouse))
 					propertyController.sellBuildingMenu(player);
 				else if (userSelection.equals(sellField))

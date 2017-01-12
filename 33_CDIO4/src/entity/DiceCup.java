@@ -2,6 +2,11 @@ package entity;
 
 import entity.Die;
 
+/**
+ * This class is responsible for rolling 2 object of type Die, and returning that information to the main controller.
+ * @author Gruppe33
+ *
+ */
 public class DiceCup 
 {	
 	//Instance variables

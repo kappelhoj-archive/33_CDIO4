@@ -1,5 +1,10 @@
 package entity.field;
 
+/**
+ * This class is the general description of a field.
+ * @author Gruppe33
+ *
+ */
 public abstract class Field {
 	
 	//Instance variables

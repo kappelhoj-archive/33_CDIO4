@@ -6,6 +6,12 @@ import entity.field.Ownable;
 import entity.field.Street;
 import entity.Player;
 
+
+/**
+ * This class is resposible for handling the debt of players when they owe the bank or another player money.
+ * @author Gruppe33
+ *
+ */
 public class BankController {
 
 	// Instance variables

@@ -1,5 +1,11 @@
 package entity.field;
 
+
+/**
+ * This class describes the field type Chancefield.
+ * @author Gruppe33
+ *
+ */
 public class ChanceField extends Field{
 	
 	/**

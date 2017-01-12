@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes a simple chance card.
+ * @author Gruppe33
+ *
+ */
 public abstract class ChanceCard {
 	
 	//Instance variables

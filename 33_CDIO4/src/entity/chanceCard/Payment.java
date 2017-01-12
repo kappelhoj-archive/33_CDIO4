@@ -1,7 +1,13 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard Payment.
+ * @author Gruppe33
+ *
+ */
 	public class Payment extends ChanceCard{
 
+		
 		//Instance variables
 		private int amount;
 		

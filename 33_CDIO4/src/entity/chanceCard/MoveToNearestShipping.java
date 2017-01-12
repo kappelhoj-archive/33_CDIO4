@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard MoveToNearestShipping.
+ * @author Gruppe33
+ *
+ */
 public class MoveToNearestShipping extends Movement {
 	
 	//Instance variables

@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard MoveToPrison.
+ * @author Gruppe33
+ *
+ */
 public class MoveToPrison extends Movement {
 	
 	//Instance variables

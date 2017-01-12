@@ -1,5 +1,11 @@
 package entity.field;
 
+
+/**
+ * This class describes the field type Neutral. This includes the prison fields, start field and parking field.
+ * @author Gruppe33
+ *
+ */
 public class Neutral extends Field
 {
 

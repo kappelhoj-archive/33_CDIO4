@@ -7,6 +7,11 @@ import controller.PrisonController;
 import desktop_resources.GUI;
 import controller.BankController;
 
+/**
+ * This class is responsible for handling the chance cards when the player draws them..
+ * @author Gruppe33
+ *
+ */
 public class ChanceCardController {
 
 	private ChanceCardDeck deck;
@@ -82,6 +87,7 @@ public class ChanceCardController {
 		}
 		main.getLandOnFieldController().setDoubleRent(card.getDoubleRent());
 		main.movePlayerOnGUI();
+		//Hvis start passeres.
 		if (currentPos > player.getPosition())
 		{
 			main.givePlayer4000();

@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard MoveThreeSteps.
+ * @author Gruppe33
+ *
+ */
 public class MoveThreeSteps extends Movement {
 	
 	//Instance variables

@@ -1,5 +1,10 @@
 package entity.field;
 
+/**
+ * This class describes the ownable field type Street.
+ * @author Gruppe33
+ *
+ */
 public class Street extends Ownable {
 	// Instance variables
 	private String colour;

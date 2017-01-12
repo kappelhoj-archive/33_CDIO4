@@ -3,6 +3,11 @@ package entity;
 import entity.field.*;
 import data.Reader;
 
+/**
+ * This class is responsible for creating, holding and giving fields from the board. 
+ * @author Gruppe33
+ *
+ */
 public class GameBoard 
 {
 	// Instance variables.
@@ -18,7 +23,7 @@ public class GameBoard
 		Reader reader = new Reader("src/data/Feltliste.txt");
 		String[][] fieldData = reader.readFile();
 		fieldData = reader.formatFileData(fieldData);
-		//oprette felterne
+		//Opretter felterne
 		for(int i = 0; i < fields.length; i++)
 		{
 			addField(fieldData[i]);

@@ -1,5 +1,11 @@
 package entity.chanceCard;
 
+
+/**
+ * This class describes the specific chanceCard MoveToField.
+ * @author Gruppe33
+ *
+ */
 public class MoveToField extends Movement {
 	
 	//Instance variables

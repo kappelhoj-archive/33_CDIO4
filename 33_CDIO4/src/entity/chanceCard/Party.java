@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard Party.
+ * @author Gruppe33
+ *
+ */
 public class Party extends ChanceCard{
 	
 	//Instance variables

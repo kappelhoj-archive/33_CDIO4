@@ -15,6 +15,12 @@ import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
 
+/**
+ * This class is responsible for creating the GUI.
+ * 
+ * @author Gruppe33
+ *
+ */
 public class GUICreator {
 
 	// Instance variables
@@ -45,6 +51,10 @@ public class GUICreator {
 		fieldCounter = 1;
 	}
 
+	/**
+	 * This method constructs the fields on the GUI, after they have been added
+	 * by the addField method.
+	 */
 	public void endBoardBuilding() {
 		GUI.create(fields);
 		cars = createCars();
@@ -54,7 +64,10 @@ public class GUICreator {
 	 * Method addField: Adds a field to the GUI Game board
 	 * 
 	 * @param information
-	 *            Array of all the field information.
+	 *            Array of all the field information. This information depends
+	 *            on the field in question. This method calls many different
+	 *            submethods using a switch. These methods construct the
+	 *            different types of fields.
 	 */
 	public void addField(String[] information) {
 		// Gets the type of the fields.
@@ -90,7 +103,8 @@ public class GUICreator {
 			addParking(information);
 			break;
 		default:
-			System.out.println("GUI: Not a valid field at field number: " + fieldCounter);
+			// Throws an error message when the field type is not regonised.
+			System.out.println("GUICreator: Not a valid field at field number: " + fieldCounter);
 		}
 		fieldCounter++;
 	}
@@ -98,7 +112,8 @@ public class GUICreator {
 	/**
 	 * Method addStreet: Adds a Street field to the GUI's fields array.
 	 * 
-	 * @param fieldData String array of all the fields data.
+	 * @param fieldData
+	 *            String array of all the fields data.
 	 */
 	private void addStreet(String[] fieldData) {
 		Color color = getFieldColor(fieldData[1]);
@@ -110,6 +125,7 @@ public class GUICreator {
 	 * Method addShipping: Adds a Shipping field to the GUI's fields array.
 	 * 
 	 * @param fieldData
+	 *            String array of all the fields data.
 	 */
 	private void addShipping(String[] fieldData) {
 		fields[fieldCounter - 1] = new Shipping.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
@@ -119,35 +135,77 @@ public class GUICreator {
 				.setPicture("src/data/pictures/Ferry.png").build();
 	}
 
+	/**
+	 * Method addBrewery: Adds a Brewery field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addBrewery(String[] fieldData) {
 		fields[fieldCounter - 1] = new Brewery.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
 				.setDescription(fieldData[1]).setBgColor(Color.BLACK).build();
 	}
 
+	/**
+	 * Method addChance: Adds a chanceCard field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addChance(String[] fieldData) {
 		fields[fieldCounter - 1] = new Chance.Builder().setBgColor(Color.LIGHT_GRAY).build();
 	}
 
+	/**
+	 * Method addTax: Adds a Tax field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addTax(String[] fieldData) {
 		fields[fieldCounter - 1] = new Tax.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
 				.setDescription(fieldData[1]).setBgColor(Color.LIGHT_GRAY).build();
 	}
 
+	/**
+	 * Method addStart: Adds a Start field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addStart(String[] fieldData) {
 		fields[fieldCounter - 1] = new Start.Builder().setTitle(fieldData[0]).setSubText(fieldData[2])
 				.setDescription(fieldData[1]).setBgColor(Color.RED).build();
 	}
 
+	/**
+	 * Method addJail: Adds a Go To Jail field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addJail(String[] fieldData) {
 		fields[fieldCounter - 1] = new Jail.Builder().setSubText(fieldData[0]).setDescription(fieldData[1])
 				.setBgColor(Color.GRAY).build();
 	}
 
+	/**
+	 * Method addVisit: Adds a Visit Jail field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addVisit(String[] fieldsData) {
 		fields[fieldCounter - 1] = new Jail.Builder().setSubText(fieldsData[0]).setDescription(fieldsData[1])
 				.setBgColor(Color.GRAY).build();
 	}
 
+	/**
+	 * Method addParking: Adds a Parking field to the GUI's fields array.
+	 * 
+	 * @param fieldData
+	 *            String array of all the fields data.
+	 */
 	private void addParking(String[] fieldsData) {
 		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(fieldsData[0]).setDescription(fieldsData[1])
 				.setBgColor(
@@ -172,7 +230,7 @@ public class GUICreator {
 	 * Method askNumberOfPlayers: Lets the player insert how many players are
 	 * participating in the game.
 	 * 
-	 * @return int The number of players that are playing.
+	 * @return (int) The number of players that are playing.
 	 */
 	private int askNumberOfPlayers() {
 		// Ask the players how many are playing
@@ -181,7 +239,7 @@ public class GUICreator {
 	}
 
 	/**
-	 * Method getPlayerNames: Lets all the players enter their player names.
+	 * Method getPlayerNames: Let all the players enter their player names.
 	 * 
 	 * @return String array of the player names.
 	 */
@@ -250,7 +308,8 @@ public class GUICreator {
 	 * Method getFieldColor: Gets the color of the field
 	 * 
 	 * @param fieldColor
-	 * @return Color
+	 *            String describing the color in danish.
+	 * @return The corresponding Color object.
 	 */
 	private Color getFieldColor(String fieldColor) {
 		Color color;

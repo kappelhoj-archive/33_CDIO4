@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the card type movement 4 classes extends this class.
+ * @author Gruppe33
+ *
+ */
 public class Movement extends ChanceCard{
 
 	/**

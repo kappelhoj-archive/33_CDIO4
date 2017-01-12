@@ -1,5 +1,11 @@
 package entity.field;
 
+
+/**
+ * This class describes the ownable field type Brewery.
+ * @author Gruppe33
+ *
+ */
 public class Brewery extends Ownable{
 
 	//Instance variables

@@ -1,5 +1,12 @@
 package entity.chanceCard;
 
+
+
+/**
+ * This class describes the specific chanceCard Grant.
+ * @author Gruppe33
+ *
+ */
 public class Grant extends ChanceCard{
 
 	//Instance variables

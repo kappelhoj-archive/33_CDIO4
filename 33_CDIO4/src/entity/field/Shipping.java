@@ -1,5 +1,10 @@
 package entity.field;
 
+/**
+ * This class describes the ownable field type Shipping.
+ * @author Gruppe33
+ *
+ */
 public class Shipping extends Ownable {
 
 	//Constants

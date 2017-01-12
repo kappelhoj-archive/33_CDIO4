@@ -1,20 +1,20 @@
-[type][beskrivelse][move eller beløb][move felt 1][move felt 2][move felt 3][move felt 4][fængsel][doublerent]
-MoveToField,"Ryk frem til "START".",0,1,0,0,0,false,false
-MoveToField,"Ryk frem til "START".",0,1,0,0,0,FALSE,FALSE
-MoveToPrison,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",0,11,0,0,0,true,FALSE
-MoveToPrison,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",0,11,0,0,0,true,FALSE
-MoveToField,"Ryk frem til Grønningen. Hvis De passerer "START" indkassér da kr. 4.000.",0,25,0,0,0,false,FALSE
-MoveToField,"Tag ind på Rådhuspladsen.",0,40,0,0,0,false,false
-MoveToField,"Ryk frem til Strandvejen. Hvis De passerer "START" indkassér da kr. 4.000.",0,20,0,0,0,false,false
-MoveToField,"Ryk frem til Vimmelskaftet. Hvis De passerer "START" indkassér da kr. 4.000.",0,33,0,0,0,false,false
-MoveToField,"Ryk frem til Frederiksberg Allé. Hvis De passerer "START" indkassér da kr. 4.000.",0,12,0,0,0,false,false
-MoveToField,"Tag med Mols-Linien. Flyt brikken frem og hvis De passerer "START" indkassér da kr. 4.000.",0,16,0,0,0,false,false
-MoveToNearestShipping,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",0,6,16,26,36,false,true
-MoveToNearestShipping,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",0,6,16,26,36,false,true
-MoveToNearestShipping,"Tag med den nærmeste færge. Flyt brikken frem og hvis De passerer "START" indkassér da kr. 4.000.",0,6,16,26,36,false,false
-MoveThreeSteps,"Ryk tre felter tilbage.",-3,0,0,0,0,false,false
-MoveThreeSteps,"Ryk tre felter tilbage.",-3,0,0,0,0,false,false
-MoveThreeSteps,"Ryk tre felter frem.",3,0,0,0,0,false,false
+[type][beskrivelse][move eller beløb][doubleRent]
+MoveToField,"Ryk frem til "START".",1,
+MoveToField,"Ryk frem til "START".",1
+MoveToPrison,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",11
+MoveToPrison,"Gå i fængsel. Ryk direkte til fængslet. Selv om De passerer "START" indkasserer de ikke kr. 4.000.",11
+MoveToField,"Ryk frem til Grønningen. Hvis De passerer "START" indkassér da kr. 4.000.",25
+MoveToField,"Tag ind på Rådhuspladsen.",40
+MoveToField,"Ryk frem til Strandvejen. Hvis De passerer "START" indkassér da kr. 4.000.",20
+MoveToField,"Ryk frem til Vimmelskaftet. Hvis De passerer "START" indkassér da kr. 4.000.",33
+MoveToField,"Ryk frem til Frederiksberg Allé. Hvis De passerer "START" indkassér da kr. 4.000.",12
+MoveToField,"Tag med Mols-Linien. Flyt brikken frem og hvis De passerer "START" indkassér da kr. 4.000.",16
+MoveToNearestShipping,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",6,16,26,36,true
+MoveToNearestShipping,"Ryk brikken frem til det  nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget til. Hvis selskabet ikke ejes af nogen kan De købe det af banken.",6,16,26,36,true
+MoveToNearestShipping,"Tag med den nærmeste færge. Flyt brikken frem og hvis De passerer "START" indkassér da kr. 4.000.",0,6,16,26,36,false,
+MoveThreeSteps,"Ryk tre felter tilbage.",-3
+MoveThreeSteps,"Ryk tre felter tilbage.",-3
+MoveThreeSteps,"Ryk tre felter frem.",3
 Payment,"Betal kr. 200 for levering af 2 kasser øl.",-200
 Payment,"Kommunen har eftergivet et kvartals skat. Hæv i banken kr. 3.000.",3000
 Payment,"Betal kr. 3.000 for reparation af Deres vogn.",-3000
@@ -36,3 +36,11 @@ Payment,"Deres præmieobligationer er udtrukket. De modtager kr. 1.000 af banken
 Payment,"De har vundet i Klasselotteriet. Modtag kr. 500.",500
 Payment,"Betal for vognvask og smøring kr. 300.",-300
 Payment,"De har fået en parkeringsbøde. Betal kr. 200 i bøde.",-200
+Grant,"De modtager "Matador-legatet for værdigt trængende" på kr. 40.000. For at modtage legatet må deres samlede formue dvs. deres kontante penge + skøder + bygning ikke overstige kr. 15.000.",false
+Tax,"Oliepriserne er steget og De skal betale: Kr. 500 pr. hus og kr. 2.000 pr. hotel.",500,2000
+Tax,"Ejendomsskatterne er steget. Ekstraudgifterne er: Kr. 800 pr. hus og kr. 2.300 pr. hotel.",800,2300
+Party,"De skal holde familiefest og får et tilskud af hver medspiller på kr. 500.",500
+Party,"De har lagt penge ud til et sammenskudsgilde. Mærkværdigvis betaler alle straks. Modtag fra hver medspiller kr. 500.",500
+Party,"Det er Deres fødselsdag. Modtag af hver medspiller kr. 200.",200
+Prison,"I anledning af kongens fødselsdag benådes de hermed for fængsel. Dette kort kan opbevares indtil De får brug for det."
+Prison,"I anledning af kongens fødselsdag benådes de hermed for fængsel. Dette kort kan opbevares indtil De får brug for det."

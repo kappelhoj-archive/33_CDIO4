@@ -18,7 +18,7 @@ public class GameBoard
 		Reader reader = new Reader("src/data/Feltliste.txt");
 		String[][] fieldData = reader.readFile();
 		fieldData = reader.formatFileData(fieldData);
-		//oprette felterne
+		//Opretter felterne
 		for(int i = 0; i < fields.length; i++)
 		{
 			addField(fieldData[i]);

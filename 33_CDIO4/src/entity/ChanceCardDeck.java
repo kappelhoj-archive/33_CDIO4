@@ -24,7 +24,7 @@ public class ChanceCardDeck
 		String fileName = "data.csv";
 		File file = new File(fileName);
 
-		// Scans the file and splits it up by commas
+		// Scans the file and splits it into an array based on the position of ,
 		try {
 			Scanner inputStream = new Scanner(file);
 			String data = inputStream.nextLine();

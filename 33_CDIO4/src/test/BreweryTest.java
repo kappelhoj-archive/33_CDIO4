@@ -68,23 +68,26 @@ public class BreweryTest {
 	}
 
 	/**
-	 * Test-ID: XX XX The method test_multipleBreweriesRent tests the
+	 * Test-ID: XX XX The method test_dualOwnersBreweriesRent tests the
 	 * credibility of the rent calculation when a brewery is asked to calculate
 	 * the rent when the diceSum is 10, and each brewery is owned by two
 	 * different players.
 	 */
 	@Test
-	public void test_multipleBreweriesRentDifferentOwners() {
+	public void test_dualOwnersBreweriesRent() {
 		tuborg.setOwner(player);
 		cola.setOwner(player2);
 		player.setFields(tuborg);
 		player2.setFields(cola);
 		tuborg.setDiceSum(10);
+
 		int tuborgRent = tuborg.getRent();
+		int colaRent = cola.getRent();
 
 		int expected = 1000;
 		int actual = tuborgRent;
-		assertEquals(expected, actual);
+		int actual2 = colaRent;
+		assertEquals(expected, actual, actual2);
 	}
 
 }

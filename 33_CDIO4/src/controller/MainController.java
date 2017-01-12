@@ -18,7 +18,7 @@ public class MainController {
 	private PrisonController prisonController;
 	private FieldController fieldController;
 	private PropertyController propertyController;
-
+	private BankController bankController;
 	private TestModeController testMode;
 
 	private int turn;
@@ -56,15 +56,14 @@ public class MainController {
 		turn = (int) (Math.random() * players.length);
 
 		numExtraTurn = 0;
-		// Construct a dicecup
+
 		dice = new DiceCup();
-		// Construct a prison controller.
-		prisonController = new PrisonController(this);
 
-		// Construct a field controller
-
+		bankController =new BankController(propertyController);
+		prisonController = new PrisonController(this,bankController);
 		propertyController = new PropertyController();
-		fieldController = new FieldController(prisonController, this, propertyController);
+		
+		fieldController = new FieldController(prisonController, this, propertyController,bankController);
 	}
 
 	/**

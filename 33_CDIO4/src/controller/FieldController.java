@@ -25,9 +25,10 @@ public class FieldController {
 	 * @param mainController The mainController.
 	 * @param propertyController The PropertyController. 
 	 */
-	public FieldController(PrisonController prisonController, MainController mainController,PropertyController propertyController) {
-		bankController = new BankController(propertyController);
-		this.prisonController = new PrisonController(mainController);
+	public FieldController(PrisonController prisonController, MainController mainController,PropertyController propertyController,BankController bankController) {
+		this.bankController = bankController;
+				
+		this.prisonController = prisonController;
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);
 		this.gameBoard = new GameBoard();
 	}
@@ -199,6 +200,7 @@ public class FieldController {
 		this.doubleRent = doubleRent;
 
 	}
+
 /**
  * Method TESTgetGameBoard: Used to get the Gameboard in the testmode controller.
  * @return Gameboard

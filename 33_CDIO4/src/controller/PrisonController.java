@@ -5,6 +5,7 @@ import entity.Player;
 
 /**
  * This class is responsible for anything to do with the prison.
+ * 
  * @author Gruppe33
  *
  */
@@ -12,15 +13,18 @@ public class PrisonController {
 
 	// Instance variables
 	private MainController mainController;
+	private BankController bankController;
 
 	/**
 	 * Constructor: Constructs a PrisonController.
 	 * 
 	 * @param mainController
 	 *            MainController.
+	 * @param bankController
 	 */
-	public PrisonController(MainController mainController) {
+	public PrisonController(MainController mainController, BankController bankController) {
 		this.mainController = mainController;
+		this.bankController = bankController;
 	}
 
 	/**
@@ -60,6 +64,11 @@ public class PrisonController {
 		// If you can afford to pay yourself out of jail.
 		if (player.getAccountBalance() > 1000) {
 			input = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
+		} else if (((player.getFortune() - player.getAccountBalance()) / 2) + player.getAccountBalance() >= 1000) {
+			GUI.getUserButtonPressed(
+					"Du er i fængsel, hvad vil du gøre?\n"
+							+ "Du har dog ikke råd til at betale dig, så hvis du vil gøre det, er du nødt til at sælge bygninger eller grunde.",
+					payOut, rollOut);
 		} else {
 			input = GUI.getUserButtonPressed(
 					"Du er i fængsel og har ikke mulighed for at betale dig ud, da du ikke har råd.", rollOut);
@@ -67,12 +76,14 @@ public class PrisonController {
 
 		// If the player chose to pay himself out, release him from jail.
 		if (input.equals(payOut)) {
-			player.changeAccountBalance(-1000);
-			GUI.setBalance(player.getName(), player.getAccountBalance());
-			player.setInPrison(false);
-			boughtOut = true;
-		} 
-		//Roll the dice and do whats appropiate.
+			if (bankController.playerAffordPayment(player, 10000)) {
+				player.changeAccountBalance(-1000);
+				GUI.setBalance(player.getName(), player.getAccountBalance());
+				player.setInPrison(false);
+				boughtOut = true;
+			}
+		}
+		// Roll the dice and do whats appropiate.
 		else {
 			int diceSum = mainController.rollDice();
 			player.changeTurnsInPrison(1);

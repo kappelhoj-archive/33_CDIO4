@@ -221,7 +221,7 @@ public class BankController {
 	public boolean handleDebt(Player player, int debt) {
 		// If the player's debt is bigger than the players (fortune minus his
 		// balance) divided by 2.
-		if (((player.getFortune() - player.getAccountBalance()) / 2) + player.getAccountBalance() > debt) {
+		if (((player.getFortune() - player.getAccountBalance()) / 2) + player.getAccountBalance() >= debt) {
 			while (true) {
 				String sellField = "Sælg grund";
 				String sellHouse = "Sælg hus";

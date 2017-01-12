@@ -60,11 +60,9 @@ public class MainController {
 		numExtraTurn = 0;
 
 		dice = new DiceCup();
-
+		propertyController = new BuildingController();
 		bankController = new DebtController(propertyController);
 		prisonController = new PrisonController(this, bankController);
-		propertyController = new BuildingController();
-
 		fieldController = new FieldController(prisonController, this, propertyController, bankController);
 	}
 

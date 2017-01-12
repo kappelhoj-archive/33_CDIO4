@@ -23,7 +23,7 @@ public class DebtController {
 	 * @param propertyController
 	 *            The PropertyController.
 	 */
-	DebtController(BuildingController propertyController) {
+	public DebtController(BuildingController propertyController) {
 		this.propertyController = propertyController;
 	}
 

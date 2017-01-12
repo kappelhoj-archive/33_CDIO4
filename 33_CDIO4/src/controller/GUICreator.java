@@ -260,7 +260,7 @@ public class GUICreator {
 			while (nameEqual) {
 				// Lets player 2-6 enter a name that is not an empty String.
 				do {
-					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer " + (i + 1)) + ":";
+					playerNames[i] = GUI.getUserString("Indtast navn for spiller nummer: " + (i + 1));
 				} while (playerNames[i].equals(""));
 
 				// Goes through the already added player names

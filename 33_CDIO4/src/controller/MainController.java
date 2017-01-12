@@ -19,7 +19,7 @@ public class MainController {
 	private DiceCup dice;
 	private PrisonController prisonController;
 	private FieldController fieldController;
-	private PropertyController propertyController;
+	private BuildingController propertyController;
 	private DebtController bankController;
 	private TestModeController testMode;
 
@@ -63,7 +63,7 @@ public class MainController {
 
 		bankController = new DebtController(propertyController);
 		prisonController = new PrisonController(this, bankController);
-		propertyController = new PropertyController();
+		propertyController = new BuildingController();
 
 		fieldController = new FieldController(prisonController, this, propertyController, bankController);
 	}

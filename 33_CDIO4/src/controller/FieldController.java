@@ -32,7 +32,7 @@ public class FieldController {
 	 *            The PropertyController.
 	 */
 	public FieldController(PrisonController prisonController, MainController mainController,
-			PropertyController propertyController, DebtController bankController) {
+			BuildingController propertyController, DebtController bankController) {
 		this.bankController = bankController;
 		this.prisonController = prisonController;
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);

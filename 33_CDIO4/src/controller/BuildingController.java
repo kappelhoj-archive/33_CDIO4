@@ -11,7 +11,7 @@ import entity.field.*;
  * @author Gruppe33
  *
  */
-public class PropertyController {
+public class BuildingController {
 
 	// Instance variables
 	private int houses;
@@ -20,7 +20,7 @@ public class PropertyController {
 	/**
 	 * Constructor: Constructs a PropertyController.
 	 */
-	public PropertyController() {
+	public BuildingController() {
 		this.houses = 32;
 		this.hotels = 12;
 	}

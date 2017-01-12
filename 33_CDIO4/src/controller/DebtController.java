@@ -15,7 +15,7 @@ import entity.Player;
 public class DebtController {
 
 	// Instance variables
-	private PropertyController propertyController;
+	private BuildingController propertyController;
 
 	/**
 	 * Constructor: Constructs a BankController.
@@ -23,7 +23,7 @@ public class DebtController {
 	 * @param propertyController
 	 *            The PropertyController.
 	 */
-	DebtController(PropertyController propertyController) {
+	DebtController(BuildingController propertyController) {
 		this.propertyController = propertyController;
 	}
 

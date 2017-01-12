@@ -6,8 +6,10 @@ import entity.Player;
 import test.TestModeController;
 
 /**
- * MainControler class controls all the other controllers and is responsible for
- * moving the players around the board.<br>
+ * This class is the main controller. It is responsible of handing out
+ * assigments to the different controllers and moving the player.
+ * 
+ * @author Gruppe33
  *
  */
 public class MainController {

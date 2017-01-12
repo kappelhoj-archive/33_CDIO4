@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard Taxcard.
+ * @author Gruppe33
+ *
+ */
 public class TaxCard extends ChanceCard 
 {
 	//Instance variables

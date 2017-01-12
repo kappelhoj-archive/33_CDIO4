@@ -3,6 +3,11 @@ package entity;
 import entity.field.*;
 import data.Reader;
 
+/**
+ * This class is responsible for creating, holding and giving fields from the board. 
+ * @author Gruppe33
+ *
+ */
 public class GameBoard 
 {
 	// Instance variables.

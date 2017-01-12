@@ -5,6 +5,11 @@ import entity.Player;
 import entity.field.*;
 import entity.GameBoard;
 
+/**
+ * This class is responsible for the fields. It controls what happens when the players land on a field.
+ * @author Gruppe33
+ *
+ */
 public class FieldController {
 
 	// Instance variables

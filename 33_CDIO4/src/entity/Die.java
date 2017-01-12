@@ -1,5 +1,10 @@
 package entity;
 
+/**
+ * This class holds a representation of a die.
+ * @author Gruppe33
+ *
+ */
 public class Die 
 {
 	//Constants

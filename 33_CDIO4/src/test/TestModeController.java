@@ -1,5 +1,6 @@
 package test;
 
+
 import entity.field.*;
 import controller.FieldController;
 import controller.MainController;
@@ -7,6 +8,11 @@ import desktop_resources.GUI;
 import entity.GameBoard;
 import entity.Player;
 
+/**
+ * This class is a controller that interferes with normal game play.  This allows testers to test the program mroe easily.
+ * @author Gruppe33
+ *
+ */
 public class TestModeController {
 	private boolean testModeStatus;
 	private String testingModeMessage = "*****DU ER I TESTING MODE*****\n";

@@ -7,6 +7,11 @@ import controller.PrisonController;
 import desktop_resources.GUI;
 import controller.BankController;
 
+/**
+ * This class is responsible for handling the chance cards when the player draws them..
+ * @author Gruppe33
+ *
+ */
 public class ChanceCardController {
 
 	private ChanceCardDeck deck;

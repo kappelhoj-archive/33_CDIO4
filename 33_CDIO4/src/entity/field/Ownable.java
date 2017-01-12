@@ -1,6 +1,11 @@
 package entity.field;
 
 import entity.Player;
+/**
+ * This class is a general description of fields that can be owned by players.
+ * @author Gruppe33
+ *
+ */
 public abstract class Ownable extends Field {
 	
 	//Instance variables

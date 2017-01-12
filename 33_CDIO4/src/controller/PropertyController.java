@@ -5,6 +5,11 @@ import entity.Player;
 import controller.MainController;
 import entity.field.*;
 
+/**
+ * This class is responsible for buynig and selling houses on Streets.
+ * @author Gruppe33
+ *
+ */
 public class PropertyController {
 
 	// Instance variables

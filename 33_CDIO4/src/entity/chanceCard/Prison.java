@@ -1,5 +1,10 @@
 package entity.chanceCard;
 
+/**
+ * This class describes the specific chanceCard Prison.
+ * @author Gruppe33
+ *
+ */
 public class Prison extends ChanceCard{
 
 	//Instance variables.

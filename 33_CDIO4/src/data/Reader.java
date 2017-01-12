@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
  
+/**
+ * This class is responsible for reading the fields from a file.
+ * @author Gruppe33
+ *
+ */
 public class Reader {
 	
 	//Instance variables

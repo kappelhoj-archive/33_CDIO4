@@ -15,6 +15,11 @@ import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
 
+/**
+ * This class is responsible for creating the GUI.
+ * @author Gruppe33
+ *
+ */
 public class GUICreator {
 
 	// Instance variables

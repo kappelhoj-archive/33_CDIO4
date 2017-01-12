@@ -1,5 +1,10 @@
 package entity;
 
+/**
+ * This class is responsible for handling the players currency balance.
+ * @author Gruppe33
+ *
+ */
 public class Account {
 	
 	// Instance variables

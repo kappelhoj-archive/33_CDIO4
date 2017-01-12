@@ -3,6 +3,11 @@ package entity;
 import desktop_resources.GUI;
 import entity.field.*;
 
+/**
+ * This class is responsible for the players, and everything they can do.
+ * @author Gruppe33
+ *
+ */
 public class Player {
 
 	// Instance variables

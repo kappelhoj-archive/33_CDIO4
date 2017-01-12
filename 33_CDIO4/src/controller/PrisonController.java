@@ -3,6 +3,11 @@ package controller;
 import desktop_resources.GUI;
 import entity.Player;
 
+/**
+ * This class is responsible for anything to do with the prison.
+ * @author Gruppe33
+ *
+ */
 public class PrisonController {
 
 	// Instance variables

@@ -1,5 +1,10 @@
 package entity.field;
 
+/**
+ * This class describes the field type Tax.
+ * @author Gruppe33
+ *
+ */
 public class Tax extends Field {
 	
 	//Instance variables

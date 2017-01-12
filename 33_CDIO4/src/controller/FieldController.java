@@ -6,7 +6,9 @@ import entity.field.*;
 import entity.GameBoard;
 
 /**
- * This class is responsible for the fields. It controls what happens when the players land on a field.
+ * This class is responsible for the fields. It controls what happens when the
+ * players land on a field.
+ * 
  * @author Gruppe33
  *
  */
@@ -18,14 +20,19 @@ public class FieldController {
 	private BankController bankController;
 	private GameBoard gameBoard;
 	private boolean doubleRent = false;
-	
+
 	/**
 	 * Constructor: Constructs a FieldController
-	 * @param prisonController The prisonController.
-	 * @param mainController The mainController.
-	 * @param propertyController The PropertyController. 
+	 * 
+	 * @param prisonController
+	 *            The PrisonController.
+	 * @param mainController
+	 *            The MainController.
+	 * @param propertyController
+	 *            The PropertyController.
 	 */
-	public FieldController(PrisonController prisonController, MainController mainController,PropertyController propertyController,BankController bankController) {
+	public FieldController(PrisonController prisonController, MainController mainController,
+			PropertyController propertyController, BankController bankController) {
 		this.bankController = bankController;
 		this.prisonController = prisonController;
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);
@@ -35,8 +42,11 @@ public class FieldController {
 	/**
 	 * Method landOnField: Decides what has to be done when a player lands on a
 	 * field.
-	 * @param player The player to land on the field.
-	 * @param diceSum The dice sum of the player's dice roll.
+	 * 
+	 * @param player
+	 *            The player to land on the field.
+	 * @param diceSum
+	 *            The dice sum of the player's dice roll.
 	 */
 	public void landOnField(Player player, int diceSum) {
 
@@ -58,7 +68,7 @@ public class FieldController {
 			landOnNeutral(player);
 			break;
 		}
-		//Reset the doubleRent, this variable is used in  one type of chanceCard
+		// Reset the doubleRent, this variable is used in one type of chanceCard
 		doubleRent = false;
 	}
 
@@ -75,11 +85,11 @@ public class FieldController {
 	 */
 	public void landOnOwnable(Field field, Player player, int diceSum) {
 		Ownable ownable = (Ownable) field;
-		//If the field is not owned.
+		// If the field is not owned.
 		if (!ownable.isFieldOwned()) {
 			boolean bought = GUI.getUserLeftButtonPressed(
 					"Du landte på " + ownable.getName() + ", vil du købe grunden?", "Ja", "Nej");
-			//Buy the field if the player wants to and he ca afford it.
+			// Buy the field if the player wants to and he ca afford it.
 			if (bought) {
 				if (player.buyField(ownable)) {
 					GUI.setOwner(player.getPosition(), player.getName());
@@ -89,25 +99,27 @@ public class FieldController {
 				}
 			}
 		}
-		//If the field is owned.
+		// If the field is owned.
 		else {
-			//If the field is owned by another player, and he is not in prison.
+			// If the field is owned by another player, and he is not in prison.
 			if (ownable.isFieldOwnedByAnotherPlayer(player) && !ownable.getOwner().getInPrison()) {
-				//If the field is a Brewery.
+				// If the field is a Brewery.
 				if (ownable.getType().equals("Tapperi")) {
 					Brewery brewery = (Brewery) (ownable);
-					brewery.setDiceSum(diceSum);	
+					brewery.setDiceSum(diceSum);
 				}
 				int rent = ownable.getRent();
 				// Only used for some specific chancecards
 				if (doubleRent) {
 					rent = rent * 2;
 				}
-				GUI.getUserButtonPressed("Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName() + ", og du skal betale en rente på " + rent + " kr.", "Betal " + rent + " kr. til " + ownable.getOwner().getName());
-				
-				//If the player can afford to pay rent.
-				if(bankController.playerAffordPayment(player, rent))
-				{
+				GUI.getUserButtonPressed(
+						"Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName()
+								+ ", og du skal betale en rente på " + rent + " kr.",
+						"Betal " + rent + " kr. til " + ownable.getOwner().getName());
+
+				// If the player can afford to pay rent.
+				if (bankController.playerAffordPayment(player, rent)) {
 					player.payRent(ownable.getOwner(), rent);
 					GUI.setBalance(ownable.getOwner().getName(), ownable.getOwner().getAccountBalance());
 					GUI.setBalance(player.getName(), player.getAccountBalance());
@@ -132,7 +144,7 @@ public class FieldController {
 
 			// The tax rate rent to be paid.
 			int rentTaxRate = (int) (0.1 * player.getFortune());
-			
+
 			// The rent amount to be paid.
 			rentAmount = 4000;
 
@@ -140,22 +152,22 @@ public class FieldController {
 					"Betal 10% (" + rentTaxRate + " kr.)", "Betal 4.000 kr.");
 			if (payTaxRate) {
 				// Subtract the tax rate rent from the player's balance.
-				if(bankController.playerAffordPayment(player, rentTaxRate))
+				if (bankController.playerAffordPayment(player, rentTaxRate))
 					player.changeAccountBalance(-rentTaxRate);
-				
+
 			} else {
 				// Subtract the rent amount from the player's balance.
-				if(bankController.playerAffordPayment(player, rentAmount))
+				if (bankController.playerAffordPayment(player, rentAmount))
 					player.changeAccountBalance(-rentAmount);
 			}
 		} else {
 			GUI.getUserButtonPressed("Du skal betale ekstraordinærstatsskat.", "Betal 2.000 kr.");
-			
+
 			// The rent amount to be paid.
 			rentAmount = 2000;
-			
+
 			// Subtract the rent amount from the player's balance.
-			if(bankController.playerAffordPayment(player, rentAmount))
+			if (bankController.playerAffordPayment(player, rentAmount))
 				player.changeAccountBalance(-rentAmount);
 		}
 		GUI.setBalance(player.getName(), player.getAccountBalance());
@@ -183,27 +195,31 @@ public class FieldController {
 	 * Method landOnChanceField: Decides what has to be done when a player lands
 	 * on a chance field.
 	 * 
-	 * @param player 
+	 * @param player
 	 *            The player who landed on the chance field.
 	 */
 	public void landOnChanceField(Player player) {
 		GUI.getUserButtonPressed("Du landte på prøv lykken.", "Træk et kort");
 		chanceCardController.draw(player);
 	}
-	
+
 	/**
 	 * Method setDoubleRent: Sets the value of doubleRent.
-	 * @param doubleRent The value to be set.
+	 * 
+	 * @param doubleRent
+	 *            The value to be set.
 	 */
-	public void setDoubleRent(boolean doubleRent){
+	public void setDoubleRent(boolean doubleRent) {
 		this.doubleRent = doubleRent;
 
 	}
 
-/**
- * Method TESTgetGameBoard: Used to get the Gameboard in the testmode controller.
- * @return Gameboard
- */
+	/**
+	 * Method TESTgetGameBoard: Used to get the Gameboard in the testmode
+	 * controller.
+	 * 
+	 * @return Gameboard
+	 */
 	public GameBoard TESTgetGameBoard() {
 		return gameBoard;
 	}

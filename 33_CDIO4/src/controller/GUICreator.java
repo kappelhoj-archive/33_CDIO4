@@ -17,6 +17,7 @@ import desktop_resources.GUI;
 
 /**
  * This class is responsible for creating the GUI.
+ * 
  * @author Gruppe33
  *
  */
@@ -306,7 +307,8 @@ public class GUICreator {
 	/**
 	 * Method getFieldColor: Gets the color of the field
 	 * 
-	 * @param fieldColor String describing the color in danish.
+	 * @param fieldColor
+	 *            String describing the color in danish.
 	 * @return The corresponding Color object.
 	 */
 	private Color getFieldColor(String fieldColor) {

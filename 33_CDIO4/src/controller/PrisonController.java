@@ -53,7 +53,7 @@ public class PrisonController {
 		boolean boughtOut = false;
 		String payOut = "Betal dig ud: 1.000 kr";
 		String rollOut = "Slå dig ud fængslet med terningerne";
-		String input = null;
+		String userDecision = null;
 		// If this is your fourth round in jail.
 		if (player.getTurnsInPrison() >= 3) {
 			player.setInPrison(false);
@@ -63,19 +63,19 @@ public class PrisonController {
 		}
 		// If you can afford to pay yourself out of jail.
 		if (player.getAccountBalance() > 1000) {
-			input = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
+			userDecision = GUI.getUserButtonPressed("Du er i fængsel, hvad vil du gøre?", payOut, rollOut);
 		} else if (((player.getFortune() - player.getAccountBalance()) / 2) + player.getAccountBalance() >= 1000) {
-			input = GUI.getUserButtonPressed(
+			userDecision = GUI.getUserButtonPressed(
 					"Du er i fængsel, hvad vil du gøre?\n"
 							+ "Du har dog ikke råd til at betale dig ud, så hvis du vil gøre det, er du nødt til at sælge bygninger eller grunde.",
 					payOut, rollOut);
 		} else {
-			input = GUI.getUserButtonPressed(
+			userDecision = GUI.getUserButtonPressed(
 					"Du er i fængsel og har ikke mulighed for at betale dig ud, da du ikke har råd.", rollOut);
 		}
 
-		// If the player chose to pay himself out, release him from jail.
-		if (input.equals(payOut)) {
+		// If the player chooses to pay himself out, release him from jail.
+		if (userDecision.equals(payOut)) {
 			if (bankController.playerAffordPayment(player, 1000)) {
 				player.changeAccountBalance(-1000);
 				GUI.setBalance(player.getName(), player.getAccountBalance());

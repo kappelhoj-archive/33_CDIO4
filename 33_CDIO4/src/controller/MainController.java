@@ -13,6 +13,8 @@ import test.TestModeController;
  *
  */
 public class MainController {
+	
+	// Instance variables.
 	private Player[] players;
 	private DiceCup dice;
 	private PrisonController prisonController;
@@ -59,11 +61,11 @@ public class MainController {
 
 		dice = new DiceCup();
 
-		bankController =new BankController(propertyController);
-		prisonController = new PrisonController(this,bankController);
+		bankController = new BankController(propertyController);
+		prisonController = new PrisonController(this, bankController);
 		propertyController = new PropertyController();
-		
-		fieldController = new FieldController(prisonController, this, propertyController,bankController);
+
+		fieldController = new FieldController(prisonController, this, propertyController, bankController);
 	}
 
 	/**

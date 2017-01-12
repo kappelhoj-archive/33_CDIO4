@@ -1,7 +1,7 @@
 # CDIO Del 4 - Gruppe 33
 -----------------------------------
 Dette er det afsluttende projekt i faget  02312 - Indledende Programmering.
-Opgaven går ud på at fremstille en matador spil, man kan spille på computeren.
+Opgaven går ud på at fremstille et matador spil, man kan spille på computeren.
 
 ##Gruppe medlemmer
 

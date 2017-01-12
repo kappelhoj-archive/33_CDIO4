@@ -5,7 +5,7 @@ import entity.Player;
 import entity.chanceCard.*;
 import controller.PrisonController;
 import desktop_resources.GUI;
-import controller.BankController;
+import controller.DebtController;
 
 /**
  * This class is responsible for handling the chance cards when the player draws
@@ -19,7 +19,7 @@ public class ChanceCardController {
 	// Instance variables.
 	private ChanceCardDeck deck;
 	private PrisonController prisonController;
-	private BankController bank;
+	private DebtController bank;
 	private MainController mainController;
 
 	/**
@@ -31,7 +31,7 @@ public class ChanceCardController {
 	 * @param mainController
 	 *            The MainController.
 	 */
-	ChanceCardController(PrisonController prisonController, BankController bank, MainController mainController) {
+	ChanceCardController(PrisonController prisonController, DebtController bank, MainController mainController) {
 		deck = new ChanceCardDeck();
 		this.prisonController = prisonController;
 		this.bank = bank;

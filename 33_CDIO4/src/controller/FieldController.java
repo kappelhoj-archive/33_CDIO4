@@ -17,7 +17,7 @@ public class FieldController {
 	// Instance variables
 	private PrisonController prisonController;
 	private ChanceCardController chanceCardController;
-	private BankController bankController;
+	private DebtController bankController;
 	private GameBoard gameBoard;
 	private boolean doubleRent = false;
 
@@ -32,7 +32,7 @@ public class FieldController {
 	 *            The PropertyController.
 	 */
 	public FieldController(PrisonController prisonController, MainController mainController,
-			PropertyController propertyController, BankController bankController) {
+			PropertyController propertyController, DebtController bankController) {
 		this.bankController = bankController;
 		this.prisonController = prisonController;
 		this.chanceCardController = new ChanceCardController(prisonController, bankController, mainController);

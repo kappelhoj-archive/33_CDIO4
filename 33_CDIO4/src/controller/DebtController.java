@@ -12,7 +12,7 @@ import entity.Player;
  * @author Gruppe33
  *
  */
-public class BankController {
+public class DebtController {
 
 	// Instance variables
 	private PropertyController propertyController;
@@ -23,7 +23,7 @@ public class BankController {
 	 * @param propertyController
 	 *            The PropertyController.
 	 */
-	BankController(PropertyController propertyController) {
+	DebtController(PropertyController propertyController) {
 		this.propertyController = propertyController;
 	}
 

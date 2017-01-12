@@ -13,7 +13,7 @@ public class PrisonController {
 
 	// Instance variables
 	private MainController mainController;
-	private BankController bankController;
+	private DebtController bankController;
 
 	/**
 	 * Constructor: Constructs a PrisonController.
@@ -22,7 +22,7 @@ public class PrisonController {
 	 *            MainController.
 	 * @param bankController
 	 */
-	public PrisonController(MainController mainController, BankController bankController) {
+	public PrisonController(MainController mainController, DebtController bankController) {
 		this.mainController = mainController;
 		this.bankController = bankController;
 	}

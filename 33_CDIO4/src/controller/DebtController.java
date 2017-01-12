@@ -15,16 +15,16 @@ import entity.Player;
 public class DebtController {
 
 	// Instance variables
-	private BuildingController propertyController;
+	private BuildingController buildingController;
 
 	/**
-	 * Constructor: Constructs a BankController.
+	 * Constructor: Constructs a DebtController.
 	 * 
-	 * @param propertyController
-	 *            The PropertyController.
+	 * @param buildingController
+	 *            The BuildingController.
 	 */
-	public DebtController(BuildingController propertyController) {
-		this.propertyController = propertyController;
+	public DebtController(BuildingController buildingController) {
+		this.buildingController = buildingController;
 	}
 
 	/**
@@ -208,9 +208,9 @@ public class DebtController {
 				if (fields[i] instanceof Street) {
 					Street streetField = (Street) fields[i];
 					if (streetField.getNumbOfHouses() == 5) {
-						propertyController.changeHotels(1);
+						buildingController.changeHotels(1);
 					} else {
-						propertyController.changeHouses(streetField.getNumbOfHouses());
+						buildingController.changeHouses(streetField.getNumbOfHouses());
 					}
 					streetField.changeNumbOfHouses(-streetField.getNumbOfHouses());
 					GUI.setHouses(streetField.getFieldNumber(), streetField.getNumbOfHouses());
@@ -254,7 +254,7 @@ public class DebtController {
 				String userSelection = GUI.getUserSelection(message, options);
 
 				if (userSelection.equals(sellHouse))
-					propertyController.sellBuildingMenu(player);
+					buildingController.sellBuildingMenu(player);
 				else if (userSelection.equals(sellField))
 					sellField(player);
 				else if (userSelection.equals(payDebt))

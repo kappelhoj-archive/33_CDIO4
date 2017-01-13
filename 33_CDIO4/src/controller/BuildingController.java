@@ -134,17 +134,6 @@ public class BuildingController {
 		return canBuildOn;
 	}
 
-	// private String[] canSellBuildingOnStreet(Player player)
-	// {
-	// Ownable[] ownedFields = player.getFields();
-	// String[] ownedFieldsNames = new String[ownedFields.length];
-	//
-	// for (int i = 0; i < ownedFields.length; i++)
-	// {
-	// ownedFieldsNames[i] = ownedFields[i].getName();
-	// }
-	// }
-
 	/**
 	 * Method numbOfStreetsFromColour: Returns how many streets that is required
 	 * to be able to build a building depending on the colour.

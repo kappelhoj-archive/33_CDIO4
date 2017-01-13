@@ -1,6 +1,5 @@
 package entity;
 
-import desktop_resources.GUI;
 import entity.field.*;
 
 /**

@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.After;
 import entity.field.*;
 import entity.Player;
-import entity.field.*;
 
 import org.junit.Test;
 

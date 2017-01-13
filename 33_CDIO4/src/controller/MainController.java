@@ -64,7 +64,7 @@ public class MainController {
 		bankController = new DebtController(propertyController);
 		prisonController = new PrisonController(this, bankController);
 		fieldController = new FieldController(prisonController, this, propertyController, bankController);
-	}
+	} 
 	
 	/**
 	 * Method main: This methods starts the program.

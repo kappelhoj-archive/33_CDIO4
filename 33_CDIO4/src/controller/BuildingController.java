@@ -180,17 +180,17 @@ public class BuildingController {
 	}
 
 	/**
-	 * Method findStreetNames: Returns all street names with the given colour
-	 * that the player owns that he can build on.
+	 * Gets the streets of a given colour with most or fewest houses, owned by a player.
 	 * 
 	 * @param player
 	 *            The player that owns the streets.
 	 * @param colour
-	 *            The colour that you want the streets return to have.
-	 * @return street names as a String array with the given colour that the
-	 *         player owns.
+	 *            The colour of the street.
+	 * @param mostHouses
+	 *            With the most houses or fewest
+	 * @return Returns a String array with street names of a given colour with most or fewest houses, owned by a player.
 	 */
-	private String[] streetsWithBuildings(Player player, String colour, boolean maximum) {
+	private String[] streetsWithBuildings(Player player, String colour, boolean mostHouses) {
 		// An array to hold the amount of houses on the different streets.
 		int[] houses = new int[streetsWithColour(colour)];
 		// An array to hold the names of the different streets.
@@ -208,7 +208,7 @@ public class BuildingController {
 		}
 		int streetsWithEqualAmountHouses = 0;
 
-		if (maximum) {
+		if (mostHouses) {
 			streetsWithEqualAmountHouses = maximum(houses);
 			if (streetsWithEqualAmountHouses == 0) {
 				return null;

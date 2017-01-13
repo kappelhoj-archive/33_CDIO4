@@ -208,13 +208,13 @@ public class BuildingController {
 		}
 		int streetsWithEqualAmountHouses = 0;
 
+		// true if the method is needed for sellHouses otherwise false.
 		if (mostHouses) {
 			streetsWithEqualAmountHouses = maximum(houses);
 			if (streetsWithEqualAmountHouses == 0) {
 				return null;
 			}
 		}
-
 		else {
 			streetsWithEqualAmountHouses = minimum(houses);
 			if (streetsWithEqualAmountHouses == 5) {
@@ -225,7 +225,7 @@ public class BuildingController {
 
 		int amountOfStreets = 0;
 
-		// Finds how many streets that has the minimum amount of houses
+		// Finds how many streets needed.
 		for (int i = 0; i < streetNames.length; i++) {
 			if (houses[i] == streetsWithEqualAmountHouses) {
 				amountOfStreets++;

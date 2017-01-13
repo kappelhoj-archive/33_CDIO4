@@ -3,7 +3,7 @@ package controller;
 import desktop_resources.GUI;
 import entity.DiceCup;
 import entity.Player;
-import test.TestModeController;
+import testModeController.TestModeController;
 
 /**
  * This class is the main controller. It is responsible of handing out

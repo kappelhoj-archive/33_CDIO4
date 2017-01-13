@@ -115,7 +115,7 @@ public class FieldController {
 				}
 				GUI.getUserButtonPressed(
 						"Du landte på " + ownable.getName() + ". Grunden er ejet af " + ownable.getOwner().getName()
-								+ ", og du skal betale en rente på " + rent + " kr.",
+								+ ", og du skal betale en leje på " + rent + " kr.",
 						"Betal " + rent + " kr. til " + ownable.getOwner().getName());
 
 				// If the player can afford to pay rent.

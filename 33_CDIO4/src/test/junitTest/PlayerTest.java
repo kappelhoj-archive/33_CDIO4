@@ -32,17 +32,12 @@ public class PlayerTest {
 		player.payRent(fieldOwner, 2000);
 
 		//Checks if the payment went thru.
-		assertEquals(32000,fieldOwner.getAccountBalance());
-		assertEquals(28000,player.getAccountBalance());
+		assertEquals("Ja hej1",32000,fieldOwner.getAccountBalance());
+		assertEquals("Ja hej2", 28000,player.getAccountBalance());
 		
 		//Player pays so he ends up with 0 in wallet.
 		player.payRent(fieldOwner, 28000);
-		assertEquals(0,player.getAccountBalance());
-		assertEquals(false,player.getHasLost());
-		//Player pays so he ends up loosing
-		player.payRent(fieldOwner, 1);
-		assertEquals(true,player.getHasLost());
-
+		assertEquals("Ja hej3", 0,player.getAccountBalance());
 	}
 
 	@Test

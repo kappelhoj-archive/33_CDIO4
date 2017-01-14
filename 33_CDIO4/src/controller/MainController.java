@@ -7,7 +7,7 @@ import testModeController.TestModeController;
 
 /**
  * This class is the main controller. It is responsible of handing out
- * assigments to the different controllers and moving the player.
+ * assignments to the different controllers and moving the player.
  * 
  * @author Gruppe33
  *

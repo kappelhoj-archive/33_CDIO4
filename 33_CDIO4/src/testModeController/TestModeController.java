@@ -9,7 +9,7 @@ import entity.GameBoard;
 import entity.Player;
 
 /**
- * This class is a controller that interferes with normal game play.  This allows testers to test the program mroe easily.
+ * This class is a controller that interferes with normal game play.  This allows testers to test the program more easily.
  * @author Gruppe33
  *
  */

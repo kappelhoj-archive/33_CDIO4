@@ -9,7 +9,7 @@ import entity.chanceCard.*;
 
 /**
  * This class is responsible for creating, holding and giving class cards. This
- * is primarily used by the chancecard controller.
+ * is primarily used by the ChanceCardController.
  * 
  * @author Gruppe33
  *

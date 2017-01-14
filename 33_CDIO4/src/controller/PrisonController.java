@@ -4,7 +4,7 @@ import desktop_resources.GUI;
 import entity.Player;
 
 /**
- * This class is responsible for anything to do with the prison.
+ * This class is responsible for anything which has to do with the prison.
  * 
  * @author Gruppe33
  *

@@ -6,7 +6,7 @@ import entity.field.Street;
 import entity.Player;
 
 /**
- * This class is resposible for handling the debt of players when they owe the
+ * This class is responsible for handling the debt of players when they owe the
  * bank or another player money.
  * 
  * @author Gruppe33

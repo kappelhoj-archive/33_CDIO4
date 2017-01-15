@@ -26,7 +26,7 @@ public class ChanceCardDeck {
 		int cardNumber = 0;
 
 		// Imports file
-		String fileName = "data.csv";
+		String fileName = "src/data/Cards.csv";
 		File file = new File(fileName);
 
 		// Scans the file and splits it into an array based on the position of ,

@@ -32,7 +32,7 @@ public class GUICreator {
 	 * GUICreator constructor
 	 */
 	public GUICreator() {
-		Reader dataReader = new Reader("src/data/Feltliste.txt");
+		Reader dataReader = new Reader("resources/Feltliste.txt");
 		String[][] data = dataReader.readFile();
 		beginBoardBuilding();
 		for (int i = 0; i < 40; i++) {
@@ -132,7 +132,7 @@ public class GUICreator {
 				.setDescription(fieldData[1])
 				.setBgColor(
 						Color.getHSBColor((float) (216.21 / 360.0), (float) (72.5 / 100.0), (float) (62.75 / 100.0)))
-				.setPicture("src/data/pictures/Ferry.png").build();
+				.setPicture("resources/Ferry.png").build();
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class GUICreator {
 		fields[fieldCounter - 1] = new Refuge.Builder().setSubText(fieldsData[0]).setDescription(fieldsData[1])
 				.setBgColor(
 						Color.getHSBColor((float) (198.1 / 360.0), (float) (100.0 / 100.0), (float) (90.98 / 100.0)))
-				.setPicture("src/data/pictures/Parkeringslogo.png").build();
+				.setPicture("resources/Parkeringslogo.png").build();
 	}
 
 	/**

@@ -20,7 +20,7 @@ public class GameBoard
 	public GameBoard(){
 		fields = new Field[40];
 		fieldCounter = 1;
-		Reader reader = new Reader("src/data/Feltliste.txt");
+		Reader reader = new Reader("resources/Feltliste.txt");
 		String[][] fieldData = reader.readFile();
 		fieldData = reader.formatFileData(fieldData);
 		//Opretter felterne
